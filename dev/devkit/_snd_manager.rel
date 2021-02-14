@@ -1,0 +1,109 @@
+XL2
+H 9 areas 1E global symbols
+M _snd_manager
+O -mz80
+S _PSGSFXPlay Ref0000
+S _PSGRestoreVolumes Ref0000
+S _PSGSFXGetStatus Ref0000
+S .__.ABS. Def0000
+S _PSGPlay Ref0000
+S _PSGSFXStop Ref0000
+S _PSGSFXFrame Ref0000
+S _PSGGetStatus Ref0000
+S _PSGStop Ref0000
+S _PSGFrame Ref0000
+S _PSGSilenceChannels Ref0000
+S _PSGResume Ref0000
+S _PSGSetMusicVolumeAttenuation Ref0000
+S _PSGPlayNoRepeat Ref0000
+A _CODE size 60 flags 0 addr 0
+S _devkit_SFX_CHANNEL2 Def0057
+S _devkit_SFX_CHANNEL3 Def005A
+S _devkit_PSGSFXGetStatus Def0048
+S _devkit_PSGPlay Def0000
+S _devkit_PSGSFXStop Def0045
+S _devkit_PSGSFXFrame Def0054
+S _devkit_PSGGetStatus Def001A
+S _devkit_PSGStop Def0014
+S _devkit_SFX_CHANNELS2AND3 Def005D
+S _devkit_PSGFrame Def0051
+S _devkit_PSGSilenceChannels Def004B
+S _devkit_PSGSetMusicVolumeAttenuation Def001D
+S _devkit_PSGResume Def0017
+S _devkit_PSGPlayNoRepeat Def000A
+S _devkit_PSGSFXPlay Def0029
+S _devkit_PSGRestoreVolumes Def004E
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00
+R 00 00 00 00
+T 00 00 C1 E1 E5 C5 E5 CD 00 00 F1 C9
+R 00 00 00 00 02 08 04 00
+T 0A 00
+R 00 00 00 00
+T 0A 00 C1 E1 E5 C5 E5 CD 00 00 F1 C9
+R 00 00 00 00 02 08 0D 00
+T 14 00
+R 00 00 00 00
+T 14 00 C3 00 00
+R 00 00 00 00 02 03 08 00
+T 17 00
+R 00 00 00 00
+T 17 00 C3 00 00
+R 00 00 00 00 02 03 0B 00
+T 1A 00
+R 00 00 00 00
+T 1A 00 C3 00 00
+R 00 00 00 00 02 03 07 00
+T 1D 00
+R 00 00 00 00
+T 1D 00 21 02 00 39 7E F5 33 CD 00 00 33 C9
+R 00 00 00 00 02 0A 0C 00
+T 29 00
+R 00 00 00 00
+T 29 00 FD 21 04 00 FD 39 FD 7E 00 F5 33 FD 2B FD
+R 00 00 00 00
+T 37 00 2B FD 6E 00 FD 66 01 E5 CD 00 00 F1 33 C9
+R 00 00 00 00 02 0B 00 00
+T 45 00
+R 00 00 00 00
+T 45 00 C3 00 00
+R 00 00 00 00 02 03 05 00
+T 48 00
+R 00 00 00 00
+T 48 00 C3 00 00
+R 00 00 00 00 02 03 02 00
+T 4B 00
+R 00 00 00 00
+T 4B 00 C3 00 00
+R 00 00 00 00 02 03 0A 00
+T 4E 00
+R 00 00 00 00
+T 4E 00 C3 00 00
+R 00 00 00 00 02 03 01 00
+T 51 00
+R 00 00 00 00
+T 51 00 C3 00 00
+R 00 00 00 00 02 03 09 00
+T 54 00
+R 00 00 00 00
+T 54 00 C3 00 00
+R 00 00 00 00 02 03 06 00
+T 57 00
+R 00 00 00 00
+T 57 00 2E 01 C9
+R 00 00 00 00
+T 5A 00
+R 00 00 00 00
+T 5A 00 2E 02 C9
+R 00 00 00 00
+T 5D 00
+R 00 00 00 00
+T 5D 00 2E 03 C9
+R 00 00 00 00
