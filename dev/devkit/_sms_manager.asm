@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 4.0.0 #11528 (MINGW64)
+; Version 3.6.9 #9960 (MINGW64)
 ;--------------------------------------------------------
 	.module _sms_manager
 	.optsdcc -mz80
@@ -116,8 +116,7 @@ _SMS_SRAM	=	0x8000
 ; ---------------------------------
 _devkit_SMS_init::
 ;_sms_manager.c:13: SMS_init();
-;_sms_manager.c:14: }
-	jp	_SMS_init
+	jp  _SMS_init
 ;_sms_manager.c:15: void devkit_SMS_displayOn()
 ;	---------------------------------
 ; Function devkit_SMS_displayOn
@@ -125,8 +124,7 @@ _devkit_SMS_init::
 _devkit_SMS_displayOn::
 ;_sms_manager.c:17: SMS_displayOn();
 	ld	hl, #0x0140
-;_sms_manager.c:18: }
-	jp	_SMS_VDPturnOnFeature
+	jp  _SMS_VDPturnOnFeature
 ;_sms_manager.c:19: void devkit_SMS_displayOff()
 ;	---------------------------------
 ; Function devkit_SMS_displayOff
@@ -134,19 +132,17 @@ _devkit_SMS_displayOn::
 _devkit_SMS_displayOff::
 ;_sms_manager.c:21: SMS_displayOff();
 	ld	hl, #0x0140
-;_sms_manager.c:22: }
-	jp	_SMS_VDPturnOffFeature
+	jp  _SMS_VDPturnOffFeature
 ;_sms_manager.c:23: void devkit_SMS_mapROMBank( unsigned char n )
 ;	---------------------------------
 ; Function devkit_SMS_mapROMBank
 ; ---------------------------------
 _devkit_SMS_mapROMBank::
 ;_sms_manager.c:25: SMS_mapROMBank( n );
-	ld	iy, #2
-	add	iy, sp
-	ld	a, 0 (iy)
-	ld	(_ROM_bank_to_be_mapped_on_slot2+0), a
-;_sms_manager.c:26: }
+	ld	hl, #2+0
+	add	hl, sp
+	ld	a, (hl)
+	ld	(#_ROM_bank_to_be_mapped_on_slot2 + 0),a
 	ret
 ;_sms_manager.c:28: void devkit_SMS_setBGScrollX( unsigned char scrollX )
 ;	---------------------------------
@@ -157,8 +153,7 @@ _devkit_SMS_setBGScrollX::
 	ld	iy, #2
 	add	iy, sp
 	ld	l, 0 (iy)
-;_sms_manager.c:31: }
-	jp	_SMS_setBGScrollX
+	jp  _SMS_setBGScrollX
 ;_sms_manager.c:32: void devkit_SMS_setBGScrollY( unsigned char scrollY )
 ;	---------------------------------
 ; Function devkit_SMS_setBGScrollY
@@ -168,8 +163,7 @@ _devkit_SMS_setBGScrollY::
 	ld	iy, #2
 	add	iy, sp
 	ld	l, 0 (iy)
-;_sms_manager.c:35: }
-	jp	_SMS_setBGScrollY
+	jp  _SMS_setBGScrollY
 ;_sms_manager.c:37: void devkit_SMS_enableSRAM()
 ;	---------------------------------
 ; Function devkit_SMS_enableSRAM
@@ -178,7 +172,6 @@ _devkit_SMS_enableSRAM::
 ;_sms_manager.c:39: SMS_enableSRAM();
 	ld	hl,#_SRAM_bank_to_be_mapped_on_slot2 + 0
 	ld	(hl), #0x08
-;_sms_manager.c:40: }
 	ret
 ;_sms_manager.c:41: void devkit_SMS_enableSRAMBank( unsigned char n )
 ;	---------------------------------
@@ -186,15 +179,14 @@ _devkit_SMS_enableSRAM::
 ; ---------------------------------
 _devkit_SMS_enableSRAMBank::
 ;_sms_manager.c:43: SMS_enableSRAMBank( n );
-	ld	iy, #2
-	add	iy, sp
-	ld	a, 0 (iy)
+	ld	hl, #2+0
+	add	hl, sp
+	ld	a, (hl)
 	add	a, a
 	add	a, a
 	set	3, a
 	and	a, #0x0c
-	ld	(_SRAM_bank_to_be_mapped_on_slot2+0), a
-;_sms_manager.c:44: }
+	ld	(#_SRAM_bank_to_be_mapped_on_slot2 + 0),a
 	ret
 ;_sms_manager.c:45: void devkit_SMS_disableSRAM()
 ;	---------------------------------
@@ -204,7 +196,6 @@ _devkit_SMS_disableSRAM::
 ;_sms_manager.c:47: SMS_disableSRAM();
 	ld	hl,#_SRAM_bank_to_be_mapped_on_slot2 + 0
 	ld	(hl), #0x00
-;_sms_manager.c:48: }
 	ret
 ;_sms_manager.c:49: unsigned char* devkit_SMS_SRAM()
 ;	---------------------------------
@@ -213,7 +204,6 @@ _devkit_SMS_disableSRAM::
 _devkit_SMS_SRAM::
 ;_sms_manager.c:51: return SMS_SRAM;
 	ld	hl, #_SMS_SRAM
-;_sms_manager.c:52: }
 	ret
 ;_sms_manager.c:55: void devkit_SMS_setSpriteMode( unsigned char mode )
 ;	---------------------------------
@@ -224,8 +214,7 @@ _devkit_SMS_setSpriteMode::
 	ld	iy, #2
 	add	iy, sp
 	ld	l, 0 (iy)
-;_sms_manager.c:58: }
-	jp	_SMS_setSpriteMode
+	jp  _SMS_setSpriteMode
 ;_sms_manager.c:59: void devkit_SMS_useFirstHalfTilesforSprites_False()
 ;	---------------------------------
 ; Function devkit_SMS_useFirstHalfTilesforSprites_False
@@ -233,8 +222,7 @@ _devkit_SMS_setSpriteMode::
 _devkit_SMS_useFirstHalfTilesforSprites_False::
 ;_sms_manager.c:61: SMS_useFirstHalfTilesforSprites( false );
 	ld	l, #0x00
-;_sms_manager.c:62: }
-	jp	_SMS_useFirstHalfTilesforSprites
+	jp  _SMS_useFirstHalfTilesforSprites
 ;_sms_manager.c:63: void devkit_SMS_useFirstHalfTilesforSprites_True()
 ;	---------------------------------
 ; Function devkit_SMS_useFirstHalfTilesforSprites_True
@@ -242,8 +230,7 @@ _devkit_SMS_useFirstHalfTilesforSprites_False::
 _devkit_SMS_useFirstHalfTilesforSprites_True::
 ;_sms_manager.c:65: SMS_useFirstHalfTilesforSprites( true );
 	ld	l, #0x01
-;_sms_manager.c:66: }
-	jp	_SMS_useFirstHalfTilesforSprites
+	jp  _SMS_useFirstHalfTilesforSprites
 ;_sms_manager.c:67: void devkit_SMS_VDPturnOnFeature( unsigned int feature )
 ;	---------------------------------
 ; Function devkit_SMS_VDPturnOnFeature
@@ -254,28 +241,28 @@ _devkit_SMS_VDPturnOnFeature::
 	pop	hl
 	push	hl
 	push	bc
-;_sms_manager.c:70: }
-	jp	_SMS_VDPturnOnFeature
+	jp  _SMS_VDPturnOnFeature
 ;_sms_manager.c:72: void devkit_SMS_loadPSGaidencompressedTiles( void *src, unsigned int tilefrom )
 ;	---------------------------------
 ; Function devkit_SMS_loadPSGaidencompressedTiles
 ; ---------------------------------
 _devkit_SMS_loadPSGaidencompressedTiles::
 ;_sms_manager.c:74: SMS_loadPSGaidencompressedTiles( src, tilefrom );
-	ld	iy, #4
-	add	iy, sp
-	ld	l, 0 (iy)
-	ld	h, 1 (iy)
-	push	hl
-	dec	iy
-	dec	iy
-	ld	l, 0 (iy)
-	ld	h, 1 (iy)
-	push	hl
+	ld	hl, #4
+	add	hl, sp
+	ld	c, (hl)
+	inc	hl
+	ld	b, (hl)
+	push	bc
+	ld	hl, #4
+	add	hl, sp
+	ld	c, (hl)
+	inc	hl
+	ld	b, (hl)
+	push	bc
 	call	_SMS_loadPSGaidencompressedTiles
 	pop	af
 	pop	af
-;_sms_manager.c:75: }
 	ret
 ;_sms_manager.c:76: void devkit_SMS_loadSTMcompressedTileMap( unsigned char x, unsigned char y, unsigned char *src )
 ;	---------------------------------
@@ -286,24 +273,26 @@ _devkit_SMS_loadSTMcompressedTileMap::
 	ld	a, #0x20
 	push	af
 	inc	sp
-	ld	iy, #5
-	add	iy, sp
-	ld	l, 0 (iy)
-	ld	h, 1 (iy)
-	push	hl
-	dec	iy
-	ld	a, 0 (iy)
+	ld	hl, #5
+	add	hl, sp
+	ld	c, (hl)
+	inc	hl
+	ld	b, (hl)
+	push	bc
+	ld	hl, #6+0
+	add	hl, sp
+	ld	a, (hl)
 	push	af
 	inc	sp
-	dec	iy
-	ld	a, 0 (iy)
+	ld	hl, #6+0
+	add	hl, sp
+	ld	a, (hl)
 	push	af
 	inc	sp
 	call	_SMS_loadSTMcompressedTileMapArea
 	pop	af
 	pop	af
 	inc	sp
-;_sms_manager.c:79: }
 	ret
 ;_sms_manager.c:81: void devkit_SMS_loadBGPalette( void *palette )
 ;	---------------------------------
@@ -315,8 +304,7 @@ _devkit_SMS_loadBGPalette::
 	pop	hl
 	push	hl
 	push	bc
-;_sms_manager.c:84: }
-	jp	_SMS_loadBGPalette
+	jp  _SMS_loadBGPalette
 ;_sms_manager.c:85: void devkit_SMS_loadSpritePalette( void *palette )
 ;	---------------------------------
 ; Function devkit_SMS_loadSpritePalette
@@ -327,42 +315,42 @@ _devkit_SMS_loadSpritePalette::
 	pop	hl
 	push	hl
 	push	bc
-;_sms_manager.c:88: }
-	jp	_SMS_loadSpritePalette
+	jp  _SMS_loadSpritePalette
 ;_sms_manager.c:89: void devkit_SMS_setBGPaletteColor( const unsigned char entry, const unsigned char r, const unsigned char g, const unsigned char b )
 ;	---------------------------------
 ; Function devkit_SMS_setBGPaletteColor
 ; ---------------------------------
 _devkit_SMS_setBGPaletteColor::
 ;_sms_manager.c:91: const unsigned char color = RGB( r, g, b );
-	ld	iy, #4
-	add	iy, sp
-	ld	a, 0 (iy)
+	ld	hl, #4+0
+	add	hl, sp
+	ld	a, (hl)
 	add	a, a
 	add	a, a
-	dec	iy
-	or	a, 0 (iy)
+	ld	hl, #3+0
+	add	hl, sp
+	or	a, (hl)
 	ld	c, a
-	inc	iy
-	inc	iy
-	ld	a, 0 (iy)
-	add	a, a
-	add	a, a
-	add	a, a
-	add	a, a
+	ld	hl, #5+0
+	add	hl, sp
+	ld	a, (hl)
+	rlca
+	rlca
+	rlca
+	rlca
+	and	a, #0xf0
 	or	a, c
+	ld	b, a
 ;_sms_manager.c:92: SMS_setBGPaletteColor( entry, color );
-	push	af
+	push	bc
 	inc	sp
-	dec	iy
-	dec	iy
-	dec	iy
-	ld	a, 0 (iy)
+	ld	hl, #3+0
+	add	hl, sp
+	ld	a, (hl)
 	push	af
 	inc	sp
 	call	_SMS_setBGPaletteColor
 	pop	af
-;_sms_manager.c:93: }
 	ret
 ;_sms_manager.c:94: void devkit_SMS_setSpritePaletteColor( const unsigned char entry, const unsigned char r, const unsigned char g, const unsigned char b )
 ;	---------------------------------
@@ -370,34 +358,35 @@ _devkit_SMS_setBGPaletteColor::
 ; ---------------------------------
 _devkit_SMS_setSpritePaletteColor::
 ;_sms_manager.c:96: const unsigned char color = RGB( r, g, b );
-	ld	iy, #4
-	add	iy, sp
-	ld	a, 0 (iy)
+	ld	hl, #4+0
+	add	hl, sp
+	ld	a, (hl)
 	add	a, a
 	add	a, a
-	dec	iy
-	or	a, 0 (iy)
+	ld	hl, #3+0
+	add	hl, sp
+	or	a, (hl)
 	ld	c, a
-	inc	iy
-	inc	iy
-	ld	a, 0 (iy)
-	add	a, a
-	add	a, a
-	add	a, a
-	add	a, a
+	ld	hl, #5+0
+	add	hl, sp
+	ld	a, (hl)
+	rlca
+	rlca
+	rlca
+	rlca
+	and	a, #0xf0
 	or	a, c
+	ld	b, a
 ;_sms_manager.c:97: SMS_setSpritePaletteColor( entry, color );
-	push	af
+	push	bc
 	inc	sp
-	dec	iy
-	dec	iy
-	dec	iy
-	ld	a, 0 (iy)
+	ld	hl, #3+0
+	add	hl, sp
+	ld	a, (hl)
 	push	af
 	inc	sp
 	call	_SMS_setSpritePaletteColor
 	pop	af
-;_sms_manager.c:98: }
 	ret
 ;_sms_manager.c:100: void devkit_SMS_setNextTileatXY( unsigned char x, unsigned char y )
 ;	---------------------------------
@@ -429,7 +418,6 @@ _devkit_SMS_setNextTileatXY::
 	ld	a, h
 	or	a, b
 	ld	h, a
-;_sms_manager.c:103: }
 	pop	ix
 	jp	_SMS_crt0_RST08
 ;_sms_manager.c:104: void devkit_SMS_setTile( const unsigned int tile )
@@ -442,8 +430,7 @@ _devkit_SMS_setTile::
 	pop	hl
 	push	hl
 	push	bc
-;_sms_manager.c:107: }
-	jp	_SMS_crt0_RST18
+	jp  _SMS_crt0_RST18
 ;_sms_manager.c:108: void devkit_SMS_setTilePriority( const unsigned char tile )
 ;	---------------------------------
 ; Function devkit_SMS_setTilePriority
@@ -453,34 +440,34 @@ _devkit_SMS_setTilePriority::
 	ld	iy, #2
 	add	iy, sp
 	ld	l, 0 (iy)
-	xor	a, a
+	ld	a, #0x00
 	or	a, #0x18
 	ld	h, a
-;_sms_manager.c:111: }
-	jp	_SMS_crt0_RST18
+	jp  _SMS_crt0_RST18
 ;_sms_manager.c:113: void devkit_SMS_addSprite( unsigned char x, unsigned char y, int tile )
 ;	---------------------------------
 ; Function devkit_SMS_addSprite
 ; ---------------------------------
 _devkit_SMS_addSprite::
 ;_sms_manager.c:115: SMS_addSprite( x, y, tile );
-	ld	iy, #4
-	add	iy, sp
-	ld	a, 0 (iy)
+	ld	hl, #4+0
+	add	hl, sp
+	ld	b, (hl)
+	push	bc
+	inc	sp
+	ld	hl, #4+0
+	add	hl, sp
+	ld	a, (hl)
 	push	af
 	inc	sp
-	dec	iy
-	ld	a, 0 (iy)
-	push	af
-	inc	sp
-	dec	iy
-	ld	a, 0 (iy)
+	ld	hl, #4+0
+	add	hl, sp
+	ld	a, (hl)
 	push	af
 	inc	sp
 	call	_SMS_addSprite
 	pop	af
 	inc	sp
-;_sms_manager.c:116: }
 	ret
 ;_sms_manager.c:117: void devkit_SMS_initSprites()
 ;	---------------------------------
@@ -488,47 +475,41 @@ _devkit_SMS_addSprite::
 ; ---------------------------------
 _devkit_SMS_initSprites::
 ;_sms_manager.c:119: SMS_initSprites();
-;_sms_manager.c:120: }
-	jp	_SMS_initSprites
+	jp  _SMS_initSprites
 ;_sms_manager.c:121: void devkit_SMS_finalizeSprites()
 ;	---------------------------------
 ; Function devkit_SMS_finalizeSprites
 ; ---------------------------------
 _devkit_SMS_finalizeSprites::
 ;_sms_manager.c:123: SMS_finalizeSprites();
-;_sms_manager.c:124: }
-	jp	_SMS_finalizeSprites
+	jp  _SMS_finalizeSprites
 ;_sms_manager.c:125: void devkit_SMS_waitForVBlank()
 ;	---------------------------------
 ; Function devkit_SMS_waitForVBlank
 ; ---------------------------------
 _devkit_SMS_waitForVBlank::
 ;_sms_manager.c:127: SMS_waitForVBlank();
-;_sms_manager.c:128: }
-	jp	_SMS_waitForVBlank
+	jp  _SMS_waitForVBlank
 ;_sms_manager.c:129: void devkit_SMS_copySpritestoSAT()
 ;	---------------------------------
 ; Function devkit_SMS_copySpritestoSAT
 ; ---------------------------------
 _devkit_SMS_copySpritestoSAT::
 ;_sms_manager.c:131: UNSAFE_SMS_copySpritestoSAT();
-;_sms_manager.c:132: }
-	jp	_UNSAFE_SMS_copySpritestoSAT
+	jp  _UNSAFE_SMS_copySpritestoSAT
 ;_sms_manager.c:133: void devkit_UNSAFE_SMS_copySpritestoSAT()
 ;	---------------------------------
 ; Function devkit_UNSAFE_SMS_copySpritestoSAT
 ; ---------------------------------
 _devkit_UNSAFE_SMS_copySpritestoSAT::
 ;_sms_manager.c:135: UNSAFE_SMS_copySpritestoSAT();
-;_sms_manager.c:136: }
-	jp	_UNSAFE_SMS_copySpritestoSAT
+	jp  _UNSAFE_SMS_copySpritestoSAT
 ;_sms_manager.c:138: unsigned char devkit_SMS_queryPauseRequested()
 ;	---------------------------------
 ; Function devkit_SMS_queryPauseRequested
 ; ---------------------------------
 _devkit_SMS_queryPauseRequested::
 ;_sms_manager.c:140: return SMS_queryPauseRequested();
-;_sms_manager.c:141: }
 	jp  _SMS_queryPauseRequested
 ;_sms_manager.c:142: void devkit_SMS_resetPauseRequest()
 ;	---------------------------------
@@ -536,8 +517,7 @@ _devkit_SMS_queryPauseRequested::
 ; ---------------------------------
 _devkit_SMS_resetPauseRequest::
 ;_sms_manager.c:144: SMS_resetPauseRequest();
-;_sms_manager.c:145: }
-	jp	_SMS_resetPauseRequest
+	jp  _SMS_resetPauseRequest
 ;_sms_manager.c:148: unsigned char devkit_isCollisionDetected()
 ;	---------------------------------
 ; Function devkit_isCollisionDetected
@@ -547,7 +527,6 @@ _devkit_isCollisionDetected::
 	ld	a,(#_SMS_VDPFlags + 0)
 	and	a, #0x20
 	ld	l, a
-;_sms_manager.c:151: }
 	ret
 ;_sms_manager.c:154: unsigned int devkit_SMS_getKeysStatus()
 ;	---------------------------------
@@ -555,8 +534,7 @@ _devkit_isCollisionDetected::
 ; ---------------------------------
 _devkit_SMS_getKeysStatus::
 ;_sms_manager.c:156: return SMS_getKeysStatus();
-;_sms_manager.c:157: }
-	jp	_SMS_getKeysStatus
+	jp  _SMS_getKeysStatus
 ;_sms_manager.c:160: unsigned char devkit_SPRITEMODE_NORMAL()
 ;	---------------------------------
 ; Function devkit_SPRITEMODE_NORMAL
@@ -564,7 +542,6 @@ _devkit_SMS_getKeysStatus::
 _devkit_SPRITEMODE_NORMAL::
 ;_sms_manager.c:162: return SPRITEMODE_NORMAL;
 	ld	l, #0x00
-;_sms_manager.c:163: }
 	ret
 ;_sms_manager.c:164: unsigned int devkit_VDPFEATURE_HIDEFIRSTCOL()
 ;	---------------------------------
@@ -573,7 +550,6 @@ _devkit_SPRITEMODE_NORMAL::
 _devkit_VDPFEATURE_HIDEFIRSTCOL::
 ;_sms_manager.c:166: return VDPFEATURE_HIDEFIRSTCOL;
 	ld	hl, #0x0020
-;_sms_manager.c:167: }
 	ret
 ;_sms_manager.c:168: unsigned int devkit_TILE_PRIORITY()
 ;	---------------------------------
@@ -582,7 +558,6 @@ _devkit_VDPFEATURE_HIDEFIRSTCOL::
 _devkit_TILE_PRIORITY::
 ;_sms_manager.c:170: return TILE_PRIORITY;
 	ld	hl, #0x1000
-;_sms_manager.c:171: }
 	ret
 ;_sms_manager.c:172: unsigned int devkit_TILE_USE_SPRITE_PALETTE()
 ;	---------------------------------
@@ -591,7 +566,6 @@ _devkit_TILE_PRIORITY::
 _devkit_TILE_USE_SPRITE_PALETTE::
 ;_sms_manager.c:174: return TILE_USE_SPRITE_PALETTE;
 	ld	hl, #0x0800
-;_sms_manager.c:175: }
 	ret
 	.area _CODE
 __str_0:
