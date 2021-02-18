@@ -1,14 +1,134 @@
-	
 ; This disassembly was created using Emulicious (http://www.emulicious.net)	
+.MEMORYMAP	
+SLOTSIZE $7FF0	
+SLOT 0 $0000	
+SLOTSIZE $10	
+SLOT 1 $7FF0	
+SLOTSIZE $4000	
+SLOT 2 $8000	
+DEFAULTSLOT 2	
+.ENDME	
+.ROMBANKMAP	
+BANKSTOTAL 16	
+BANKSIZE $7FF0	
+BANKS 1	
+BANKSIZE $10	
+BANKS 1	
+BANKSIZE $4000	
+BANKS 14	
+.ENDRO	
+	
+.enum $C000 export	
+_RAM_C000_ db	
+_RAM_C001_ db	
+_RAM_C002_ dw	
+_RAM_C004_ dw	
+_RAM_C006_ dw	
+_RAM_C008_ db	
+_RAM_C009_ db	
+_RAM_C00A_ db	
+_RAM_C00B_ db	
+_RAM_C00C_ db	
+_RAM_C00D_ dw	
+_RAM_C00F_ db	
+_RAM_C010_ db	
+_RAM_C011_ db	
+_RAM_C012_ db	
+_RAM_C013_ db	
+_RAM_C014_ db	
+_RAM_C015_ db	
+_RAM_C016_ db	
+_RAM_C017_ db	
+_RAM_C018_ db	
+_RAM_C019_ db	
+_RAM_C01A_ db	
+_RAM_C01B_ dw	
+_RAM_C01D_ dw	
+_RAM_C01F_ dw	
+_RAM_C021_ db	
+_RAM_C022_ db	
+_RAM_C023_ db	
+_RAM_C024_ dw	
+.ende	
+	
+.enum $C02B export	
+_RAM_C02B_ db	
+_RAM_C02C_ db	
+_RAM_C02D_ dw	
+_RAM_C02F_ dw	
+_RAM_C031_ dw	
+_RAM_C033_ dw	
+_RAM_C035_ dw	
+_RAM_C037_ dw	
+_RAM_C039_ dw	
+_RAM_C03B_ dw	
+_RAM_C03D_ dw	
+_RAM_C03F_ dw	
+_RAM_C041_ dw	
+_RAM_C043_ dw	
+_RAM_C045_ db	
+.ende	
+	
+.enum $C05B export	
+_RAM_C05B_ db	
+_RAM_C05C_ db	
+_RAM_C05D_ db	
+_RAM_C05E_ db	
+_RAM_C05F_ dw	
+_RAM_C061_ dw	
+_RAM_C063_ db	
+.ende	
+	
+.enum $C0A3 export	
+_RAM_C0A3_ db	
+.ende	
+	
+.enum $C123 export	
+_RAM_C123_ db	
+_RAM_C124_ dw	
+_RAM_C126_ db	
+.ende	
+	
+.enum $C146 export	
+_RAM_C146_ dw	
+_RAM_C148_ dw	
+.ende	
+	
+.enum $C1AA export	
+_RAM_C1AA_ db	
+.ende	
+	
+.enum $C1AC export	
+_RAM_C1AC_ db	
+_RAM_C1AD_ db	
+.ende	
+	
+.enum $FFFC export	
+_RAM_FFFC_ db	
+.ende	
+	
+; Ports	
+.define Port_PSG $7F	
+.define Port_VDPData $BE	
+.define Port_VDPAddress $BF	
+	
+; Input Ports	
+.define Port_VCounter $7E	
+.define Port_VDPStatus $BF	
+.define Port_IOPort1 $DC	
+.define Port_IOPort2 $DD	
+	
+.BANK 0 SLOT 0	
+.ORG $0000	
 	
 _LABEL_0_:	
 		di
 		im 1
 		jp _LABEL_70_
 	
-_SMS_crt0_RST08:	
-		nop
-		nop
+	; Data from 6 to 7 (2 bytes)
+	.db $00 $00
+	
 _LABEL_8_:	
 		ld c, Port_VDPAddress
 		di
@@ -17,34 +137,19 @@ _LABEL_8_:
 		ei
 		ret
 	
-_SMS_crt0_RST18:	
-		nop
-		nop
-		nop
-		nop
-		nop
-		nop
-		nop
-_LABEL_18_:	
-		ld a, l
-		out (Port_VDPData), a
-		ld a, h
-		sub $00
-		nop
-		out (Port_VDPData), a
-		ret
-	
-	; Data from 22 to 37 (22 bytes)
+	; Data from 11 to 37 (39 bytes)
+	.db $00 $00 $00 $00 $00 $00 $00 $7D $D3 $BE $7C $D6 $00 $00 $D3 $BE
+	.db $C9
 	.dsb 22, $00
 	
 _LABEL_38_:	
-		jp _SMS_isr
+		jp _LABEL_1DDF_
 	
 	; Data from 3B to 65 (43 bytes)
 	.dsb 43, $00
 	
 _LABEL_66_:	
-		jp _SMS_nmi_isr
+		jp _LABEL_1E15_
 	
 	; Data from 69 to 6F (7 bytes)
 	.db $00 $00 $00 $00 $00 $00 $00
@@ -61,18 +166,18 @@ _LABEL_70_:
 		inc a
 		djnz -
 		xor a
-		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
+		ld hl, _RAM_C000_
 		ld (hl), a
-		ld de, PSGMusicStatus	; PSGMusicStatus = $C001
+		ld de, _RAM_C000_ + 1
 		ld bc, $1FF0
 		ldir
-		call gsinit
-		call _SMS_init
+		call _LABEL_216B_
+		call _LABEL_1B4F_
 		ei
-		call A$main$83
-		jp _exit
+		call _LABEL_20A_
+		jp _LABEL_204_
 	
-_OUTI128:	
+_LABEL_99_:	
 		outi
 		outi
 		outi
@@ -137,7 +242,7 @@ _OUTI128:
 		outi
 		outi
 		outi
-_OUTI64:	
+_LABEL_119_:	
 		outi
 		outi
 		outi
@@ -204,188 +309,109 @@ _OUTI64:
 		outi
 		ret
 	
-	; Data from 19A to 1FF (102 bytes)
+	; Data from 19A to 203 (106 bytes)
 	.dsb 102, $00
-	
-; Data from 200 to 203 (4 bytes)	
-__clock:	
 	.db $3E $02 $CF $C9
 	
-_exit:	
+_LABEL_204_:	
 		ld a, $00
 		rst $08	; _LABEL_8_
 -:	
 		halt
 		jr -
 	
-A$main$83:	
-C$main.c$3$0$0:	
-C$main.c$9$1$55:	
-G$main$0$0:	
-_main:	
-		call A$asm_manager$59
-		call A$_sms_manager$132
-		call A$_sms_manager$163
-		call A$_sms_manager$887
+_LABEL_20A_:	
+		call _LABEL_A5A_
+		call _LABEL_822_
+		call _LABEL_82B_
+		call _LABEL_99E_
 		ld b, l
 		push bc
 		inc sp
-		call A$_sms_manager$323
+		call _LABEL_871_
 		inc sp
-		call A$_sms_manager$343
-		call A$_sms_manager$905
+		call _LABEL_87D_
+		call _LABEL_9A1_
 		push hl
-		call A$_sms_manager$379
+		call _LABEL_887_
 		pop af
-		call A$content_manager$65
-		call A$content_manager$263
-		call A$scroll_manager$61
+		call _LABEL_AA2_
+		call _LABEL_B51_
+		call _LABEL_1025_
 		ld a, $01
 		push af
 		inc sp
-		call A$screen_manager$80
+		call _LABEL_F8C_
 		inc sp
-		call A$_sms_manager$145
-A$main$140:	
-C$main.c$27$3$57:	
-		call A$_sms_manager$820
+		call _LABEL_825_
+_LABEL_23C_:	
+		call _LABEL_98E_
 		ld a, l
 		or a
-		jr z, A$main$174
-		call A$_sms_manager$837
-		ld iy, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
+		jr z, ++
+		call _LABEL_991_
+		ld iy, _RAM_C000_
 		ld a, (iy+0)
 		xor $01
 		ld (iy+0), a
 		bit 0, (iy+0)
-		jr z, A$main$169
-		call A$_snd_manager$275
-		jr A$main$174
+		jr z, +
+		call _LABEL_A45_
+		jr ++
 	
-A$main$169:	
-C$main.c$37$5$60:	
-		call A$_snd_manager$292
-A$main$174:	
-C$main.c$41$3$57:	
-		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
++:	
+		call _LABEL_A48_
+++:	
+		ld hl, _RAM_C000_
 		bit 0, (hl)
-		jr nz, A$main$140
-		call A$_sms_manager$735
-		call A$input_manager$64
-		call A$screen_manager$166
-		call A$_sms_manager$752
-		call A$_sms_manager$769
-		call A$_sms_manager$786
-		call A$_snd_manager$309
-		call A$_snd_manager$326
-		jr A$main$140
+		jr nz, _LABEL_23C_
+		call _LABEL_97F_
+		call _LABEL_EC6_
+		call _LABEL_FE2_
+		call _LABEL_982_
+		call _LABEL_985_
+		call _LABEL_988_
+		call _LABEL_A4B_
+		call _LABEL_A4E_
+		jr _LABEL_23C_
 	
-_PSGStop:	
-		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
+_LABEL_281_:	
+		ld a, (_RAM_C001_)
 		or a
 		ret z
 		ld a, $9F
 		out (Port_PSG), a
 		ld a, $BF
 		out (Port_PSG), a
-		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
+		ld a, (_RAM_C016_)
 		or a
 		jr nz, +
 		ld a, $DF
 		out (Port_PSG), a
 +:	
-		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
+		ld a, (_RAM_C017_)
 		or a
 		jr nz, +
 		ld a, $FF
 		out (Port_PSG), a
 +:	
-		ld hl, PSGMusicStatus	; PSGMusicStatus = $C001
+		ld hl, _RAM_C001_
 		ld (hl), $00
 		ret
 	
-_PSGResume:	
-		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
-		or a
-		ret nz
-		ld a, (PSGChan0Volume)	; PSGChan0Volume = $C00F
-		or $90
-		out (Port_PSG), a
-		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
-		or $B0
-		out (Port_PSG), a
-		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
-		or a
-		jr nz, +
-		ld a, (PSGChan2LowTone)	; PSGChan2LowTone = $C013
-		and $0F
-		or $C0
-		out (Port_PSG), a
-		ld a, (PSGChan2HighTone)	; PSGChan2HighTone = $C014
-		and $3F
-		out (Port_PSG), a
-		ld a, (PSGChan2Volume)	; PSGChan2Volume = $C011
-		or $D0
-		out (Port_PSG), a
-+:	
-		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
-		or a
-		jr nz, +
-		ld a, (PSGChan3LowTone)	; PSGChan3LowTone = $C015
-		and $0F
-		or $E0
-		out (Port_PSG), a
-		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
-		or $F0
-		out (Port_PSG), a
-+:	
-		ld hl, PSGMusicStatus	; PSGMusicStatus = $C001
-		ld (hl), $01
-		ret
+	; Data from 2A8 to 33D (150 bytes)
+	.db $3A $01 $C0 $B7 $C0 $3A $0F $C0 $F6 $90 $D3 $7F $3A $10 $C0 $F6
+	.db $B0 $D3 $7F $3A $16 $C0 $B7 $20 $17 $3A $13 $C0 $E6 $0F $F6 $C0
+	.db $D3 $7F $3A $14 $C0 $E6 $3F $D3 $7F $3A $11 $C0 $F6 $D0 $D3 $7F
+	.db $3A $17 $C0 $B7 $20 $10 $3A $15 $C0 $E6 $0F $F6 $E0 $D3 $7F $3A
+	.db $12 $C0 $F6 $F0 $D3 $7F $21 $01 $C0 $36 $01 $C9 $CD $81 $02 $21
+	.db $09 $C0 $36 $01 $D1 $C1 $C5 $D5 $ED $43 $02 $C0 $ED $43 $04 $C0
+	.db $ED $43 $06 $C0 $21 $08 $C0 $36 $00 $21 $0C $C0 $36 $00 $21 $0A
+	.db $C0 $36 $9F $21 $01 $C0 $36 $01 $C9 $21 $09 $C0 $36 $00 $C9 $C1
+	.db $E1 $E5 $C5 $E5 $CD $F4 $02 $F1 $21 $09 $C0 $36 $00 $C9 $FD $21
+	.db $01 $C0 $FD $6E $00 $C9
 	
-_PSGPlay:	
-		call _PSGStop
-		ld hl, PSGLoopFlag	; PSGLoopFlag = $C009
-		ld (hl), $01
-		pop de
-		pop bc
-		push bc
-		push de
-		ld (PSGMusicStart), bc	; PSGMusicStart = $C002
-		ld (PSGMusicPointer), bc	; PSGMusicPointer = $C004
-		ld (PSGMusicLoopPoint), bc	; PSGMusicLoopPoint = $C006
-		ld hl, PSGMusicSkipFrames	; PSGMusicSkipFrames = $C008
-		ld (hl), $00
-		ld hl, PSGMusicSubstringLen	; PSGMusicSubstringLen = $C00C
-		ld (hl), $00
-		ld hl, PSGMusicLastLatch	; PSGMusicLastLatch = $C00A
-		ld (hl), $9F
-		ld hl, PSGMusicStatus	; PSGMusicStatus = $C001
-		ld (hl), $01
-		ret
-	
-; Data from 321 to 326 (6 bytes)	
-_PSGCancelLoop:	
-	.db $21 $09 $C0 $36 $00 $C9
-	
-_PSGPlayNoRepeat:	
-		pop bc
-		pop hl
-		push hl
-		push bc
-		push hl
-		call _PSGPlay
-		pop af
-		ld hl, PSGLoopFlag	; PSGLoopFlag = $C009
-		ld (hl), $00
-		ret
-	
-_PSGGetStatus:	
-		ld iy, PSGMusicStatus	; PSGMusicStatus = $C001
-		ld l, (iy+0)
-		ret
-	
-_PSGSilenceChannels:	
+_LABEL_33E_:	
 		ld a, $9F
 		out (Port_PSG), a
 		ld a, $BF
@@ -396,21 +422,21 @@ _PSGSilenceChannels:
 		out (Port_PSG), a
 		ret
 	
-_PSGRestoreVolumes:	
+_LABEL_34F_:	
 		push ix
 		ld ix, $0000
 		add ix, sp
 		push af
-		ld iy, PSGMusicVolumeAttenuation	; PSGMusicVolumeAttenuation = $C00B
+		ld iy, _RAM_C00B_
 		ld a, (iy+0)
 		ld (ix-2), a
 		xor a
 		ld (ix-1), a
 		ld c, (iy+0)
-		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
+		ld a, (_RAM_C001_)
 		or a
 		jr z, _LABEL_3C7_
-		ld a, (PSGChan0Volume)	; PSGChan0Volume = $C00F
+		ld a, (_RAM_C00F_)
 		and $0F
 		ld e, a
 		ld d, $00
@@ -429,7 +455,7 @@ _PSGRestoreVolumes:
 		jr ++
 	
 +:	
-		ld a, (PSGChan0Volume)	; PSGChan0Volume = $C00F
+		ld a, (_RAM_C00F_)
 		and $0F
 		add a, c
 		ld e, a
@@ -439,7 +465,7 @@ _PSGRestoreVolumes:
 		ld a, e
 		or $90
 		out (Port_PSG), a
-		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
+		ld a, (_RAM_C010_)
 		and $0F
 		ld e, a
 		ld d, $00
@@ -458,7 +484,7 @@ _PSGRestoreVolumes:
 		jr ++
 	
 +:	
-		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
+		ld a, (_RAM_C010_)
 		and $0F
 		add a, c
 		ld e, a
@@ -469,19 +495,19 @@ _PSGRestoreVolumes:
 		or $B0
 		out (Port_PSG), a
 _LABEL_3C7_:	
-		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
+		ld a, (_RAM_C016_)
 		or a
 		jr z, +
-		ld a, (PSGSFXChan2Volume)	; PSGSFXChan2Volume = $C018
+		ld a, (_RAM_C018_)
 		or $D0
 		out (Port_PSG), a
 		jr +++
 	
 +:	
-		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
+		ld a, (_RAM_C001_)
 		or a
 		jr z, +++
-		ld a, (PSGChan2Volume)	; PSGChan2Volume = $C011
+		ld a, (_RAM_C011_)
 		and $0F
 		ld e, a
 		ld d, $00
@@ -500,7 +526,7 @@ _LABEL_3C7_:
 		jr ++
 	
 +:	
-		ld a, (PSGChan2Volume)	; PSGChan2Volume = $C011
+		ld a, (_RAM_C011_)
 		and $0F
 		add a, c
 		ld e, a
@@ -511,19 +537,19 @@ _LABEL_3C7_:
 		or $D0
 		out (Port_PSG), a
 +++:	
-		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
+		ld a, (_RAM_C017_)
 		or a
 		jr z, +
-		ld a, (PSGSFXChan3Volume)	; PSGSFXChan3Volume = $C019
+		ld a, (_RAM_C019_)
 		or $F0
 		out (Port_PSG), a
 		jr +++
 	
 +:	
-		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
+		ld a, (_RAM_C001_)
 		or a
 		jr z, +++
-		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
+		ld a, (_RAM_C012_)
 		and $0F
 		ld l, a
 		ld h, $00
@@ -542,7 +568,7 @@ _LABEL_3C7_:
 		jr ++
 	
 +:	
-		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
+		ld a, (_RAM_C012_)
 		and $0F
 		add a, c
 		ld c, a
@@ -557,181 +583,51 @@ _LABEL_3C7_:
 		pop ix
 		ret
 	
-_PSGSetMusicVolumeAttenuation:	
+	; Data from 44E to 53C (239 bytes)
+	.db $DD $E5 $DD $21 $00 $00 $DD $39 $F5 $DD $7E $04 $32 $0B $C0 $3A
+	.db $01 $C0 $B7 $CA $38 $05 $3A $0F $C0 $E6 $0F $4F $1E $00 $FD $21
+	.db $0B $C0 $FD $7E $00 $DD $77 $FE $AF $DD $77 $FF $79 $DD $86 $FE
+	.db $47 $7B $DD $8E $FF $5F $FD $4E $00 $3E $0F $B8 $3E $00 $9B $E2
+	.db $92 $04 $EE $80 $F2 $9A $04 $11 $0F $00 $18 $09 $3A $0F $C0 $E6
+	.db $0F $81 $5F $17 $9F $7B $F6 $90 $D3 $7F $3A $10 $C0 $E6 $0F $5F
+	.db $16 $00 $E1 $E5 $19 $3E $0F $BD $3E $00 $9C $E2 $BE $04 $EE $80
+	.db $F2 $C6 $04 $11 $0F $00 $18 $09 $3A $10 $C0 $E6 $0F $81 $5F $17
+	.db $9F $7B $F6 $B0 $D3 $7F $3A $16 $C0 $B7 $20 $2C $3A $11 $C0 $E6
+	.db $0F $6F $26 $00 $D1 $D5 $19 $3E $0F $BD $3E $00 $9C $E2 $F0 $04
+	.db $EE $80 $F2 $F8 $04 $11 $0F $00 $18 $09 $3A $11 $C0 $E6 $0F $81
+	.db $5F $17 $9F $7B $F6 $D0 $D3 $7F $3A $17 $C0 $B7 $20 $2C $3A $12
+	.db $C0 $E6 $0F $6F $26 $00 $D1 $D5 $19 $3E $0F $BD $3E $00 $9C $E2
+	.db $22 $05 $EE $80 $F2 $2A $05 $01 $0F $00 $18 $09 $3A $12 $C0 $E6
+	.db $0F $81 $4F $17 $9F $79 $F6 $F0 $D3 $7F $DD $F9 $DD $E1 $C9
+	
+_LABEL_53D_:	
 		push ix
 		ld ix, $0000
 		add ix, sp
 		push af
-		ld a, (ix+4)
-		ld (PSGMusicVolumeAttenuation), a	; PSGMusicVolumeAttenuation = $C00B
-		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
-		or a
-		jp z, _LABEL_538_
-		ld a, (PSGChan0Volume)	; PSGChan0Volume = $C00F
-		and $0F
-		ld c, a
-		ld e, $00
-		ld iy, PSGMusicVolumeAttenuation	; PSGMusicVolumeAttenuation = $C00B
-		ld a, (iy+0)
-		ld (ix-2), a
-		xor a
-		ld (ix-1), a
-		ld a, c
-		add a, (ix-2)
-		ld b, a
-		ld a, e
-		adc a, (ix-1)
-		ld e, a
-		ld c, (iy+0)
-		ld a, $0F
-		cp b
-		ld a, $00
-		sbc a, e
-		jp po, +
-		xor $80
-+:	
-		jp p, +
-		ld de, $000F
-		jr ++
-	
-+:	
-		ld a, (PSGChan0Volume)	; PSGChan0Volume = $C00F
-		and $0F
-		add a, c
-		ld e, a
-		rla
-		sbc a, a
-++:	
-		ld a, e
-		or $90
-		out (Port_PSG), a
-		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
-		and $0F
-		ld e, a
-		ld d, $00
-		pop hl
-		push hl
-		add hl, de
-		ld a, $0F
-		cp l
-		ld a, $00
-		sbc a, h
-		jp po, +
-		xor $80
-+:	
-		jp p, +
-		ld de, $000F
-		jr ++
-	
-+:	
-		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
-		and $0F
-		add a, c
-		ld e, a
-		rla
-		sbc a, a
-++:	
-		ld a, e
-		or $B0
-		out (Port_PSG), a
-		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
-		or a
-		jr nz, +++
-		ld a, (PSGChan2Volume)	; PSGChan2Volume = $C011
-		and $0F
-		ld l, a
-		ld h, $00
-		pop de
-		push de
-		add hl, de
-		ld a, $0F
-		cp l
-		ld a, $00
-		sbc a, h
-		jp po, +
-		xor $80
-+:	
-		jp p, +
-		ld de, $000F
-		jr ++
-	
-+:	
-		ld a, (PSGChan2Volume)	; PSGChan2Volume = $C011
-		and $0F
-		add a, c
-		ld e, a
-		rla
-		sbc a, a
-++:	
-		ld a, e
-		or $D0
-		out (Port_PSG), a
-+++:	
-		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
-		or a
-		jr nz, _LABEL_538_
-		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
-		and $0F
-		ld l, a
-		ld h, $00
-		pop de
-		push de
-		add hl, de
-		ld a, $0F
-		cp l
-		ld a, $00
-		sbc a, h
-		jp po, +
-		xor $80
-+:	
-		jp p, +
-		ld bc, $000F
-		jr ++
-	
-+:	
-		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
-		and $0F
-		add a, c
-		ld c, a
-		rla
-		sbc a, a
-++:	
-		ld a, c
-		or $F0
-		out (Port_PSG), a
-_LABEL_538_:	
-		ld sp, ix
-		pop ix
-		ret
-	
-_PSGSFXStop:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		push af
-		ld a, (PSGSFXStatus)	; PSGSFXStatus = $C01A
+		ld a, (_RAM_C01A_)
 		or a
 		jp z, _LABEL_602_
-		ld iy, PSGMusicVolumeAttenuation	; PSGMusicVolumeAttenuation = $C00B
+		ld iy, _RAM_C00B_
 		ld a, (iy+0)
 		ld (ix-2), a
 		xor a
 		ld (ix-1), a
 		ld c, (iy+0)
-		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
+		ld a, (_RAM_C016_)
 		or a
 		jr z, _LABEL_5B1_
-		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
+		ld a, (_RAM_C001_)
 		or a
 		jr z, _LABEL_5A8_
-		ld a, (PSGChan2LowTone)	; PSGChan2LowTone = $C013
+		ld a, (_RAM_C013_)
 		and $0F
 		or $C0
 		out (Port_PSG), a
-		ld a, (PSGChan2HighTone)	; PSGChan2HighTone = $C014
+		ld a, (_RAM_C014_)
 		and $3F
 		out (Port_PSG), a
-		ld a, (PSGChan2Volume)	; PSGChan2Volume = $C011
+		ld a, (_RAM_C011_)
 		and $0F
 		ld e, a
 		ld d, $00
@@ -750,7 +646,7 @@ _PSGSFXStop:
 		jr ++
 	
 +:	
-		ld a, (PSGChan2Volume)	; PSGChan2Volume = $C011
+		ld a, (_RAM_C011_)
 		and $0F
 		add a, c
 		ld e, a
@@ -766,20 +662,20 @@ _LABEL_5A8_:
 		ld a, $DF
 		out (Port_PSG), a
 +:	
-		ld hl, PSGChannel2SFX	; PSGChannel2SFX = $C016
+		ld hl, _RAM_C016_
 		ld (hl), $00
 _LABEL_5B1_:	
-		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
+		ld a, (_RAM_C017_)
 		or a
 		jr z, _LABEL_5FD_
-		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
+		ld a, (_RAM_C001_)
 		or a
 		jr z, +++
-		ld a, (PSGChan3LowTone)	; PSGChan3LowTone = $C015
+		ld a, (_RAM_C015_)
 		and $0F
 		or $E0
 		out (Port_PSG), a
-		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
+		ld a, (_RAM_C012_)
 		and $0F
 		ld l, a
 		ld h, $00
@@ -798,7 +694,7 @@ _LABEL_5B1_:
 		jr ++
 	
 +:	
-		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
+		ld a, (_RAM_C012_)
 		and $0F
 		add a, c
 		ld c, a
@@ -814,121 +710,74 @@ _LABEL_5B1_:
 		ld a, $FF
 		out (Port_PSG), a
 ++++:	
-		ld hl, PSGChannel3SFX	; PSGChannel3SFX = $C017
+		ld hl, _RAM_C017_
 		ld (hl), $00
 _LABEL_5FD_:	
-		ld hl, PSGSFXStatus	; PSGSFXStatus = $C01A
+		ld hl, _RAM_C01A_
 		ld (hl), $00
 _LABEL_602_:	
 		ld sp, ix
 		pop ix
 		ret
 	
-_PSGSFXPlay:	
-		call _PSGSFXStop
-		ld hl, PSGSFXLoopFlag	; PSGSFXLoopFlag = $C022
-		ld (hl), $00
-		pop de
-		pop bc
-		push bc
-		push de
-		ld (PSGSFXStart), bc	; PSGSFXStart = $C01B
-		ld (PSGSFXPointer), bc	; PSGSFXPointer = $C01D
-		ld (PSGSFXLoopPoint), bc	; PSGSFXLoopPoint = $C01F
-		ld hl, PSGSFXSkipFrames	; PSGSFXSkipFrames = $C021
-		ld (hl), $00
-		ld hl, PSGSFXSubstringLen	; PSGSFXSubstringLen = $C023
-		ld (hl), $00
-		ld hl, $0004
-		add hl, sp
-		ld c, (hl)
-		bit 0, c
-		jr z, +
-		ld de, $0001
-		jr ++
+	; Data from 607 to 682 (124 bytes)
+	.db $CD $3D $05 $21 $22 $C0 $36 $00 $D1 $C1 $C5 $D5 $ED $43 $1B $C0
+	.db $ED $43 $1D $C0 $ED $43 $1F $C0 $21 $21 $C0 $36 $00 $21 $23 $C0
+	.db $36 $00 $21 $04 $00 $39 $4E $CB $41 $28 $05 $11 $01 $00 $18 $03
+	.db $11 $00 $00 $21 $16 $C0 $73 $CB $49 $28 $05 $01 $01 $00 $18 $03
+	.db $01 $00 $00 $21 $17 $C0 $71 $21 $1A $C0 $36 $01 $C9 $21 $22 $C0
+	.db $36 $00 $C9 $FD $21 $1A $C0 $FD $6E $00 $C9 $FD $21 $04 $00 $FD
+	.db $39 $FD $7E $00 $F5 $33 $FD $2B $FD $2B $FD $6E $00 $FD $66 $01
+	.db $E5 $CD $07 $06 $F1 $33 $21 $22 $C0 $36 $01 $C9
 	
-+:	
-		ld de, $0000
-++:	
-		ld hl, PSGChannel2SFX	; PSGChannel2SFX = $C016
-		ld (hl), e
-		bit 1, c
-		jr z, +
-		ld bc, $0001
-		jr ++
-	
-+:	
-		ld bc, $0000
-++:	
-		ld hl, PSGChannel3SFX	; PSGChannel3SFX = $C017
-		ld (hl), c
-		ld hl, PSGSFXStatus	; PSGSFXStatus = $C01A
-		ld (hl), $01
-		ret
-	
-; Data from 654 to 659 (6 bytes)	
-_PSGSFXCancelLoop:	
-	.db $21 $22 $C0 $36 $00 $C9
-	
-_PSGSFXGetStatus:	
-		ld iy, PSGSFXStatus	; PSGSFXStatus = $C01A
-		ld l, (iy+0)
-		ret
-	
-; Data from 662 to 682 (33 bytes)	
-_PSGSFXPlayLoop:	
-	.db $FD $21 $04 $00 $FD $39 $FD $7E $00 $F5 $33 $FD $2B $FD $2B $FD
-	.db $6E $00 $FD $66 $01 $E5 $CD $07 $06 $F1 $33 $21 $22 $C0 $36 $01
-	.db $C9
-	
-_PSGFrame:	
-		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
+_LABEL_683_:	
+		ld a, (_RAM_C001_)
 		or a
 		ret z
-		ld a, (PSGMusicSkipFrames)	; PSGMusicSkipFrames = $C008
+		ld a, (_RAM_C008_)
 		or a
 		jp nz, _LABEL_717_
-		ld hl, (PSGMusicPointer)	; PSGMusicPointer = $C004
+		ld hl, (_RAM_C004_)
 _LABEL_692_:	
 		ld b, (hl)
 		inc hl
-		ld a, (PSGMusicSubstringLen)	; PSGMusicSubstringLen = $C00C
+		ld a, (_RAM_C00C_)
 		or a
 		jr z, +
 		dec a
-		ld (PSGMusicSubstringLen), a	; PSGMusicSubstringLen = $C00C
+		ld (_RAM_C00C_), a
 		jr nz, +
-		ld hl, (PSGMusicSubstringRetAddr)	; PSGMusicSubstringRetAddr = $C00D
+		ld hl, (_RAM_C00D_)
 +:	
 		ld a, b
 		cp $80
 		jr c, _LABEL_71C_
-		ld (PSGMusicLastLatch), a	; PSGMusicLastLatch = $C00A
+		ld (_RAM_C00A_), a
 		bit 4, a
 		jr nz, ++
 		bit 6, a
 		jp z, _LABEL_743_
 		bit 5, a
 		jr z, +
-		ld (PSGChan3LowTone), a	; PSGChan3LowTone = $C015
-		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
+		ld (_RAM_C015_), a
+		ld a, (_RAM_C017_)
 		or a
 		jp nz, _LABEL_692_
-		ld a, (PSGChan3LowTone)	; PSGChan3LowTone = $C015
+		ld a, (_RAM_C015_)
 		and $03
 		cp $03
 		jr nz, _LABEL_742_
-		ld a, (PSGSFXStatus)	; PSGSFXStatus = $C01A
+		ld a, (_RAM_C01A_)
 		or a
 		jr z, _LABEL_742_
-		ld (PSGChannel3SFX), a	; PSGChannel3SFX = $C017
+		ld (_RAM_C017_), a
 		ld a, $FF
 		out (Port_PSG), a
 		jp _LABEL_692_
 	
 +:	
-		ld (PSGChan2LowTone), a	; PSGChan2LowTone = $C013
-		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
+		ld (_RAM_C013_), a
+		ld a, (_RAM_C016_)
 		or a
 		jr z, _LABEL_742_
 		jp _LABEL_692_
@@ -938,38 +787,38 @@ _LABEL_692_:
 		jr nz, ++
 		bit 5, a
 		jr z, +
-		ld (PSGChan1Volume), a	; PSGChan1Volume = $C010
+		ld (_RAM_C010_), a
 		jp _LABEL_749_
 	
 +:	
-		ld (PSGChan0Volume), a	; PSGChan0Volume = $C00F
+		ld (_RAM_C00F_), a
 		jp _LABEL_749_
 	
 ++:	
 		bit 5, a
 		jr z, +
-		ld (PSGChan3Volume), a	; PSGChan3Volume = $C012
-		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
+		ld (_RAM_C012_), a
+		ld a, (_RAM_C017_)
 		or a
 		jr z, _LABEL_748_
 		jp _LABEL_692_
 	
 +:	
-		ld (PSGChan2Volume), a	; PSGChan2Volume = $C011
-		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
+		ld (_RAM_C011_), a
+		ld a, (_RAM_C016_)
 		or a
 		jr z, _LABEL_748_
 		jp _LABEL_692_
 	
 _LABEL_717_:	
 		dec a
-		ld (PSGMusicSkipFrames), a	; PSGMusicSkipFrames = $C008
+		ld (_RAM_C008_), a
 		ret
 	
 _LABEL_71C_:	
 		cp $40
 		jr c, +
-		ld a, (PSGMusicLastLatch)	; PSGMusicLastLatch = $C00A
+		ld a, (_RAM_C00A_)
 		jp +++
 	
 +:	
@@ -977,9 +826,9 @@ _LABEL_71C_:
 		jr z, +
 		jr c, ++
 		and $07
-		ld (PSGMusicSkipFrames), a	; PSGMusicSkipFrames = $C008
+		ld (_RAM_C008_), a
 +:	
-		ld (PSGMusicPointer), hl	; PSGMusicPointer = $C004
+		ld (_RAM_C004_), hl
 		ret
 	
 ++:	
@@ -1003,7 +852,7 @@ _LABEL_749_:
 		ld c, a
 		and $0F
 		ld b, a
-		ld a, (PSGMusicVolumeAttenuation)	; PSGMusicVolumeAttenuation = $C00B
+		ld a, (_RAM_C00B_)
 		add a, b
 		cp $0F
 		jr c, +
@@ -1022,32 +871,32 @@ _LABEL_749_:
 		jp _LABEL_742_
 	
 ++++:	
-		ld (PSGMusicLoopPoint), hl	; PSGMusicLoopPoint = $C006
+		ld (_RAM_C006_), hl
 		jp _LABEL_692_
 	
 +++++:	
-		ld a, (PSGLoopFlag)	; PSGLoopFlag = $C009
+		ld a, (_RAM_C009_)
 		or a
-		jp z, _PSGStop
-		ld hl, (PSGMusicLoopPoint)	; PSGMusicLoopPoint = $C006
+		jp z, _LABEL_281_
+		ld hl, (_RAM_C006_)
 		jp _LABEL_692_
 	
 _LABEL_77B_:	
 		sub $04
-		ld (PSGMusicSubstringLen), a	; PSGMusicSubstringLen = $C00C
+		ld (_RAM_C00C_), a
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
 		inc hl
-		ld (PSGMusicSubstringRetAddr), hl	; PSGMusicSubstringRetAddr = $C00D
-		ld hl, (PSGMusicStart)	; PSGMusicStart = $C002
+		ld (_RAM_C00D_), hl
+		ld hl, (_RAM_C002_)
 		add hl, bc
 		jp _LABEL_692_
 	
 ++++++:	
 		ld a, b
-		ld (PSGChan2HighTone), a	; PSGChan2HighTone = $C014
-		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
+		ld (_RAM_C014_), a
+		ld a, (_RAM_C016_)
 		or a
 		jr z, _LABEL_742_
 		jp _LABEL_692_
@@ -1055,24 +904,24 @@ _LABEL_77B_:
 	; Data from 79B to 79B (1 bytes)
 	.db $C9
 	
-_PSGSFXFrame:	
-		ld a, (PSGSFXStatus)	; PSGSFXStatus = $C01A
+_LABEL_79C_:	
+		ld a, (_RAM_C01A_)
 		or a
 		ret z
-		ld a, (PSGSFXSkipFrames)	; PSGSFXSkipFrames = $C021
+		ld a, (_RAM_C021_)
 		or a
 		jp nz, +++
-		ld hl, (PSGSFXPointer)	; PSGSFXPointer = $C01D
+		ld hl, (_RAM_C01D_)
 _LABEL_7AB_:	
 		ld b, (hl)
 		inc hl
-		ld a, (PSGSFXSubstringLen)	; PSGSFXSubstringLen = $C023
+		ld a, (_RAM_C023_)
 		or a
 		jr z, +
 		dec a
-		ld (PSGSFXSubstringLen), a	; PSGSFXSubstringLen = $C023
+		ld (_RAM_C023_), a
 		jr nz, +
-		ld hl, (PSGSFXSubstringRetAddr)	; PSGSFXSubstringRetAddr = $C024
+		ld hl, (_RAM_C024_)
 +:	
 		ld a, b
 		cp $40
@@ -1081,18 +930,18 @@ _LABEL_7AB_:
 		jr z, ++
 		bit 5, a
 		jr nz, +
-		ld (PSGSFXChan2Volume), a	; PSGSFXChan2Volume = $C018
+		ld (_RAM_C018_), a
 		jr ++
 	
 +:	
-		ld (PSGSFXChan3Volume), a	; PSGSFXChan3Volume = $C019
+		ld (_RAM_C019_), a
 ++:	
 		out (Port_PSG), a
 		jp _LABEL_7AB_
 	
 +++:	
 		dec a
-		ld (PSGSFXSkipFrames), a	; PSGSFXSkipFrames = $C021
+		ld (_RAM_C021_), a
 		ret
 	
 ++++:	
@@ -1100,9 +949,9 @@ _LABEL_7AB_:
 		jr z, +
 		jr c, ++
 		and $07
-		ld (PSGSFXSkipFrames), a	; PSGSFXSkipFrames = $C021
+		ld (_RAM_C021_), a
 +:	
-		ld (PSGSFXPointer), hl	; PSGSFXPointer = $C01D
+		ld (_RAM_C01D_), hl
 		ret
 	
 ++:	
@@ -1115,171 +964,78 @@ _LABEL_7AB_:
 		ret
 	
 +:	
-		ld (PSGSFXLoopPoint), hl	; PSGSFXLoopPoint = $C01F
+		ld (_RAM_C01F_), hl
 		jp _LABEL_7AB_
 	
 ++:	
-		ld a, (PSGSFXLoopFlag)	; PSGSFXLoopFlag = $C022
+		ld a, (_RAM_C022_)
 		or a
-		jp z, _PSGSFXStop
-		ld hl, (PSGSFXLoopPoint)	; PSGSFXLoopPoint = $C01F
-		ld (PSGSFXPointer), hl	; PSGSFXPointer = $C01D
+		jp z, _LABEL_53D_
+		ld hl, (_RAM_C01F_)
+		ld (_RAM_C01D_), hl
 		jp _LABEL_7AB_
 	
 +++:	
 		sub $04
-		ld (PSGSFXSubstringLen), a	; PSGSFXSubstringLen = $C023
+		ld (_RAM_C023_), a
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
 		inc hl
-		ld (PSGSFXSubstringRetAddr), hl	; PSGSFXSubstringRetAddr = $C024
-		ld hl, (PSGSFXStart)	; PSGSFXStart = $C01B
+		ld (_RAM_C024_), hl
+		ld hl, (_RAM_C01B_)
 		add hl, bc
 		jp _LABEL_7AB_
 	
 	; Data from 821 to 821 (1 bytes)
 	.db $C9
 	
-A$_sms_manager$132:	
-C$_sms_manager.c$11$0$0:	
-C$_sms_manager.c$13$1$74:	
-C$_sms_manager.c$14$1$74:	
-G$devkit_SMS_init$0$0:	
-XG$devkit_SMS_init$0$0:	
-_devkit_SMS_init:	
-		jp _SMS_init
+_LABEL_822_:	
+		jp _LABEL_1B4F_
 	
-A$_sms_manager$145:	
-C$_sms_manager.c$15$1$74:	
-C$_sms_manager.c$17$1$75:	
-G$devkit_SMS_displayOn$0$0:	
-_devkit_SMS_displayOn:	
+_LABEL_825_:	
 		ld hl, $0140
-		jp _SMS_VDPturnOnFeature
+		jp _LABEL_1BB6_
 	
-A$_sms_manager$163:	
-C$_sms_manager.c$19$1$75:	
-C$_sms_manager.c$21$1$76:	
-G$devkit_SMS_displayOff$0$0:	
-_devkit_SMS_displayOff:	
+_LABEL_82B_:	
 		ld hl, $0140
-		jp _SMS_VDPturnOffFeature
+		jp _LABEL_1BCD_
 	
-A$_sms_manager$181:	
-C$_sms_manager.c$23$1$76:	
-C$_sms_manager.c$25$1$78:	
-G$devkit_SMS_mapROMBank$0$0:	
-_devkit_SMS_mapROMBank:	
-		ld hl, $0002
-		add hl, sp
-		ld a, (hl)
-		ld (_RAM_FFFF_), a
-		ret
+	; Data from 831 to 845 (21 bytes)
+	.db $21 $02 $00 $39 $7E $32 $FF $FF $C9 $FD $21 $02 $00 $FD $39 $FD
+	.db $6E $00 $C3 $E6 $1B
 	
-A$_sms_manager$202:	
-C$_sms_manager.c$28$1$78:	
-C$_sms_manager.c$30$1$80:	
-G$devkit_SMS_setBGScrollX$0$0:	
-_devkit_SMS_setBGScrollX:	
+_LABEL_846_:	
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy+0)
-		jp _SMS_setBGScrollX
+		jp _LABEL_1BF0_
 	
-A$_sms_manager$222:	
-C$_sms_manager.c$32$1$80:	
-C$_sms_manager.c$34$1$82:	
-G$devkit_SMS_setBGScrollY$0$0:	
-_devkit_SMS_setBGScrollY:	
+	; Data from 852 to 870 (31 bytes)
+	.db $21 $FC $FF $36 $08 $C9 $21 $02 $00 $39 $7E $87 $87 $CB $DF $E6
+	.db $0C $32 $FC $FF $C9 $21 $FC $FF $36 $00 $C9 $21 $00 $80 $C9
+	
+_LABEL_871_:	
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy+0)
-		jp _SMS_setBGScrollY
+		jp _LABEL_1C18_
 	
-A$_sms_manager$242:	
-C$_sms_manager.c$37$1$82:	
-C$_sms_manager.c$39$1$83:	
-G$devkit_SMS_enableSRAM$0$0:	
-_devkit_SMS_enableSRAM:	
-		ld hl, _RAM_FFFC_
-		ld (hl), $08
-		ret
-	
-A$_sms_manager$261:	
-C$_sms_manager.c$41$1$83:	
-C$_sms_manager.c$43$1$85:	
-G$devkit_SMS_enableSRAMBank$0$0:	
-_devkit_SMS_enableSRAMBank:	
-		ld hl, $0002
-		add hl, sp
-		ld a, (hl)
-		add a, a
-		add a, a
-		set 3, a
-		and $0C
-		ld (_RAM_FFFC_), a
-		ret
-	
-A$_sms_manager$286:	
-C$_sms_manager.c$45$1$85:	
-C$_sms_manager.c$47$1$86:	
-G$devkit_SMS_disableSRAM$0$0:	
-_devkit_SMS_disableSRAM:	
-		ld hl, _RAM_FFFC_
-		ld (hl), $00
-		ret
-	
-A$_sms_manager$305:	
-C$_sms_manager.c$49$1$86:	
-C$_sms_manager.c$51$1$87:	
-G$devkit_SMS_SRAM$0$0:	
-_devkit_SMS_SRAM:	
-		ld hl, _SRAM_0_
-		ret
-	
-A$_sms_manager$323:	
-C$_sms_manager.c$55$1$87:	
-C$_sms_manager.c$57$1$89:	
-G$devkit_SMS_setSpriteMode$0$0:	
-_devkit_SMS_setSpriteMode:	
-		ld iy, $0002
-		add iy, sp
-		ld l, (iy+0)
-		jp _SMS_setSpriteMode
-	
-A$_sms_manager$343:	
-C$_sms_manager.c$59$1$89:	
-C$_sms_manager.c$61$1$90:	
-G$devkit_SMS_useFirstHalfTilesfo:	
-_devkit_SMS_useFirstHalfTilesfor:	
+_LABEL_87D_:	
 		ld l, $00
-		jp _SMS_useFirstHalfTilesforSprites
+		jp _LABEL_1C04_
 	
-A$_sms_manager$361:	
-C$_sms_manager.c$63$1$90:	
-C$_sms_manager.c$65$1$91:	
-G$devkit_SMS_useFirstHalfTilesfo:	
-_devkit_SMS_useFirstHalfTilesfor:	
-		ld l, $01
-		jp _SMS_useFirstHalfTilesforSprites
+	; Data from 882 to 886 (5 bytes)
+	.db $2E $01 $C3 $04 $1C
 	
-A$_sms_manager$379:	
-C$_sms_manager.c$67$1$91:	
-C$_sms_manager.c$69$1$93:	
-G$devkit_SMS_VDPturnOnFeature$0$:	
-_devkit_SMS_VDPturnOnFeature:	
+_LABEL_887_:	
 		pop bc
 		pop hl
 		push hl
 		push bc
-		jp _SMS_VDPturnOnFeature
+		jp _LABEL_1BB6_
 	
-A$_sms_manager$400:	
-C$_sms_manager.c$72$1$93:	
-C$_sms_manager.c$74$1$95:	
-G$devkit_SMS_loadPSGaidencompres:	
-_devkit_SMS_loadPSGaidencompress:	
+_LABEL_88E_:	
 		ld hl, $0004
 		add hl, sp
 		ld c, (hl)
@@ -1292,1522 +1048,254 @@ _devkit_SMS_loadPSGaidencompress:
 		inc hl
 		ld b, (hl)
 		push bc
-		call _SMS_loadPSGaidencompressedTiles
+		call _LABEL_2021_
 		pop af
 		pop af
 		ret
 	
-A$_sms_manager$432:	
-C$_sms_manager.c$76$1$95:	
-C$_sms_manager.c$78$1$97:	
-G$devkit_SMS_loadSTMcompressedTi:	
-_devkit_SMS_loadSTMcompressedTil:	
-		ld a, $20
-		push af
-		inc sp
-		ld hl, $0005
-		add hl, sp
-		ld c, (hl)
-		inc hl
-		ld b, (hl)
-		push bc
-		ld hl, $0006
-		add hl, sp
-		ld a, (hl)
-		push af
-		inc sp
-		ld hl, $0006
-		add hl, sp
-		ld a, (hl)
-		push af
-		inc sp
-		call _SMS_loadSTMcompressedTileMapAre
-		pop af
-		pop af
-		inc sp
-		ret
+	; Data from 8A4 to 8C4 (33 bytes)
+	.db $3E $20 $F5 $33 $21 $05 $00 $39 $4E $23 $46 $C5 $21 $06 $00 $39
+	.db $7E $F5 $33 $21 $06 $00 $39 $7E $F5 $33 $CD $3F $1E $F1 $F1 $33
+	.db $C9
 	
-A$_sms_manager$472:	
-C$_sms_manager.c$81$1$97:	
-C$_sms_manager.c$83$1$99:	
-G$devkit_SMS_loadBGPalette$0$0:	
-_devkit_SMS_loadBGPalette:	
+_LABEL_8C5_:	
 		pop bc
 		pop hl
 		push hl
 		push bc
-		jp _SMS_loadBGPalette
+		jp _LABEL_1C85_
 	
-A$_sms_manager$493:	
-C$_sms_manager.c$85$1$99:	
-C$_sms_manager.c$87$1$101:	
-G$devkit_SMS_loadSpritePalette$0:	
-_devkit_SMS_loadSpritePalette:	
+_LABEL_8CC_:	
 		pop bc
 		pop hl
 		push hl
 		push bc
-		jp _SMS_loadSpritePalette
+		jp _LABEL_1C99_
 	
-A$_sms_manager$514:	
-C$_sms_manager.c$89$1$101:	
-C$_sms_manager.c$91$1$103:	
-G$devkit_SMS_setBGPaletteColor$0:	
-_devkit_SMS_setBGPaletteColor:	
-		ld hl, $0004
-		add hl, sp
-		ld a, (hl)
-		add a, a
-		add a, a
-		ld hl, $0003
-		add hl, sp
-		or (hl)
-		ld c, a
-		ld hl, $0005
-		add hl, sp
-		ld a, (hl)
-		rlca
-		rlca
-		rlca
-		rlca
-		and $F0
-		or c
-		ld b, a
-		push bc
-		inc sp
-		ld hl, $0003
-		add hl, sp
-		ld a, (hl)
-		push af
-		inc sp
-		call _SMS_setBGPaletteColor
-		pop af
-		ret
+	; Data from 8D3 to 97E (172 bytes)
+	.db $21 $04 $00 $39 $7E $87 $87 $21 $03 $00 $39 $B6 $4F $21 $05 $00
+	.db $39 $7E $07 $07 $07 $07 $E6 $F0 $B1 $47 $C5 $33 $21 $03 $00 $39
+	.db $7E $F5 $33 $CD $5D $1C $F1 $C9 $21 $04 $00 $39 $7E $87 $87 $21
+	.db $03 $00 $39 $B6 $4F $21 $05 $00 $39 $7E $07 $07 $07 $07 $E6 $F0
+	.db $B1 $47 $C5 $33 $21 $03 $00 $39 $7E $F5 $33 $CD $71 $1C $F1 $C9
+	.db $DD $E5 $DD $21 $00 $00 $DD $39 $DD $6E $05 $26 $00 $29 $29 $29
+	.db $29 $29 $29 $4D $7C $F6 $78 $47 $DD $6E $04 $26 $00 $29 $7D $B1
+	.db $6F $7C $B0 $67 $DD $E1 $C3 $06 $00 $C1 $E1 $E5 $C5 $C3 $11 $00
+	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $3E $00 $F6 $18 $67 $C3 $11
+	.db $00 $21 $04 $00 $39 $46 $C5 $33 $21 $04 $00 $39 $7E $F5 $33 $21
+	.db $04 $00 $39 $7E $F5 $33 $CD $B7 $1C $F1 $33 $C9
 	
-A$_sms_manager$562:	
-C$_sms_manager.c$94$1$103:	
-C$_sms_manager.c$96$1$105:	
-G$devkit_SMS_setSpritePaletteCol:	
-_devkit_SMS_setSpritePaletteColo:	
-		ld hl, $0004
-		add hl, sp
-		ld a, (hl)
-		add a, a
-		add a, a
-		ld hl, $0003
-		add hl, sp
-		or (hl)
-		ld c, a
-		ld hl, $0005
-		add hl, sp
-		ld a, (hl)
-		rlca
-		rlca
-		rlca
-		rlca
-		and $F0
-		or c
-		ld b, a
-		push bc
-		inc sp
-		ld hl, $0003
-		add hl, sp
-		ld a, (hl)
-		push af
-		inc sp
-		call _SMS_setSpritePaletteColor
-		pop af
-		ret
+_LABEL_97F_:	
+		jp _LABEL_1CB1_
 	
-A$_sms_manager$607:	
-C$_sms_manager.c$100$1$105:	
-G$devkit_SMS_setNextTileatXY$0$0:	
-_devkit_SMS_setNextTileatXY:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		ld l, (ix+5)
-		ld h, $00
-		add hl, hl
-		add hl, hl
-		add hl, hl
-		add hl, hl
-		add hl, hl
-		add hl, hl
-		ld c, l
-		ld a, h
-		or $78
-		ld b, a
-		ld l, (ix+4)
-		ld h, $00
-		add hl, hl
-		ld a, l
-		or c
-		ld l, a
-		ld a, h
-		or b
-		ld h, a
-		pop ix
-		jp _SMS_crt0_RST08
+_LABEL_982_:	
+		jp _LABEL_1D0C_
 	
-A$_sms_manager$652:	
-C$_sms_manager.c$104$1$107:	
-C$_sms_manager.c$106$1$109:	
-G$devkit_SMS_setTile$0$0:	
-_devkit_SMS_setTile:	
-		pop bc
-		pop hl
-		push hl
-		push bc
-		jp _SMS_crt0_RST18
+_LABEL_985_:	
+		jp _LABEL_1D47_
 	
-A$_sms_manager$673:	
-C$_sms_manager.c$108$1$109:	
-C$_sms_manager.c$110$1$111:	
-G$devkit_SMS_setTilePriority$0$0:	
-_devkit_SMS_setTilePriority:	
-		ld iy, $0002
-		add iy, sp
-		ld l, (iy+0)
-		ld a, $00
-		or $18
-		ld h, a
-		jp _SMS_crt0_RST18
+_LABEL_988_:	
+		jp _LABEL_1AE0_
 	
-A$_sms_manager$696:	
-C$_sms_manager.c$113$1$111:	
-C$_sms_manager.c$115$1$113:	
-G$devkit_SMS_addSprite$0$0:	
-_devkit_SMS_addSprite:	
-		ld hl, $0004
-		add hl, sp
-		ld b, (hl)
-		push bc
-		inc sp
-		ld hl, $0004
-		add hl, sp
-		ld a, (hl)
-		push af
-		inc sp
-		ld hl, $0004
-		add hl, sp
-		ld a, (hl)
-		push af
-		inc sp
-		call _SMS_addSprite
-		pop af
-		inc sp
-		ret
+	; Data from 98B to 98D (3 bytes)
+	.db $C3 $E0 $1A
 	
-A$_sms_manager$735:	
-C$_sms_manager.c$117$1$113:	
-C$_sms_manager.c$119$1$114:	
-C$_sms_manager.c$120$1$114:	
-G$devkit_SMS_initSprites$0$0:	
-XG$devkit_SMS_initSprites$0$0:	
-_devkit_SMS_initSprites:	
-		jp _SMS_initSprites
+_LABEL_98E_:	
+		jp _LABEL_1DA9_
 	
-A$_sms_manager$752:	
-C$_sms_manager.c$121$1$114:	
-C$_sms_manager.c$123$1$115:	
-C$_sms_manager.c$124$1$115:	
-G$devkit_SMS_finalizeSprites$0$0:	
-XG$devkit_SMS_finalizeSprites$0$:	
-_devkit_SMS_finalizeSprites:	
-		jp _SMS_finalizeSprites
+_LABEL_991_:	
+		jp _LABEL_1DB1_
 	
-A$_sms_manager$769:	
-C$_sms_manager.c$125$1$115:	
-C$_sms_manager.c$127$1$116:	
-C$_sms_manager.c$128$1$116:	
-G$devkit_SMS_waitForVBlank$0$0:	
-XG$devkit_SMS_waitForVBlank$0$0:	
-_devkit_SMS_waitForVBlank:	
-		jp _SMS_waitForVBlank
+	; Data from 994 to 99A (7 bytes)
+	.db $3A $5C $C0 $E6 $20 $6F $C9
 	
-A$_sms_manager$786:	
-C$_sms_manager.c$129$1$116:	
-C$_sms_manager.c$131$1$117:	
-C$_sms_manager.c$132$1$117:	
-G$devkit_SMS_copySpritestoSAT$0$:	
-XG$devkit_SMS_copySpritestoSAT$0:	
-_devkit_SMS_copySpritestoSAT:	
-		jp _UNSAFE_SMS_copySpritestoSAT
+_LABEL_99B_:	
+		jp _LABEL_1D54_
 	
-A$_sms_manager$803:	
-C$_sms_manager.c$133$1$117:	
-C$_sms_manager.c$135$1$118:	
-C$_sms_manager.c$136$1$118:	
-G$devkit_UNSAFE_SMS_copySpritest:	
-XG$devkit_UNSAFE_SMS_copySprites:	
-_devkit_UNSAFE_SMS_copySpritesto:	
-		jp _UNSAFE_SMS_copySpritestoSAT
-	
-A$_sms_manager$820:	
-C$_sms_manager.c$138$1$118:	
-C$_sms_manager.c$140$1$119:	
-C$_sms_manager.c$141$1$119:	
-G$devkit_SMS_queryPauseRequested:	
-XG$devkit_SMS_queryPauseRequeste:	
-_devkit_SMS_queryPauseRequested:	
-		jp _SMS_queryPauseRequested
-	
-A$_sms_manager$837:	
-C$_sms_manager.c$142$1$119:	
-C$_sms_manager.c$144$1$120:	
-C$_sms_manager.c$145$1$120:	
-G$devkit_SMS_resetPauseRequest$0:	
-XG$devkit_SMS_resetPauseRequest$:	
-_devkit_SMS_resetPauseRequest:	
-		jp _SMS_resetPauseRequest
-	
-A$_sms_manager$850:	
-C$_sms_manager.c$148$1$120:	
-C$_sms_manager.c$150$1$121:	
-G$devkit_isCollisionDetected$0$0:	
-_devkit_isCollisionDetected:	
-		ld a, (SMS_VDPFlags)	; SMS_VDPFlags = $C05C
-		and $20
-		ld l, a
-		ret
-	
-A$_sms_manager$874:	
-C$_sms_manager.c$154$1$121:	
-C$_sms_manager.c$156$1$122:	
-C$_sms_manager.c$157$1$122:	
-G$devkit_SMS_getKeysStatus$0$0:	
-XG$devkit_SMS_getKeysStatus$0$0:	
-_devkit_SMS_getKeysStatus:	
-		jp _SMS_getKeysStatus
-	
-A$_sms_manager$887:	
-C$_sms_manager.c$160$1$122:	
-C$_sms_manager.c$162$1$123:	
-G$devkit_SPRITEMODE_NORMAL$0$0:	
-_devkit_SPRITEMODE_NORMAL:	
+_LABEL_99E_:	
 		ld l, $00
 		ret
 	
-A$_sms_manager$905:	
-C$_sms_manager.c$164$1$123:	
-C$_sms_manager.c$166$1$124:	
-G$devkit_VDPFEATURE_HIDEFIRSTCOL:	
-_devkit_VDPFEATURE_HIDEFIRSTCOL:	
+_LABEL_9A1_:	
 		ld hl, $0020
 		ret
 	
-A$_sms_manager$923:	
-C$_sms_manager.c$168$1$124:	
-C$_sms_manager.c$170$1$125:	
-G$devkit_TILE_PRIORITY$0$0:	
-_devkit_TILE_PRIORITY:	
-		ld hl, $1000
-		ret
-	
-A$_sms_manager$941:	
-C$_sms_manager.c$172$1$125:	
-C$_sms_manager.c$174$1$126:	
-G$devkit_TILE_USE_SPRITE_PALETTE:	
-_devkit_TILE_USE_SPRITE_PALETTE:	
-		ld hl, $0800
-		ret
-	
-; Data from 9AD to 9BA (14 bytes)	
-F_sms_manager$__str_0$0$0:	
-	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
-	
-; Data from 9BB to 9C4 (10 bytes)	
-F_sms_manager$__str_1$0$0:	
-	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
-	
-; Data from 9C5 to A00 (60 bytes)	
-F_sms_manager$__str_2$0$0:	
+	; Data from 9A5 to A44 (160 bytes)
+	.db $21 $00 $10 $C9 $21 $00 $08 $C9 $53 $74 $65 $76 $65 $6E $20 $42
+	.db $6F $6C $61 $6E $64 $00 $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
 	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
 	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
-	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
+	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00 $C1 $E1 $E5 $C5
+	.db $E5 $CD $F4 $02 $F1 $C9 $C1 $E1 $E5 $C5 $E5 $CD $27 $03 $F1 $C9
+	.db $C3 $81 $02 $C3 $A8 $02 $C3 $36 $03 $21 $02 $00 $39 $7E $F5 $33
+	.db $CD $4E $04 $33 $C9 $21 $04 $00 $39 $7E $F5 $33 $21 $03 $00 $39
+	.db $4E $23 $46 $C5 $CD $07 $06 $F1 $33 $C9 $C3 $3D $05 $C3 $5A $06
 	
-A$_snd_manager$83:	
-C$_snd_manager.c$11$1$31:	
-C$_snd_manager.c$9$0$0:	
-G$devkit_PSGPlay$0$0:	
-_devkit_PSGPlay:	
-		pop bc
-		pop hl
-		push hl
-		push bc
-		push hl
-		call _PSGPlay
-		pop af
-		ret
+_LABEL_A45_:	
+		jp _LABEL_33E_
 	
-A$_snd_manager$107:	
-C$_snd_manager.c$13$1$31:	
-C$_snd_manager.c$15$1$33:	
-G$devkit_PSGPlayNoRepeat$0$0:	
-_devkit_PSGPlayNoRepeat:	
-		pop bc
-		pop hl
-		push hl
-		push bc
-		push hl
-		call _PSGPlayNoRepeat
-		pop af
-		ret
+_LABEL_A48_:	
+		jp _LABEL_34F_
 	
-A$_snd_manager$135:	
-C$_snd_manager.c$17$1$33:	
-C$_snd_manager.c$19$1$35:	
-C$_snd_manager.c$20$1$35:	
-G$devkit_PSGStop$0$0:	
-XG$devkit_PSGStop$0$0:	
-_devkit_PSGStop:	
-		jp _PSGStop
+_LABEL_A4B_:	
+		jp _LABEL_683_
 	
-A$_snd_manager$152:	
-C$_snd_manager.c$21$1$35:	
-C$_snd_manager.c$23$1$37:	
-C$_snd_manager.c$24$1$37:	
-G$devkit_PSGResume$0$0:	
-XG$devkit_PSGResume$0$0:	
-_devkit_PSGResume:	
-		jp _PSGResume
+_LABEL_A4E_:	
+		jp _LABEL_79C_
 	
-A$_snd_manager$169:	
-C$_snd_manager.c$25$1$37:	
-C$_snd_manager.c$27$1$39:	
-C$_snd_manager.c$28$1$39:	
-G$devkit_PSGGetStatus$0$0:	
-XG$devkit_PSGGetStatus$0$0:	
-_devkit_PSGGetStatus:	
-		jp _PSGGetStatus
+	; Data from A51 to A59 (9 bytes)
+	.db $2E $01 $C9 $2E $02 $C9 $2E $03 $C9
 	
-A$_snd_manager$182:	
-C$_snd_manager.c$29$1$39:	
-C$_snd_manager.c$31$1$41:	
-G$devkit_PSGSetMusicVolumeAttenu:	
-_devkit_PSGSetMusicVolumeAttenua:	
-		ld hl, $0002
-		add hl, sp
-		ld a, (hl)
-		push af
-		inc sp
-		call _PSGSetMusicVolumeAttenuation
-		inc sp
-		ret
-	
-A$_snd_manager$206:	
-C$_snd_manager.c$34$1$41:	
-C$_snd_manager.c$36$1$43:	
-G$devkit_PSGSFXPlay$0$0:	
-_devkit_PSGSFXPlay:	
-		ld hl, $0004
-		add hl, sp
-		ld a, (hl)
-		push af
-		inc sp
-		ld hl, $0003
-		add hl, sp
-		ld c, (hl)
-		inc hl
-		ld b, (hl)
-		push bc
-		call _PSGSFXPlay
-		pop af
-		inc sp
-		ret
-	
-A$_snd_manager$241:	
-C$_snd_manager.c$38$1$43:	
-C$_snd_manager.c$40$1$45:	
-C$_snd_manager.c$41$1$45:	
-G$devkit_PSGSFXStop$0$0:	
-XG$devkit_PSGSFXStop$0$0:	
-_devkit_PSGSFXStop:	
-		jp _PSGSFXStop
-	
-A$_snd_manager$258:	
-C$_snd_manager.c$42$1$45:	
-C$_snd_manager.c$44$1$47:	
-C$_snd_manager.c$45$1$47:	
-G$devkit_PSGSFXGetStatus$0$0:	
-XG$devkit_PSGSFXGetStatus$0$0:	
-_devkit_PSGSFXGetStatus:	
-		jp _PSGSFXGetStatus
-	
-A$_snd_manager$275:	
-C$_snd_manager.c$47$1$47:	
-C$_snd_manager.c$49$1$49:	
-C$_snd_manager.c$50$1$49:	
-G$devkit_PSGSilenceChannels$0$0:	
-XG$devkit_PSGSilenceChannels$0$0:	
-_devkit_PSGSilenceChannels:	
-		jp _PSGSilenceChannels
-	
-A$_snd_manager$292:	
-C$_snd_manager.c$51$1$49:	
-C$_snd_manager.c$53$1$51:	
-C$_snd_manager.c$54$1$51:	
-G$devkit_PSGRestoreVolumes$0$0:	
-XG$devkit_PSGRestoreVolumes$0$0:	
-_devkit_PSGRestoreVolumes:	
-		jp _PSGRestoreVolumes
-	
-A$_snd_manager$309:	
-C$_snd_manager.c$56$1$51:	
-C$_snd_manager.c$58$1$53:	
-C$_snd_manager.c$59$1$53:	
-G$devkit_PSGFrame$0$0:	
-XG$devkit_PSGFrame$0$0:	
-_devkit_PSGFrame:	
-		jp _PSGFrame
-	
-A$_snd_manager$326:	
-C$_snd_manager.c$60$1$53:	
-C$_snd_manager.c$62$1$55:	
-C$_snd_manager.c$63$1$55:	
-G$devkit_PSGSFXFrame$0$0:	
-XG$devkit_PSGSFXFrame$0$0:	
-_devkit_PSGSFXFrame:	
-		jp _PSGSFXFrame
-	
-A$_snd_manager$339:	
-C$_snd_manager.c$66$1$55:	
-C$_snd_manager.c$68$1$56:	
-G$devkit_SFX_CHANNEL2$0$0:	
-_devkit_SFX_CHANNEL2:	
-		ld l, $01
-		ret
-	
-A$_snd_manager$357:	
-C$_snd_manager.c$70$1$56:	
-C$_snd_manager.c$72$1$57:	
-G$devkit_SFX_CHANNEL3$0$0:	
-_devkit_SFX_CHANNEL3:	
-		ld l, $02
-		ret
-	
-A$_snd_manager$375:	
-C$_snd_manager.c$74$1$57:	
-C$_snd_manager.c$76$1$58:	
-G$devkit_SFX_CHANNELS2AND3$0$0:	
-_devkit_SFX_CHANNELS2AND3:	
-		ld l, $03
-		ret
-	
-A$asm_manager$59:	
-C$asm_manager.c$11$0$0:	
-C$asm_manager.c$30$1$1:	
-G$engine_asm_manager_clear_VRAM$:	
-_engine_asm_manager_clear_VRAM:	
+_LABEL_A5A_:	
 		ld a, $00
 		out (Port_VDPAddress), a
 		ld a, $40
 		out (Port_VDPAddress), a
 		ld bc, $4000
-A$asm_manager$65:	
+-:	
 		ld a, $00
 		out (Port_VDPData), a
 		dec bc
 		ld a, b
 		or c
-		jp nz, A$asm_manager$65
+		jp nz, -
 		ret
 	
-A$audio_manager$60:	
-C$audio_manager.c$18$0$0:	
-C$audio_manager.c$20$1$15:	
-G$engine_audio_manager_sfx_right:	
-_engine_audio_manager_sfx_right:	
-		ld hl, _sfx_right_psg	; _sfx_right_psg = $1A5C
-		push hl
-		call A$audio_manager$123
-		pop af
-		ret
+	; Data from A70 to AA1 (50 bytes)
+	.db $21 $5C $1A $E5 $CD $8B $0A $F1 $C9 $21 $7C $1A $E5 $CD $8B $0A
+	.db $F1 $C9 $21 $39 $1A $E5 $CD $8B $0A $F1 $C9 $CD $42 $0A $7D $B7
+	.db $C0 $CD $51 $0A $65 $D1 $C1 $C5 $D5 $E5 $33 $C5 $CD $2A $0A $F1
+	.db $33 $C9
 	
-A$audio_manager$81:	
-C$audio_manager.c$22$1$15:	
-C$audio_manager.c$24$1$16:	
-G$engine_audio_manager_sfx_wrong:	
-_engine_audio_manager_sfx_wrong:	
-		ld hl, _sfx_wrong_psg	; _sfx_wrong_psg = $1A7C
-		push hl
-		call A$audio_manager$123
-		pop af
-		ret
-	
-A$audio_manager$102:	
-C$audio_manager.c$26$1$16:	
-C$audio_manager.c$28$1$17:	
-G$engine_audio_manager_sfx_cheat:	
-_engine_audio_manager_sfx_cheat:	
-		ld hl, _sfx_cheat_psg	; _sfx_cheat_psg = $1A39
-		push hl
-		call A$audio_manager$123
-		pop af
-		ret
-	
-A$audio_manager$123:	
-C$audio_manager.c$31$1$17:	
-C$audio_manager.c$36$1$19:	
-Faudio_manager$play_sfx$0$0:	
-		call A$_snd_manager$258
-		ld a, l
-		or a
-		ret nz
-		call A$_snd_manager$339
-		ld h, l
-		pop de
-		pop bc
-		push bc
-		push de
-		push hl
-		inc sp
-		push bc
-		call A$_snd_manager$206
-		pop af
-		inc sp
-		ret
-	
-A$content_manager$65:	
-C$content_manager.c$12$0$0:	
-C$content_manager.c$14$1$17:	
-G$engine_content_manager_load_ti:	
-_engine_content_manager_load_til:	
+_LABEL_AA2_:	
 		ld hl, $0000
 		push hl
-		ld hl, _font__tiles__psgcompr	; _font__tiles__psgcompr = $17A2
+		ld hl, $17A2
 		push hl
-		call A$_sms_manager$400
+		call _LABEL_88E_
 		pop af
 		pop af
-		ld bc, _font__palette__bin	; _font__palette__bin = $1712
+		ld bc, _DATA_1712_
 		push bc
-		call A$_sms_manager$472
+		call _LABEL_8C5_
 		pop af
 		ret
 	
-A$content_manager$96:	
-C$content_manager.c$17$1$17:	
-C$content_manager.c$19$1$18:	
-G$engine_content_manager_load_sp:	
-_engine_content_manager_load_spl:	
-		ld a, $02
-		push af
-		inc sp
-		call A$_sms_manager$181
-		inc sp
-		ld hl, $0040
-		push hl
-		ld hl, $8057
-		push hl
-		call A$_sms_manager$400
-		pop af
-		pop af
-		ld bc, _SMS_crt0_RST18 - 1	; _SMS_crt0_RST18 - 1 = $0010
-		push bc
-		ld hl, $0000
-		push hl
-		call A$_sms_manager$432
-		pop af
-		pop af
-		ld bc, $8000
-		push bc
-		call A$_sms_manager$472
-		pop af
-		ret
+	; Data from AB8 to B50 (153 bytes)
+	.db $3E $02 $F5 $33 $CD $31 $08 $33 $21 $40 $00 $E5 $21 $57 $80 $E5
+	.db $CD $8E $08 $F1 $F1 $01 $10 $80 $C5 $21 $00 $00 $E5 $CD $A4 $08
+	.db $F1 $F1 $01 $00 $80 $C5 $CD $C5 $08 $F1 $C9 $3E $03 $F5 $33 $CD
+	.db $31 $08 $33 $21 $40 $00 $E5 $21 $77 $80 $E5 $CD $8E $08 $F1 $F1
+	.db $01 $10 $80 $C5 $21 $00 $00 $E5 $CD $A4 $08 $F1 $F1 $01 $00 $80
+	.db $C5 $CD $C5 $08 $F1 $21 $03 $03 $E5 $2E $0F $E5 $CD $D3 $08 $F1
+	.db $F1 $C9 $3E $03 $F5 $33 $CD $31 $08 $33 $21 $40 $00 $E5 $21 $45
+	.db $93 $E5 $CD $8E $08 $F1 $F1 $01 $E8 $92 $C5 $21 $00 $00 $E5 $CD
+	.db $A4 $08 $F1 $F1 $01 $D8 $92 $C5 $CD $C5 $08 $F1 $21 $03 $03 $E5
+	.db $2E $0F $E5 $CD $D3 $08 $F1 $F1 $C9
 	
-A$content_manager$145:	
-C$content_manager.c$25$1$18:	
-C$content_manager.c$27$1$19:	
-G$engine_content_manager_load_ti:	
-_engine_content_manager_load_tit:	
-		ld a, $03
-		push af
-		inc sp
-		call A$_sms_manager$181
-		inc sp
-		ld hl, $0040
-		push hl
-		ld hl, $8077
-		push hl
-		call A$_sms_manager$400
-		pop af
-		pop af
-		ld bc, _SMS_crt0_RST18 - 1	; _SMS_crt0_RST18 - 1 = $0010
-		push bc
-		ld hl, $0000
-		push hl
-		call A$_sms_manager$432
-		pop af
-		pop af
-		ld bc, $8000
-		push bc
-		call A$_sms_manager$472
-		pop af
-		ld hl, $0303
-		push hl
-		ld l, $0F
-		push hl
-		call A$_sms_manager$514
-		pop af
-		pop af
-		ret
-	
-A$content_manager$204:	
-C$content_manager.c$35$1$19:	
-C$content_manager.c$37$1$20:	
-G$engine_content_manager_load_ti:	
-_engine_content_manager_load_tit:	
-		ld a, $03
-		push af
-		inc sp
-		call A$_sms_manager$181
-		inc sp
-		ld hl, $0040
-		push hl
-		ld hl, A$title_screen$347	; A$title_screen$347 = $1345
-		push hl
-		call A$_sms_manager$400
-		pop af
-		pop af
-		ld bc, A$title_screen$264 + 1	; A$title_screen$264 + 1 = $12E8
-		push bc
-		ld hl, $0000
-		push hl
-		call A$_sms_manager$432
-		pop af
-		pop af
-		ld bc, A$title_screen$246	; A$title_screen$246 = $12D8
-		push bc
-		call A$_sms_manager$472
-		pop af
-		ld hl, $0303
-		push hl
-		ld l, $0F
-		push hl
-		call A$_sms_manager$514
-		pop af
-		pop af
-		ret
-	
-A$content_manager$263:	
-C$content_manager.c$47$1$20:	
-C$content_manager.c$50$1$21:	
-G$engine_content_manager_load_sp:	
-_engine_content_manager_load_spr:	
+_LABEL_B51_:	
 		ld hl, $0120
 		push hl
-		ld hl, _cursor__tiles__psgcompr	; _cursor__tiles__psgcompr = $1657
+		ld hl, $1657
 		push hl
-		call A$_sms_manager$400
+		call _LABEL_88E_
 		pop af
 		pop af
-		ld bc, _cursor__palette__bin	; _cursor__palette__bin = $1647
+		ld bc, _DATA_1647_
 		push bc
-		call A$_sms_manager$493
+		call _LABEL_8CC_
 		pop af
 		ret
 	
-A$cursor_manager$68:	
-C$cursor_manager.c$13$0$0:	
-C$cursor_manager.c$15$1$23:	
-G$engine_cursor_manager_init$0$0:	
-_engine_cursor_manager_init:	
-		ld bc, G$global_cursor_object$0$0	; G$global_cursor_object$0$0 = $C026
-		xor a
-		ld (bc), a
-		ld hl, G$global_cursor_object$0$0 + 1	; G$global_cursor_object$0$0 + 1 = $C027
-		ld (hl), $00
-		push bc
-		ld a, $03
-		push af
-		inc sp
-		ld hl, $0005
-		add hl, sp
-		ld a, (hl)
-		push af
-		inc sp
-		call __divuchar
-		pop af
-		ld a, l
-		pop bc
-		ld (bc), a
-		ld a, $03
-		push af
-		inc sp
-		ld hl, $0003
-		add hl, sp
-		ld a, (hl)
-		push af
-		inc sp
-		call __moduchar
-		pop af
-		ld c, l
-		ld hl, G$global_cursor_object$0$0 + 1	; G$global_cursor_object$0$0 + 1 = $C027
-		ld (hl), c
-		jp A$cursor_manager$682
+	; Data from B67 to EC5 (863 bytes)
+	.db $01 $26 $C0 $AF $02 $21 $27 $C0 $36 $00 $C5 $3E $03 $F5 $33 $21
+	.db $05 $00 $39 $7E $F5 $33 $CD $A7 $1A $F1 $7D $C1 $02 $3E $03 $F5
+	.db $33 $21 $03 $00 $39 $7E $F5 $33 $CD $28 $1E $F1 $4D $21 $27 $C0
+	.db $71 $C3 $88 $0D $DD $E5 $DD $21 $00 $00 $DD $39 $F5 $F5 $DD $36
+	.db $FD $00 $3E $4A $DD $86 $FD $DD $77 $FE $3E $11 $CE $00 $DD $77
+	.db $FF $0E $00 $69 $29 $09 $7D $DD $86 $FD $5F $21 $46 $11 $06 $00
+	.db $09 $46 $DD $6E $FE $DD $66 $FF $7E $DD $77 $FC $26 $00 $6B $29
+	.db $11 $4A $C1 $19 $5E $23 $56 $DD $7E $FC $DD $86 $04 $C5 $F5 $33
+	.db $C5 $33 $D5 $CD $E9 $0D $F1 $F1 $C1 $0C $79 $D6 $04 $38 $C4 $DD
+	.db $34 $FD $DD $7E $FD $D6 $03 $38 $A9 $DD $F9 $DD $E1 $C9 $3A $26
+	.db $C0 $4F $87 $81 $4F $21 $26 $C0 $23 $6E $09 $C9 $DD $E5 $DD $21
+	.db $00 $00 $DD $39 $F5 $F5 $21 $26 $C0 $23 $23 $4E $21 $26 $C0 $23
+	.db $23 $23 $46 $C5 $21 $20 $01 $E5 $C5 $CD $64 $09 $F1 $F1 $C1 $79
+	.db $C6 $28 $5F $C5 $D5 $21 $25 $01 $E5 $C5 $33 $7B $F5 $33 $CD $64
+	.db $09 $F1 $F1 $D1 $C1 $78 $C6 $10 $57 $C5 $D5 $21 $2C $01 $E5 $59
+	.db $D5 $CD $64 $09 $F1 $F1 $D1 $D5 $21 $31 $01 $E5 $D5 $CD $64 $09
+	.db $F1 $F1 $D1 $C1 $79 $C6 $08 $DD $77 $FC $C5 $D5 $21 $21 $01 $E5
+	.db $C5 $33 $DD $7E $FC $F5 $33 $CD $64 $09 $F1 $F1 $D1 $C1 $79 $C6
+	.db $10 $DD $77 $FF $C5 $D5 $21 $22 $01 $E5 $C5 $33 $DD $7E $FF $F5
+	.db $33 $CD $64 $09 $F1 $F1 $D1 $C1 $79 $C6 $18 $DD $77 $FE $C5 $D5
+	.db $21 $23 $01 $E5 $C5 $33 $DD $7E $FE $F5 $33 $CD $64 $09 $F1 $F1
+	.db $D1 $C1 $79 $C6 $20 $DD $77 $FD $C5 $D5 $21 $24 $01 $E5 $C5 $33
+	.db $DD $7E $FD $F5 $33 $CD $64 $09 $F1 $F1 $D1 $C1 $78 $C6 $08 $47
+	.db $C5 $D5 $21 $26 $01 $E5 $C5 $CD $64 $09 $F1 $F1 $D1 $C1 $D5 $21
+	.db $2B $01 $E5 $C5 $33 $7B $F5 $33 $CD $64 $09 $F1 $F1 $D1 $D5 $21
+	.db $2D $01 $E5 $D5 $33 $DD $7E $FC $F5 $33 $CD $64 $09 $F1 $F1 $D1
+	.db $D5 $21 $2E $01 $E5 $D5 $33 $DD $7E $FF $F5 $33 $CD $64 $09 $F1
+	.db $F1 $D1 $D5 $21 $2F $01 $E5 $D5 $33 $DD $7E $FE $F5 $33 $CD $64
+	.db $09 $F1 $F1 $D1 $21 $30 $01 $E5 $D5 $33 $DD $7E $FD $F5 $33 $CD
+	.db $64 $09 $DD $F9 $DD $E1 $C9 $01 $26 $C0 $0A $B7 $20 $06 $3E $03
+	.db $02 $C3 $88 $0D $C6 $FF $02 $C3 $88 $0D $01 $26 $C0 $0A $FE $03
+	.db $20 $05 $AF $02 $C3 $88 $0D $3C $02 $C3 $88 $0D $01 $27 $C0 $0A
+	.db $B7 $20 $06 $3E $02 $02 $C3 $88 $0D $C6 $FF $02 $C3 $88 $0D $01
+	.db $27 $C0 $0A $FE $02 $20 $05 $AF $02 $C3 $88 $0D $3C $02 $C3 $88
+	.db $0D $01 $46 $11 $21 $26 $C0 $6E $26 $00 $09 $4E $11 $4A $11 $21
+	.db $26 $C0 $23 $6E $26 $00 $19 $5E $0D $79 $07 $07 $07 $E6 $F8 $57
+	.db $21 $28 $C0 $72 $01 $29 $C0 $1D $7B $07 $07 $07 $E6 $F8 $5F $02
+	.db $14 $72 $1D $7B $02 $C9 $DD $E5 $DD $21 $00 $00 $DD $39 $DD $7E
+	.db $04 $C6 $E0 $4F $C5 $DD $66 $06 $DD $6E $05 $E5 $CD $23 $09 $F1
+	.db $C1 $21 $22 $17 $6E $26 $00 $06 $00 $09 $E5 $CD $4C $09 $F1 $DD
+	.db $E1 $C9 $DD $E5 $DD $21 $00 $00 $DD $39 $3B $DD $4E $06 $DD $36
+	.db $FF $00 $DD $7E $04 $DD $86 $FF $5F $DD $7E $05 $CE $00 $57 $1A
+	.db $B7 $28 $2D $C6 $E0 $47 $51 $0C $DD $71 $06 $C5 $DD $7E $07 $F5
+	.db $33 $D5 $33 $CD $23 $09 $F1 $C1 $21 $22 $17 $5E $16 $00 $78 $6F
+	.db $17 $9F $67 $19 $C5 $E5 $CD $4C $09 $F1 $C1 $DD $34 $FF $18 $C2
+	.db $33 $DD $E1 $C9 $DD $E5 $DD $21 $00 $00 $DD $39 $F5 $DD $7E $06
+	.db $DD $77 $FF $DD $36 $FE $00 $21 $0A $00 $E5 $DD $6E $04 $DD $66
+	.db $05 $E5 $CD $9F $1A $F1 $F1 $5D $54 $E5 $D5 $01 $0A $00 $C5 $DD
+	.db $4E $04 $DD $46 $05 $C5 $CD $34 $1E $F1 $F1 $45 $D1 $E1 $DD $75
+	.db $04 $DD $74 $05 $78 $C6 $10 $4F $7A $B3 $20 $0B $B0 $20 $08 $DD
+	.db $7E $FE $B7 $28 $02 $0E $00 $DD $46 $FF $DD $35 $FF $DD $7E $FF
+	.db $DD $77 $06 $C5 $DD $7E $07 $F5 $33 $C5 $33 $CD $23 $09 $F1 $C1
+	.db $21 $22 $17 $6E $26 $00 $79 $17 $9F $47 $09 $E5 $CD $4C $09 $F1
+	.db $DD $34 $FE $DD $7E $FE $D6 $05 $38 $8D $DD $F9 $DD $E1 $C9
 	
-A$cursor_manager$129:	
-C$cursor_manager.c$24$1$23:	
-G$engine_cursor_manager_load$0$0:	
-_engine_cursor_manager_load:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		push af
-		push af
-		ld (ix-3), $00
-A$cursor_manager$142:	
-C$cursor_manager.c$33$2$26:	
-		ld a, $4A
-		add a, (ix-3)
-		ld (ix-2), a
-		ld a, $11
-		adc a, $00
-		ld (ix-1), a
-		ld c, $00
-A$cursor_manager$153:	
-C$cursor_manager.c$35$5$29:	
-		ld l, c
-		add hl, hl
-		add hl, bc
-		ld a, l
-		add a, (ix-3)
-		ld e, a
-		ld hl, G$cursor_gridX$0$0	; G$cursor_gridX$0$0 = $1146
-		ld b, $00
-		add hl, bc
-		ld b, (hl)
-		ld l, (ix-2)
-		ld h, (ix-1)
-		ld a, (hl)
-		ld (ix-4), a
-		ld h, $00
-		ld l, e
-		add hl, hl
-		ld de, G$cursor_album$0$0	; G$cursor_album$0$0 = $C14A
-		add hl, de
-		ld e, (hl)
-		inc hl
-		ld d, (hl)
-		ld a, (ix-4)
-		add a, (ix+4)
-		push bc
-		push af
-		inc sp
-		push bc
-		inc sp
-		push de
-		call A$font_manager$104
-		pop af
-		pop af
-		pop bc
-		inc c
-		ld a, c
-		sub $04
-		jr c, A$cursor_manager$153
-		inc (ix-3)
-		ld a, (ix-3)
-		sub $03
-		jr c, A$cursor_manager$142
-		ld sp, ix
-		pop ix
+_LABEL_EC6_:	
+		ld hl, (_RAM_C146_)
+		ld (_RAM_C148_), hl
+		call _LABEL_99B_
+		ld (_RAM_C146_), hl
 		ret
 	
-A$cursor_manager$235:	
-C$cursor_manager.c$45$2$26:	
-C$cursor_manager.c$47$1$30:	
-C$cursor_manager.c$48$1$30:	
-G$engine_cursor_manager_save$0$0:	
-_engine_cursor_manager_save:	
-		ld a, (G$global_cursor_object$0$0)	; G$global_cursor_object$0$0 = $C026
-		ld c, a
-		add a, a
-		add a, c
-		ld c, a
-		ld hl, G$global_cursor_object$0$0	; G$global_cursor_object$0$0 = $C026
-		inc hl
-		ld l, (hl)
-		add hl, bc
-		ret
+	; Data from ED3 to F8B (185 bytes)
+	.db $21 $02 $00 $39 $4E $06 $00 $FD $21 $46 $C1 $FD $7E $00 $A1 $5F
+	.db $FD $7E $01 $A0 $B3 $28 $10 $79 $FD $21 $48 $C1 $FD $A6 $00 $4F
+	.db $78 $FD $A6 $01 $B1 $28 $03 $2E $00 $C9 $2E $01 $C9 $21 $02 $00
+	.db $39 $4E $3A $46 $C1 $A1 $6F $C9 $21 $2A $C0 $FD $21 $02 $00 $FD
+	.db $39 $FD $7E $00 $77 $C9 $DD $E5 $DD $21 $00 $00 $DD $39 $3B $3A
+	.db $2A $C0 $DD $77 $FF $6F $26 $00 $29 $4D $44 $21 $62 $C1 $09 $5E
+	.db $23 $56 $21 $7A $C1 $09 $4E $23 $46 $DD $7E $FF $C6 $89 $6F $3E
+	.db $00 $CE $11 $67 $66 $C5 $D5 $E5 $33 $CD $31 $08 $33 $D1 $21 $00
+	.db $00 $E5 $D5 $CD $8E $08 $F1 $21 $00 $00 $E3 $CD $A4 $08 $F1 $F1
+	.db $2A $92 $C1 $E5 $CD $C5 $08 $F1 $33 $DD $E1 $C9 $01 $2A $C0 $0A
+	.db $B7 $20 $04 $3E $0B $02 $C9 $C6 $FF $02 $C9 $01 $2A $C0 $0A $FE
+	.db $0B $20 $03 $AF $02 $C9 $3C $02 $C9
 	
-A$cursor_manager$258:	
-C$cursor_manager.c$51$1$30:	
-G$engine_cursor_manager_draw$0$0:	
-_engine_cursor_manager_draw:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		push af
-		push af
-		ld hl, G$global_cursor_object$0$0	; G$global_cursor_object$0$0 = $C026
-		inc hl
-		inc hl
-		ld c, (hl)
-		ld hl, G$global_cursor_object$0$0	; G$global_cursor_object$0$0 = $C026
-		inc hl
-		inc hl
-		inc hl
-		ld b, (hl)
-		push bc
-		ld hl, $0120
-		push hl
-		push bc
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop bc
-		ld a, c
-		add a, $28
-		ld e, a
-		push bc
-		push de
-		ld hl, $0125
-		push hl
-		push bc
-		inc sp
-		ld a, e
-		push af
-		inc sp
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		pop bc
-		ld a, b
-		add a, $10
-		ld d, a
-		push bc
-		push de
-		ld hl, $012C
-		push hl
-		ld e, c
-		push de
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		push de
-		ld hl, $0131
-		push hl
-		push de
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		pop bc
-		ld a, c
-		add a, $08
-		ld (ix-1), a
-		push bc
-		push de
-		ld hl, $0121
-		push hl
-		push bc
-		inc sp
-		ld a, (ix-1)
-		push af
-		inc sp
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		pop bc
-		ld a, c
-		add a, $10
-		ld (ix-2), a
-		push bc
-		push de
-		ld hl, $0122
-		push hl
-		push bc
-		inc sp
-		ld a, (ix-2)
-		push af
-		inc sp
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		pop bc
-		ld a, c
-		add a, $18
-		ld (ix-4), a
-		push bc
-		push de
-		ld hl, $0123
-		push hl
-		push bc
-		inc sp
-		ld a, (ix-4)
-		push af
-		inc sp
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		pop bc
-		ld a, c
-		add a, $20
-		ld (ix-3), a
-		push bc
-		push de
-		ld hl, $0124
-		push hl
-		push bc
-		inc sp
-		ld a, (ix-3)
-		push af
-		inc sp
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		pop bc
-		ld a, b
-		add a, $08
-		ld b, a
-		push bc
-		push de
-		ld hl, $0126
-		push hl
-		push bc
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		pop bc
-		push de
-		ld hl, $012B
-		push hl
-		push bc
-		inc sp
-		ld a, e
-		push af
-		inc sp
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		push de
-		ld hl, $012D
-		push hl
-		push de
-		inc sp
-		ld a, (ix-1)
-		push af
-		inc sp
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		push de
-		ld hl, $012E
-		push hl
-		push de
-		inc sp
-		ld a, (ix-2)
-		push af
-		inc sp
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		push de
-		ld hl, $012F
-		push hl
-		push de
-		inc sp
-		ld a, (ix-4)
-		push af
-		inc sp
-		call A$_sms_manager$696
-		pop af
-		pop af
-		pop de
-		ld hl, $0130
-		push hl
-		push de
-		inc sp
-		ld a, (ix-3)
-		push af
-		inc sp
-		call A$_sms_manager$696
-		ld sp, ix
-		pop ix
-		ret
-	
-A$cursor_manager$523:	
-C$cursor_manager.c$81$1$31:	
-C$cursor_manager.c$83$1$32:	
-G$engine_cursor_manager_decX$0$0:	
-_engine_cursor_manager_decX:	
-		ld bc, G$global_cursor_object$0$0	; G$global_cursor_object$0$0 = $C026
-		ld a, (bc)
-		or a
-		jr nz, A$cursor_manager$540
-		ld a, $03
-		ld (bc), a
-		jp A$cursor_manager$682
-	
-A$cursor_manager$540:	
-C$cursor_manager.c$90$2$34:	
-		add a, $FF
-		ld (bc), a
-		jp A$cursor_manager$682
-	
-A$cursor_manager$562:	
-C$cursor_manager.c$95$1$32:	
-C$cursor_manager.c$97$1$35:	
-G$engine_cursor_manager_incX$0$0:	
-_engine_cursor_manager_incX:	
-		ld bc, G$global_cursor_object$0$0	; G$global_cursor_object$0$0 = $C026
-		ld a, (bc)
-		cp $03
-		jr nz, A$cursor_manager$579
-		xor a
-		ld (bc), a
-		jp A$cursor_manager$682
-	
-A$cursor_manager$579:	
-C$cursor_manager.c$104$2$37:	
-		inc a
-		ld (bc), a
-		jp A$cursor_manager$682
-	
-A$cursor_manager$604:	
-C$cursor_manager.c$109$1$35:	
-C$cursor_manager.c$111$1$38:	
-C$cursor_manager.c$112$1$38:	
-G$engine_cursor_manager_decY$0$0:	
-_engine_cursor_manager_decY:	
-		ld bc, G$global_cursor_object$0$0 + 1	; G$global_cursor_object$0$0 + 1 = $C027
-		ld a, (bc)
-		or a
-		jr nz, A$cursor_manager$618
-		ld a, $02
-		ld (bc), a
-		jp A$cursor_manager$682
-	
-A$cursor_manager$618:	
-C$cursor_manager.c$118$2$40:	
-		add a, $FF
-		ld (bc), a
-		jp A$cursor_manager$682
-	
-A$cursor_manager$643:	
-C$cursor_manager.c$123$1$38:	
-C$cursor_manager.c$125$1$41:	
-C$cursor_manager.c$126$1$41:	
-G$engine_cursor_manager_incY$0$0:	
-_engine_cursor_manager_incY:	
-		ld bc, G$global_cursor_object$0$0 + 1	; G$global_cursor_object$0$0 + 1 = $C027
-		ld a, (bc)
-		cp $02
-		jr nz, A$cursor_manager$657
-		xor a
-		ld (bc), a
-		jp A$cursor_manager$682
-	
-A$cursor_manager$657:	
-C$cursor_manager.c$132$2$43:	
-		inc a
-		ld (bc), a
-		jp A$cursor_manager$682
-	
-A$cursor_manager$682:	
-C$cursor_manager.c$138$1$41:	
-C$cursor_manager.c$140$1$44:	
-C$cursor_manager.c$141$1$44:	
-Fcursor_manager$update_values$0$:	
-		ld bc, G$cursor_gridX$0$0	; G$cursor_gridX$0$0 = $1146
-		ld hl, G$global_cursor_object$0$0	; G$global_cursor_object$0$0 = $C026
-		ld l, (hl)
-		ld h, $00
-		add hl, bc
-		ld c, (hl)
-		ld de, G$cursor_gridY$0$0	; G$cursor_gridY$0$0 = $114A
-		ld hl, G$global_cursor_object$0$0	; G$global_cursor_object$0$0 = $C026
-		inc hl
-		ld l, (hl)
-		ld h, $00
-		add hl, de
-		ld e, (hl)
-		dec c
-		ld a, c
-		rlca
-		rlca
-		rlca
-		and $F8
-		ld d, a
-		ld hl, G$global_cursor_object$0$0 + 2	; G$global_cursor_object$0$0 + 2 = $C028
-		ld (hl), d
-		ld bc, G$global_cursor_object$0$0 + 3	; G$global_cursor_object$0$0 + 3 = $C029
-		dec e
-		ld a, e
-		rlca
-		rlca
-		rlca
-		and $F8
-		ld e, a
-		ld (bc), a
-		inc d
-		ld (hl), d
-		dec e
-		ld a, e
-		ld (bc), a
-		ret
-	
-A$font_manager$56:	
-C$font_manager.c$10$0$0:	
-G$engine_font_manager_draw_char$:	
-_engine_font_manager_draw_char:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		ld a, (ix+4)
-		add a, $E0
-		ld c, a
-		push bc
-		ld h, (ix+6)
-		ld l, (ix+5)
-		push hl
-		call A$_sms_manager$607
-		pop af
-		pop bc
-		ld hl, _font__tilemap__bin	; _font__tilemap__bin = $1722
-		ld l, (hl)
-		ld h, $00
-		ld b, $00
-		add hl, bc
-		push hl
-		call A$_sms_manager$652
-		pop af
-		pop ix
-		ret
-	
-A$font_manager$104:	
-C$font_manager.c$18$1$21:	
-G$engine_font_manager_draw_text$:	
-_engine_font_manager_draw_text:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		dec sp
-		ld c, (ix+6)
-		ld (ix-1), $00
-A$font_manager$117:	
-		ld a, (ix+4)
-		add a, (ix-1)
-		ld e, a
-		ld a, (ix+5)
-		adc a, $00
-		ld d, a
-		ld a, (de)
-		or a
-		jr z, A$font_manager$169
-		add a, $E0
-		ld b, a
-		ld d, c
-		inc c
-		ld (ix+6), c
-		push bc
-		ld a, (ix+7)
-		push af
-		inc sp
-		push de
-		inc sp
-		call A$_sms_manager$607
-		pop af
-		pop bc
-		ld hl, _font__tilemap__bin	; _font__tilemap__bin = $1722
-		ld e, (hl)
-		ld d, $00
-		ld a, b
-		ld l, a
-		rla
-		sbc a, a
-		ld h, a
-		add hl, de
-		push bc
-		push hl
-		call A$_sms_manager$652
-		pop af
-		pop bc
-		inc (ix-1)
-		jr A$font_manager$117
-	
-A$font_manager$169:	
-		inc sp
-		pop ix
-		ret
-	
-A$font_manager$185:	
-C$font_manager.c$32$1$23:	
-G$engine_font_manager_draw_data$:	
-_engine_font_manager_draw_data:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		push af
-		ld a, (ix+6)
-		ld (ix-1), a
-		ld (ix-2), $00
-A$font_manager$202:	
-C$font_manager.c$44$2$27:	
-		ld hl, $000A
-		push hl
-		ld l, (ix+4)
-		ld h, (ix+5)
-		push hl
-		call __divuint
-		pop af
-		pop af
-		ld e, l
-		ld d, h
-		push hl
-		push de
-		ld bc, $000A
-		push bc
-		ld c, (ix+4)
-		ld b, (ix+5)
-		push bc
-		call __moduint
-		pop af
-		pop af
-		ld b, l
-		pop de
-		pop hl
-		ld (ix+4), l
-		ld (ix+5), h
-		ld a, b
-		add a, $10
-		ld c, a
-		ld a, d
-		or e
-		jr nz, A$font_manager$258
-		or b
-		jr nz, A$font_manager$258
-		ld a, (ix-2)
-		or a
-		jr z, A$font_manager$258
-		ld c, $00
-A$font_manager$258:	
-C$font_manager.c$55$3$28:	
-		ld b, (ix-1)
-		dec (ix-1)
-		ld a, (ix-1)
-		ld (ix+6), a
-		push bc
-		ld a, (ix+7)
-		push af
-		inc sp
-		push bc
-		inc sp
-		call A$_sms_manager$607
-		pop af
-		pop bc
-		ld hl, _font__tilemap__bin	; _font__tilemap__bin = $1722
-		ld l, (hl)
-		ld h, $00
-		ld a, c
-		rla
-		sbc a, a
-		ld b, a
-		add hl, bc
-		push hl
-		call A$_sms_manager$652
-		pop af
-		inc (ix-2)
-		ld a, (ix-2)
-		sub $05
-		jr c, A$font_manager$202
-		ld sp, ix
-		pop ix
-		ret
-	
-A$input_manager$64:	
-C$input_manager.c$10$0$0:	
-C$input_manager.c$12$1$19:	
-G$engine_input_manager_update$0$:	
-_engine_input_manager_update:	
-		ld hl, (Finput_manager$curr_joypad1$0$0)	; Finput_manager$curr_joypad1$0$0 = $C146
-		ld (Finput_manager$prev_joypad1$0$0), hl	; Finput_manager$prev_joypad1$0$0 = $C148
-		call A$_sms_manager$874
-		ld (Finput_manager$curr_joypad1$0$0), hl	; Finput_manager$curr_joypad1$0$0 = $C146
-		ret
-	
-A$input_manager$88:	
-C$input_manager.c$17$1$19:	
-C$input_manager.c$19$1$21:	
-G$engine_input_manager_hold$0$0:	
-_engine_input_manager_hold:	
-		ld hl, $0002
-		add hl, sp
-		ld c, (hl)
-		ld b, $00
-		ld iy, Finput_manager$curr_joypad1$0$0	; Finput_manager$curr_joypad1$0$0 = $C146
-		ld a, (iy+0)
-		and c
-		ld e, a
-		ld a, (iy+1)
-		and b
-		or e
-		jr z, A$input_manager$109
-		ld a, c
-		ld iy, Finput_manager$prev_joypad1$0$0	; Finput_manager$prev_joypad1$0$0 = $C148
-		and (iy+0)
-		ld c, a
-		ld a, b
-		and (iy+1)
-		or c
-		jr z, A$input_manager$112
-A$input_manager$109:	
-		ld l, $00
-		ret
-	
-A$input_manager$112:	
-		ld l, $01
-		ret
-	
-A$input_manager$130:	
-C$input_manager.c$22$1$21:	
-C$input_manager.c$24$1$23:	
-G$engine_input_manager_move$0$0:	
-_engine_input_manager_move:	
-		ld hl, $0002
-		add hl, sp
-		ld c, (hl)
-		ld a, (Finput_manager$curr_joypad1$0$0)	; Finput_manager$curr_joypad1$0$0 = $C146
-		and c
-		ld l, a
-		ret
-	
-A$record_manager$69:	
-C$record_manager.c$12$0$0:	
-C$record_manager.c$14$1$19:	
-C$record_manager.c$15$1$19:	
-G$engine_record_manager_init$0$0:	
-_engine_record_manager_init:	
-		ld hl, G$global_record_object$0$0	; G$global_record_object$0$0 = $C02A
-		ld iy, $0002
-		add iy, sp
-		ld a, (iy+0)
-		ld (hl), a
-		ret
-	
-A$record_manager$88:	
-C$record_manager.c$17$1$19:	
-G$engine_record_manager_load$0$0:	
-_engine_record_manager_load:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		dec sp
-		ld a, (G$global_record_object$0$0)	; G$global_record_object$0$0 = $C02A
-		ld (ix-1), a
-		ld l, a
-		ld h, $00
-		add hl, hl
-		ld c, l
-		ld b, h
-		ld hl, G$record_tiles_data$0$0	; G$record_tiles_data$0$0 = $C162
-		add hl, bc
-		ld e, (hl)
-		inc hl
-		ld d, (hl)
-		ld hl, G$record_tilemap_data$0$0	; G$record_tilemap_data$0$0 = $C17A
-		add hl, bc
-		ld c, (hl)
-		inc hl
-		ld b, (hl)
-		ld a, (ix-1)
-		add a, $89
-		ld l, a
-		ld a, $00
-		adc a, $11
-		ld h, a
-		ld h, (hl)
-		push bc
-		push de
-		push hl
-		inc sp
-		call A$_sms_manager$181
-		inc sp
-		pop de
-		ld hl, $0000
-		push hl
-		push de
-		call A$_sms_manager$400
-		pop af
-		ld hl, $0000
-		ex (sp), hl
-		call A$_sms_manager$432
-		pop af
-		pop af
-		ld hl, (G$record_palette_data$0$0)	; G$record_palette_data$0$0 = $C192
-		push hl
-		call A$_sms_manager$472
-		pop af
-		inc sp
-		pop ix
-		ret
-	
-A$record_manager$177:	
-C$record_manager.c$34$1$20:	
-C$record_manager.c$36$1$21:	
-G$engine_record_manager_decremen:	
-_engine_record_manager_decrement:	
-		ld bc, G$global_record_object$0$0	; G$global_record_object$0$0 = $C02A
-		ld a, (bc)
-		or a
-		jr nz, A$record_manager$194
-		ld a, $0B
-		ld (bc), a
-		ret
-	
-A$record_manager$194:	
-C$record_manager.c$43$2$23:	
-		add a, $FF
-		ld (bc), a
-		ret
-	
-A$record_manager$213:	
-C$record_manager.c$46$1$21:	
-C$record_manager.c$48$1$24:	
-G$engine_record_manager_incremen:	
-_engine_record_manager_increment:	
-		ld bc, G$global_record_object$0$0	; G$global_record_object$0$0 = $C02A
-		ld a, (bc)
-		cp $0B
-		jr nz, A$record_manager$230
-		xor a
-		ld (bc), a
-		ret
-	
-A$record_manager$230:	
-C$record_manager.c$55$2$26:	
-		inc a
-		ld (bc), a
-		ret
-	
-A$screen_manager$80:	
-C$screen_manager.c$19$0$0:	
-C$screen_manager.c$21$1$10:	
-G$engine_screen_manager_init$0$0:	
-_engine_screen_manager_init:	
+_LABEL_F8C_:	
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
-		ld (Fscreen_manager$next_screen_type), a	; Fscreen_manager$next_screen_type = $C02C
-		ld hl, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
+		ld (_RAM_C02C_), a
+		ld hl, _RAM_C02B_
 		ld (hl), $00
 		ld hl, $1195
-		ld (Fscreen_manager$load_method$0$0), hl	; Fscreen_manager$load_method$0$0 = $C02D
+		ld (_RAM_C02D_), hl
 		ld hl, $119D
-		ld (Fscreen_manager$load_method$0$0 + 2), hl	; Fscreen_manager$load_method$0$0 + 2 = $C02F
+		ld (_RAM_C02F_), hl
 		ld hl, $1220
 		ld (_RAM_C031_), hl
 		ld hl, $1389
@@ -2817,9 +1305,9 @@ _engine_screen_manager_init:
 		ld hl, $14E2
 		ld (_RAM_C037_), hl
 		ld hl, $1196
-		ld (Fscreen_manager$update_method$0$), hl	; Fscreen_manager$update_method$0$ = $C039
+		ld (_RAM_C039_), hl
 		ld hl, $11B9
-		ld (Fscreen_manager$update_method$0$ + 2), hl	; Fscreen_manager$update_method$0$ + 2 = $C03B
+		ld (_RAM_C03B_), hl
 		ld hl, $12BE
 		ld (_RAM_C03D_), hl
 		ld hl, $138F
@@ -2830,19 +1318,15 @@ _engine_screen_manager_init:
 		ld (_RAM_C043_), hl
 		ret
 	
-A$screen_manager$166:	
-C$screen_manager.c$41$1$10:	
-C$screen_manager.c$43$1$11:	
-G$engine_screen_manager_update$0:	
-_engine_screen_manager_update:	
-		ld a, (Fscreen_manager$curr_screen_type)	; Fscreen_manager$curr_screen_type = $C02B
-		ld iy, Fscreen_manager$next_screen_type	; Fscreen_manager$next_screen_type = $C02C
+_LABEL_FE2_:	
+		ld a, (_RAM_C02B_)
+		ld iy, _RAM_C02C_
 		sub (iy+0)
-		jr z, A$screen_manager$193
+		jr z, +
 		ld a, (iy+0)
-		ld iy, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
+		ld iy, _RAM_C02B_
 		ld (iy+0), a
-		ld bc, Fscreen_manager$load_method$0$0	; Fscreen_manager$load_method$0$0 = $C02D
+		ld bc, _RAM_C02D_
 		ld l, (iy+0)
 		ld h, $00
 		add hl, hl
@@ -2851,11 +1335,10 @@ _engine_screen_manager_update:
 		inc hl
 		ld h, (hl)
 		ld l, c
-		call ___sdcc_call_hl
-A$screen_manager$193:	
-C$screen_manager.c$49$1$11:	
-		ld bc, Fscreen_manager$update_method$0$	; Fscreen_manager$update_method$0$ = $C039
-		ld iy, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
+		call _LABEL_2020_
++:	
+		ld bc, _RAM_C039_
+		ld iy, _RAM_C02B_
 		ld l, (iy+0)
 		ld h, $00
 		add hl, hl
@@ -2863,1471 +1346,41 @@ C$screen_manager.c$49$1$11:
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
-		ld hl, Fscreen_manager$next_screen_type	; Fscreen_manager$next_screen_type = $C02C
+		ld hl, $C02C
 		push hl
 		ld l, c
 		ld h, b
-		call ___sdcc_call_hl
+		call _LABEL_2020_
 		pop af
 		ret
 	
-A$scroll_manager$61:	
-C$scroll_manager.c$10$1$18:	
-C$scroll_manager.c$8$0$0:	
-G$engine_scroll_manager_reset$0$:	
-_engine_scroll_manager_reset:	
+_LABEL_1025_:	
 		xor a
 		push af
 		inc sp
-		call A$scroll_manager$94
+		call +
 		inc sp
 		xor a
 		push af
 		inc sp
-		call A$_sms_manager$222
+		call _LABEL_846_
 		inc sp
 		ret
 	
-A$scroll_manager$94:	
-C$scroll_manager.c$14$1$18:	
-C$scroll_manager.c$16$1$20:	
-C$scroll_manager.c$17$1$20:	
-G$engine_scroll_manager_load$0$0:	
-_engine_scroll_manager_load:	
-		ld hl, G$global_scroll_object$0$0	; G$global_scroll_object$0$0 = $C045
++:	
+		ld hl, _RAM_C045_
 		ld iy, $0002
 		add iy, sp
 		ld a, (iy+0)
 		ld (hl), a
 		ret
 	
-A$storage_manager$65:	
-C$storage_manager.c$16$0$0:	
-C$storage_manager.c$18$1$18:	
-G$engine_storage_manager_availab:	
-_engine_storage_manager_availabl:	
-		call A$_sms_manager$305
-		push hl
-		call A$_sms_manager$242
-		pop hl
-		ld c, (hl)
-		inc hl
-		ld b, (hl)
-		inc hl
-		ld e, (hl)
-		inc hl
-		ld d, (hl)
-		ld a, c
-		sub $04
-		jr nz, A$storage_manager$97
-		ld a, b
-		sub $B0
-		jr nz, A$storage_manager$97
-		ld a, e
-		sub $E0
-		jr nz, A$storage_manager$97
-		ld a, d
-		sub $AC
-		jr nz, A$storage_manager$97
-		ld a, $01
-		jr A$storage_manager$99
-	
-A$storage_manager$97:	
-		xor a
-A$storage_manager$99:	
-		ld l, a
-		push hl
-		call A$_sms_manager$286
-		pop hl
-		ret
-	
-A$storage_manager$126:	
-C$storage_manager.c$27$1$18:	
-C$storage_manager.c$29$1$19:	
-G$engine_storage_manager_read$0$:	
-_engine_storage_manager_read:	
-		call A$_sms_manager$305
-		push hl
-		call A$_sms_manager$242
-		pop iy
-		ld c, (iy+4)
-		ld hl, G$global_record_object$0$0	; G$global_record_object$0$0 = $C02A
-		ld (hl), c
-		jp A$_sms_manager$286
-	
-A$storage_manager$159:	
-C$storage_manager.c$37$1$19:	
-C$storage_manager.c$39$1$20:	
-G$engine_storage_manager_write$0:	
-_engine_storage_manager_write:	
-		call A$_sms_manager$305
-		push hl
-		call A$_sms_manager$242
-		pop bc
-		ld l, c
-		ld h, b
-		ld (hl), $04
-		inc hl
-		ld (hl), $B0
-		inc hl
-		ld (hl), $E0
-		inc hl
-		ld (hl), $AC
-		ld hl, $0004
-		add hl, bc
-		ex de, hl
-		ld a, (G$global_record_object$0$0)	; G$global_record_object$0$0 = $C02A
-		ld (de), a
-		ld hl, $0005
-		add hl, bc
-		ld (hl), $FE
-		jp A$_sms_manager$286
-	
-A$storage_manager$215:	
-C$storage_manager.c$49$1$20:	
-C$storage_manager.c$51$1$21:	
-G$engine_storage_manager_erase$0:	
-_engine_storage_manager_erase:	
-		call A$_sms_manager$305
-		push hl
-		call A$_sms_manager$242
-		pop bc
-		ld l, c
-		ld h, b
-		xor a
-		ld (hl), a
-		inc hl
-		ld (hl), a
-		inc hl
-		xor a
-		ld (hl), a
-		inc hl
-		ld (hl), a
-		ld hl, $0004
-		add hl, bc
-		ld (hl), $00
-		ld hl, $0005
-		add hl, bc
-		ld (hl), $FE
-		jp A$_sms_manager$286
-	
-A$timer_manager$70:	
-C$timer_manager.c$11$1$4:	
-C$timer_manager.c$12$1$4:	
-C$timer_manager.c$9$0$0:	
-G$engine_delay_manager_load$0$0:	
-_engine_delay_manager_load:	
-		ld hl, G$global_delay_object$0$0	; G$global_delay_object$0$0 = $C04C
-		ld iy, $0002
-		add iy, sp
-		ld a, (iy+0)
-		ld (hl), a
-		inc hl
-		ld a, (iy+1)
-		ld (hl), a
-		ld hl, $0000
-		ld (G$global_delay_object$0$0 + 2), hl	; G$global_delay_object$0$0 + 2 = $C04E
-		ret
-	
-A$timer_manager$103:	
-C$timer_manager.c$15$1$4:	
-C$timer_manager.c$17$1$5:	
-C$timer_manager.c$20$1$5:	
-G$engine_delay_manager_update$0$:	
-_engine_delay_manager_update:	
-		ld bc, (G$global_delay_object$0$0 + 2)	; G$global_delay_object$0$0 + 2 = $C04E
-		inc bc
-		ld (G$global_delay_object$0$0 + 2), bc	; G$global_delay_object$0$0 + 2 = $C04E
-		ld hl, (G$global_delay_object$0$0)	; G$global_delay_object$0$0 = $C04C
-		ld a, c
-		sub l
-		ld a, b
-		sbc a, h
-		ld a, $00
-		rla
-		xor $01
-		ld c, a
-		ld b, a
-		or a
-		jr z, A$timer_manager$133
-		ld hl, $0000
-		ld (G$global_delay_object$0$0 + 2), hl	; G$global_delay_object$0$0 + 2 = $C04E
-A$timer_manager$133:	
-C$timer_manager.c$27$1$5:	
-		ld l, b
-		ret
-	
-A$timer_manager$154:	
-C$timer_manager.c$32$1$5:	
-C$timer_manager.c$34$1$8:	
-C$timer_manager.c$35$1$8:	
-G$engine_reset_manager_load$0$0:	
-_engine_reset_manager_load:	
-		ld hl, G$global_reset_object$0$0	; G$global_reset_object$0$0 = $C050
-		ld iy, $0002
-		add iy, sp
-		ld a, (iy+0)
-		ld (hl), a
-		inc hl
-		ld a, (iy+1)
-		ld (hl), a
-		jp A$timer_manager$236
-	
-A$timer_manager$185:	
-C$timer_manager.c$38$1$8:	
-C$timer_manager.c$40$1$9:	
-C$timer_manager.c$43$1$9:	
-G$engine_reset_manager_update$0$:	
-_engine_reset_manager_update:	
-		ld bc, (G$global_reset_object$0$0 + 2)	; G$global_reset_object$0$0 + 2 = $C052
-		inc bc
-		ld (G$global_reset_object$0$0 + 2), bc	; G$global_reset_object$0$0 + 2 = $C052
-		ld hl, (G$global_reset_object$0$0)	; G$global_reset_object$0$0 = $C050
-		ld a, c
-		sub l
-		ld a, b
-		sbc a, h
-		ld a, $00
-		rla
-		xor $01
-		ld c, a
-		ld b, a
-		or a
-		jr z, A$timer_manager$215
-		ld hl, $0000
-		ld (G$global_reset_object$0$0 + 2), hl	; G$global_reset_object$0$0 + 2 = $C052
-A$timer_manager$215:	
-C$timer_manager.c$50$1$9:	
-		ld l, b
-		ret
-	
-A$timer_manager$236:	
-C$timer_manager.c$52$1$9:	
-C$timer_manager.c$54$1$11:	
-C$timer_manager.c$55$1$11:	
-G$engine_reset_manager_reset$0$0:	
-_engine_reset_manager_reset:	
-		ld hl, $0000
-		ld (G$global_reset_object$0$0 + 2), hl	; G$global_reset_object$0$0 + 2 = $C052
-		ret
-	
-; Data from 1146 to 1149 (4 bytes)	
-G$cursor_gridX$0$0:	
-_cursor_gridX:	
-	.db $04 $0B $12 $19
-	
-; Data from 114A to 114C (3 bytes)	
-G$cursor_gridY$0$0:	
-_cursor_gridY:	
-	.db $10 $13 $16
-	
-; Data from 114D to 1151 (5 bytes)	
-Fcursor_object$__str_0$0$0:	
-	.db $31 $39 $37 $38 $00
-	
-; Data from 1152 to 1156 (5 bytes)	
-Fcursor_object$__str_1$0$0:	
-	.db $31 $39 $37 $39 $00
-	
-; Data from 1157 to 115B (5 bytes)	
-Fcursor_object$__str_2$0$0:	
-	.db $31 $39 $38 $30 $00
-	
-; Data from 115C to 1160 (5 bytes)	
-Fcursor_object$__str_3$0$0:	
-	.db $31 $39 $38 $31 $00
-	
-; Data from 1161 to 1165 (5 bytes)	
-Fcursor_object$__str_4$0$0:	
-	.db $31 $39 $38 $32 $00
-	
-; Data from 1166 to 116A (5 bytes)	
-Fcursor_object$__str_5$0$0:	
-	.db $31 $39 $38 $34 $00
-	
-; Data from 116B to 116F (5 bytes)	
-Fcursor_object$__str_6$0$0:	
-	.db $31 $39 $38 $36 $00
-	
-; Data from 1170 to 1174 (5 bytes)	
-Fcursor_object$__str_7$0$0:	
-	.db $31 $39 $38 $38 $00
-	
-; Data from 1175 to 1179 (5 bytes)	
-Fcursor_object$__str_8$0$0:	
-	.db $31 $39 $39 $31 $00
-	
-; Data from 117A to 117E (5 bytes)	
-Fcursor_object$__str_9$0$0:	
-	.db $31 $39 $39 $35 $00
-	
-; Data from 117F to 1183 (5 bytes)	
-Fcursor_object$__str_10$0$0:	
-	.db $31 $39 $39 $38 $00
-	
-; Data from 1184 to 1188 (5 bytes)	
-Fcursor_object$__str_11$0$0:	
-	.db $32 $30 $31 $32 $00
-	
-; Data from 1189 to 1194 (12 bytes)	
-G$record_tiles_bank$0$0:	
-_record_tiles_bank:	
-	.db $04 $05 $06 $07 $08 $09 $0A $0B $0C $0D $0E $0F
-	
-A$none_screen$60:	
-C$none_screen.c$4$0$0:	
-C$none_screen.c$6$0$0:	
-G$screen_none_screen_load$0$0:	
-XG$screen_none_screen_load$0$0:	
-_screen_none_screen_load:	
-		ret
-	
-A$none_screen$73:	
-C$none_screen.c$10$1$4:	
-C$none_screen.c$8$0$0:	
-G$screen_none_screen_update$0$0:	
-_screen_none_screen_update:	
-		pop de
-		pop bc
-		push bc
-		push de
-		xor a
-		ld (bc), a
-		ret
-	
-A$splash_screen$69:	
-C$splash_screen.c$14$0$0:	
-C$splash_screen.c$16$1$25:	
-G$screen_splash_screen_load$0$0:	
-_screen_splash_screen_load:	
-		call A$_sms_manager$163
-		call A$content_manager$65
-		call A$content_manager$96
-		call A$_sms_manager$145
-		ld hl, $0096
-		push hl
-		call A$timer_manager$70
-		ld hl, $004B
-		ex (sp), hl
-		call A$timer_manager$154
-		pop af
-		ret
-	
-A$splash_screen$109:	
-C$splash_screen.c$25$1$25:	
-G$screen_splash_screen_update$0$:	
-_screen_splash_screen_update:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		push af
-		call A$timer_manager$103
-		ld (ix-1), l
-		ld a, $10
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld (ix-2), l
-		ld a, $20
-		push af
-		inc sp
-		call A$input_manager$130
-		inc sp
-		ld a, l
-		or a
-		jr z, A$splash_screen$174
-		call A$timer_manager$185
-		ld a, l
-		or a
-		jr z, A$splash_screen$179
-		call A$storage_manager$215
-		call A$timer_manager$236
-		ld hl, $171C
-		push hl
-		ld hl, Fsplash_screen$__str_0$0$0	; Fsplash_screen$__str_0$0$0 = $121B
-		push hl
-		call A$font_manager$104
-		pop af
-		pop af
-		jr A$splash_screen$179
-	
-A$splash_screen$174:	
-C$splash_screen.c$48$2$30:	
-		call A$timer_manager$236
-A$splash_screen$179:	
-C$splash_screen.c$53$1$27:	
-		ld l, (ix+4)
-		ld h, (ix+5)
-		ld a, (ix-1)
-		or a
-		jr nz, A$splash_screen$194
-		ld a, (ix-2)
-		or a
-		jr z, A$splash_screen$203
-A$splash_screen$194:	
-C$splash_screen.c$53$2$31:	
-		ld (hl), $02
-		jr A$splash_screen$205
-	
-A$splash_screen$203:	
-C$splash_screen.c$57$1$27:	
-		ld (hl), $01
-A$splash_screen$205:	
-		ld sp, ix
-		pop ix
-		ret
-	
-; Data from 121B to 121F (5 bytes)	
-Fsplash_screen$__str_0$0$0:	
-	.db $35 $31 $35 $30 $00
-	
-A$title_screen$81:	
-C$title_screen.c$20$0$0:	
-C$title_screen.c$22$1$28:	
-C$title_screen.c$25$1$28:	
-G$screen_title_screen_load$0$0:	
-_screen_title_screen_load:	
-		call A$_sms_manager$163
-		call A$content_manager$65
-		call A$content_manager$263
-		call A$content_manager$145
-		ld hl, $150A
-		push hl
-		ld hl, Ftitle_screen$__str_0$0$0	; Ftitle_screen$__str_0$0$0 = $129F
-		push hl
-		call A$font_manager$104
-		pop af
-		ld hl, $0C06
-		ex (sp), hl
-		ld hl, Ftitle_screen$__str_1$0$0	; Ftitle_screen$__str_1$0$0 = $12AB
-		push hl
-		call A$font_manager$104
-		pop af
-		ld hl, $0C14
-		ex (sp), hl
-		ld hl, Ftitle_screen$__str_2$0$0	; Ftitle_screen$__str_2$0$0 = $12B2
-		push hl
-		call A$font_manager$104
-		pop af
-		ld hl, $171C
-		ex (sp), hl
-		ld hl, Ftitle_screen$__str_3$0$0	; Ftitle_screen$__str_3$0$0 = $12B9
-		push hl
-		call A$font_manager$104
-		pop af
-		pop af
-		call A$_sms_manager$145
-		ld hl, $0032
-		push hl
-		call A$timer_manager$70
-		ld hl, $004B
-		ex (sp), hl
-		call A$timer_manager$154
-		pop af
-		xor a
-		push af
-		inc sp
-		call A$record_manager$69
-		inc sp
-		call A$storage_manager$65
-		ld a, l
-		or a
-		jr z, A$title_screen$174
-		call A$storage_manager$126
-A$title_screen$174:	
-C$title_screen.c$48$1$28:	
-		ld hl, G$global_record_object$0$0	; G$global_record_object$0$0 = $C02A
-		ld b, (hl)
-		push bc
-		inc sp
-		call A$record_manager$69
-		inc sp
-		ld hl, G$global_record_object$0$0	; G$global_record_object$0$0 = $C02A
-		ld b, (hl)
-		push bc
-		inc sp
-		call A$cursor_manager$68
-		inc sp
-		ld hl, Ftitle_screen$event_stage$0$0	; Ftitle_screen$event_stage$0$0 = $C054
-		ld (hl), $00
-		ld hl, Ftitle_screen$flash$0$0	; Ftitle_screen$flash$0$0 = $C055
-		ld (hl), $00
-		ret
-	
-; Data from 129F to 12AA (12 bytes)	
-Ftitle_screen$__str_0$0$0:	
-	.db $50 $52 $45 $53 $53 $20 $53 $54 $41 $52 $54 $00
-	
-; Data from 12AB to 12B1 (7 bytes)	
-Ftitle_screen$__str_1$0$0:	
-	.db $52 $45 $43 $4F $52 $44 $00
-	
-; Data from 12B2 to 12B8 (7 bytes)	
-Ftitle_screen$__str_2$0$0:	
-	.db $43 $4F $56 $45 $52 $53 $00
-	
-; Data from 12B9 to 12BD (5 bytes)	
-Ftitle_screen$__str_3$0$0:	
-	.db $56 $31 $2E $30 $00
-	
-A$title_screen$229:	
-C$title_screen.c$55$1$28:	
-G$screen_title_screen_update$0$0:	
-_screen_title_screen_update:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		push af
-		dec sp
-		ld a, (ix+4)
-		ld (ix-2), a
-		ld a, (ix+5)
-		ld (ix-1), a
-		ld a, (Ftitle_screen$event_stage$0$0)	; Ftitle_screen$event_stage$0$0 = $C054
-		dec a
-		jr nz, A$title_screen$299
-		call A$timer_manager$185
-		ld c, l
-		ld a, c
-		or a
-		jr z, A$title_screen$280
-		push bc
-		ld hl, $150A
-		push hl
-		ld hl, Ftitle_screen$__str_4$0$0	; Ftitle_screen$__str_4$0$0 = $1371
-		push hl
-		call A$font_manager$104
-		pop af
-		ld hl, _font__palette__bin + 3	; _font__palette__bin + 3 = $1715
-		ex (sp), hl
-		ld hl, Ftitle_screen$__str_4$0$0	; Ftitle_screen$__str_4$0$0 = $1371
-		push hl
-		call A$font_manager$104
-		pop af
-		pop af
-		pop bc
-A$title_screen$280:	
-C$title_screen.c$69$2$32:	
-		ld a, c
-		or a
-		jr z, A$title_screen$286
-		ld c, $03
-		jr A$title_screen$288
-	
-A$title_screen$286:	
-		ld c, $02
-A$title_screen$288:	
-		ld l, (ix-2)
-		ld h, (ix-1)
-		ld (hl), c
-		jr A$title_screen$384
-	
-A$title_screen$299:	
-C$title_screen.c$73$1$31:	
-		call A$timer_manager$103
-		ld (ix-3), l
-		ld a, l
-		or a
-		jr z, A$title_screen$346
-		ld hl, Ftitle_screen$flash$0$0	; Ftitle_screen$flash$0$0 = $C055
-		ld a, $01
-		sub (hl)
-		ld (hl), a
-		ld a, (Ftitle_screen$flash$0$0)	; Ftitle_screen$flash$0$0 = $C055
-		or a
-		jr z, A$title_screen$335
-		ld hl, $150A
-		push hl
-		ld hl, Ftitle_screen$__str_4$0$0	; Ftitle_screen$__str_4$0$0 = $1371
-		push hl
-		call A$font_manager$104
-		pop af
-		pop af
-		jr A$title_screen$346
-	
-A$title_screen$335:	
-C$title_screen.c$83$3$36:	
-		ld hl, $150A
-		push hl
-		ld hl, Ftitle_screen$__str_5$0$0	; Ftitle_screen$__str_5$0$0 = $137D
-		push hl
-		call A$font_manager$104
-		pop af
-		pop af
-A$title_screen$346:	
-C$title_screen.c$87$1$31:	
-		ld a, $10
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld a, l
-		or a
-		jr z, A$title_screen$380
-		ld hl, $150A
-		push hl
-		ld hl, Ftitle_screen$__str_5$0$0	; Ftitle_screen$__str_5$0$0 = $137D
-		push hl
-		call A$font_manager$104
-		pop af
-		pop af
-		call A$audio_manager$60
-		ld hl, Ftitle_screen$event_stage$0$0	; Ftitle_screen$event_stage$0$0 = $C054
-		ld (hl), $01
-A$title_screen$380:	
-C$title_screen.c$96$1$31:	
-		ld l, (ix-2)
-		ld h, (ix-1)
-		ld (hl), $02
-A$title_screen$384:	
-		ld sp, ix
-		pop ix
-		ret
-	
-; Data from 1371 to 137C (12 bytes)	
-Ftitle_screen$__str_4$0$0:	
-	.dsb 11, $20
-	.db $00
-	
-; Data from 137D to 1388 (12 bytes)	
-Ftitle_screen$__str_5$0$0:	
-	.db $50 $52 $45 $53 $53 $20 $53 $54 $41 $52 $54 $00
-	
-A$scroll_screen$62:	
-C$scroll_screen.c$14$0$0:	
-C$scroll_screen.c$16$1$24:	
-G$screen_scroll_screen_load$0$0:	
-_screen_scroll_screen_load:	
-		ld hl, Fscroll_screen$offset$0$0	; Fscroll_screen$offset$0$0 = $C056
-		ld (hl), $00
-		ret
-	
-A$scroll_screen$78:	
-C$scroll_screen.c$19$1$24:	
-G$screen_scroll_screen_update$0$:	
-_screen_scroll_screen_update:	
-		dec sp
-		ld a, (Fscroll_screen$offset$0$0)	; Fscroll_screen$offset$0$0 = $C056
-		sub $20
-		jr nz, A$scroll_screen$88
-		ld a, $01
-		jr A$scroll_screen$90
-	
-A$scroll_screen$88:	
-		xor a
-A$scroll_screen$90:	
-		inc sp
-		push af
-		inc sp
-		ld iy, Fscroll_screen$offset$0$0	; Fscroll_screen$offset$0$0 = $C056
-		ld b, (iy+0)
-		inc (iy+0)
-		push bc
-		inc sp
-		call A$_sms_manager$222
-		inc sp
-		ld a, $10
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld c, l
-		ld hl, $0003
-		add hl, sp
-		ld a, (hl)
-		inc hl
-		ld h, (hl)
-		ld l, a
-		ld a, c
-		or a
-		jr nz, A$scroll_screen$136
-		ld iy, $0000
-		add iy, sp
-		ld a, (iy+0)
-		or a
-		jr z, A$scroll_screen$160
-A$scroll_screen$136:	
-C$scroll_screen.c$30$2$27:	
-		push hl
-		ld a, $04
-		push af
-		inc sp
-		call A$scroll_manager$94
-		inc sp
-		ld a, $20
-		push af
-		inc sp
-		call A$_sms_manager$222
-		inc sp
-		pop hl
-		ld (hl), $04
-		jr A$scroll_screen$162
-	
-A$scroll_screen$160:	
-C$scroll_screen.c$37$1$26:	
-		ld (hl), $03
-A$scroll_screen$162:	
-		inc sp
-		ret
-	
-A$select_screen$86:	
-C$select_screen.c$22$0$0:	
-C$select_screen.c$24$1$29:	
-C$select_screen.c$25$1$29:	
-G$screen_select_screen_load$0$0:	
-_screen_select_screen_load:	
-		ld a, (G$global_scroll_object$0$0)	; G$global_scroll_object$0$0 = $C045
-		or a
-		jr nz, A$select_screen$136
-		call A$_sms_manager$163
-		call A$asm_manager$59
-		call A$content_manager$65
-		call A$content_manager$204
-		call A$content_manager$263
-		ld hl, $0806
-		push hl
-		ld hl, Fselect_screen$__str_0$0$0	; Fselect_screen$__str_0$0$0 = $143F
-		push hl
-		call A$font_manager$104
-		pop af
-		ld hl, $0814
-		ex (sp), hl
-		ld hl, Fselect_screen$__str_1$0$0	; Fselect_screen$__str_1$0$0 = $1446
-		push hl
-		call A$font_manager$104
-		pop af
-		pop af
-		call A$_sms_manager$145
-A$select_screen$136:	
-C$select_screen.c$38$1$29:	
-		ld hl, G$global_scroll_object$0$0	; G$global_scroll_object$0$0 = $C045
-		ld b, (hl)
-		push bc
-		inc sp
-		call A$cursor_manager$129
-		inc sp
-		ld hl, $000F
-		push hl
-		call A$timer_manager$70
-		ld hl, $004B
-		ex (sp), hl
-		call A$timer_manager$154
-		pop af
-		ld hl, Fselect_screen$event_stage$0$0	; Fselect_screen$event_stage$0$0 = $C057
-		ld (hl), $00
-		ld hl, Fselect_screen$flash$0$0	; Fselect_screen$flash$0$0 = $C058
-		ld (hl), $01
-		ret
-	
-; Data from 143F to 1445 (7 bytes)	
-Fselect_screen$__str_0$0$0:	
-	.db $52 $45 $43 $4F $52 $44 $00
-	
-; Data from 1446 to 144C (7 bytes)	
-Fselect_screen$__str_1$0$0:	
-	.db $43 $4F $56 $45 $52 $53 $00
-	
-A$select_screen$190:	
-C$select_screen.c$47$1$29:	
-C$select_screen.c$54$1$32:	
-G$screen_select_screen_update$0$:	
-_screen_select_screen_update:	
-		ld a, (Fselect_screen$event_stage$0$0)	; Fselect_screen$event_stage$0$0 = $C057
-		dec a
-		jr nz, A$select_screen$250
-		ld a, (Fselect_screen$flash$0$0)	; Fselect_screen$flash$0$0 = $C058
-		or a
-		jr z, A$select_screen$207
-		call A$cursor_manager$258
-A$select_screen$207:	
-C$select_screen.c$61$2$33:	
-		call A$timer_manager$103
-		ld a, l
-		or a
-		jr z, A$select_screen$225
-		ld hl, Fselect_screen$flash$0$0	; Fselect_screen$flash$0$0 = $C058
-		ld a, $01
-		sub (hl)
-		ld (hl), a
-A$select_screen$225:	
-C$select_screen.c$67$2$33:	
-		call A$timer_manager$185
-		pop de
-		pop bc
-		push bc
-		push de
-		ld a, l
-		or a
-		jr z, A$select_screen$239
-		ld a, $05
-		jr A$select_screen$241
-	
-A$select_screen$239:	
-		ld a, $04
-A$select_screen$241:	
-		ld (bc), a
-		ret
-	
-A$select_screen$250:	
-C$select_screen.c$72$1$32:	
-		call A$cursor_manager$258
-		ld a, $10
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld a, l
-		or a
-		jr z, A$select_screen$294
-		call A$cursor_manager$235
-		ld b, l
-		push bc
-		inc sp
-		call A$record_manager$69
-		inc sp
-		call A$audio_manager$60
-		ld hl, Fselect_screen$event_stage$0$0	; Fselect_screen$event_stage$0$0 = $C057
-		ld (hl), $01
-		ret
-	
-A$select_screen$294:	
-C$select_screen.c$85$1$32:	
-		ld a, $04
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld a, l
-		or a
-		jr z, A$select_screen$313
-		call A$cursor_manager$523
-A$select_screen$313:	
-C$select_screen.c$90$1$32:	
-		ld a, $08
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld a, l
-		or a
-		jr z, A$select_screen$332
-		call A$cursor_manager$562
-A$select_screen$332:	
-C$select_screen.c$95$1$32:	
-		ld a, $01
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld a, l
-		or a
-		jr z, A$select_screen$351
-		call A$cursor_manager$604
-A$select_screen$351:	
-C$select_screen.c$100$1$32:	
-		ld a, $02
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld a, l
-		or a
-		jr z, A$select_screen$370
-		call A$cursor_manager$643
-A$select_screen$370:	
-C$select_screen.c$106$1$32:	
-		pop bc
-		pop hl
-		push hl
-		push bc
-		ld (hl), $04
-		ret
-	
-A$record_screen$71:	
-C$record_screen.c$16$0$0:	
-C$record_screen.c$18$1$29:	
-G$screen_record_screen_load$0$0:	
-_screen_record_screen_load:	
-		call A$scroll_manager$61
-		jp A$record_screen$241
-	
-A$record_screen$89:	
-C$record_screen.c$22$1$29:	
-G$screen_record_screen_update$0$:	
-_screen_record_screen_update:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		ld a, $04
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld a, l
-		or a
-		jr z, A$record_screen$121
-		call A$record_manager$177
-		call A$record_screen$241
-A$record_screen$121:	
-C$record_screen.c$34$1$31:	
-		ld a, $08
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld a, l
-		or a
-		jr z, A$record_screen$144
-		call A$record_manager$213
-		call A$record_screen$241
-A$record_screen$144:	
-C$record_screen.c$41$1$31:	
-		ld a, $10
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		ld c, l
-		push bc
-		ld a, $20
-		push af
-		inc sp
-		call A$input_manager$88
-		inc sp
-		pop bc
-		ld e, (ix+4)
-		ld d, (ix+5)
-		ld a, c
-		or a
-		jr nz, A$record_screen$177
-		or l
-		jr z, A$record_screen$220
-A$record_screen$177:	
-C$record_screen.c$45$2$34:	
-		push de
-		xor a
-		push af
-		inc sp
-		call A$_sms_manager$222
-		inc sp
-		pop de
-		ld hl, G$global_record_object$0$0	; G$global_record_object$0$0 = $C02A
-		ld b, (hl)
-		push de
-		push bc
-		inc sp
-		call A$record_manager$69
-		inc sp
-		pop de
-		ld hl, G$global_record_object$0$0	; G$global_record_object$0$0 = $C02A
-		ld b, (hl)
-		push de
-		push bc
-		inc sp
-		call A$cursor_manager$68
-		inc sp
-		call A$storage_manager$159
-		pop de
-		ld a, $04
-		ld (de), a
-		jr A$record_screen$223
-	
-A$record_screen$220:	
-C$record_screen.c$55$1$31:	
-		ld a, $05
-		ld (de), a
-A$record_screen$223:	
-		pop ix
-		ret
-	
-A$record_screen$241:	
-C$record_screen.c$58$1$31:	
-C$record_screen.c$60$1$35:	
-Frecord_screen$load_record$0$0:	
-		call A$_sms_manager$163
-		call A$asm_manager$59
-		call A$record_manager$88
-		jp A$_sms_manager$145
-	
-; Data from 156F to 156F (1 bytes)	
-A$detail_screen$60:	
-C$detail_screen.c$12$0$0:	
-C$detail_screen.c$15$0$0:	
-G$screen_detail_screen_load$0$0:	
-XG$screen_detail_screen_load$0$0:	
-_screen_detail_screen_load:	
-	.db $C9
-	
-; Data from 1570 to 1570 (1 bytes)	
-A$detail_screen$73:	
-C$detail_screen.c$17$0$0:	
-C$detail_screen.c$19$1$25:	
-G$screen_detail_screen_update$0$:	
-_screen_detail_screen_update:	
-	.db $C1
-	
-; Data from 1571 to 1571 (1 bytes)	
-A$detail_screen$74:	
-	.db $E1
-	
-; Data from 1572 to 1572 (1 bytes)	
-A$detail_screen$75:	
-	.db $E5
-	
-; Data from 1573 to 1573 (1 bytes)	
-A$detail_screen$76:	
-	.db $C5
-	
-; Data from 1574 to 1575 (2 bytes)	
-A$detail_screen$77:	
-	.db $36 $06
-	
-; Data from 1576 to 1576 (1 bytes)	
-A$detail_screen$82:	
-C$detail_screen.c$20$1$25:	
-XG$screen_detail_screen_update$0:	
-	.db $C9
-	
-; Data from 1577 to 1579 (3 bytes)	
-A$test_screen$65:	
-C$test_screen.c$13$0$0:	
-C$test_screen.c$15$1$23:	
-G$screen_test_screen_load$0$0:	
-_screen_test_screen_load:	
-	.db $CD $2B $08
-	
-; Data from 157A to 157C (3 bytes)	
-A$test_screen$69:	
-C$test_screen.c$16$1$23:	
-	.db $CD $E3 $0A
-	
-; Data from 157D to 157F (3 bytes)	
-A$test_screen$73:	
-C$test_screen.c$17$1$23:	
-	.db $21 $0A $15
-	
-; Data from 1580 to 1580 (1 bytes)	
-A$test_screen$74:	
-	.db $E5
-	
-; Data from 1581 to 1583 (3 bytes)	
-A$test_screen$75:	
-	.db $21 $93 $15
-	
-; Data from 1584 to 1584 (1 bytes)	
-A$test_screen$76:	
-	.db $E5
-	
-; Data from 1585 to 1587 (3 bytes)	
-A$test_screen$77:	
-	.db $CD $E9 $0D
-	
-; Data from 1588 to 1588 (1 bytes)	
-A$test_screen$78:	
-	.db $F1
-	
-; Data from 1589 to 1589 (1 bytes)	
-A$test_screen$79:	
-	.db $F1
-	
-; Data from 158A to 158C (3 bytes)	
-A$test_screen$83:	
-C$test_screen.c$18$1$23:	
-	.db $CD $25 $08
-	
-; Data from 158D to 158F (3 bytes)	
-A$test_screen$87:	
-C$test_screen.c$20$1$23:	
-	.db $21 $5A $C0
-	
-; Data from 1590 to 1591 (2 bytes)	
-A$test_screen$88:	
-	.db $36 $00
-	
-; Data from 1592 to 1592 (1 bytes)	
-A$test_screen$93:	
-C$test_screen.c$21$1$23:	
-XG$screen_test_screen_load$0$0:	
-	.db $C9
-	
-; Data from 1593 to 159E (12 bytes)	
-Ftest_screen$__str_0$0$0:	
-	.db $50 $52 $45 $53 $53 $20 $53 $54 $41 $52 $54 $00
-	
-; Data from 159F to 15A0 (2 bytes)	
-A$test_screen$110:	
-C$test_screen.c$23$1$23:	
-C$test_screen.c$28$1$25:	
-G$screen_test_screen_update$0$0:	
-_screen_test_screen_update:	
-	.db $3E $02
-	
-; Data from 15A1 to 15A1 (1 bytes)	
-A$test_screen$111:	
-	.db $F5
-	
-; Data from 15A2 to 15A2 (1 bytes)	
-A$test_screen$112:	
-	.db $33
-	
-; Data from 15A3 to 15A5 (3 bytes)	
-A$test_screen$113:	
-	.db $CD $00 $0F
-	
-; Data from 15A6 to 15A6 (1 bytes)	
-A$test_screen$114:	
-	.db $33
-	
-; Data from 15A7 to 15A7 (1 bytes)	
-A$test_screen$118:	
-C$test_screen.c$29$1$25:	
-	.db $7D
-	
-; Data from 15A8 to 15A8 (1 bytes)	
-A$test_screen$119:	
-	.db $B7
-	
-; Data from 15A9 to 15AA (2 bytes)	
-A$test_screen$120:	
-	.db $28 $0D
-	
-; Data from 15AB to 15AD (3 bytes)	
-A$test_screen$124:	
-C$test_screen.c$32$2$26:	
-	.db $3A $5A $C0
-	
-; Data from 15AE to 15AE (1 bytes)	
-A$test_screen$125:	
-	.db $F5
-	
-; Data from 15AF to 15AF (1 bytes)	
-A$test_screen$126:	
-	.db $33
-	
-; Data from 15B0 to 15B2 (3 bytes)	
-A$test_screen$127:	
-	.db $CD $46 $08
-	
-; Data from 15B3 to 15B3 (1 bytes)	
-A$test_screen$128:	
-	.db $33
-	
-; Data from 15B4 to 15B6 (3 bytes)	
-A$test_screen$132:	
-C$test_screen.c$34$2$26:	
-	.db $21 $5A $C0
-	
-; Data from 15B7 to 15B7 (1 bytes)	
-A$test_screen$133:	
-	.db $34
-	
-; Data from 15B8 to 15B8 (1 bytes)	
-A$test_screen$138:	
-C$test_screen.c$38$1$25:	
-	.db $C1
-	
-; Data from 15B9 to 15B9 (1 bytes)	
-A$test_screen$139:	
-	.db $E1
-	
-; Data from 15BA to 15BA (1 bytes)	
-A$test_screen$140:	
-	.db $E5
-	
-; Data from 15BB to 15BB (1 bytes)	
-A$test_screen$141:	
-	.db $C5
-	
-; Data from 15BC to 15BD (2 bytes)	
-A$test_screen$142:	
-	.db $36 $07
-	
-; Data from 15BE to 15BE (1 bytes)	
-A$test_screen$147:	
-C$test_screen.c$39$1$25:	
-XG$screen_test_screen_update$0$0:	
-	.db $C9
-	
-; Data from 15BF to 15C1 (3 bytes)	
-A$func_screen$62:	
-C$func_screen.c$15$0$0:	
-C$func_screen.c$17$1$23:	
-G$screen_func_screen_load$0$0:	
-_screen_func_screen_load:	
-	.db $CD $2B $08
-	
-; Data from 15C2 to 15C4 (3 bytes)	
-A$func_screen$66:	
-C$func_screen.c$18$1$23:	
-	.db $CD $A2 $0A
-	
-; Data from 15C5 to 15C7 (3 bytes)	
-A$func_screen$70:	
-C$func_screen.c$19$1$23:	
-	.db $CD $E3 $0A
-	
-; Data from 15C8 to 15CA (3 bytes)	
-A$func_screen$74:	
-C$func_screen.c$20$1$23:	
-	.db $CD $51 $0B
-	
-; Data from 15CB to 15CD (3 bytes)	
-A$func_screen$78:	
-C$func_screen.c$21$1$23:	
-	.db $21 $06 $0C
-	
-; Data from 15CE to 15CE (1 bytes)	
-A$func_screen$79:	
-	.db $E5
-	
-; Data from 15CF to 15D1 (3 bytes)	
-A$func_screen$80:	
-	.db $21 $23 $16
-	
-; Data from 15D2 to 15D2 (1 bytes)	
-A$func_screen$81:	
-	.db $E5
-	
-; Data from 15D3 to 15D5 (3 bytes)	
-A$func_screen$82:	
-	.db $CD $E9 $0D
-	
-; Data from 15D6 to 15D6 (1 bytes)	
-A$func_screen$83:	
-	.db $F1
-	
-; Data from 15D7 to 15D9 (3 bytes)	
-A$func_screen$87:	
-C$func_screen.c$22$1$23:	
-	.db $21 $14 $0C
-	
-; Data from 15DA to 15DA (1 bytes)	
-A$func_screen$88:	
-	.db $E3
-	
-; Data from 15DB to 15DD (3 bytes)	
-A$func_screen$89:	
-	.db $21 $2A $16
-	
-; Data from 15DE to 15DE (1 bytes)	
-A$func_screen$90:	
-	.db $E5
-	
-; Data from 15DF to 15E1 (3 bytes)	
-A$func_screen$91:	
-	.db $CD $E9 $0D
-	
-; Data from 15E2 to 15E2 (1 bytes)	
-A$func_screen$92:	
-	.db $F1
-	
-; Data from 15E3 to 15E3 (1 bytes)	
-A$func_screen$93:	
-	.db $F1
-	
-; Data from 15E4 to 15E6 (3 bytes)	
-A$func_screen$97:	
-C$func_screen.c$24$1$23:	
-	.db $21 $22 $16
-	
-; Data from 15E7 to 15E7 (1 bytes)	
-A$func_screen$98:	
-	.db $56
-	
-; Data from 15E8 to 15EA (3 bytes)	
-A$func_screen$99:	
-	.db $21 $21 $16
-	
-; Data from 15EB to 15EB (1 bytes)	
-A$func_screen$100:	
-	.db $5E
-	
-; Data from 15EC to 15EC (1 bytes)	
-A$func_screen$101:	
-	.db $D5
-	
-; Data from 15ED to 15EF (3 bytes)	
-A$func_screen$102:	
-	.db $21 $31 $16
-	
-; Data from 15F0 to 15F0 (1 bytes)	
-A$func_screen$103:	
-	.db $E5
-	
-; Data from 15F1 to 15F3 (3 bytes)	
-A$func_screen$104:	
-	.db $CD $E9 $0D
-	
-; Data from 15F4 to 15F4 (1 bytes)	
-A$func_screen$105:	
-	.db $F1
-	
-; Data from 15F5 to 15F5 (1 bytes)	
-A$func_screen$106:	
-	.db $F1
-	
-; Data from 15F6 to 15F8 (3 bytes)	
-A$func_screen$110:	
-C$func_screen.c$25$1$23:	
-	.db $21 $22 $16
-	
-; Data from 15F9 to 15F9 (1 bytes)	
-A$func_screen$111:	
-	.db $46
-	
-; Data from 15FA to 15FC (3 bytes)	
-A$func_screen$112:	
-	.db $3A $21 $16
-	
-; Data from 15FD to 15FE (2 bytes)	
-A$func_screen$113:	
-	.db $C6 $07
-	
-; Data from 15FF to 15FF (1 bytes)	
-A$func_screen$114:	
-	.db $4F
-	
-; Data from 1600 to 1600 (1 bytes)	
-A$func_screen$115:	
-	.db $C5
-	
-; Data from 1601 to 1603 (3 bytes)	
-A$func_screen$116:	
-	.db $21 $36 $16
-	
-; Data from 1604 to 1604 (1 bytes)	
-A$func_screen$117:	
-	.db $E5
-	
-; Data from 1605 to 1607 (3 bytes)	
-A$func_screen$118:	
-	.db $CD $E9 $0D
-	
-; Data from 1608 to 1608 (1 bytes)	
-A$func_screen$119:	
-	.db $F1
-	
-; Data from 1609 to 1609 (1 bytes)	
-A$func_screen$120:	
-	.db $F1
-	
-; Data from 160A to 160C (3 bytes)	
-A$func_screen$124:	
-C$func_screen.c$26$1$23:	
-	.db $21 $22 $16
-	
-; Data from 160D to 160D (1 bytes)	
-A$func_screen$125:	
-	.db $46
-	
-; Data from 160E to 1610 (3 bytes)	
-A$func_screen$126:	
-	.db $3A $21 $16
-	
-; Data from 1611 to 1612 (2 bytes)	
-A$func_screen$127:	
-	.db $C6 $0E
-	
-; Data from 1613 to 1613 (1 bytes)	
-A$func_screen$128:	
-	.db $4F
-	
-; Data from 1614 to 1614 (1 bytes)	
-A$func_screen$129:	
-	.db $C5
-	
-; Data from 1615 to 1617 (3 bytes)	
-A$func_screen$130:	
-	.db $21 $3B $16
-	
-; Data from 1618 to 1618 (1 bytes)	
-A$func_screen$131:	
-	.db $E5
-	
-; Data from 1619 to 161B (3 bytes)	
-A$func_screen$132:	
-	.db $CD $E9 $0D
-	
-; Data from 161C to 161C (1 bytes)	
-A$func_screen$133:	
-	.db $F1
-	
-; Data from 161D to 161D (1 bytes)	
-A$func_screen$134:	
-	.db $F1
-	
-; Data from 161E to 1620 (3 bytes)	
-A$func_screen$142:	
-C$func_screen.c$27$1$23:	
-C$func_screen.c$32$1$23:	
-XG$screen_func_screen_load$0$0:	
-	.db $C3 $25 $08
-	
-; Data from 1621 to 1621 (1 bytes)	
-Ffunc_screen$x$0$0:	
-	.db $04
-	
-; Data from 1622 to 1622 (1 bytes)	
-Ffunc_screen$y$0$0:	
-	.db $14
-	
-; Data from 1623 to 1629 (7 bytes)	
-Ffunc_screen$__str_0$0$0:	
-	.db $52 $45 $43 $4F $52 $44 $00
-	
-; Data from 162A to 1630 (7 bytes)	
-Ffunc_screen$__str_1$0$0:	
-	.db $43 $4F $56 $45 $52 $53 $00
-	
-; Data from 1631 to 1635 (5 bytes)	
-Ffunc_screen$__str_2$0$0:	
-	.db $31 $39 $38 $34 $00
-	
-; Data from 1636 to 163A (5 bytes)	
-Ffunc_screen$__str_3$0$0:	
-	.db $31 $39 $38 $36 $00
-	
-; Data from 163B to 163F (5 bytes)	
-Ffunc_screen$__str_4$0$0:	
-	.db $31 $39 $38 $38 $00
-	
-; Data from 1640 to 1640 (1 bytes)	
-A$func_screen$181:	
-C$func_screen.c$34$1$23:	
-C$func_screen.c$57$1$25:	
-G$screen_func_screen_update$0$0:	
-_screen_func_screen_update:	
-	.db $C1
-	
-; Data from 1641 to 1641 (1 bytes)	
-A$func_screen$182:	
-	.db $E1
-	
-; Data from 1642 to 1642 (1 bytes)	
-A$func_screen$183:	
-	.db $E5
-	
-; Data from 1643 to 1643 (1 bytes)	
-A$func_screen$184:	
-	.db $C5
-	
-; Data from 1644 to 1645 (2 bytes)	
-A$func_screen$185:	
-	.db $36 $08
-	
-; Data from 1646 to 1646 (1 bytes)	
-A$func_screen$190:	
-C$func_screen.c$58$1$25:	
-XG$screen_func_screen_update$0$0:	
-	.db $C9
-	
-; Data from 1647 to 1656 (16 bytes)	
-_cursor__palette__bin:	
+	; Data from 1042 to 1646 (1541 bytes)
+	.incbin "data/File00_01042_01646.dat"
+	
+; Data from 1647 to 1711 (203 bytes)	
+_DATA_1647_:	
 	.db $00 $00 $15 $15 $2A $2A $15 $15 $2A $2A $2A $2A $3F $3F $3F $3F
-	
-; Data from 1657 to 1711 (187 bytes)	
-_cursor__tiles__psgcompr:	
 	.db $12 $00 $AA $CF $00 $7F $20 $0F $E0 $80 $C0 $DF $DF $1F $00 $7F
 	.db $7F $3F $0F $C0 $FF $FF $FF $E0 $AA $DF $00 $FF $20 $EF $FF $20
 	.db $3F $FF $FF $02 $AA $DF $00 $FF $20 $EF $FF $20 $3F $FF $FF $02
@@ -4341,12 +1394,9 @@ _cursor__tiles__psgcompr:
 	.db $FF $F8 $00 $FF $FF $FF $AA $F0 $04 $F8 $02 $01 $00 $F8 $04 $00
 	.db $06 $07 $F8 $00 $FC $FE $FF $FC $03 $01 $00
 	
-; Data from 1712 to 1721 (16 bytes)	
-_font__palette__bin:	
+; Data from 1712 to 1ADF (974 bytes)	
+_DATA_1712_:	
 	.db $00 $02 $08 $0A $20 $22 $28 $2A $3F $03 $0C $0F $30 $33 $3C $3F
-	
-; Data from 1722 to 17A1 (128 bytes)	
-_font__tilemap__bin:	
 	.db $00 $00 $01 $00 $02 $00 $03 $00 $04 $00 $05 $00 $06 $00 $07 $00
 	.db $08 $00 $09 $00 $0A $00 $0B $00 $0C $00 $0D $00 $0E $00 $0F $00
 	.db $10 $00 $11 $00 $12 $00 $13 $00 $14 $00 $15 $00 $16 $00 $17 $00
@@ -4355,9 +1405,6 @@ _font__tilemap__bin:
 	.db $28 $00 $29 $00 $2A $00 $2B $00 $2C $00 $2D $00 $2E $00 $2F $00
 	.db $30 $00 $31 $00 $32 $00 $33 $00 $34 $00 $35 $00 $36 $00 $37 $00
 	.db $38 $00 $39 $00 $3A $00 $3B $00 $3C $00 $3D $00 $3E $00 $3F $00
-	
-; Data from 17A2 to 1A38 (663 bytes)	
-_font__tiles__psgcompr:	
 	.db $40 $00 $00 $AA $1A $18 $1C $1C $1C $00 $00 $00 $00 $00 $AA $1F
 	.db $00 $36 $36 $24 $00 $00 $00 $AA $D6 $36 $7F $7F $00 $00 $00 $00
 	.db $AA $54 $3E $08 $68 $0B $08 $00 $00 $00 $00 $EA $21 $52 $24 $08
@@ -4399,118 +1446,46 @@ _font__tiles__psgcompr:
 	.db $0E $1C $38 $70 $7F $00 $00 $00 $00 $AA $7C $18 $1E $1E $00 $00
 	.db $00 $00 $EA $40 $20 $10 $08 $04 $02 $01 $00 $00 $00 $00 $AA $7C
 	.db $0C $3C $3C $00 $00 $00 $00 $AA $1F $00 $08 $14 $2A $00 $00 $00
-	.db $AA $FE $00 $7F $00 $00 $00
+	.db $AA $FE $00 $7F $00 $00 $00 $CE $4B $D0 $3B $D1 $38 $CF $47 $08
+	.db $02 $00 $C7 $49 $0A $02 $00 $09 $02 $00 $45 $D0 $3B $D1 $3B $D2
+	.db $3A $D3 $39 $D4 $39 $C3 $55 $DF $3C $00 $C5 $4D $D0 $3B $CE $48
+	.db $3B $C7 $44 $D5 $3A $CA $46 $3B $C5 $4D $DA $3A $09 $04 $00 $DB
+	.db $3B $CA $46 $DD $3A $C0 $40 $DF $38 $00 $C5 $4D $D0 $3B $C0 $4A
+	.db $3B $C7 $49 $3B $CE $48 $D5 $3B $C5 $4D $3B $C0 $4A $3B $C7 $49
+	.db $DA $3B $CE $48 $3B $C0 $49 $3B $C0 $40 $DF $3B $00 $F1 $E1 $D1
+	.db $D5 $E5 $F5 $18 $0A $21 $03 $00 $39 $5E $2B $6E $26 $00 $54 $7B
+	.db $E6 $80 $B2 $20 $10 $06 $10 $ED $6A $17 $93 $30 $01 $83 $3F $ED
+	.db $6A $10 $F6 $5F $C9 $06 $09 $7D $6C $26 $00 $CB $1D $ED $6A $ED
+	.db $52 $30 $01 $19 $3F $17 $10 $F5 $CB $10 $50 $5F $EB $C9
 	
-; Data from 1A39 to 1A5B (35 bytes)	
-_sfx_cheat_psg:	
-	.db $CE $4B $D0 $3B $D1 $38 $CF $47 $08 $02 $00 $C7 $49 $0A $02 $00
-	.db $09 $02 $00 $45 $D0 $3B $D1 $3B $D2 $3A $D3 $39 $D4 $39 $C3 $55
-	.db $DF $3C $00
-	
-; Data from 1A5C to 1A7B (32 bytes)	
-_sfx_right_psg:	
-	.db $C5 $4D $D0 $3B $CE $48 $3B $C7 $44 $D5 $3A $CA $46 $3B $C5 $4D
-	.db $DA $3A $09 $04 $00 $DB $3B $CA $46 $DD $3A $C0 $40 $DF $38 $00
-	
-; Data from 1A7C to 1A9E (35 bytes)	
-_sfx_wrong_psg:	
-	.db $C5 $4D $D0 $3B $C0 $4A $3B $C7 $49 $3B $CE $48 $D5 $3B $C5 $4D
-	.db $3B $C0 $4A $3B $C7 $49 $DA $3B $CE $48 $3B $C0 $49 $3B $C0 $40
-	.db $DF $3B $00
-	
-__divuint:	
-		pop af
-		pop hl
-		pop de
-		push de
-		push hl
-		push af
-		jr __divu16
-	
-__divuchar:	
-		ld hl, $0003
-		add hl, sp
-		ld e, (hl)
-		dec hl
-		ld l, (hl)
-__divu8:	
-		ld h, $00
-		ld d, h
-__divu16:	
-		ld a, e
-		and $80
-		or d
-		jr nz, ++
-		ld b, $10
-		adc hl, hl
--:	
-		rla
-		sub e
-		jr nc, +
-		add a, e
-+:	
-		ccf
-		adc hl, hl
-		djnz -
-		ld e, a
-		ret
-	
-++:	
-		ld b, $09
-		ld a, l
-		ld l, h
-		ld h, $00
-		rr l
--:	
-		adc hl, hl
-		sbc hl, de
-		jr nc, +
-		add hl, de
-+:	
-		ccf
-		rla
-		djnz -
-		rl b
-		ld d, b
-		ld e, a
-		ex de, hl
-		ret
-	
-_UNSAFE_SMS_copySpritestoSAT:	
+_LABEL_1AE0_:	
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
-		ld hl, SpriteTableY	; SpriteTableY = $C063
-		call _OUTI64
+		ld hl, _RAM_C063_
+		call _LABEL_119_
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
-		ld hl, SpriteTableXN	; SpriteTableXN = $C0A3
-		jp _OUTI128
+		ld hl, _RAM_C0A3_
+		jp _LABEL_99_
 	
-; Data from 1AF8 to 1B14 (29 bytes)	
-_UNSAFE_SMS_VRAMmemcpy32:	
+	; Data from 1AF8 to 1B4E (87 bytes)
 	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
-	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01
+	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01 $FD $21 $02
+	.db $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF $0E $BE $21
+	.db $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01 $FD $21 $02 $00 $FD $39
+	.db $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF $0E $BE $21 $04 $00 $39
+	.db $7E $23 $66 $6F $C3 $99 $00
 	
-; Data from 1B15 to 1B31 (29 bytes)	
-_UNSAFE_SMS_VRAMmemcpy64:	
-	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
-	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01
-	
-; Data from 1B32 to 1B4E (29 bytes)	
-_UNSAFE_SMS_VRAMmemcpy128:	
-	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
-	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $99 $00
-	
-_SMS_init:	
+_LABEL_1B4F_:	
 		ld hl, $0000
 		push hl
-		call _SMS_setSpritePaletteColor
+		call _LABEL_1C71_
 		pop af
 		ld c, $00
 -:	
-		ld hl, _VDPReg_init	; _VDPReg_init = $1BA3
+		ld hl, _DATA_1BA3_
 		ld b, $00
 		add hl, bc
 		ld b, (hl)
@@ -4525,10 +1500,10 @@ _SMS_init:
 		ld a, c
 		sub $0B
 		jr c, -
-		call _SMS_initSprites
-		call _SMS_finalizeSprites
-		call _SMS_copySpritestoSAT
-		call _SMS_resetPauseRequest
+		call _LABEL_1CB1_
+		call _LABEL_1D0C_
+		call _LABEL_1D1E_
+		call _LABEL_1DB1_
 -:	
 		in a, (Port_VCounter)
 		ld b, a
@@ -4548,28 +1523,25 @@ _SMS_init:
 		ld a, c
 		sub $E7
 		jr c, +
-		ld hl, VDPType	; VDPType = $C05E
+		ld hl, _RAM_C05E_
 		ld (hl), $80
 		ret
 	
 +:	
-		ld hl, VDPType	; VDPType = $C05E
+		ld hl, _RAM_C05E_
 		ld (hl), $40
 		ret
 	
-; Data from 1BA3 to 1BAD (11 bytes)	
-_VDPReg_init:	
-	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF
+; Data from 1BA3 to 1BB5 (19 bytes)	
+_DATA_1BA3_:	
+	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF $FD $21 $5E $C0 $FD
+	.db $6E $00 $C9
 	
-; Data from 1BAE to 1BB5 (8 bytes)	
-_SMS_VDPType:	
-	.db $FD $21 $5E $C0 $FD $6E $00 $C9
-	
-_SMS_VDPturnOnFeature:	
+_LABEL_1BB6_:	
 		ld c, l
 		ld e, h
 		ld d, $00
-		ld hl, VDPReg	; VDPReg = $C1AA
+		ld hl, _RAM_C1AA_
 		add hl, de
 		ld a, (hl)
 		or c
@@ -4584,13 +1556,13 @@ _SMS_VDPturnOnFeature:
 		ei
 		ret
 	
-_SMS_VDPturnOffFeature:	
+_LABEL_1BCD_:	
 		ld a, l
 		ld e, h
 		cpl
 		ld b, a
 		ld d, $00
-		ld hl, VDPReg	; VDPReg = $C1AA
+		ld hl, $C1AA
 		add hl, de
 		ld a, (hl)
 		and b
@@ -4605,16 +1577,10 @@ _SMS_VDPturnOffFeature:
 		ei
 		ret
 	
-_SMS_setBGScrollX:	
-		di
-		ld a, l
-		out (Port_VDPAddress), a
-		ld a, $88
-		out (Port_VDPAddress), a
-		ei
-		ret
+	; Data from 1BE6 to 1BEF (10 bytes)
+	.db $F3 $7D $D3 $BF $3E $88 $D3 $BF $FB $C9
 	
-_SMS_setBGScrollY:	
+_LABEL_1BF0_:	
 		di
 		ld a, l
 		out (Port_VDPAddress), a
@@ -4623,11 +1589,10 @@ _SMS_setBGScrollY:
 		ei
 		ret
 	
-; Data from 1BFA to 1C03 (10 bytes)	
-_SMS_setBackdropColor:	
+	; Data from 1BFA to 1C03 (10 bytes)
 	.db $F3 $7D $D3 $BF $3E $87 $D3 $BF $FB $C9
 	
-_SMS_useFirstHalfTilesforSprites:	
+_LABEL_1C04_:	
 		bit 0, l
 		jr z, +
 		ld c, $FB
@@ -4644,49 +1609,53 @@ _SMS_useFirstHalfTilesforSprites:
 		ei
 		ret
 	
-_SMS_setSpriteMode:	
+_LABEL_1C18_:	
 		ld c, l
 		bit 0, c
 		jr z, +
 		push bc
 		ld hl, $0102
-		call _SMS_VDPturnOnFeature
+		call _LABEL_1BB6_
 		pop bc
-		ld hl, spritesHeight	; spritesHeight = $C1AC
+		ld hl, _RAM_C1AC_
 		ld (hl), $10
 		jr ++
 	
 +:	
 		push bc
 		ld hl, $0102
-		call _SMS_VDPturnOffFeature
+		call _LABEL_1BCD_
 		pop bc
-		ld hl, spritesHeight	; spritesHeight = $C1AC
+		ld hl, _RAM_C1AC_
 		ld (hl), $08
 ++:	
 		bit 1, c
 		jr z, +
 		ld hl, $0101
-		call _SMS_VDPturnOnFeature
-		ld hl, spritesWidth	; spritesWidth = $C1AD
+		call _LABEL_1BB6_
+		ld hl, _RAM_C1AD_
 		ld (hl), $10
-		ld iy, spritesHeight	; spritesHeight = $C1AC
+		ld iy, _RAM_C1AC_
 		sla (iy+0)
 		ret
 	
 +:	
 		ld hl, $0101
-		call _SMS_VDPturnOffFeature
-		ld hl, spritesWidth	; spritesWidth = $C1AD
+		call _LABEL_1BCD_
+		ld hl, _RAM_C1AD_
 		ld (hl), $08
 		ret
 	
-_SMS_setBGPaletteColor:	
+	; Data from 1C5D to 1C70 (20 bytes)
+	.db $21 $02 $00 $39 $4E $06 $00 $21 $00 $C0 $09 $CF $21 $03 $00 $39
+	.db $7E $D3 $BE $C9
+	
+_LABEL_1C71_:	
 		ld hl, $0002
 		add hl, sp
 		ld c, (hl)
 		ld b, $00
-		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
+		ld hl, $C010
 		add hl, bc
 		rst $08	; _LABEL_8_
 		ld hl, $0003
@@ -4695,22 +1664,8 @@ _SMS_setBGPaletteColor:
 		out (Port_VDPData), a
 		ret
 	
-_SMS_setSpritePaletteColor:	
-		ld hl, $0002
-		add hl, sp
-		ld c, (hl)
-		ld b, $00
-		ld hl, PSGChan1Volume	; PSGChan1Volume = $C010
-		add hl, bc
-		rst $08	; _LABEL_8_
-		ld hl, $0003
-		add hl, sp
-		ld a, (hl)
-		out (Port_VDPData), a
-		ret
-	
-_SMS_loadBGPalette:	
-		ld de, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
+_LABEL_1C85_:	
+		ld de, $C000
 		ld c, Port_VDPAddress
 		di
 		out (c), e
@@ -4723,8 +1678,8 @@ _SMS_loadBGPalette:
 		jr nz, -
 		ret
 	
-_SMS_loadSpritePalette:	
-		ld de, PSGChan1Volume	; PSGChan1Volume = $C010
+_LABEL_1C99_:	
+		ld de, $C010
 		ld c, Port_VDPAddress
 		di
 		out (c), e
@@ -4737,75 +1692,37 @@ _SMS_loadSpritePalette:
 		jr nz, -
 		ret
 	
-; Data from 1CAD to 1CB0 (4 bytes)	
-_SMS_setColor:	
+	; Data from 1CAD to 1CB0 (4 bytes)
 	.db $7D $D3 $BE $C9
 	
-_SMS_initSprites:	
-		ld hl, SpriteNextFree	; SpriteNextFree = $C123
+_LABEL_1CB1_:	
+		ld hl, _RAM_C123_
 		ld (hl), $00
 		ret
 	
-_SMS_addSprite:	
-		ld a, (SpriteNextFree)	; SpriteNextFree = $C123
-		sub $40
-		jr nc, _LABEL_1D09_
-		ld iy, $0003
-		add iy, sp
-		ld a, (iy+0)
-		sub $D1
-		jr z, _LABEL_1D09_
-		ld a, $63
-		ld hl, SpriteNextFree	; SpriteNextFree = $C123
-		add a, (hl)
-		ld c, a
-		ld a, $C0
-		adc a, $00
-		ld b, a
-		ld e, (iy+0)
-		dec e
-		ld a, e
-		ld (bc), a
-		ld a, (SpriteNextFree)	; SpriteNextFree = $C123
-		add a, a
-		ld c, a
-		ld hl, SpriteTableXN	; SpriteTableXN = $C0A3
-		ld b, $00
-		add hl, bc
-		ld iy, $0002
-		add iy, sp
-		ld a, (iy+0)
-		ld (hl), a
-		inc hl
-		ld iy, $0004
-		add iy, sp
-		ld a, (iy+0)
-		ld (hl), a
-		ld iy, SpriteNextFree	; SpriteNextFree = $C123
-		ld c, (iy+0)
-		inc (iy+0)
-		ld l, c
-		ret
+	; Data from 1CB7 to 1D0B (85 bytes)
+	.db $3A $23 $C1 $D6 $40 $30 $4B $FD $21 $03 $00 $FD $39 $FD $7E $00
+	.db $D6 $D1 $28 $3E $3E $63 $21 $23 $C1 $86 $4F $3E $C0 $CE $00 $47
+	.db $FD $5E $00 $1D $7B $02 $3A $23 $C1 $87 $4F $21 $A3 $C0 $06 $00
+	.db $09 $FD $21 $02 $00 $FD $39 $FD $7E $00 $77 $23 $FD $21 $04 $00
+	.db $FD $39 $FD $7E $00 $77 $FD $21 $23 $C1 $FD $4E $00 $FD $34 $00
+	.db $69 $C9 $2E $FF $C9
 	
-_LABEL_1D09_:	
-		ld l, $FF
-		ret
-	
-_SMS_finalizeSprites:	
-		ld a, (SpriteNextFree)	; SpriteNextFree = $C123
+_LABEL_1D0C_:	
+		ld a, (_RAM_C123_)
 		sub $40
 		ret nc
-		ld bc, SpriteTableY	; SpriteTableY = $C063
-		ld hl, (SpriteNextFree)	; SpriteNextFree = $C123
+		ld bc, $C063
+		ld hl, (_RAM_C123_)
 		ld h, $00
 		add hl, bc
 		ld (hl), $D0
 		ret
 	
-_SMS_copySpritestoSAT:	
+_LABEL_1D1E_:	
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
-		ld bc, SpriteTableY	; SpriteTableY = $C063
+		ld bc, _RAM_C063_
 		ld e, $40
 -:	
 		ld a, (bc)
@@ -4819,7 +1736,7 @@ _SMS_copySpritestoSAT:
 		jr nz, -
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
-		ld bc, SpriteTableXN	; SpriteTableXN = $C0A3
+		ld bc, _RAM_C0A3_
 		ld e, $80
 -:	
 		ld a, (bc)
@@ -4833,75 +1750,56 @@ _SMS_copySpritestoSAT:
 		jr nz, -
 		ret
 	
-_SMS_waitForVBlank:	
-		ld hl, VDPBlank	; VDPBlank = $C05B
+_LABEL_1D47_:	
+		ld hl, _RAM_C05B_
 		ld (hl), $00
 -:	
-		ld hl, VDPBlank	; VDPBlank = $C05B
+		ld hl, _RAM_C05B_
 		bit 0, (hl)
 		jr z, -
 		ret
 	
-_SMS_getKeysStatus:	
-		ld hl, (KeysStatus)	; KeysStatus = $C05F
+_LABEL_1D54_:	
+		ld hl, (_RAM_C05F_)
 		ret
 	
-; Data from 1D58 to 1D74 (29 bytes)	
-_SMS_getKeysPressed:	
+	; Data from 1D58 to 1DA8 (81 bytes)
 	.db $FD $21 $61 $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $FD $21
-	.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9
+	.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9 $3A $5F $C0
+	.db $FD $21 $61 $C0 $FD $A6 $00 $6F $3A $60 $C0 $FD $21 $61 $C0 $FD
+	.db $A6 $01 $67 $C9 $FD $21 $5F $C0 $FD $7E $00 $2F $4F $FD $7E $01
+	.db $2F $47 $79 $FD $21 $61 $C0 $FD $A6 $00 $6F $78 $FD $A6 $01 $67
+	.db $C9
 	
-; Data from 1D75 to 1D8B (23 bytes)	
-_SMS_getKeysHeld:	
-	.db $3A $5F $C0 $FD $21 $61 $C0 $FD $A6 $00 $6F $3A $60 $C0 $FD $21
-	.db $61 $C0 $FD $A6 $01 $67 $C9
-	
-; Data from 1D8C to 1DA8 (29 bytes)	
-_SMS_getKeysReleased:	
-	.db $FD $21 $5F $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $79 $FD
-	.db $21 $61 $C0 $FD $A6 $00 $6F $78 $FD $A6 $01 $67 $C9
-	
-_SMS_queryPauseRequested:	
-		ld iy, PauseRequested	; PauseRequested = $C05D
+_LABEL_1DA9_:	
+		ld iy, _RAM_C05D_
 		ld l, (iy+0)
 		ret
 	
-_SMS_resetPauseRequest:	
-		ld hl, PauseRequested	; PauseRequested = $C05D
+_LABEL_1DB1_:	
+		ld hl, _RAM_C05D_
 		ld (hl), $00
 		ret
 	
-; Data from 1DB7 to 1DC7 (17 bytes)	
-_SMS_setLineInterruptHandler:	
+	; Data from 1DB7 to 1DDE (40 bytes)
 	.db $21 $02 $00 $39 $7E $32 $24 $C1 $21 $03 $00 $39 $7E $32 $25 $C1
-	.db $C9
+	.db $C9 $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
+	.db $DB $7E $6F $C9 $DB $7F $6F $C9
 	
-; Data from 1DC8 to 1DD6 (15 bytes)	
-_SMS_setLineCounter:	
-	.db $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
-	
-; Data from 1DD7 to 1DDA (4 bytes)	
-_SMS_getVCount:	
-	.db $DB $7E $6F $C9
-	
-; Data from 1DDB to 1DDE (4 bytes)	
-_SMS_getHCount:	
-	.db $DB $7F $6F $C9
-	
-_SMS_isr:	
+_LABEL_1DDF_:	
 		push af
 		push hl
 		in a, (Port_VDPStatus)
-		ld (SMS_VDPFlags), a	; SMS_VDPFlags = $C05C
+		ld (_RAM_C05C_), a
 		rlca
 		jr nc, +
-		ld hl, VDPBlank	; VDPBlank = $C05B
+		ld hl, _RAM_C05B_
 		ld (hl), $01
-		ld hl, (KeysStatus)	; KeysStatus = $C05F
-		ld (PreviousKeysStatus), hl	; PreviousKeysStatus = $C061
+		ld hl, (_RAM_C05F_)
+		ld (_RAM_C061_), hl
 		in a, (Port_IOPort1)
 		cpl
-		ld hl, KeysStatus	; KeysStatus = $C05F
+		ld hl, _RAM_C05F_
 		ld (hl), a
 		in a, (Port_IOPort2)
 		cpl
@@ -4913,8 +1811,8 @@ _SMS_isr:
 		push bc
 		push de
 		push iy
-		ld hl, (SMS_theLineInterruptHandler)	; SMS_theLineInterruptHandler = $C124
-		call ___sdcc_call_hl
+		ld hl, (_RAM_C124_)
+		call _LABEL_2020_
 		pop iy
 		pop de
 		pop bc
@@ -4924,13 +1822,13 @@ _SMS_isr:
 		ei
 		reti
 	
-_SMS_nmi_isr:	
+_LABEL_1E15_:	
 		push af
 		push bc
 		push de
 		push hl
 		push iy
-		ld hl, PauseRequested	; PauseRequested = $C05D
+		ld hl, _RAM_C05D_
 		ld (hl), $01
 		pop iy
 		pop hl
@@ -4939,273 +1837,44 @@ _SMS_nmi_isr:
 		pop af
 		retn
 	
-__moduchar:	
-		ld hl, $0003
-		add hl, sp
-		ld e, (hl)
-		dec hl
-		ld l, (hl)
-		call __divu8
-		ex de, hl
-		ret
+	; Data from 1E28 to 201F (504 bytes)
+	.db $21 $03 $00 $39 $5E $2B $6E $CD $AE $1A $EB $C9 $F1 $E1 $D1 $D5
+	.db $E5 $F5 $CD $B1 $1A $EB $C9 $DD $E5 $DD $21 $00 $00 $DD $39 $21
+	.db $F0 $FF $39 $F9 $DD $36 $FE $00 $DD $36 $FF $00 $DD $36 $F3 $00
+	.db $DD $36 $F4 $00 $DD $6E $05 $26 $00 $29 $29 $29 $29 $29 $29 $DD
+	.db $75 $FC $7C $F6 $78 $DD $77 $FD $DD $7E $04 $DD $77 $FA $DD $36
+	.db $FB $00 $DD $CB $FA $26 $DD $CB $FB $16 $DD $7E $FC $DD $B6 $FA
+	.db $5F $DD $7E $FD $DD $B6 $FB $57 $DD $7E $08 $DD $77 $FA $DD $77
+	.db $F1 $DD $36 $F0 $00 $6B $62 $CF $DD $6E $06 $DD $66 $07 $7E $DD
+	.db $77 $F2 $23 $DD $75 $06 $DD $74 $07 $DD $7E $06 $DD $77 $FC $DD
+	.db $7E $07 $DD $77 $FD $DD $7E $F2 $E6 $02 $DD $77 $F9 $DD $7E $F2
+	.db $0F $0F $E6 $3F $DD $77 $F8 $DD $CB $F2 $46 $CA $78 $1F $DD $36
+	.db $F6 $00 $DD $7E $FF $DD $77 $F7 $DD $4E $FC $DD $46 $FD $03 $DD
+	.db $6E $FC $DD $66 $FD $6E $DD $7E $F8 $C6 $02 $DD $77 $F5 $26 $00
+	.db $7D $DD $B6 $F6 $6F $7C $DD $B6 $F7 $67 $DD $7E $F9 $B7 $28 $3C
+	.db $DD $71 $06 $DD $70 $07 $4D $44 $DD $6E $F5 $7D $B7 $CA $F1 $1F
+	.db $E5 $69 $60 $DF $E1 $DD $35 $F1 $DD $7E $F1 $B7 $20 $15 $7B $C6
+	.db $40 $5F $7A $CE $00 $57 $E5 $C5 $6B $62 $CF $C1 $E1 $DD $7E $FA
+	.db $DD $77 $F1 $3E $01 $95 $30 $01 $03 $2D $18 $CF $DD $71 $06 $DD
+	.db $70 $07 $DD $75 $FE $DD $74 $FF $DD $46 $F5 $78 $B7 $CA $01 $20
+	.db $DD $6E $FE $DD $66 $FF $DF $DD $35 $F1 $DD $7E $F1 $B7 $20 $0D
+	.db $21 $40 $00 $19 $5D $54 $CF $DD $7E $FA $DD $77 $F1 $05 $18 $DB
+	.db $DD $7E $F9 $B7 $28 $29 $DD $CB $F2 $56 $28 $10 $DD $7E $FE $DD
+	.db $77 $F3 $DD $7E $FF $DD $77 $F4 $DD $36 $F0 $01 $DD $4E $F2 $CB
+	.db $39 $CB $39 $CB $39 $DD $71 $FF $DD $36 $FE $00 $C3 $A0 $1E $DD
+	.db $6E $F8 $7D $B7 $28 $6D $DD $7E $FF $DD $77 $F6 $DD $36 $F7 $00
+	.db $DD $4E $FC $DD $46 $FD $DD $75 $F5 $DD $7E $F5 $B7 $28 $34 $0A
+	.db $D3 $BE $03 $00 $00 $00 $DD $7E $F6 $D3 $BE $DD $35 $F1 $DD $7E
+	.db $F1 $B7 $20 $10 $21 $40 $00 $19 $EB $C5 $6B $62 $CF $C1 $DD $7E
+	.db $FA $DD $77 $F1 $DD $35 $F5 $18 $D0 $DD $71 $FE $DD $70 $FF $18
+	.db $08 $18 $06 $DD $71 $06 $DD $70 $07 $DD $CB $F0 $46 $CA $A0 $1E
+	.db $DD $7E $F3 $DD $77 $FE $DD $7E $F4 $DD $77 $FF $DD $36 $F0 $00
+	.db $C3 $A0 $1E $DD $F9 $DD $E1 $C9
 	
-__moduint:	
-		pop af
-		pop hl
-		pop de
-		push de
-		push hl
-		push af
-		call __divu16
-		ex de, hl
-		ret
-	
-_SMS_loadSTMcompressedTileMapAre:	
-		push ix
-		ld ix, $0000
-		add ix, sp
-		ld hl, $FFF0
-		add hl, sp
-		ld sp, hl
-		ld (ix-2), $00
-		ld (ix-1), $00
-		ld (ix-13), $00
-		ld (ix-12), $00
-		ld l, (ix+5)
-		ld h, $00
-		add hl, hl
-		add hl, hl
-		add hl, hl
-		add hl, hl
-		add hl, hl
-		add hl, hl
-		ld (ix-4), l
-		ld a, h
-		or $78
-		ld (ix-3), a
-		ld a, (ix+4)
-		ld (ix-6), a
-		ld (ix-5), $00
-		sla (ix-6)
-		rl (ix-5)
-		ld a, (ix-4)
-		or (ix-6)
-		ld e, a
-		ld a, (ix-3)
-		or (ix-5)
-		ld d, a
-		ld a, (ix+8)
-		ld (ix-6), a
-		ld (ix-15), a
-		ld (ix-16), $00
-		ld l, e
-		ld h, d
-		rst $08	; _LABEL_8_
-_LABEL_1EA0_:	
-		ld l, (ix+6)
-		ld h, (ix+7)
-		ld a, (hl)
-		ld (ix-14), a
-		inc hl
-		ld (ix+6), l
-		ld (ix+7), h
-		ld a, (ix+6)
-		ld (ix-4), a
-		ld a, (ix+7)
-		ld (ix-3), a
-		ld a, (ix-14)
-		and $02
-		ld (ix-7), a
-		ld a, (ix-14)
-		rrca
-		rrca
-		and $3F
-		ld (ix-8), a
-		bit 0, (ix-14)
-		jp z, _LABEL_1F78_
-		ld (ix-10), $00
-		ld a, (ix-1)
-		ld (ix-9), a
-		ld c, (ix-4)
-		ld b, (ix-3)
-		inc bc
-		ld l, (ix-4)
-		ld h, (ix-3)
-		ld l, (hl)
-		ld a, (ix-8)
-		add a, $02
-		ld (ix-11), a
-		ld h, $00
-		ld a, l
-		or (ix-10)
-		ld l, a
-		ld a, h
-		or (ix-9)
-		ld h, a
-		ld a, (ix-7)
-		or a
-		jr z, ++
-		ld (ix+6), c
-		ld (ix+7), b
-		ld c, l
-		ld b, h
-		ld l, (ix-11)
--:	
-		ld a, l
-		or a
-		jp z, _LABEL_1FF1_
-		push hl
-		ld l, c
-		ld h, b
-		rst $18	; _LABEL_18_
-		pop hl
-		dec (ix-15)
-		ld a, (ix-15)
-		or a
-		jr nz, +
-		ld a, e
-		add a, $40
-		ld e, a
-		ld a, d
-		adc a, $00
-		ld d, a
-		push hl
-		push bc
-		ld l, e
-		ld h, d
-		rst $08	; _LABEL_8_
-		pop bc
-		pop hl
-		ld a, (ix-6)
-		ld (ix-15), a
-+:	
-		ld a, $01
-		sub l
-		jr nc, +
-		inc bc
-+:	
-		dec l
-		jr -
-	
-++:	
-		ld (ix+6), c
-		ld (ix+7), b
-		ld (ix-2), l
-		ld (ix-1), h
-		ld b, (ix-11)
--:	
-		ld a, b
-		or a
-		jp z, _LABEL_2001_
-		ld l, (ix-2)
-		ld h, (ix-1)
-		rst $18	; _LABEL_18_
-		dec (ix-15)
-		ld a, (ix-15)
-		or a
-		jr nz, +
-		ld hl, $0040
-		add hl, de
-		ld e, l
-		ld d, h
-		rst $08	; _LABEL_8_
-		ld a, (ix-6)
-		ld (ix-15), a
-+:	
-		dec b
-		jr -
-	
-_LABEL_1F78_:	
-		ld a, (ix-7)
-		or a
-		jr z, ++
-		bit 2, (ix-14)
-		jr z, +
-		ld a, (ix-2)
-		ld (ix-13), a
-		ld a, (ix-1)
-		ld (ix-12), a
-		ld (ix-16), $01
-+:	
-		ld c, (ix-14)
-		srl c
-		srl c
-		srl c
-		ld (ix-1), c
-		ld (ix-2), $00
-		jp _LABEL_1EA0_
-	
-++:	
-		ld l, (ix-8)
-		ld a, l
-		or a
-		jr z, _LABEL_201B_
-		ld a, (ix-1)
-		ld (ix-10), a
-		ld (ix-9), $00
-		ld c, (ix-4)
-		ld b, (ix-3)
-		ld (ix-11), l
--:	
-		ld a, (ix-11)
-		or a
-		jr z, ++
-		ld a, (bc)
-		out (Port_VDPData), a
-		inc bc
-		nop
-		nop
-		nop
-		ld a, (ix-10)
-		out (Port_VDPData), a
-		dec (ix-15)
-		ld a, (ix-15)
-		or a
-		jr nz, +
-		ld hl, $0040
-		add hl, de
-		ex de, hl
-		push bc
-		ld l, e
-		ld h, d
-		rst $08	; _LABEL_8_
-		pop bc
-		ld a, (ix-6)
-		ld (ix-15), a
-+:	
-		dec (ix-11)
-		jr -
-	
-_LABEL_1FF1_:	
-		ld (ix-2), c
-		ld (ix-1), b
-		jr _LABEL_2001_
-	
-	; Data from 1FF9 to 1FFA (2 bytes)
-	.db $18 $06
-	
-++:	
-		ld (ix+6), c
-		ld (ix+7), b
-_LABEL_2001_:	
-		bit 0, (ix-16)
-		jp z, _LABEL_1EA0_
-		ld a, (ix-13)
-		ld (ix-2), a
-		ld a, (ix-12)
-		ld (ix-1), a
-		ld (ix-16), $00
-		jp _LABEL_1EA0_
-	
-_LABEL_201B_:	
-		ld sp, ix
-		pop ix
-		ret
-	
-___sdcc_call_hl:	
+_LABEL_2020_:	
 		jp (hl)
 	
-_SMS_loadPSGaidencompressedTiles:	
+_LABEL_2021_:	
 		ld iy, $0004
 		add iy, sp
 		ld l, (iy+0)
@@ -5228,7 +1897,7 @@ _SMS_loadPSGaidencompressedTiles:
 _LABEL_2045_:	
 		push bc
 		ld b, $04
-		ld de, decompBuffer	; decompBuffer = $C126
+		ld de, _RAM_C126_
 		ld c, (ix+0)
 		inc ix
 _LABEL_2050_:	
@@ -5247,7 +1916,7 @@ _LABEL_2050_:
 		ld e, a
 		ld a, d
 		ld d, $00
-		ld iy, decompBuffer	; decompBuffer = $C126
+		ld iy, _RAM_C126_
 		add iy, de
 		ex de, hl
 		cp $03
@@ -5334,7 +2003,7 @@ _LABEL_20B1_:
 		jp nz, _LABEL_2050_
 		ld de, $0008
 		ld c, e
-		ld hl, decompBuffer	; decompBuffer = $C126
+		ld hl, _RAM_C126_
 --:	
 		ld b, $04
 		push hl
@@ -5354,415 +2023,124 @@ _LABEL_20B1_:
 		jp nz, _LABEL_2045_
 		ret
 	
-; Data from 2103 to 2104 (2 bytes)	
-Finput_manager$__xinit_curr_joyp:	
-	.db $00 $00
-	
-; Data from 2105 to 2106 (2 bytes)	
-Finput_manager$__xinit_prev_joyp:	
-	.db $00 $00
-	
-; Data from 2107 to 211E (24 bytes)	
-Fcursor_object$__xinit_cursor_al:	
-	.db $4D $11 $52 $11 $57 $11 $5C $11 $61 $11 $66 $11 $6B $11 $70 $11
-	.db $75 $11 $7A $11 $7F $11 $84 $11
-	
-; Data from 211F to 2136 (24 bytes)	
-Frecord_object$__xinit_record_ti:	
-	.db $89 $80 $32 $81 $70 $80 $9F $80 $18 $81 $8D $80 $87 $80 $67 $80
-	.db $67 $80 $9F $80 $C7 $80 $7A $80
-	
-; Data from 2137 to 214E (24 bytes)	
-Frecord_object$__xinit_record_ti:	
-	.db $10 $80 $10 $80 $10 $80 $10 $80 $10 $80 $10 $80 $10 $80 $10 $80
-	.db $10 $80 $10 $80 $10 $80 $10 $80
-	
-; Data from 214F to 216A (28 bytes)	
-Frecord_object$__xinit_record_pa:	
+; Data from 2103 to 216A (104 bytes)	
+_DATA_2103_:	
+	.db $00 $00 $00 $00 $4D $11 $52 $11 $57 $11 $5C $11 $61 $11 $66 $11
+	.db $6B $11 $70 $11 $75 $11 $7A $11 $7F $11 $84 $11 $89 $80 $32 $81
+	.db $70 $80 $9F $80 $18 $81 $8D $80 $87 $80 $67 $80 $67 $80 $9F $80
+	.db $C7 $80 $7A $80 $10 $80 $10 $80 $10 $80 $10 $80 $10 $80 $10 $80
+	.db $10 $80 $10 $80 $10 $80 $10 $80 $10 $80 $10 $80 $00 $80 $00 $80
 	.db $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80
-	.db $00 $80 $00 $80 $00 $80 $00 $80 $04 $20 $08 $08
+	.db $00 $80 $00 $80 $04 $20 $08 $08
 	
-gsinit:	
+_LABEL_216B_:	
 		ld bc, $0068
 		ld a, b
 		or c
 		jr z, +
-		ld de, Finput_manager$curr_joypad1$0$0	; Finput_manager$curr_joypad1$0$0 = $C146
-		ld hl, Finput_manager$__xinit_curr_joyp	; Finput_manager$__xinit_curr_joyp = $2103
+		ld de, _RAM_C146_
+		ld hl, _DATA_2103_
 		ldir
 +:	
 		ret
 	
-	; Data from 217B to 7F8B (24081 bytes)
+	; Data from 217B to 7FEF (24181 bytes)
 	.dsb 24081, $00
-	
-; Data from 7F8C to 7FC7 (60 bytes)	
-G$__SMS__SDSC_descr$0$0:	
-___SMS__SDSC_descr:	
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
 	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
 	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
-	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
+	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00 $56 $61 $6E $20
+	.db $48 $61 $6C $65 $6E $00 $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C
+	.db $61 $6E $64 $00 $53 $44 $53 $43 $01 $00 $27 $03 $21 $20 $D2 $7F
+	.db $C8 $7F $8C $7F
 	
-; Data from 7FC8 to 7FD1 (10 bytes)	
-G$__SMS__SDSC_name$0$0:	
-___SMS__SDSC_name:	
-	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
+.BANK 1 SLOT 1	
+.ORG $0000	
 	
-; Data from 7FD2 to 7FDF (14 bytes)	
-G$__SMS__SDSC_author$0$0:	
-___SMS__SDSC_author:	
-	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
-	
-; Data from 7FE0 to 7FEF (16 bytes)	
-G$__SMS__SDSC_signature$0$0:	
-___SMS__SDSC_signature:	
-	.db $53 $44 $53 $43 $01 $00 $27 $03 $21 $20 $D2 $7F $C8 $7F $8C $7F
-	
-; Data from 7FF0 to 7FFF (16 bytes)	
-G$__SMS__SEGA_signature$0$0:	
-___SMS__SEGA_signature:	
+	; Data from 7FF0 to 7FFF (16 bytes)
 	.db $54 $4D $52 $20 $53 $45 $47 $41 $FF $FF $D5 $FF $99 $99 $00 $4C
 	
-; Data from 8000 to 800F (16 bytes)	
-G$splash__palette__bin$0$0:	
-_splash__palette__bin:	
-	.db $00 $03 $01 $05 $05 $06 $06 $07 $07 $17 $1A $2A $0A $1F $0F $3F
+.BANK 2	
+.ORG $0000	
 	
-; Data from 8010 to 8056 (71 bytes)	
-G$splash__tilemap__stmcompr$0$0:	
-_splash__tilemap__stmcompr:	
-	.db $FD $40 $FD $40 $FD $40 $0D $40 $1B $41 $01 $40 $03 $49 $49 $40
-	.db $3F $4B $35 $40 $3F $5C $35 $40 $3F $6D $5D $40 $03 $7E $FD $40
-	.db $65 $40 $07 $80 $55 $40 $07 $83 $04 $42 $01 $40 $07 $86 $01 $40
-	.db $03 $49 $41 $40 $33 $89 $41 $40 $33 $97 $41 $40 $33 $A5 $FD $40
-	.db $FD $40 $FD $40 $11 $40 $00
+	; Data from 8000 to BFFF (16384 bytes)
+	.incbin "data/File01_08000_0BFFF.dat"
 	
-; Data from 8057 to BFFF (16297 bytes)	
-G$splash__tiles__psgcompr$0$0:	
-_splash__tiles__psgcompr:	
-	.incbin "data/File00_08057_0BFFF.dat"
+.BANK 3	
+.ORG $0000	
 	
-; Data from C000 to C00F (16 bytes)	
-G$VanHalenTitleGap__palette__bin:	
-_VanHalenTitleGap__palette__bin:	
-	.db $00 $00 $10 $14 $15 $05 $25 $38 $29 $39 $39 $2A $3A $3F $3E $2A
+	; Data from C000 to FFFF (16384 bytes)
+	.incbin "data/File02_0C000_0FFFF.dat"
 	
-; Data from C010 to C076 (103 bytes)	
-G$VanHalenTitleGap__tilemap__stm:	
-_VanHalenTitleGap__tilemap__stmc:	
-	.db $FD $40 $FD $40 $67 $41 $11 $40 $63 $5C $11 $40 $5F $76 $19 $40
-	.db $5B $8F $19 $40 $5B $A7 $19 $40 $57 $BF $25 $40 $0F $D6 $04 $40
-	.db $1B $DB $04 $40 $07 $E3 $01 $40 $04 $E6 $25 $40 $04 $E7 $0D $40
-	.db $1B $E8 $59 $40 $16 $04 $E3 $17 $F0 $5D $40 $17 $F7 $5D $40 $13
-	.db $FE $06 $5D $40 $04 $04 $06 $04 $BF $0B $05 $06 $6D $40 $07 $09
-	.db $06 $69 $40 $0B $0C $06 $6D $40 $07 $10 $06 $6D $40 $04 $13 $02
-	.db $FD $40 $FD $40 $31 $40 $00
+.BANK 4	
+.ORG $0000	
 	
-; Data from C077 to D2D7 (4705 bytes)	
-G$VanHalenTitleGap__tiles__psgco:	
-_VanHalenTitleGap__tiles__psgcom:	
-	.incbin "data/File01_0C077_0D2D7.dat"
+	; Data from 10000 to 13FFF (16384 bytes)
+	.incbin "data/File03_10000_13FFF.dat"
 	
-; Data from D2D8 to D2E7 (16 bytes)	
-G$VanHalenTitleTop__palette__bin:	
-_VanHalenTitleTop__palette__bin:	
-	.db $00 $00 $10 $14 $15 $01 $25 $38 $29 $39 $39 $2A $3A $3F $3E $2A
+.BANK 5	
+.ORG $0000	
 	
-; Data from D2E8 to D344 (93 bytes)	
-G$VanHalenTitleTop__tilemap__stm:	
-_VanHalenTitleTop__tilemap__stmc:	
-	.db $01 $40 $67 $41 $11 $40 $63 $5C $11 $40 $63 $76 $15 $40 $5B $90
-	.db $19 $40 $5B $A8 $19 $40 $57 $C0 $25 $40 $0B $D7 $01 $40 $1B $DB
-	.db $04 $40 $0B $E3 $45 $40 $1B $E7 $59 $40 $1B $EF $5D $40 $13 $F7
-	.db $61 $40 $0F $FD $22 $04 $8F $02 $61 $40 $0A $0F $02 $06 $6D $40
-	.db $07 $07 $06 $69 $40 $0B $0A $06 $6D $40 $07 $0E $06 $6D $40 $04
-	.db $11 $02 $FD $40 $FD $40 $FD $40 $FD $40 $29 $40 $00
+	; Data from 14000 to 17FFF (16384 bytes)
+	.incbin "data/File04_14000_17FFF.dat"
 	
-; Data from D345 to FFFF (11451 bytes)	
-G$VanHalenTitleTop__tiles__psgco:	
-_VanHalenTitleTop__tiles__psgcom:	
-	.incbin "data/File02_0D345_0FFFF.dat"
+.BANK 6	
+.ORG $0000	
 	
-; Data from 10000 to 1000F (16 bytes)	
-G$VanHalen1978__palette__bin$0$0:	
-_VanHalen1978__palette__bin:	
-	.db $00 $00 $00 $00 $14 $01 $05 $15 $10 $25 $39 $02 $16 $1A $3A $1A
+	; Data from 18000 to 1BFFF (16384 bytes)
+	.incbin "data/File05_18000_1BFFF.dat"
 	
-; Data from 10010 to 10088 (121 bytes)	
-G$VanHalen1978__tilemap__stmcomp:	
-_VanHalen1978__tilemap__stmcompr:	
-	.db $FD $00 $85 $00 $03 $01 $04 $00 $0F $03 $01 $00 $33 $08 $29 $00
-	.db $07 $16 $09 $00 $07 $19 $04 $00 $1F $1C $25 $00 $4F $25 $21 $00
-	.db $17 $3A $04 $00 $33 $41 $1D $00 $57 $4F $25 $00 $4F $66 $1D $00
-	.db $57 $7B $19 $00 $5B $92 $19 $00 $26 $04 $6B $57 $AA $19 $00 $5B
-	.db $C1 $31 $00 $43 $D9 $19 $00 $03 $EB $09 $00 $03 $ED $01 $00 $33
-	.db $EF $15 $00 $5F $FD $06 $15 $00 $5F $16 $06 $19 $00 $5B $2F $06
-	.db $19 $00 $5B $47 $06 $19 $00 $5B $5F $06 $19 $00 $5B $77 $06 $21
-	.db $00 $04 $8F $02 $FD $00 $59 $00 $00
+.BANK 7	
+.ORG $0000	
 	
-; Data from 10089 to 13FFF (16247 bytes)	
-G$VanHalen1978__tiles__psgcompr$:	
-_VanHalen1978__tiles__psgcompr:	
-	.incbin "data/File03_10089_13FFF.dat"
+	; Data from 1C000 to 1FFFF (16384 bytes)
+	.incbin "data/File06_1C000_1FFFF.dat"
 	
-; Data from 14000 to 1400F (16 bytes)	
-G$VanHalen1979__palette__bin$0$0:	
-_VanHalen1979__palette__bin:	
-	.db $00 $00 $10 $10 $10 $15 $29 $07 $1B $2A $2B $2F $3F $3F $3E $25
+.BANK 8	
+.ORG $0000	
 	
-; Data from 14010 to 14131 (290 bytes)	
-G$VanHalen1979__tilemap__stmcomp:	
-_VanHalen1979__tilemap__stmcompr:	
-	.db $FD $00 $81 $00 $33 $01 $04 $09 $03 $0F $26 $04 $0C $08 $11 $09
-	.db $0F $12 $19 $00 $1B $17 $01 $09 $08 $1F $09 $0B $20 $03 $23 $05
-	.db $09 $07 $25 $19 $00 $01 $09 $08 $28 $09 $26 $04 $23 $07 $29 $04
-	.db $09 $26 $04 $08 $04 $09 $13 $2C $26 $04 $08 $05 $09 $07 $32 $15
-	.db $00 $1B $35 $04 $20 $16 $04 $3C $04 $3D $01 $09 $07 $3E $16 $04
-	.db $28 $03 $41 $04 $09 $0F $43 $15 $00 $5F $48 $15 $00 $04 $48 $5B
-	.db $61 $15 $00 $5F $79 $15 $00 $04 $01 $5B $92 $15 $00 $04 $01 $16
-	.db $04 $0C $05 $09 $33 $AA $01 $09 $0B $B8 $15 $00 $08 $01 $BC $16
-	.db $04 $3C $08 $09 $BD $16 $04 $38 $03 $BE $04 $2B $3B $C0 $19 $00
-	.db $04 $09 $36 $04 $1D $01 $09 $04 $D0 $16 $08 $BC $1D $23 $D1 $01
-	.db $09 $0F $DB $15 $00 $08 $79 $3C $36 $04 $2B $03 $E0 $26 $04 $22
-	.db $0B $E2 $04 $09 $13 $E6 $36 $04 $0C $01 $09 $0F $EC $19 $00 $01
-	.db $09 $36 $04 $0C $05 $09 $26 $08 $28 $2B $04 $F1 $16 $04 $41 $04
-	.db $09 $0B $F2 $04 $09 $16 $04 $23 $01 $09 $0F $F6 $19 $00 $19 $09
-	.db $26 $04 $2B $01 $09 $07 $FB $05 $09 $17 $FE $02 $19 $00 $25 $09
-	.db $0A $2F $05 $06 $15 $00 $04 $12 $06 $2D $09 $27 $13 $02 $19 $00
-	.db $05 $09 $0A $03 $1E $06 $04 $09 $04 $20 $06 $0D $09 $2B $21 $02
-	.db $19 $00 $05 $09 $0A $03 $2D $06 $11 $09 $2F $2F $02 $FD $00 $85
-	.db $00 $00
+	; Data from 20000 to 23FFF (16384 bytes)
+	.incbin "data/File07_20000_23FFF.dat"
 	
-; Data from 14132 to 17FFF (16078 bytes)	
-G$VanHalen1979__tiles__psgcompr$:	
-_VanHalen1979__tiles__psgcompr:	
-	.incbin "data/File04_14132_17FFF.dat"
+.BANK 9	
+.ORG $0000	
 	
-; Data from 18000 to 1800F (16 bytes)	
-G$VanHalen1980__palette__bin$0$0:	
-_VanHalen1980__palette__bin:	
-	.db $00 $00 $00 $14 $15 $15 $15 $15 $15 $2A $2A $2A $3F $3F $3F $29
+	; Data from 24000 to 27FFF (16384 bytes)
+	.incbin "data/File08_24000_27FFF.dat"
 	
-; Data from 18010 to 1806F (96 bytes)	
-G$VanHalen1980__tilemap__stmcomp:	
-_VanHalen1980__tilemap__stmcompr:	
-	.db $FD $00 $85 $00 $5B $01 $19 $00 $5B $19 $19 $00 $5B $31 $19 $00
-	.db $5B $49 $19 $00 $5B $61 $19 $00 $5B $79 $19 $00 $33 $91 $04 $85
-	.db $1F $9F $19 $00 $5B $A8 $19 $00 $5B $C0 $19 $00 $5B $D8 $19 $00
-	.db $5B $F0 $06 $19 $00 $5B $08 $06 $19 $00 $5B $20 $06 $19 $00 $5B
-	.db $38 $06 $19 $00 $5B $50 $06 $19 $00 $5B $68 $06 $19 $00 $5B $80
-	.db $06 $19 $00 $5B $98 $06 $49 $00 $0F $B0 $02 $FD $00 $21 $00 $00
+.BANK 10	
+.ORG $0000	
 	
-; Data from 18070 to 1BFFF (16272 bytes)	
-G$VanHalen1980__tiles__psgcompr$:	
-_VanHalen1980__tiles__psgcompr:	
-	.incbin "data/File05_18070_1BFFF.dat"
+	; Data from 28000 to 2BFFF (16384 bytes)
+	.incbin "data/File09_28000_2BFFF.dat"
 	
-; Data from 1C000 to 1C00F (16 bytes)	
-G$VanHalen1981__palette__bin$0$0:	
-_VanHalen1981__palette__bin:	
-	.db $00 $00 $00 $01 $05 $15 $15 $06 $16 $07 $06 $1B $1A $2F $2F $1A
+.BANK 11	
+.ORG $0000	
 	
-; Data from 1C010 to 1C09E (143 bytes)	
-G$VanHalen1981__tilemap__stmcomp:	
-_VanHalen1981__tilemap__stmcompr:	
-	.db $FD $00 $09 $00 $0C $01 $00 $02 $05 $00 $07 $03 $05 $00 $03 $06
-	.db $10 $02 $08 $00 $09 $05 $00 $04 $0A $1D $00 $5B $0B $15 $00 $63
-	.db $23 $15 $00 $5F $3D $15 $00 $5F $56 $15 $00 $5B $6F $19 $00 $5B
-	.db $87 $19 $00 $5B $9F $19 $00 $5B $B7 $19 $00 $5B $CF $19 $00 $5F
-	.db $E7 $15 $00 $0A $5B $00 $02 $04 $6E $15 $00 $0A $5B $18 $06 $19
-	.db $00 $5B $30 $32 $04 $23 $02 $15 $00 $0A $5B $48 $06 $15 $00 $5F
-	.db $60 $06 $19 $00 $5B $79 $06 $19 $00 $5B $91 $06 $19 $00 $5B $A9
-	.db $06 $19 $00 $0F $C1 $02 $01 $00 $1A $08 $C3 $C5 $0A $04 $C6 $06
-	.db $09 $00 $04 $C7 $26 $04 $02 $03 $C8 $02 $FD $00 $1D $00 $00
+	; Data from 2C000 to 2FFFF (16384 bytes)
+	.incbin "data/File10_2C000_2FFFF.dat"
 	
-; Data from 1C09F to 1FFFF (16225 bytes)	
-G$VanHalen1981__tiles__psgcompr$:	
-_VanHalen1981__tiles__psgcompr:	
-	.incbin "data/File06_1C09F_1FFFF.dat"
+.BANK 12	
+.ORG $0000	
 	
-; Data from 20000 to 2000F (16 bytes)	
-G$VanHalen1982__palette__bin$0$0:	
-_VanHalen1982__palette__bin:	
-	.db $00 $00 $01 $01 $01 $02 $02 $03 $03 $03 $03 $17 $3F $3F $2B $1B
+	; Data from 30000 to 33FFF (16384 bytes)
+	.incbin "data/File11_30000_33FFF.dat"
 	
-; Data from 20010 to 20117 (264 bytes)	
-G$VanHalen1982__tilemap__stmcomp:	
-_VanHalen1982__tilemap__stmcompr:	
-	.db $FD $00 $15 $00 $03 $01 $11 $00 $03 $03 $01 $00 $03 $05 $04 $00
-	.db $07 $07 $16 $04 $08 $1D $00 $09 $0A $4B $0B $19 $00 $0D $0A $13
-	.db $1F $2F $24 $19 $00 $11 $0A $0B $31 $05 $24 $08 $35 $24 $1F $36
-	.db $19 $00 $19 $0A $07 $3F $19 $24 $0F $42 $19 $00 $04 $47 $15 $0A
-	.db $0B $48 $11 $24 $13 $4C $19 $00 $03 $52 $1D $0A $03 $54 $0D $24
-	.db $08 $56 $24 $0B $57 $19 $00 $0B $5B $11 $0A $08 $5F $0A $07 $60
-	.db $09 $24 $0F $63 $19 $00 $08 $68 $24 $07 $69 $19 $0A $0B $6C $01
-	.db $24 $0F $70 $19 $00 $13 $75 $1D $0A $03 $7B $01 $24 $0F $7D $19
-	.db $00 $03 $82 $04 $24 $0F $84 $19 $0A $1B $89 $19 $00 $23 $91 $15
-	.db $0A $17 $9B $19 $00 $04 $A2 $16 $04 $77 $0D $24 $0F $A3 $11 $0A
-	.db $13 $A8 $19 $00 $04 $AE $19 $24 $07 $AF $19 $0A $0B $B2 $19 $00
-	.db $04 $B6 $1D $24 $07 $B7 $19 $0A $04 $5F $03 $BA $19 $00 $04 $BC
-	.db $25 $24 $03 $BD $1D $0A $04 $BF $19 $00 $04 $C0 $29 $24 $07 $C1
-	.db $08 $0A $C4 $11 $0A $19 $00 $2F $C5 $04 $24 $36 $04 $37 $03 $D2
-	.db $15 $0A $19 $00 $2F $D4 $26 $04 $B7 $01 $24 $03 $E1 $11 $0A $21
-	.db $00 $08 $E3 $05 $0B $E4 $10 $00 $E8 $01 $E9 $16 $04 $07 $05 $00
-	.db $16 $04 $E6 $FD $00 $21 $00 $00
+.BANK 13	
+.ORG $0000	
 	
-; Data from 20118 to 23FFF (16104 bytes)	
-G$VanHalen1982__tiles__psgcompr$:	
-_VanHalen1982__tiles__psgcompr:	
-	.incbin "data/File07_20118_23FFF.dat"
+	; Data from 34000 to 37FFF (16384 bytes)
+	.incbin "data/File12_34000_37FFF.dat"
 	
-; Data from 24000 to 2400F (16 bytes)	
-G$VanHalen1984__palette__bin$0$0:	
-_VanHalen1984__palette__bin:	
-	.db $00 $15 $16 $1A $2B $2A $2B $2B $2F $2F $2F $3F $3F $3F $3E $2A
+.BANK 14	
+.ORG $0000	
 	
-; Data from 24010 to 2408C (125 bytes)	
-G$VanHalen1984__tilemap__stmcomp:	
-_VanHalen1984__tilemap__stmcompr:	
-	.db $FD $00 $85 $00 $5B $01 $19 $00 $5B $19 $19 $00 $5B $31 $19 $00
-	.db $5B $49 $19 $00 $5B $61 $19 $00 $5B $79 $19 $00 $5B $91 $19 $00
-	.db $03 $A9 $16 $04 $92 $4B $AB $04 $A8 $19 $00 $08 $BF $91 $4F $C0
-	.db $04 $A8 $19 $00 $57 $D5 $04 $A8 $19 $00 $57 $EC $02 $04 $A8 $19
-	.db $00 $0A $57 $03 $02 $04 $A8 $19 $00 $0A $07 $1A $06 $04 $A8 $47
-	.db $1D $02 $04 $A8 $19 $00 $0A $07 $30 $4B $32 $02 $04 $A8 $19 $00
-	.db $05 $A8 $0A $4F $46 $02 $19 $00 $05 $A8 $0A $4F $5B $06 $19 $00
-	.db $5B $70 $06 $19 $00 $5B $88 $02 $FD $00 $85 $00 $00
+	; Data from 38000 to 3BFFF (16384 bytes)
+	.incbin "data/File13_38000_3BFFF.dat"
 	
-; Data from 2408D to 27FFF (16243 bytes)	
-G$VanHalen1984__tiles__psgcompr$:	
-_VanHalen1984__tiles__psgcompr:	
-	.incbin "data/File08_2408D_27FFF.dat"
+.BANK 15	
+.ORG $0000	
 	
-; Data from 28000 to 2800F (16 bytes)	
-G$VanHalen1986__palette__bin$0$0:	
-_VanHalen1986__palette__bin:	
-	.db $00 $00 $00 $04 $01 $05 $15 $10 $16 $1A $1A $2A $2B $3F $2F $19
+	; Data from 3C000 to 3FFFF (16384 bytes)
+	.incbin "data/File14_3C000_3FFFF.dat"
 	
-; Data from 28010 to 28086 (119 bytes)	
-G$VanHalen1986__tilemap__stmcomp:	
-_VanHalen1986__tilemap__stmcompr:	
-	.db $FD $00 $85 $00 $5F $01 $15 $00 $5F $1A $15 $00 $5B $33 $04 $32
-	.db $15 $00 $5F $4B $15 $00 $5B $64 $19 $00 $1F $7C $01 $84 $0B $85
-	.db $04 $84 $1B $89 $19 $00 $5B $91 $19 $00 $5B $A9 $19 $00 $5B $C1
-	.db $19 $00 $5B $D9 $19 $00 $5B $F1 $06 $19 $00 $5B $09 $06 $19 $00
-	.db $5B $21 $06 $19 $00 $5B $39 $06 $19 $00 $5F $51 $06 $15 $00 $03
-	.db $6A $06 $04 $00 $53 $6C $06 $19 $00 $57 $82 $06 $1D $00 $33 $99
-	.db $06 $04 $00 $04 $84 $0B $A7 $06 $01 $00 $04 $AB $06 $25 $00 $17
-	.db $AC $02 $FD $00 $3D $00 $00
-	
-; Data from 28087 to 2BFFF (16249 bytes)	
-G$VanHalen1986__tiles__psgcompr$:	
-_VanHalen1986__tiles__psgcompr:	
-	.incbin "data/File09_28087_2BFFF.dat"
-	
-; Data from 2C000 to 2C00F (16 bytes)	
-G$VanHalen1988__palette__bin$0$0:	
-_VanHalen1988__palette__bin:	
-	.db $00 $00 $00 $00 $15 $15 $15 $15 $2A $2A $2A $3F $3F $3F $3F $2A
-	
-; Data from 2C010 to 2C066 (87 bytes)	
-G$VanHalen1988__tilemap__stmcomp:	
-_VanHalen1988__tilemap__stmcompr:	
-	.db $FD $00 $85 $00 $53 $01 $21 $00 $53 $17 $21 $00 $57 $2D $1D $00
-	.db $5B $44 $19 $00 $5B $5C $19 $00 $5B $74 $19 $00 $5B $8C $19 $00
-	.db $5B $A4 $19 $00 $5B $BC $19 $00 $5B $D4 $19 $00 $5B $EC $06 $19
-	.db $00 $5B $04 $06 $19 $00 $5B $1C $06 $19 $00 $5B $34 $06 $19 $00
-	.db $5B $4C $06 $19 $00 $5B $64 $06 $19 $00 $57 $7C $06 $1D $00 $57
-	.db $93 $02 $FD $00 $89 $00 $00
-	
-; Data from 2C067 to 2FFFF (16281 bytes)	
-G$VanHalen1988__tiles__psgcompr$:	
-_VanHalen1988__tiles__psgcompr:	
-	.incbin "data/File10_2C067_2FFFF.dat"
-	
-; Data from 30000 to 3000F (16 bytes)	
-G$VanHalen1991__palette__bin$0$0:	
-_VanHalen1991__palette__bin:	
-	.db $00 $00 $01 $01 $01 $01 $01 $01 $01 $01 $15 $15 $16 $16 $2B $2A
-	
-; Data from 30010 to 30066 (87 bytes)	
-G$VanHalen1991__tilemap__stmcomp:	
-_VanHalen1991__tilemap__stmcompr:	
-	.db $FD $00 $85 $00 $5B $01 $19 $00 $5B $19 $19 $00 $5B $31 $19 $00
-	.db $5B $49 $19 $00 $5B $61 $19 $00 $5B $79 $19 $00 $5B $91 $19 $00
-	.db $5B $A9 $19 $00 $5B $C1 $19 $00 $5B $D9 $15 $00 $5F $F1 $06 $19
-	.db $00 $5B $0A $06 $19 $00 $5B $22 $06 $19 $00 $5B $3A $06 $19 $00
-	.db $5B $52 $06 $19 $00 $5B $6A $06 $19 $00 $5B $82 $06 $19 $00 $5B
-	.db $9A $02 $FD $00 $85 $00 $00
-	
-; Data from 30067 to 33FFF (16281 bytes)	
-G$VanHalen1991__tiles__psgcompr$:	
-_VanHalen1991__tiles__psgcompr:	
-	.incbin "data/File11_30067_33FFF.dat"
-	
-; Data from 34000 to 3400F (16 bytes)	
-G$VanHalen1995__palette__bin$0$0:	
-_VanHalen1995__palette__bin:	
-	.db $00 $00 $00 $01 $01 $01 $15 $15 $06 $16 $16 $1B $1B $2F $3F $2B
-	
-; Data from 34010 to 3409E (143 bytes)	
-G$VanHalen1995__tilemap__stmcomp:	
-_VanHalen1995__tilemap__stmcompr:	
-	.db $FD $00 $29 $00 $04 $01 $05 $00 $08 $01 $00 $01 $02 $16 $04 $02
-	.db $31 $00 $5B $03 $19 $00 $5F $1B $15 $00 $5F $34 $11 $00 $63 $4D
-	.db $11 $00 $5F $67 $19 $00 $5B $80 $19 $00 $5B $98 $19 $00 $2F $B0
-	.db $04 $A2 $23 $BD $19 $00 $5B $C7 $15 $00 $5F $DF $15 $00 $36 $04
-	.db $33 $5B $F8 $02 $04 $33 $15 $00 $0A $5B $10 $02 $04 $4C $15 $00
-	.db $0A $5B $28 $06 $19 $00 $5F $40 $02 $11 $00 $12 $04 $33 $0A $5F
-	.db $59 $06 $11 $00 $5F $72 $02 $04 $66 $11 $00 $0A $63 $8B $06 $15
-	.db $00 $5F $A5 $06 $1D $00 $04 $BE $06 $11 $00 $07 $BF $06 $01 $00
-	.db $04 $C2 $06 $05 $00 $03 $C3 $0B $C4 $02 $FD $00 $05 $00 $00
-	
-; Data from 3409F to 37FFF (16225 bytes)	
-G$VanHalen1995__tiles__psgcompr$:	
-_VanHalen1995__tiles__psgcompr:	
-	.incbin "data/File12_3409F_37FFF.dat"
-	
-; Data from 38000 to 3800F (16 bytes)	
-G$VanHalen1998__palette__bin$0$0:	
-_VanHalen1998__palette__bin:	
-	.db $00 $00 $00 $00 $01 $05 $15 $16 $1A $2B $2F $3F $3F $3F $2B $2A
-	
-; Data from 38010 to 380C6 (183 bytes)	
-G$VanHalen1998__tilemap__stmcomp:	
-_VanHalen1998__tilemap__stmcompr:	
-	.db $FD $00 $85 $00 $03 $01 $0D $00 $07 $03 $29 $00 $04 $01 $1D $00
-	.db $0B $06 $04 $00 $0F $0A $29 $00 $04 $0F $1D $00 $33 $10 $04 $00
-	.db $1F $1E $19 $00 $5B $27 $19 $00 $03 $3F $53 $40 $19 $00 $01 $40
-	.db $53 $56 $19 $00 $5B $6C $19 $00 $5B $84 $19 $00 $2B $9C $04 $00
-	.db $27 $A8 $19 $00 $1B $B3 $08 $00 $1E $03 $BB $04 $00 $27 $BD $19
-	.db $00 $37 $C8 $16 $04 $1E $01 $00 $13 $D7 $19 $00 $43 $DD $16 $04
-	.db $01 $2D $00 $5B $EF $06 $19 $00 $53 $07 $1A $04 $06 $02 $1D $00
-	.db $0A $4F $1D $02 $04 $01 $16 $04 $1E $1D $00 $0A $0B $32 $06 $04
-	.db $00 $37 $36 $06 $04 $00 $04 $45 $06 $04 $00 $04 $46 $06 $19 $00
-	.db $0B $47 $06 $04 $00 $04 $4B $36 $04 $90 $2B $4C $1E $04 $06 $04
-	.db $58 $06 $25 $00 $3B $59 $2A $04 $46 $22 $04 $01 $02 $35 $00 $0E
-	.db $04 $69 $FD $00 $5D $00 $00
-	
-; Data from 380C7 to 3BFFF (16185 bytes)	
-G$VanHalen1998__tiles__psgcompr$:	
-_VanHalen1998__tiles__psgcompr:	
-	.incbin "data/File13_380C7_3BFFF.dat"
-	
-; Data from 3C000 to 3C00F (16 bytes)	
-G$VanHalen2012__palette__bin$0$0:	
-_VanHalen2012__palette__bin:	
-	.db $00 $00 $01 $15 $15 $1A $02 $03 $2A $2B $2A $2A $2F $2F $3F $2A
-	
-; Data from 3C010 to 3C079 (106 bytes)	
-G$VanHalen2012__tilemap__stmcomp:	
-_VanHalen2012__tilemap__stmcompr:	
-	.db $FD $00 $85 $00 $5B $01 $19 $00 $5B $19 $19 $00 $5B $31 $19 $00
-	.db $5B $49 $19 $00 $5B $61 $19 $00 $5B $79 $19 $00 $5B $91 $19 $00
-	.db $5B $A9 $19 $00 $5B $C1 $19 $00 $5B $D9 $19 $00 $07 $F1 $04 $00
-	.db $4B $F4 $06 $19 $00 $5B $08 $06 $19 $00 $5B $20 $06 $19 $00 $5B
-	.db $38 $06 $19 $00 $5B $50 $06 $19 $00 $5B $68 $06 $19 $00 $5B $80
-	.db $06 $15 $00 $5F $98 $06 $19 $00 $1F $B1 $02 $29 $00 $1E $04 $B7
-	.db $04 $00 $0E $04 $BA $FD $00 $05 $00 $00
-	
-; Data from 3C07A to 3FFFF (16262 bytes)	
-G$VanHalen2012__tiles__psgcompr$:	
-_VanHalen2012__tiles__psgcompr:	
-	.incbin "data/File14_3C07A_3FFFF.dat"
