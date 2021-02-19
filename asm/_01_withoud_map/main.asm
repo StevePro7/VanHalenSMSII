@@ -19,83 +19,83 @@ BANKS 14
 .ENDRO	
 	
 .enum $C000 export	
-_RAM_C000_ db	
-_RAM_C001_ db	
-_RAM_C002_ dw	
-_RAM_C004_ dw	
-_RAM_C006_ dw	
-_RAM_C008_ db	
-_RAM_C009_ db	
-_RAM_C00A_ db	
-_RAM_C00B_ db	
-_RAM_C00C_ db	
-_RAM_C00D_ dw	
-_RAM_C00F_ db	
-_RAM_C010_ db	
-_RAM_C011_ db	
-_RAM_C012_ db	
-_RAM_C013_ db	
-_RAM_C014_ db	
-_RAM_C015_ db	
-_RAM_C016_ db	
-_RAM_C017_ db	
-_RAM_C018_ db	
-_RAM_C019_ db	
-_RAM_C01A_ db	
-_RAM_C01B_ dw	
-_RAM_C01D_ dw	
-_RAM_C01F_ dw	
-_RAM_C021_ db	
-_RAM_C022_ db	
-_RAM_C023_ db	
-_RAM_C024_ dw	
+Lmain.main$global_pause$1$55 db		; Lmain.main$global_pause$1$55 = $C000
+PSGMusicStatus db					; PSGMusicStatus = $C001
+PSGMusicStart dw					; PSGMusicStart = $C002
+PSGMusicPointer dw					; PSGMusicPointer = $C004
+PSGMusicLoopPoint dw				; PSGMusicLoopPoint = $C006
+PSGMusicSkipFrames db				; PSGMusicSkipFrames = $C008
+PSGLoopFlag db						; PSGLoopFlag = $C009
+PSGMusicLastLatch db				; PSGMusicLastLatch = $C00A
+PSGMusicVolumeAttenuation db		; PSGMusicVolumeAttenuation = $C00B
+PSGMusicSubstringLen db				; PSGMusicSubstringLen = $C00C
+PSGMusicSubstringRetAddr dw			; PSGMusicSubstringRetAddr = $C00D
+PSGChan0Volume db					; PSGChan0Volume = $C00F
+PSGChan1Volume db					; PSGChan1Volume = $C010
+PSGChan2Volume db					; PSGChan2Volume = $C011
+PSGChan3Volume db					; PSGChan3Volume = $C012
+PSGChan2LowTone db					; PSGChan2LowTone = $C013
+PSGChan2HighTone db					; PSGChan2HighTone = $C014
+PSGChan3LowTone db					; PSGChan3LowTone = $C015
+PSGChannel2SFX db					; PSGChannel2SFX = $C016
+PSGChannel3SFX db					; PSGChannel3SFX = $C017
+PSGSFXChan2Volume db				; PSGSFXChan2Volume = $C018
+PSGSFXChan3Volume db				; PSGSFXChan3Volume = $C019
+PSGSFXStatus db						; PSGSFXStatus = $C01A
+PSGSFXStart dw						; PSGSFXStart = $C01B
+PSGSFXPointer dw					; PSGSFXPointer = $C01D
+PSGSFXLoopPoint dw					; PSGSFXLoopPoint = $C01F
+PSGSFXSkipFrames db					; PSGSFXSkipFrames = $C021
+PSGSFXLoopFlag db					; PSGSFXLoopFlag = $C022
+PSGSFXSubstringLen db				; PSGSFXSubstringLen = $C023
+PSGSFXSubstringRetAddr dw			; PSGSFXSubstringRetAddr = $C024
+.ende	
 .ende	
 	
 .enum $C02B export	
-_RAM_C02B_ db	
-_RAM_C02C_ db	
-_RAM_C02D_ dw	
-_RAM_C02F_ dw	
-_RAM_C031_ dw	
-_RAM_C033_ dw	
-_RAM_C035_ dw	
-_RAM_C037_ dw	
-_RAM_C039_ dw	
-_RAM_C03B_ dw	
-_RAM_C03D_ dw	
-_RAM_C03F_ dw	
-_RAM_C041_ dw	
-_RAM_C043_ dw	
-_RAM_C045_ db	
-.ende	
+Fscreen_manager$curr_screen_type db	    ; Fscreen_manager$curr_screen_type = $C02B
+Fscreen_manager$next_screen_type db	    ; Fscreen_manager$next_screen_type = $C02C
+Fscreen_manager$load_method$0$0 dw	    ; Fscreen_manager$load_method$0$0 = $C02D
+_RAM_C02F_ dw							; Fscreen_manager$load_method$0$0 + 2 = $C02F
+_RAM_C031_ dw		; screen #1
+_RAM_C033_ dw		; screen #2
+_RAM_C035_ dw		; screen #3
+_RAM_C037_ dw		; screen #4
+_RAM_C039_ dw							; Fscreen_manager$update_method$0$ = $C039
+_RAM_C03B_ dw							; Fscreen_manager$update_method$0$ + 2 = $C03B
+_RAM_C03D_ dw		; screen #5
+Fscreen_manager$update_method$0$ dw	    ; Fscreen_manager$update_method$0$ = $C03F
+_RAM_C041_ dw		; screen #6
+_RAM_C043_ dw		; screen #7
+_RAM_C045_ dw		; screen #8
 	
 .enum $C05B export	
-_RAM_C05B_ db	
-_RAM_C05C_ db	
-_RAM_C05D_ db	
-_RAM_C05E_ db	
-_RAM_C05F_ dw	
-_RAM_C061_ dw	
-_RAM_C063_ db	
+_RAM_C05B_ db							; VDPBlank = $C05B
+_RAM_C05C_ db							; SMS_VDPFlags = $C068
+_RAM_C05D_ db							; PauseRequested = $C05D
+_RAM_C05E_ db							; VDPType = $C05E
+_RAM_C05F_ dw							; KeysStatus = $C05F
+_RAM_C061_ dw							; PreviousKeysStatus = $C061
+_RAM_C063_ db							; SpriteTableY = $C063
 .ende	
-	
-.enum $C0A3 export	
-_RAM_C0A3_ db	
+
+.enum $C0A3 export
+_RAM_C0A3_ db							; SpriteTableXN = $C0A3
 .ende	
 	
 .enum $C123 export	
-_RAM_C123_ db	
-_RAM_C124_ dw	
-_RAM_C126_ db	
-.ende	
+_RAM_C123_ db							; SpriteNextFree = $C123
+_RAM_C124_ dw							; SMS_theLineInterruptHandler = $C124
+_RAM_C126_ db							; decompBuffer = $C126
+.ende
 	
 .enum $C146 export	
-_RAM_C146_ dw	
-_RAM_C148_ dw	
+_RAM_C146_ dw							; Finput_manager$curr_joypad1$0$0 = $C146
+_RAM_C148_ dw							; Finput_manager$prev_joypad1$0$0 = $C148
 .ende	
 	
 .enum $C1AA export	
-_RAM_C1AA_ db	
+_RAM_C1AA_ db							; VDPReg = $C1AA
 .ende	
 	
 .enum $C1AC export	
