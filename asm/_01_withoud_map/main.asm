@@ -68,34 +68,35 @@ Fscreen_manager$update_method$0$ dw	    ; Fscreen_manager$update_method$0$ = $C0
 _RAM_C041_ dw		; screen #6
 _RAM_C043_ dw		; screen #7
 _RAM_C045_ dw		; screen #8
-	
+.ende
+
 .enum $C05B export	
-_RAM_C05B_ db							; VDPBlank = $C05B
-_RAM_C05C_ db							; SMS_VDPFlags = $C068
-_RAM_C05D_ db							; PauseRequested = $C05D
-_RAM_C05E_ db							; VDPType = $C05E
-_RAM_C05F_ dw							; KeysStatus = $C05F
-_RAM_C061_ dw							; PreviousKeysStatus = $C061
-_RAM_C063_ db							; SpriteTableY = $C063
+VDPBlank db								; VDPBlank = $C05B
+SMS_VDPFlags db							; SMS_VDPFlags = $C068
+PauseRequested db						; PauseRequested = $C05D
+VDPType db								; VDPType = $C05E
+KeysStatus dw							; KeysStatus = $C05F
+PreviousKeysStatus dw					; PreviousKeysStatus = $C061
+SpriteTableY db							; SpriteTableY = $C063
 .ende	
 
 .enum $C0A3 export
-_RAM_C0A3_ db							; SpriteTableXN = $C0A3
+SpriteTableXN db						; SpriteTableXN = $C0A3
 .ende	
 	
 .enum $C123 export	
-_RAM_C123_ db							; SpriteNextFree = $C123
-_RAM_C124_ dw							; SMS_theLineInterruptHandler = $C124
+SpriteNextFree db						; SpriteNextFree = $C123
+SMS_theLineInterruptHandler dw			; SMS_theLineInterruptHandler = $C124
 _RAM_C126_ db							; decompBuffer = $C126
 .ende
 	
 .enum $C146 export	
-_RAM_C146_ dw							; Finput_manager$curr_joypad1$0$0 = $C146
-_RAM_C148_ dw							; Finput_manager$prev_joypad1$0$0 = $C148
+Finput_manager$curr_joypad1$0$0 dw		; Finput_manager$curr_joypad1$0$0 = $C146
+Finput_manager$prev_joypad1$0$0 dw		; Finput_manager$prev_joypad1$0$0 = $C148
 .ende	
 	
 .enum $C1AA export	
-_RAM_C1AA_ db							; VDPReg = $C1AA
+VDPReg db							; VDPReg = $C1AA
 .ende	
 	
 .enum $C1AC export	
@@ -166,9 +167,9 @@ _LABEL_70_:
 		inc a
 		djnz -
 		xor a
-		ld hl, _RAM_C000_
+		ld hl, Lmain.main$global_pause$1$55
 		ld (hl), a
-		ld de, _RAM_C000_ + 1
+		ld de, Lmain.main$global_pause$1$55 + 1
 		ld bc, $1FF0
 		ldir
 		call _LABEL_216B_
@@ -350,7 +351,7 @@ _LABEL_23C_:
 		or a
 		jr z, ++
 		call _LABEL_991_
-		ld iy, _RAM_C000_
+		ld iy, Lmain.main$global_pause$1$55
 		ld a, (iy+0)
 		xor $01
 		ld (iy+0), a
@@ -362,7 +363,7 @@ _LABEL_23C_:
 +:	
 		call _LABEL_A48_
 ++:	
-		ld hl, _RAM_C000_
+		ld hl, Lmain.main$global_pause$1$55
 		bit 0, (hl)
 		jr nz, _LABEL_23C_
 		call _LABEL_97F_
@@ -376,26 +377,26 @@ _LABEL_23C_:
 		jr _LABEL_23C_
 	
 _LABEL_281_:	
-		ld a, (_RAM_C001_)
+		ld a, (PSGMusicStatus)
 		or a
 		ret z
 		ld a, $9F
 		out (Port_PSG), a
 		ld a, $BF
 		out (Port_PSG), a
-		ld a, (_RAM_C016_)
+		ld a, (PSGChannel2SFX)
 		or a
 		jr nz, +
 		ld a, $DF
 		out (Port_PSG), a
 +:	
-		ld a, (_RAM_C017_)
+		ld a, (PSGChannel3SFX)
 		or a
 		jr nz, +
 		ld a, $FF
 		out (Port_PSG), a
 +:	
-		ld hl, _RAM_C001_
+		ld hl, PSGMusicStatus
 		ld (hl), $00
 		ret
 	
@@ -427,16 +428,16 @@ _LABEL_34F_:
 		ld ix, $0000
 		add ix, sp
 		push af
-		ld iy, _RAM_C00B_
+		ld iy, PSGMusicVolumeAttenuation
 		ld a, (iy+0)
 		ld (ix-2), a
 		xor a
 		ld (ix-1), a
 		ld c, (iy+0)
-		ld a, (_RAM_C001_)
+		ld a, (PSGMusicStatus)
 		or a
 		jr z, _LABEL_3C7_
-		ld a, (_RAM_C00F_)
+		ld a, (PSGChan0Volume)
 		and $0F
 		ld e, a
 		ld d, $00
@@ -455,7 +456,7 @@ _LABEL_34F_:
 		jr ++
 	
 +:	
-		ld a, (_RAM_C00F_)
+		ld a, (PSGChan0Volume)
 		and $0F
 		add a, c
 		ld e, a
@@ -495,7 +496,7 @@ _LABEL_34F_:
 		or $B0
 		out (Port_PSG), a
 _LABEL_3C7_:	
-		ld a, (_RAM_C016_)
+		ld a, (PSGChannel2SFX)
 		or a
 		jr z, +
 		ld a, (_RAM_C018_)
@@ -504,7 +505,7 @@ _LABEL_3C7_:
 		jr +++
 	
 +:	
-		ld a, (_RAM_C001_)
+		ld a, (PSGMusicStatus)
 		or a
 		jr z, +++
 		ld a, (_RAM_C011_)
@@ -537,7 +538,7 @@ _LABEL_3C7_:
 		or $D0
 		out (Port_PSG), a
 +++:	
-		ld a, (_RAM_C017_)
+		ld a, (PSGChannel3SFX)
 		or a
 		jr z, +
 		ld a, (_RAM_C019_)
@@ -546,7 +547,7 @@ _LABEL_3C7_:
 		jr +++
 	
 +:	
-		ld a, (_RAM_C001_)
+		ld a, (PSGMusicStatus)
 		or a
 		jr z, +++
 		ld a, (_RAM_C012_)
@@ -608,16 +609,16 @@ _LABEL_53D_:
 		ld a, (_RAM_C01A_)
 		or a
 		jp z, _LABEL_602_
-		ld iy, _RAM_C00B_
+		ld iy, PSGMusicVolumeAttenuation
 		ld a, (iy+0)
 		ld (ix-2), a
 		xor a
 		ld (ix-1), a
 		ld c, (iy+0)
-		ld a, (_RAM_C016_)
+		ld a, (PSGChannel2SFX)
 		or a
 		jr z, _LABEL_5B1_
-		ld a, (_RAM_C001_)
+		ld a, (PSGMusicStatus)
 		or a
 		jr z, _LABEL_5A8_
 		ld a, (_RAM_C013_)
@@ -662,13 +663,13 @@ _LABEL_5A8_:
 		ld a, $DF
 		out (Port_PSG), a
 +:	
-		ld hl, _RAM_C016_
+		ld hl, PSGChannel2SFX
 		ld (hl), $00
 _LABEL_5B1_:	
-		ld a, (_RAM_C017_)
+		ld a, (PSGChannel3SFX)
 		or a
 		jr z, _LABEL_5FD_
-		ld a, (_RAM_C001_)
+		ld a, (PSGMusicStatus)
 		or a
 		jr z, +++
 		ld a, (_RAM_C015_)
@@ -710,7 +711,7 @@ _LABEL_5B1_:
 		ld a, $FF
 		out (Port_PSG), a
 ++++:	
-		ld hl, _RAM_C017_
+		ld hl, PSGChannel3SFX
 		ld (hl), $00
 _LABEL_5FD_:	
 		ld hl, _RAM_C01A_
@@ -731,7 +732,7 @@ _LABEL_602_:
 	.db $E5 $CD $07 $06 $F1 $33 $21 $22 $C0 $36 $01 $C9
 	
 _LABEL_683_:	
-		ld a, (_RAM_C001_)
+		ld a, (PSGMusicStatus)
 		or a
 		ret z
 		ld a, (_RAM_C008_)
@@ -760,7 +761,7 @@ _LABEL_692_:
 		bit 5, a
 		jr z, +
 		ld (_RAM_C015_), a
-		ld a, (_RAM_C017_)
+		ld a, (PSGChannel3SFX)
 		or a
 		jp nz, _LABEL_692_
 		ld a, (_RAM_C015_)
@@ -770,14 +771,14 @@ _LABEL_692_:
 		ld a, (_RAM_C01A_)
 		or a
 		jr z, _LABEL_742_
-		ld (_RAM_C017_), a
+		ld (PSGChannel3SFX), a
 		ld a, $FF
 		out (Port_PSG), a
 		jp _LABEL_692_
 	
 +:	
 		ld (_RAM_C013_), a
-		ld a, (_RAM_C016_)
+		ld a, (PSGChannel2SFX)
 		or a
 		jr z, _LABEL_742_
 		jp _LABEL_692_
@@ -791,21 +792,21 @@ _LABEL_692_:
 		jp _LABEL_749_
 	
 +:	
-		ld (_RAM_C00F_), a
+		ld (PSGChan0Volume), a
 		jp _LABEL_749_
 	
 ++:	
 		bit 5, a
 		jr z, +
 		ld (_RAM_C012_), a
-		ld a, (_RAM_C017_)
+		ld a, (PSGChannel3SFX)
 		or a
 		jr z, _LABEL_748_
 		jp _LABEL_692_
 	
 +:	
 		ld (_RAM_C011_), a
-		ld a, (_RAM_C016_)
+		ld a, (PSGChannel2SFX)
 		or a
 		jr z, _LABEL_748_
 		jp _LABEL_692_
@@ -852,7 +853,7 @@ _LABEL_749_:
 		ld c, a
 		and $0F
 		ld b, a
-		ld a, (_RAM_C00B_)
+		ld a, (PSGMusicVolumeAttenuation)
 		add a, b
 		cp $0F
 		jr c, +
@@ -896,7 +897,7 @@ _LABEL_77B_:
 ++++++:	
 		ld a, b
 		ld (_RAM_C014_), a
-		ld a, (_RAM_C016_)
+		ld a, (PSGChannel2SFX)
 		or a
 		jr z, _LABEL_742_
 		jp _LABEL_692_
@@ -1265,10 +1266,10 @@ _LABEL_B51_:
 	.db $DD $34 $FE $DD $7E $FE $D6 $05 $38 $8D $DD $F9 $DD $E1 $C9
 	
 _LABEL_EC6_:	
-		ld hl, (_RAM_C146_)
-		ld (_RAM_C148_), hl
+		ld hl, (Finput_manager$curr_joypad1$0$0)
+		ld (Finput_manager$prev_joypad1$0$0), hl
 		call _LABEL_99B_
-		ld (_RAM_C146_), hl
+		ld (Finput_manager$curr_joypad1$0$0), hl
 		ret
 	
 	; Data from ED3 to F8B (185 bytes)
@@ -1462,12 +1463,12 @@ _LABEL_1AE0_:
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
-		ld hl, _RAM_C063_
+		ld hl, SpriteTableY
 		call _LABEL_119_
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
-		ld hl, _RAM_C0A3_
+		ld hl, SpriteTableXN
 		jp _LABEL_99_
 	
 	; Data from 1AF8 to 1B4E (87 bytes)
@@ -1523,12 +1524,12 @@ _LABEL_1B4F_:
 		ld a, c
 		sub $E7
 		jr c, +
-		ld hl, _RAM_C05E_
+		ld hl, VDPType
 		ld (hl), $80
 		ret
 	
 +:	
-		ld hl, _RAM_C05E_
+		ld hl, VDPType
 		ld (hl), $40
 		ret
 	
@@ -1541,7 +1542,7 @@ _LABEL_1BB6_:
 		ld c, l
 		ld e, h
 		ld d, $00
-		ld hl, _RAM_C1AA_
+		ld hl, VDPReg
 		add hl, de
 		ld a, (hl)
 		or c
@@ -1696,7 +1697,7 @@ _LABEL_1C99_:
 	.db $7D $D3 $BE $C9
 	
 _LABEL_1CB1_:	
-		ld hl, _RAM_C123_
+		ld hl, SpriteNextFree
 		ld (hl), $00
 		ret
 	
@@ -1709,11 +1710,11 @@ _LABEL_1CB1_:
 	.db $69 $C9 $2E $FF $C9
 	
 _LABEL_1D0C_:	
-		ld a, (_RAM_C123_)
+		ld a, (SpriteNextFree)
 		sub $40
 		ret nc
 		ld bc, $C063
-		ld hl, (_RAM_C123_)
+		ld hl, (SpriteNextFree)
 		ld h, $00
 		add hl, bc
 		ld (hl), $D0
@@ -1722,7 +1723,7 @@ _LABEL_1D0C_:
 _LABEL_1D1E_:	
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
-		ld bc, _RAM_C063_
+		ld bc, SpriteTableY
 		ld e, $40
 -:	
 		ld a, (bc)
@@ -1736,7 +1737,7 @@ _LABEL_1D1E_:
 		jr nz, -
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
-		ld bc, _RAM_C0A3_
+		ld bc, SpriteTableXN
 		ld e, $80
 -:	
 		ld a, (bc)
@@ -1751,16 +1752,16 @@ _LABEL_1D1E_:
 		ret
 	
 _LABEL_1D47_:	
-		ld hl, _RAM_C05B_
+		ld hl, VDPBlank
 		ld (hl), $00
 -:	
-		ld hl, _RAM_C05B_
+		ld hl, VDPBlank
 		bit 0, (hl)
 		jr z, -
 		ret
 	
 _LABEL_1D54_:	
-		ld hl, (_RAM_C05F_)
+		ld hl, (KeysStatus)
 		ret
 	
 	; Data from 1D58 to 1DA8 (81 bytes)
@@ -1772,12 +1773,12 @@ _LABEL_1D54_:
 	.db $C9
 	
 _LABEL_1DA9_:	
-		ld iy, _RAM_C05D_
+		ld iy, PauseRequested
 		ld l, (iy+0)
 		ret
 	
 _LABEL_1DB1_:	
-		ld hl, _RAM_C05D_
+		ld hl, PauseRequested
 		ld (hl), $00
 		ret
 	
@@ -1790,16 +1791,16 @@ _LABEL_1DDF_:
 		push af
 		push hl
 		in a, (Port_VDPStatus)
-		ld (_RAM_C05C_), a
+		ld (SMS_VDPFlags), a
 		rlca
 		jr nc, +
-		ld hl, _RAM_C05B_
+		ld hl, VDPBlank
 		ld (hl), $01
-		ld hl, (_RAM_C05F_)
-		ld (_RAM_C061_), hl
+		ld hl, (KeysStatus)
+		ld (PreviousKeysStatus), hl
 		in a, (Port_IOPort1)
 		cpl
-		ld hl, _RAM_C05F_
+		ld hl, KeysStatus
 		ld (hl), a
 		in a, (Port_IOPort2)
 		cpl
@@ -1811,7 +1812,7 @@ _LABEL_1DDF_:
 		push bc
 		push de
 		push iy
-		ld hl, (_RAM_C124_)
+		ld hl, (SMS_theLineInterruptHandler)
 		call _LABEL_2020_
 		pop iy
 		pop de
@@ -1828,7 +1829,7 @@ _LABEL_1E15_:
 		push de
 		push hl
 		push iy
-		ld hl, _RAM_C05D_
+		ld hl, PauseRequested
 		ld (hl), $01
 		pop iy
 		pop hl
@@ -1897,7 +1898,7 @@ _LABEL_2021_:
 _LABEL_2045_:	
 		push bc
 		ld b, $04
-		ld de, _RAM_C126_
+		ld de, decompBuffer
 		ld c, (ix+0)
 		inc ix
 _LABEL_2050_:	
@@ -1916,7 +1917,7 @@ _LABEL_2050_:
 		ld e, a
 		ld a, d
 		ld d, $00
-		ld iy, _RAM_C126_
+		ld iy, decompBuffer
 		add iy, de
 		ex de, hl
 		cp $03
@@ -2003,7 +2004,7 @@ _LABEL_20B1_:
 		jp nz, _LABEL_2050_
 		ld de, $0008
 		ld c, e
-		ld hl, _RAM_C126_
+		ld hl, decompBuffer
 --:	
 		ld b, $04
 		push hl
@@ -2038,7 +2039,7 @@ _LABEL_216B_:
 		ld a, b
 		or c
 		jr z, +
-		ld de, _RAM_C146_
+		ld de, Finput_manager$curr_joypad1$0$0
 		ld hl, _DATA_2103_
 		ldir
 +:	
