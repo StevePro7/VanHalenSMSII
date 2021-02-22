@@ -1,0 +1,55 @@
+Method
+22/02/2021
+
+
+Build entire project
+dev folder
+output.sms
+
+
+10
+create folder
+copy output.sms from dev folder here
+open output.sms into Emulicious
+debugger
+
+Ctrl+A to copy n' paste all disassembled output to ASM file
+output.asm
+
+IMPORTANT
+if there is "extra" disassembly
+i.e.
+; This disassembly was created using Emulicious (http://www.emulicious.net)
+
+occurs more than once then delete everything from the second entry to the end
+i.e.
+only keep first section
+
+
+
+15
+create folder
+copy output.sms and output.asm from previous step
+run BinaryFileWrite utility
+copy 2x files across
+e.g.
+VH02.asm
+VH02.sms
+
+run utility to generate data folder and main.asm
+save
+
+
+20
+create folder
+copy contents of 15 to 20
+rename output to Xoutput
+e.g.
+Xoutput.asm
+Xoutput.sms
+
+copy .vscode with launch.json and tasks.json here
+copy build.bat and build.sh here
+
+Ctrl+Shift+B
+build => output.sms
