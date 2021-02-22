@@ -240,27 +240,30 @@ _main:
 		call A$screen_manager$80
 		inc sp
 		call A$_sms_manager$145
-_LABEL_23C_:	
-		call _LABEL_98E_
+A$main$140:	
+C$main.c$27$3$57:
+		call A$_sms_manager$820
 		ld a, l
 		or a
-		jr z, ++
-		call _LABEL_991_
+		jr z, A$main$174
+		call A$_sms_manager$837
 		ld iy, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		ld a, (iy+0)
 		xor $01
 		ld (iy+0), a
 		bit 0, (iy+0)
-		jr z, +
-		call _LABEL_A45_
-		jr ++
-	
-+:	
-		call _LABEL_A48_
-++:	
+		jr z, A$main$169
+		call A$_snd_manager$275
+		jr A$main$174
+
+A$main$169:	
+C$main.c$37$5$60:	
+		call A$_snd_manager$292
+A$main$174:	
+C$main.c$41$3$57:	
 		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		bit 0, (hl)
-		jr nz, _LABEL_23C_
+		jr nz, A$main$140
 		call _LABEL_97F_
 		call _LABEL_EC6_
 		call _LABEL_FE2_
@@ -269,7 +272,7 @@ _LABEL_23C_:
 		call _LABEL_988_
 		call _LABEL_A4B_
 		call _LABEL_A4E_
-		jr _LABEL_23C_
+		jr A$main$140
 	
 _LABEL_281_:	
 		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
@@ -996,10 +999,22 @@ _LABEL_988_:
 	; Data from 98B to 98D (3 bytes)
 	.db $C3 $E0 $1A
 	
-_LABEL_98E_:	
+A$_sms_manager$820:	
+C$_sms_manager.c$138$1$118:	
+C$_sms_manager.c$140$1$119:	
+C$_sms_manager.c$141$1$119:	
+G$devkit_SMS_queryPauseRequested:	
+XG$devkit_SMS_queryPauseRequeste:	
+_devkit_SMS_queryPauseRequested:
 		jp _LABEL_1DA9_
 	
-_LABEL_991_:	
+A$_sms_manager$837:	
+C$_sms_manager.c$142$1$119:	
+C$_sms_manager.c$144$1$120:	
+C$_sms_manager.c$145$1$120:	
+G$devkit_SMS_resetPauseRequest$0:	
+XG$devkit_SMS_resetPauseRequest$:	
+_devkit_SMS_resetPauseRequest:
 		jp _LABEL_1DB1_
 	
 	; Data from 994 to 99A (7 bytes)
@@ -1028,10 +1043,10 @@ A$_sms_manager$905:
 	.db $CD $4E $04 $33 $C9 $21 $04 $00 $39 $7E $F5 $33 $21 $03 $00 $39
 	.db $4E $23 $46 $C5 $CD $07 $06 $F1 $33 $C9 $C3 $3D $05 $C3 $5A $06
 	
-_LABEL_A45_:	
+A$_snd_manager$275:	
 		jp _LABEL_33E_
 	
-_LABEL_A48_:	
+A$_snd_manager$292:	
 		jp _LABEL_34F_
 	
 _LABEL_A4B_:	
