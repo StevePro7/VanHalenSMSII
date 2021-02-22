@@ -62,3 +62,12 @@ Build entire project WITH output.map
 dev folder
 output.sms
 output.map
+
+dump output.sms into Emulicious
+Ctrl+A to copy n' paste all disassembled output to ASM file
+output.asm
+
+IMPORTANT
+here don't worry about "incbin..." as we are only using the symbols to integrate the next step
+i.e.
+port labels from 25/output.asm back into 20/output.asm => 30/output.asm
