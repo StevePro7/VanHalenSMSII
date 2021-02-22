@@ -129,7 +129,7 @@ if exist "*.asm" del "*.asm" > nul
 if exist "*.ihx" del "*.ihx" > nul
 if exist "*.lk"  del "*.lk"  > nul
 if exist "*.lst" del "*.lst" > nul
-if exist "*.map" del "*.map" > nul
+::if exist "*.map" del "*.map" > nul
 if exist "*.noi" del "*.noi" > nul
 REM if exist "*.rel" del "*.rel" > nul
 if exist "*.sym" del "*.sym" > nul

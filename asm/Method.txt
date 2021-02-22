@@ -2,9 +2,11 @@ Method
 22/02/2021
 
 
-Build entire project
+01.
+Build entire project WITHOUT output.map 
 dev folder
 output.sms
+
 
 
 10
@@ -53,3 +55,10 @@ copy build.bat and build.sh here
 
 Ctrl+Shift+B
 build => output.sms
+
+
+02.
+Build entire project WITH output.map 
+dev folder
+output.sms
+output.map
