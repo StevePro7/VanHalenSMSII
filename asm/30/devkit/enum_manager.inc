@@ -1,34 +1,34 @@
 .enum $C000 export	
 Lmain.main$global_pause$1$55 db		; Lmain.main$global_pause$1$55 = $C000
-PSGMusicStatus db		; PSGMusicStatus = $C001
-_RAM_C002_ dw	
-_RAM_C004_ dw	
-_RAM_C006_ dw	
-_RAM_C008_ db	
-_RAM_C009_ db	
-_RAM_C00A_ db	
-_RAM_C00B_ db	
-_RAM_C00C_ db	
-_RAM_C00D_ dw	
-_RAM_C00F_ db	
-_RAM_C010_ db	
-_RAM_C011_ db	
-_RAM_C012_ db	
-_RAM_C013_ db	
-_RAM_C014_ db	
-_RAM_C015_ db	
-_RAM_C016_ db	
-_RAM_C017_ db	
-_RAM_C018_ db	
-_RAM_C019_ db	
-_RAM_C01A_ db	
-_RAM_C01B_ dw	
-_RAM_C01D_ dw	
-_RAM_C01F_ dw	
-_RAM_C021_ db	
-_RAM_C022_ db	
-_RAM_C023_ db	
-_RAM_C024_ dw	
+PSGMusicStatus db                   ; PSGMusicStatus = $C001
+PSGMusicStart dw                    ; PSGMusicStart = $C002
+PSGMusicPointer dw		            ; PSGMusicPointer = $C004
+PSGMusicLoopPoint dw		        ; PSGMusicLoopPoint = $C006
+PSGMusicSkipFrames db		        ;  PSGMusicSkipFrames = $C008
+PSGLoopFlag db		                ; PSGLoopFlag = $C009
+PSGMusicLastLatch db		        ; PSGMusicLastLatch = $C00A
+PSGMusicVolumeAttenuation db		; PSGMusicVolumeAttenuation = $C00B
+PSGMusicSubstringLen db		        ; PSGMusicSubstringLen = $C00C
+PSGMusicSubstringRetAddr dw		    ; PSGMusicSubstringRetAddr = $C00D
+PSGChan0Volume db		            ; PSGChan0Volume = $C00F
+PSGChan1Volume db		            ; PSGChan1Volume = $C010
+PSGChan2Volume db		            ; PSGChan2Volume = $C011
+PSGChan3Volume db		            ; PSGChan3Volume = $C012
+PSGChan2LowTone db		            ; PSGChan2LowTone = $C013
+PSGChan2HighTone db		            ; PSGChan2HighTone = $C014
+PSGChan3LowTone db		            ; PSGChan3LowTone = $C015
+PSGChannel2SFX db		            ; PSGChannel2SFX = $C016
+PSGChannel3SFX db		            ; PSGChannel3SFX = $C017
+PSGSFXChan2Volume db		        ; PSGSFXChan2Volume = $C018
+PSGSFXChan3Volume db		        ; PSGSFXChan3Volume = $C019
+PSGSFXStatus db		                ; PSGSFXStatus = $C01A
+PSGSFXStart dw		                ; PSGSFXStart = $C01B
+PSGSFXPointer dw		            ; PSGSFXPointer = $C01D
+PSGSFXLoopPoint dw		            ; PSGSFXLoopPoint = $C01F
+PSGSFXSkipFrames db		            ; PSGSFXSkipFrames = $C021
+PSGSFXLoopFlag db		            ; PSGSFXLoopFlag = $C022
+PSGSFXSubstringLen db		        ; PSGSFXSubstringLen = $C023
+PSGSFXSubstringRetAddr dw		    ; PSGSFXSubstringRetAddr = $C024
 .ende	
 	
 .enum $C02B export	
