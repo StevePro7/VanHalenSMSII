@@ -58,6 +58,8 @@ build => output.sms
 
 
 02.
+
+25
 Build entire project WITH output.map 
 dev folder
 output.sms
@@ -71,3 +73,6 @@ IMPORTANT
 here don't worry about "incbin..." as we are only using the symbols to integrate the next step
 i.e.
 port labels from 25/output.asm back into 20/output.asm => 30/output.asm
+
+e.g.
+25
