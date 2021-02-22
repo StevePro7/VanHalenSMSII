@@ -61,12 +61,12 @@ _LABEL_70_:
 		ld bc, $1FF0
 		ldir
 		call gsinit
-		call _LABEL_1B4F_
+		call _SMS_init
 		ei
-		call _LABEL_20A_
-		jp _LABEL_204_
+		call A$main$83
+		jp _exit
 	
-_LABEL_99_:	
+_OUTI128:	
 		outi
 		outi
 		outi
@@ -202,14 +202,14 @@ _LABEL_119_:
 	.dsb 102, $00
 	.db $3E $02 $CF $C9
 	
-_LABEL_204_:	
+_exit:	
 		ld a, $00
 		rst $08	; _LABEL_8_
 -:	
 		halt
 		jr -
 	
-_LABEL_20A_:	
+A$main$83:	
 		call _LABEL_A5A_
 		call _LABEL_822_
 		call _LABEL_82B_
@@ -284,7 +284,7 @@ _LABEL_281_:
 		ld a, $FF
 		out (Port_PSG), a
 +:	
-		ld hl, PSGMusicStatus	; PSGMusicStatus = $C001
+		ld hl, PSGMusicStatus
 		ld (hl), $00
 		ret
 	
@@ -880,7 +880,7 @@ _LABEL_7AB_:
 	.db $C9
 	
 _LABEL_822_:	
-		jp _LABEL_1B4F_
+		jp _SMS_init
 	
 _LABEL_825_:	
 		ld hl, $0140
@@ -1357,7 +1357,7 @@ _LABEL_1AE0_:
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
 		ld hl, _RAM_C0A3_
-		jp _LABEL_99_
+		jp _OUTI128
 	
 	; Data from 1AF8 to 1B4E (87 bytes)
 	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
@@ -1367,7 +1367,7 @@ _LABEL_1AE0_:
 	.db $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF $0E $BE $21 $04 $00 $39
 	.db $7E $23 $66 $6F $C3 $99 $00
 	
-_LABEL_1B4F_:	
+_SMS_init:	
 		ld hl, $0000
 		push hl
 		call _LABEL_1C71_
