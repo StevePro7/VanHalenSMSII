@@ -131,7 +131,7 @@ _OUTI128:
 		outi
 		outi
 		outi
-_LABEL_119_:	
+_OUTI64:	
 		outi
 		outi
 		outi
@@ -198,10 +198,13 @@ _LABEL_119_:
 		outi
 		ret
 	
-	; Data from 19A to 203 (106 bytes)
+	; Data from 19A to 1FF (102 bytes)
 	.dsb 102, $00
+
+; Data from 200 to 203 (4 bytes)	
+__clock:	
 	.db $3E $02 $CF $C9
-	
+
 _exit:	
 		ld a, $00
 		rst $08	; _LABEL_8_
@@ -210,29 +213,33 @@ _exit:
 		jr -
 	
 A$main$83:	
-		call _LABEL_A5A_
-		call _LABEL_822_
-		call _LABEL_82B_
-		call _LABEL_99E_
+C$main.c$3$0$0:	
+C$main.c$9$1$55:	
+G$main$0$0:	
+_main:	
+		call A$asm_manager$59
+		call A$_sms_manager$132
+		call A$_sms_manager$163
+		call A$_sms_manager$887
 		ld b, l
 		push bc
 		inc sp
-		call _LABEL_871_
+		call A$_sms_manager$323
 		inc sp
-		call _LABEL_87D_
-		call _LABEL_9A1_
+		call A$_sms_manager$343
+		call A$_sms_manager$905
 		push hl
-		call _LABEL_887_
+		call A$_sms_manager$379
 		pop af
-		call _LABEL_AA2_
-		call _LABEL_B51_
-		call _LABEL_1025_
+		call A$content_manager$65
+		call A$content_manager$263
+		call A$scroll_manager$61
 		ld a, $01
 		push af
 		inc sp
-		call _LABEL_F8C_
+		call A$screen_manager$80
 		inc sp
-		call _LABEL_825_
+		call A$_sms_manager$145
 _LABEL_23C_:	
 		call _LABEL_98E_
 		ld a, l
@@ -879,14 +886,14 @@ _LABEL_7AB_:
 	; Data from 821 to 821 (1 bytes)
 	.db $C9
 	
-_LABEL_822_:	
+A$_sms_manager$132:	
 		jp _SMS_init
 	
-_LABEL_825_:	
+A$_sms_manager$145:	
 		ld hl, $0140
 		jp _LABEL_1BB6_
 	
-_LABEL_82B_:	
+A$_sms_manager$163:	
 		ld hl, $0140
 		jp _LABEL_1BCD_
 	
@@ -904,20 +911,20 @@ _LABEL_846_:
 	.db $21 $FC $FF $36 $08 $C9 $21 $02 $00 $39 $7E $87 $87 $CB $DF $E6
 	.db $0C $32 $FC $FF $C9 $21 $FC $FF $36 $00 $C9 $21 $00 $80 $C9
 	
-_LABEL_871_:	
+A$_sms_manager$323:	
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy+0)
 		jp _LABEL_1C18_
 	
-_LABEL_87D_:	
+A$_sms_manager$343:	
 		ld l, $00
 		jp _LABEL_1C04_
 	
 	; Data from 882 to 886 (5 bytes)
 	.db $2E $01 $C3 $04 $1C
 	
-_LABEL_887_:	
+A$_sms_manager$379:	
 		pop bc
 		pop hl
 		push hl
@@ -1001,11 +1008,11 @@ _LABEL_991_:
 _LABEL_99B_:	
 		jp _LABEL_1D54_
 	
-_LABEL_99E_:	
+A$_sms_manager$887:	
 		ld l, $00
 		ret
 	
-_LABEL_9A1_:	
+A$_sms_manager$905:	
 		ld hl, $0020
 		ret
 	
@@ -1036,7 +1043,7 @@ _LABEL_A4E_:
 	; Data from A51 to A59 (9 bytes)
 	.db $2E $01 $C9 $2E $02 $C9 $2E $03 $C9
 	
-_LABEL_A5A_:	
+A$asm_manager$59:	
 		ld a, $00
 		out (Port_VDPAddress), a
 		ld a, $40
@@ -1057,7 +1064,7 @@ _LABEL_A5A_:
 	.db $C0 $CD $51 $0A $65 $D1 $C1 $C5 $D5 $E5 $33 $C5 $CD $2A $0A $F1
 	.db $33 $C9
 	
-_LABEL_AA2_:	
+A$content_manager$65:	
 		ld hl, $0000
 		push hl
 		ld hl, $17A2
@@ -1083,7 +1090,7 @@ _LABEL_AA2_:
 	.db $A4 $08 $F1 $F1 $01 $D8 $92 $C5 $CD $C5 $08 $F1 $21 $03 $03 $E5
 	.db $2E $0F $E5 $CD $D3 $08 $F1 $F1 $C9
 	
-_LABEL_B51_:	
+A$content_manager$263:	
 		ld hl, $0120
 		push hl
 		ld hl, $1657
@@ -1174,7 +1181,7 @@ _LABEL_EC6_:
 	.db $B7 $20 $04 $3E $0B $02 $C9 $C6 $FF $02 $C9 $01 $2A $C0 $0A $FE
 	.db $0B $20 $03 $AF $02 $C9 $3C $02 $C9
 	
-_LABEL_F8C_:	
+A$screen_manager$80:	
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
@@ -1243,7 +1250,7 @@ _LABEL_FE2_:
 		pop af
 		ret
 	
-_LABEL_1025_:	
+A$scroll_manager$61:	
 		xor a
 		push af
 		inc sp
@@ -1352,7 +1359,7 @@ _LABEL_1AE0_:
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
 		ld hl, _RAM_C063_
-		call _LABEL_119_
+		call _OUTI64
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
