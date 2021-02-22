@@ -74,5 +74,16 @@ here don't worry about "incbin..." as we are only using the symbols to integrate
 i.e.
 port labels from 25/output.asm back into 20/output.asm => 30/output.asm
 
-e.g.
-25
+
+30
+Merge
+
+clone 25\output.asm to 25\steven.asm
+copy  25\output.sms to compare util
+
+Tortoise merge
+compare
+25\steven.asm
+30\main.asm
+
+update all the labels and variables from 25 to 30

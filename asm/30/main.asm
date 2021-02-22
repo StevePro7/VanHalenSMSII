@@ -19,8 +19,8 @@ BANKS 14
 .ENDRO	
 	
 .enum $C000 export	
-_RAM_C000_ db	
-_RAM_C001_ db	
+Lmain.main$global_pause$1$55 db		; Lmain.main$global_pause$1$55 = $C000
+PSGMusicStatus db		; PSGMusicStatus = $C001
 _RAM_C002_ dw	
 _RAM_C004_ dw	
 _RAM_C006_ dw	
@@ -126,7 +126,8 @@ _LABEL_0_:
 		im 1
 		jp _LABEL_70_
 	
-	; Data from 6 to 7 (2 bytes)
+; Data from 6 to 7 (2 bytes)	
+_SMS_crt0_RST08:
 	.db $00 $00
 	
 _LABEL_8_:	
@@ -137,19 +138,20 @@ _LABEL_8_:
 		ei
 		ret
 	
-	; Data from 11 to 37 (39 bytes)
+; Data from 11 to 37 (39 bytes)
+_SMS_crt0_RST18:	
 	.db $00 $00 $00 $00 $00 $00 $00 $7D $D3 $BE $7C $D6 $00 $00 $D3 $BE
 	.db $C9
 	.dsb 22, $00
 	
 _LABEL_38_:	
-		jp _LABEL_1DDF_
+		jp _SMS_isr
 	
 	; Data from 3B to 65 (43 bytes)
 	.dsb 43, $00
 	
 _LABEL_66_:	
-		jp _LABEL_1E15_
+		jp _SMS_nmi_isr
 	
 	; Data from 69 to 6F (7 bytes)
 	.db $00 $00 $00 $00 $00 $00 $00
@@ -166,9 +168,9 @@ _LABEL_70_:
 		inc a
 		djnz -
 		xor a
-		ld hl, _RAM_C000_
+		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		ld (hl), a
-		ld de, _RAM_C000_ + 1
+		ld de, PSGMusicStatus	; PSGMusicStatus = $C001
 		ld bc, $1FF0
 		ldir
 		call _LABEL_216B_
@@ -350,7 +352,7 @@ _LABEL_23C_:
 		or a
 		jr z, ++
 		call _LABEL_991_
-		ld iy, _RAM_C000_
+		ld iy, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		ld a, (iy+0)
 		xor $01
 		ld (iy+0), a
@@ -362,7 +364,7 @@ _LABEL_23C_:
 +:	
 		call _LABEL_A48_
 ++:	
-		ld hl, _RAM_C000_
+		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		bit 0, (hl)
 		jr nz, _LABEL_23C_
 		call _LABEL_97F_
@@ -1786,7 +1788,7 @@ _LABEL_1DB1_:
 	.db $C9 $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
 	.db $DB $7E $6F $C9 $DB $7F $6F $C9
 	
-_LABEL_1DDF_:	
+_SMS_isr:	
 		push af
 		push hl
 		in a, (Port_VDPStatus)
@@ -1822,7 +1824,7 @@ _LABEL_1DDF_:
 		ei
 		reti
 	
-_LABEL_1E15_:	
+_SMS_nmi_isr:	
 		push af
 		push bc
 		push de
