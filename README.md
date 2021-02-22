@@ -1,4 +1,15 @@
 # VanHalenSMS
+22/02/2021
+
+SRCE
+steven.asm
+E:\GitHub\StevePro7\VanHalenSMSII\asm\25
+
+DEST
+main.asm
+E:\GitHub\StevePro7\VanHalenSMSII\asm\30
+
+
 Van Halen SMS prototyping
 
 08/02/2021
