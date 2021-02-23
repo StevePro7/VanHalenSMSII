@@ -5635,6 +5635,10 @@ _engine_screen_manager_update:
 		ret
 	
 A$scroll_manager$61:	
+C$scroll_manager.c$10$1$18:	
+C$scroll_manager.c$8$0$0:	
+G$engine_scroll_manager_reset$0$:	
+_engine_scroll_manager_reset:	
 		xor a
 		push af
 		inc sp
