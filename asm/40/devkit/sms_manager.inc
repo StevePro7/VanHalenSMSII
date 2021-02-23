@@ -355,7 +355,7 @@ _SMS_finalizeSprites:
 _SMS_copySpritestoSAT:	
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
-		ld bc, SpriteTableY	; SpriteTableY = $C063
+		;ld bc, SpriteTableY	; SpriteTableY = $C063
 		ld e, $40
 -:	
 		ld a, (bc)
@@ -398,23 +398,23 @@ _SMS_getKeysStatus:
 	
 ; Data from 1D58 to 1D74 (29 bytes)	
 _SMS_getKeysPressed:	
-	.db $FD $21 $61 $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $FD $21
-	.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9
-    ; ld iy, $C061
-	; ld a, (iy + $00)
-	; cpl
-	; ld c, a
-	; ld a, (iy + $01)
-	; cpl
-	; ld b, a
-	; ld iy, $C06B
-	; ld a, (iy + $00)
-	; and c
-	; ld l, a
-	; ld a, (iy + $01)
-	; and b
-	; ld h, a
-	; ret
+	;.db $FD $21 $61 $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $FD $21
+	;.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9
+        ld iy, PreviousKeysStatus       ; PreviousKeysStatus = $C061
+        ld a, (iy + $00)
+        cpl
+        ld c, a
+        ld a, (iy + $01)
+        cpl
+        ld b, a
+        ld iy, $C06B
+        ld a, (iy + $00)
+        and c
+        ld l, a
+        ld a, (iy + $01)
+        and b
+        ld h, a
+        ret
 	
 ; Data from 1D75 to 1D8B (23 bytes)	
 _SMS_getKeysHeld:	
