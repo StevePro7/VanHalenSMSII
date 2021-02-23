@@ -5616,8 +5616,7 @@ _engine_screen_manager_update:
 		ld h, (hl)
 		ld l, c
 		call ___sdcc_call_hl
-A$screen_manager$193:	
-C$screen_manager.c$49$1$11:	
++:
 		ld bc, Fscreen_manager$update_method$0$	; Fscreen_manager$update_method$0$ = $C039
 		ld iy, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
 		ld l, (iy+0)

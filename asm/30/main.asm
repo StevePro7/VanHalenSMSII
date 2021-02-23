@@ -5565,11 +5565,11 @@ _engine_screen_manager_init:
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
-		ld (_RAM_C02C_), a
-		ld hl, _RAM_C02B_
+		ld (Fscreen_manager$next_screen_type), a	; Fscreen_manager$next_screen_type = $C02C
+		ld hl, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
 		ld (hl), $00
 		ld hl, $1195
-		ld (_RAM_C02D_), hl
+		ld (Fscreen_manager$load_method$0$0), hl	; Fscreen_manager$load_method$0$0 = $C02D
 		ld hl, $119D
 		ld (_RAM_C02F_), hl
 		ld hl, $1220
@@ -5595,14 +5595,18 @@ _engine_screen_manager_init:
 		ret
 	
 A$screen_manager$166:	
-		ld a, (_RAM_C02B_)
-		ld iy, _RAM_C02C_
+C$screen_manager.c$41$1$10:	
+C$screen_manager.c$43$1$11:	
+G$engine_screen_manager_update$0:	
+_engine_screen_manager_update:
+		ld a, (Fscreen_manager$curr_screen_type)	; Fscreen_manager$curr_screen_type = $C02B
+		ld iy, Fscreen_manager$next_screen_type	; Fscreen_manager$next_screen_type = $C02C
 		sub (iy+0)
 		jr z, +
 		ld a, (iy+0)
-		ld iy, _RAM_C02B_
+		ld iy, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
 		ld (iy+0), a
-		ld bc, _RAM_C02D_
+		ld bc, Fscreen_manager$load_method$0$0	; Fscreen_manager$load_method$0$0 = $C02D
 		ld l, (iy+0)
 		ld h, $00
 		add hl, hl
@@ -5611,10 +5615,10 @@ A$screen_manager$166:
 		inc hl
 		ld h, (hl)
 		ld l, c
-		call _LABEL_2020_
+		call ___sdcc_call_hl
 +:	
 		ld bc, _RAM_C039_
-		ld iy, _RAM_C02B_
+		ld iy, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
 		ld l, (iy+0)
 		ld h, $00
 		add hl, hl
@@ -5626,7 +5630,7 @@ A$screen_manager$166:
 		push hl
 		ld l, c
 		ld h, b
-		call _LABEL_2020_
+		call ___sdcc_call_hl
 		pop af
 		ret
 	
@@ -6089,7 +6093,7 @@ _SMS_isr:
 		push de
 		push iy
 		ld hl, (_RAM_C124_)
-		call _LABEL_2020_
+		call ___sdcc_call_hl
 		pop iy
 		pop de
 		pop bc
@@ -6148,7 +6152,7 @@ _SMS_nmi_isr:
 	.db $DD $7E $F3 $DD $77 $FE $DD $7E $F4 $DD $77 $FF $DD $36 $F0 $00
 	.db $C3 $A0 $1E $DD $F9 $DD $E1 $C9
 	
-_LABEL_2020_:	
+___sdcc_call_hl:	
 		jp (hl)
 	
 _SMS_loadPSGaidencompressedTiles:	
