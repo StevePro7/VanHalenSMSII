@@ -9215,7 +9215,7 @@ _SMS_init:
 		pop af
 		ld c, $00
 -:	
-		ld hl, _DATA_1BA3_
+		ld hl, _VDPReg_init	; _VDPReg_init = $1BA3
 		ld b, $00
 		add hl, bc
 		ld b, (hl)
@@ -9232,7 +9232,7 @@ _SMS_init:
 		jr c, -
 		call _SMS_initSprites
 		call _SMS_finalizeSprites
-		call _LABEL_1D1E_
+		call _SMS_copySpritestoSAT
 		call _SMS_resetPauseRequest
 -:	
 		in a, (Port_VCounter)
@@ -9253,17 +9253,17 @@ _SMS_init:
 		ld a, c
 		sub $E7
 		jr c, +
-		ld hl, VDPType
+		ld hl, VDPType	; VDPType = $C05E
 		ld (hl), $80
 		ret
 	
 +:	
-		ld hl, VDPType
+		ld hl, VDPType	; VDPType = $C05E
 		ld (hl), $40
 		ret
 	
 ; Data from 1BA3 to 1BB5 (19 bytes)	
-_DATA_1BA3_:	
+_VDPReg_init:	
 	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF $FD $21 $5E $C0 $FD
 	.db $6E $00 $C9
 	
@@ -9450,7 +9450,7 @@ _SMS_finalizeSprites:
 		ld (hl), $D0
 		ret
 	
-_LABEL_1D1E_:	
+_SMS_copySpritestoSAT:	
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
 		ld bc, SpriteTableY
