@@ -9197,31 +9197,62 @@ _UNSAFE_SMS_copySpritestoSAT:
 _UNSAFE_SMS_VRAMmemcpy32:
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01
-	ld iy, $0002
-	add iy, sp
-	ld l, (iy + $00)
-	ld a, (iy + $01)
-	set 6, a
-	ld h, a
-	rst $08
-	ld c, $BE
-	ld hl, $0004
-	add hl, sp
-	ld a, (hl)
-	inc hl
-	ld h, (hl)
-	ld l, a
-	jp $0159
+		ld iy, $0002
+		add iy, sp
+		ld l, (iy + $00)
+		ld a, (iy + $01)
+		set 6, a
+		ld h, a
+		rst $08
+		ld c, $BE
+		ld hl, $0004
+		add hl, sp
+		ld a, (hl)
+		inc hl
+		ld h, (hl)
+		ld l, a
+		jp $0159
 	
 ; Data from 1B15 to 1B31 (29 bytes)	
-_UNSAFE_SMS_VRAMmemcpy64:	
-	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
-	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01
+_UNSAFE_SMS_VRAMmemcpy64:
+	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
+	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01
+		ld iy, $0002
+		add iy, sp
+		ld l, (iy + $00)
+		ld a, (iy + $01)
+		set 6, a
+		ld h, a
+		rst $08
+		ld c, $BE
+		ld hl, $0004
+		add hl, sp
+		ld a, (hl)
+		inc hl
+		ld h, (hl)
+		ld l, a
+		jp $0119
+
 	
 ; Data from 1B32 to 1B4E (29 bytes)	
-_UNSAFE_SMS_VRAMmemcpy128:	
-	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
-	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $99 $00
+_UNSAFE_SMS_VRAMmemcpy128:
+	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
+	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $99 $00
+		ld iy, $0002
+		add iy, sp
+		ld l, (iy + $00)
+		ld a, (iy + $01)
+		set 6, a
+		ld h, a
+		rst $08
+		ld c, $BE
+		ld hl, $0004
+		add hl, sp
+		ld a, (hl)
+		inc hl
+		ld h, (hl)
+		ld l, a
+		jp $0099
 	
 _SMS_init:	
 		ld hl, $0000
@@ -9283,7 +9314,10 @@ _VDPReg_init:
 	
 ; Data from 1BAE to 1BB5 (8 bytes)	
 _SMS_VDPType:	
-	.db $FD $21 $5E $C0 $FD $6E $00 $C9
+	;.db $FD $21 $5E $C0 $FD $6E $00 $C9
+		ld iy, VDPType	; VDPType = $C05E
+		ld l, (iy + $00)
+		ret
 	
 _SMS_VDPturnOnFeature:	
 		ld c, l
@@ -9327,7 +9361,14 @@ _SMS_VDPturnOffFeature:
 	
 ; Data from 1BE6 to 1BEF (10 bytes)	
 _SMS_setBGScrollX:	
-	.db $F3 $7D $D3 $BF $3E $88 $D3 $BF $FB $C9
+	;.db $F3 $7D $D3 $BF $3E $88 $D3 $BF $FB $C9
+		di
+		ld a, l
+		out ($bf), a
+		ld a, $88
+		out ($bf), a
+		ei
+		ret
 	
 _SMS_setBGScrollY:	
 		di

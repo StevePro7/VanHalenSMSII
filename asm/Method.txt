@@ -96,3 +96,7 @@ remove DATA folder and all the *.dat files
 replace with the bank_manager.inc
 
 begin to disassemble code and extract into *.inc files
+
+
+Code from 
+sms_manager.inc
