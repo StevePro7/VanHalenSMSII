@@ -9381,7 +9381,14 @@ _SMS_setBGScrollY:
 	
 ; Data from 1BFA to 1C03 (10 bytes)	
 _SMS_setBackdropColor:	
-	.db $F3 $7D $D3 $BF $3E $87 $D3 $BF $FB $C9
+	;.db $F3 $7D $D3 $BF $3E $87 $D3 $BF $FB $C9
+		di
+		ld a, l
+		out ($bf), a
+		ld a, $87
+		out ($bf), a
+		ei
+		ret
 	
 _SMS_useFirstHalfTilesforSprites:	
 		bit 0, l
@@ -9439,8 +9446,20 @@ _SMS_setSpriteMode:
 	
 ; Data from 1C5D to 1C70 (20 bytes)	
 _SMS_setBGPaletteColor:	
-	.db $21 $02 $00 $39 $4E $06 $00 $21 $00 $C0 $09 $CF $21 $03 $00 $39
-	.db $7E $D3 $BE $C9
+	;.db $21 $02 $00 $39 $4E $06 $00 $21 $00 $C0 $09 $CF $21 $03 $00 $39
+	;.db $7E $D3 $BE $C9
+		ld hl, $0002
+		add hl, sp
+		ld c, (hl)
+		ld b, $00
+		ld hl, Lmain.main$global_pause$1$55		; Lmain.main$global_pause$1$55 = $C000
+		add hl, bc
+		rst $08
+		ld hl, $0003
+		add hl, sp
+		ld a, (hl)
+		out ($be), a
+		ret
 	
 _SMS_setSpritePaletteColor:	
 		ld hl, $0002
