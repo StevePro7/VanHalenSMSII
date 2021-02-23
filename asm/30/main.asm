@@ -830,24 +830,24 @@ _LABEL_77B_:
 	; Data from 79B to 79B (1 bytes)
 	.db $C9
 	
-_LABEL_79C_:	
-		ld a, (PSGSFXStatus)
+_PSGSFXFrame:	
+		ld a, (PSGSFXStatus)	; PSGSFXStatus = $C01A
 		or a
 		ret z
-		ld a, (PSGSFXSkipFrames)
+		ld a, (PSGSFXSkipFrames)	; PSGSFXSkipFrames = $C021
 		or a
 		jp nz, +++
-		ld hl, (PSGSFXPointer)
+		ld hl, (PSGSFXPointer)	; PSGSFXPointer = $C01D
 _LABEL_7AB_:	
 		ld b, (hl)
 		inc hl
-		ld a, (PSGSFXSubstringLen)
+		ld a, (PSGSFXSubstringLen)	; PSGSFXSubstringLen = $C023
 		or a
 		jr z, +
 		dec a
-		ld (PSGSFXSubstringLen), a
+		ld (PSGSFXSubstringLen), a	; PSGSFXSubstringLen = $C023
 		jr nz, +
-		ld hl, (PSGSFXSubstringRetAddr)
+		ld hl, (PSGSFXSubstringRetAddr)	; PSGSFXSubstringRetAddr = $C024
 +:	
 		ld a, b
 		cp $40
@@ -856,18 +856,18 @@ _LABEL_7AB_:
 		jr z, ++
 		bit 5, a
 		jr nz, +
-		ld (PSGSFXChan2Volume), a
+		ld (PSGSFXChan2Volume), a	; PSGSFXChan2Volume = $C018
 		jr ++
 	
 +:	
-		ld (PSGSFXChan3Volume), a
+		ld (PSGSFXChan3Volume), a	; PSGSFXChan3Volume = $C019
 ++:	
 		out (Port_PSG), a
 		jp _LABEL_7AB_
 	
 +++:	
 		dec a
-		ld (PSGSFXSkipFrames), a
+		ld (PSGSFXSkipFrames), a	; PSGSFXSkipFrames = $C021
 		ret
 	
 ++++:	
@@ -875,9 +875,9 @@ _LABEL_7AB_:
 		jr z, +
 		jr c, ++
 		and $07
-		ld (PSGSFXSkipFrames), a
+		ld (PSGSFXSkipFrames), a	; PSGSFXSkipFrames = $C021
 +:	
-		ld (PSGSFXPointer), hl
+		ld (PSGSFXPointer), hl	; PSGSFXPointer = $C01D
 		ret
 	
 ++:	
@@ -890,26 +890,26 @@ _LABEL_7AB_:
 		ret
 	
 +:	
-		ld (PSGSFXLoopPoint), hl
+		ld (PSGSFXLoopPoint), hl	; PSGSFXLoopPoint = $C01F
 		jp _LABEL_7AB_
 	
 ++:	
-		ld a, (PSGSFXLoopFlag)
+		ld a, (PSGSFXLoopFlag)	; PSGSFXLoopFlag = $C022
 		or a
 		jp z, _PSGSFXStop
-		ld hl, (PSGSFXLoopPoint)
-		ld (PSGSFXPointer), hl
+		ld hl, (PSGSFXLoopPoint)	; PSGSFXLoopPoint = $C01F
+		ld (PSGSFXPointer), hl	; PSGSFXPointer = $C01D
 		jp _LABEL_7AB_
 	
 +++:	
 		sub $04
-		ld (PSGSFXSubstringLen), a
+		ld (PSGSFXSubstringLen), a	; PSGSFXSubstringLen = $C023
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
 		inc hl
-		ld (PSGSFXSubstringRetAddr), hl
-		ld hl, (PSGSFXStart)
+		ld (PSGSFXSubstringRetAddr), hl	; PSGSFXSubstringRetAddr = $C024
+		ld hl, (PSGSFXStart)	; PSGSFXStart = $C01B
 		add hl, bc
 		jp _LABEL_7AB_
 	
@@ -1080,7 +1080,7 @@ A$_snd_manager$309:
 		jp _PSGFrame
 	
 A$_snd_manager$326:	
-		jp _LABEL_79C_
+		jp _PSGSFXFrame
 	
 	; Data from A51 to A59 (9 bytes)
 	.db $2E $01 $C9 $2E $02 $C9 $2E $03 $C9
