@@ -87,3 +87,12 @@ compare
 30\main.asm
 
 update all the labels and variables from 25 to 30
+e.g.
+enum_manager.
+
+
+40
+remove DATA folder and all the *.dat files
+replace with the bank_manager.inc
+
+begin to disassemble code and extract into *.inc files

@@ -9194,9 +9194,24 @@ _UNSAFE_SMS_copySpritestoSAT:
 		jp _OUTI128
 	
 ; Data from 1AF8 to 1B14 (29 bytes)	
-_UNSAFE_SMS_VRAMmemcpy32:	
-	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
-	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01
+_UNSAFE_SMS_VRAMmemcpy32:
+	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
+	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01
+	ld iy, $0002
+	add iy, sp
+	ld l, (iy + $00)
+	ld a, (iy + $01)
+	set 6, a
+	ld h, a
+	rst $08
+	ld c, $BE
+	ld hl, $0004
+	add hl, sp
+	ld a, (hl)
+	inc hl
+	ld h, (hl)
+	ld l, a
+	jp $0159
 	
 ; Data from 1B15 to 1B31 (29 bytes)	
 _UNSAFE_SMS_VRAMmemcpy64:	
