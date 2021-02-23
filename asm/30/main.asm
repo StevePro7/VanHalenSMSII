@@ -9433,7 +9433,7 @@ _SMS_setColor:
 	.db $7D $D3 $BE $C9
 	
 _SMS_initSprites:	
-		ld hl, SpriteNextFree
+		ld hl, SpriteNextFree	; SpriteNextFree = $C123
 		ld (hl), $00
 		ret
 	
@@ -9447,11 +9447,11 @@ _SMS_addSprite:
 	.db $69 $C9 $2E $FF $C9
 	
 _SMS_finalizeSprites:	
-		ld a, (SpriteNextFree)
+		ld a, (SpriteNextFree)	; SpriteNextFree = $C123
 		sub $40
 		ret nc
-		ld bc, $C063
-		ld hl, (SpriteNextFree)
+		ld bc, SpriteTableY	; SpriteTableY = $C063
+		ld hl, (SpriteNextFree)	; SpriteNextFree = $C123
 		ld h, $00
 		add hl, bc
 		ld (hl), $D0
@@ -9460,7 +9460,7 @@ _SMS_finalizeSprites:
 _SMS_copySpritestoSAT:	
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
-		ld bc, SpriteTableY
+		ld bc, SpriteTableY	; SpriteTableY = $C063
 		ld e, $40
 -:	
 		ld a, (bc)
@@ -9474,7 +9474,7 @@ _SMS_copySpritestoSAT:
 		jr nz, -
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
-		ld bc, SpriteTableXN
+		ld bc, SpriteTableXN	; SpriteTableXN = $C0A3
 		ld e, $80
 -:	
 		ld a, (bc)
