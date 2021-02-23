@@ -5602,7 +5602,7 @@ _engine_screen_manager_update:
 		ld a, (Fscreen_manager$curr_screen_type)	; Fscreen_manager$curr_screen_type = $C02B
 		ld iy, Fscreen_manager$next_screen_type	; Fscreen_manager$next_screen_type = $C02C
 		sub (iy+0)
-		jr z, A$screen_manager$193
+		jr z, +
 		ld a, (iy+0)
 		ld iy, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
 		ld (iy+0), a

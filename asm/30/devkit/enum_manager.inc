@@ -40,7 +40,7 @@ _RAM_C031_ dw
 _RAM_C033_ dw	
 _RAM_C035_ dw	
 _RAM_C037_ dw	
-_RAM_C039_ dw	
+Fscreen_manager$update_method$0$ dw	    ; Fscreen_manager$update_method$0$ = $C039
 _RAM_C03B_ dw	
 _RAM_C03D_ dw	
 _RAM_C03F_ dw	

@@ -2811,12 +2811,12 @@ H$engine_content_manager_load_sp:
 _engine_content_manager_load_spr:
 		ld hl, $0120
 		push hl
-		ld hl, $1657 ; _cursor__tiles__psgcompr	; _cursor__tiles__psgcompr = $1657		; stevepro
+		ld hl, _cursor__tiles__psgcompr	; _cursor__tiles__psgcompr = $1657
 		push hl
 		call A$_sms_manager$400
 		pop af
 		pop af
-		ld bc, $1647	; _cursor__palette__bin	; _cursor__palette__bin = $1647			; stevepro
+		ld bc, _cursor__palette__bin	; _cursor__palette__bin = $1647
 		push bc
 		call A$_sms_manager$493
 		pop af
@@ -5581,7 +5581,7 @@ _engine_screen_manager_init:
 		ld hl, $14E2
 		ld (_RAM_C037_), hl
 		ld hl, $1196
-		ld (_RAM_C039_), hl
+		ld (Fscreen_manager$update_method$0$), hl
 		ld hl, $11B9
 		ld (_RAM_C03B_), hl
 		ld hl, $12BE
@@ -5617,7 +5617,7 @@ _engine_screen_manager_update:
 		ld l, c
 		call ___sdcc_call_hl
 +:	
-		ld bc, _RAM_C039_
+		ld bc, Fscreen_manager$update_method$0$	; Fscreen_manager$update_method$0$ = $C039
 		ld iy, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
 		ld l, (iy+0)
 		ld h, $00
