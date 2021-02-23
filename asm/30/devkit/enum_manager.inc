@@ -60,7 +60,7 @@ SpriteTableY db		                    ; SpriteTableY = $C063
 .ende	
 	
 .enum $C0A3 export	
-_RAM_C0A3_ db	
+SpriteTableXN db	                    ; SpriteTableXN = $C0A3
 .ende	
 	
 .enum $C123 export	

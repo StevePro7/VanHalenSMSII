@@ -9185,26 +9185,33 @@ _UNSAFE_SMS_copySpritestoSAT:
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
-		ld hl, SpriteTableY
+		ld hl, SpriteTableY	; SpriteTableY = $C063
 		call _OUTI64
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
-		ld hl, _RAM_C0A3_
+		ld hl, SpriteTableXN	; SpriteTableXN = $C0A3
 		jp _OUTI128
 	
-	; Data from 1AF8 to 1B4E (87 bytes)
+; Data from 1AF8 to 1B14 (29 bytes)	
+_UNSAFE_SMS_VRAMmemcpy32:	
 	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
-	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01 $FD $21 $02
-	.db $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF $0E $BE $21
-	.db $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01 $FD $21 $02 $00 $FD $39
-	.db $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF $0E $BE $21 $04 $00 $39
-	.db $7E $23 $66 $6F $C3 $99 $00
+	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01
+	
+; Data from 1B15 to 1B31 (29 bytes)	
+_UNSAFE_SMS_VRAMmemcpy64:	
+	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
+	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01
+	
+; Data from 1B32 to 1B4E (29 bytes)	
+_UNSAFE_SMS_VRAMmemcpy128:	
+	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
+	.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $99 $00
 	
 _SMS_init:	
 		ld hl, $0000
 		push hl
-		call _LABEL_1C71_
+		call _SMS_setSpritePaletteColor
 		pop af
 		ld c, $00
 -:	
@@ -9374,7 +9381,7 @@ _SMS_setSpriteMode:
 	.db $21 $02 $00 $39 $4E $06 $00 $21 $00 $C0 $09 $CF $21 $03 $00 $39
 	.db $7E $D3 $BE $C9
 	
-_LABEL_1C71_:	
+_SMS_setSpritePaletteColor:	
 		ld hl, $0002
 		add hl, sp
 		ld c, (hl)
@@ -9460,7 +9467,7 @@ _LABEL_1D1E_:
 		jr nz, -
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
-		ld bc, _RAM_C0A3_
+		ld bc, SpriteTableXN
 		ld e, $80
 -:	
 		ld a, (bc)
