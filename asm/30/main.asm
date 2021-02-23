@@ -941,19 +941,155 @@ _devkit_SMS_displayOff:
 		ld hl, $0140
 		jp _SMS_VDPturnOffFeature
 	
-	; Data from 831 to 845 (21 bytes)
-	.db $21 $02 $00 $39 $7E $32 $FF $FF $C9 $FD $21 $02 $00 $FD $39 $FD
-	.db $6E $00 $C3 $E6 $1B
+; Data from 831 to 833 (3 bytes)	
+A$_sms_manager$181:	
+C$_sms_manager.c$23$1$76:	
+C$_sms_manager.c$25$1$78:	
+G$devkit_SMS_mapROMBank$0$0:	
+_devkit_SMS_mapROMBank:	
+	.db $21 $02 $00
 	
-_LABEL_846_:	
+; Data from 834 to 834 (1 bytes)	
+A$_sms_manager$182:	
+	.db $39
+	
+; Data from 835 to 835 (1 bytes)	
+A$_sms_manager$183:	
+	.db $7E
+	
+; Data from 836 to 838 (3 bytes)	
+A$_sms_manager$184:	
+	.db $32 $FF $FF
+	
+; Data from 839 to 839 (1 bytes)	
+A$_sms_manager$189:	
+C$_sms_manager.c$26$1$78:	
+XG$devkit_SMS_mapROMBank$0$0:	
+	.db $C9
+	
+; Data from 83A to 83D (4 bytes)	
+A$_sms_manager$202:	
+C$_sms_manager.c$28$1$78:	
+C$_sms_manager.c$30$1$80:	
+G$devkit_SMS_setBGScrollX$0$0:	
+_devkit_SMS_setBGScrollX:	
+	.db $FD $21 $02 $00
+	
+; Data from 83E to 83F (2 bytes)	
+A$_sms_manager$203:	
+	.db $FD $39
+	
+; Data from 840 to 842 (3 bytes)	
+A$_sms_manager$204:	
+	.db $FD $6E $00
+	
+; Data from 843 to 845 (3 bytes)	
+A$_sms_manager$209:	
+C$_sms_manager.c$31$1$80:	
+XG$devkit_SMS_setBGScrollX$0$0:	
+	.db $C3 $E6 $1B
+	
+A$_sms_manager$222:	
+C$_sms_manager.c$32$1$80:	
+C$_sms_manager.c$34$1$82:	
+G$devkit_SMS_setBGScrollY$0$0:	
+_devkit_SMS_setBGScrollY:	
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy+0)
-		jp _LABEL_1BF0_
+		jp _SMS_setBGScrollY
 	
-	; Data from 852 to 870 (31 bytes)
-	.db $21 $FC $FF $36 $08 $C9 $21 $02 $00 $39 $7E $87 $87 $CB $DF $E6
-	.db $0C $32 $FC $FF $C9 $21 $FC $FF $36 $00 $C9 $21 $00 $80 $C9
+; Data from 852 to 854 (3 bytes)	
+A$_sms_manager$242:	
+C$_sms_manager.c$37$1$82:	
+C$_sms_manager.c$39$1$83:	
+G$devkit_SMS_enableSRAM$0$0:	
+_devkit_SMS_enableSRAM:	
+	.db $21 $FC $FF
+	
+; Data from 855 to 856 (2 bytes)	
+A$_sms_manager$243:	
+	.db $36 $08
+	
+; Data from 857 to 857 (1 bytes)	
+A$_sms_manager$248:	
+C$_sms_manager.c$40$1$83:	
+XG$devkit_SMS_enableSRAM$0$0:	
+	.db $C9
+	
+; Data from 858 to 85A (3 bytes)	
+A$_sms_manager$261:	
+C$_sms_manager.c$41$1$83:	
+C$_sms_manager.c$43$1$85:	
+G$devkit_SMS_enableSRAMBank$0$0:	
+_devkit_SMS_enableSRAMBank:	
+	.db $21 $02 $00
+	
+; Data from 85B to 85B (1 bytes)	
+A$_sms_manager$262:	
+	.db $39
+	
+; Data from 85C to 85C (1 bytes)	
+A$_sms_manager$263:	
+	.db $7E
+	
+; Data from 85D to 85D (1 bytes)	
+A$_sms_manager$264:	
+	.db $87
+	
+; Data from 85E to 85E (1 bytes)	
+A$_sms_manager$265:	
+	.db $87
+	
+; Data from 85F to 860 (2 bytes)	
+A$_sms_manager$266:	
+	.db $CB $DF
+	
+; Data from 861 to 862 (2 bytes)	
+A$_sms_manager$267:	
+	.db $E6 $0C
+	
+; Data from 863 to 865 (3 bytes)	
+A$_sms_manager$268:	
+	.db $32 $FC $FF
+	
+; Data from 866 to 866 (1 bytes)	
+A$_sms_manager$273:	
+C$_sms_manager.c$44$1$85:	
+XG$devkit_SMS_enableSRAMBank$0$0:	
+	.db $C9
+	
+; Data from 867 to 869 (3 bytes)	
+A$_sms_manager$286:	
+C$_sms_manager.c$45$1$85:	
+C$_sms_manager.c$47$1$86:	
+G$devkit_SMS_disableSRAM$0$0:	
+_devkit_SMS_disableSRAM:	
+	.db $21 $FC $FF
+	
+; Data from 86A to 86B (2 bytes)	
+A$_sms_manager$287:	
+	.db $36 $00
+	
+; Data from 86C to 86C (1 bytes)	
+A$_sms_manager$292:	
+C$_sms_manager.c$48$1$86:	
+XG$devkit_SMS_disableSRAM$0$0:	
+	.db $C9
+	
+; Data from 86D to 86F (3 bytes)	
+A$_sms_manager$305:	
+C$_sms_manager.c$49$1$86:	
+C$_sms_manager.c$51$1$87:	
+G$devkit_SMS_SRAM$0$0:	
+_devkit_SMS_SRAM:	
+	.db $21 $00 $80
+	
+; Data from 870 to 870 (1 bytes)	
+A$_sms_manager$310:	
+C$_sms_manager.c$52$1$87:	
+XG$devkit_SMS_SRAM$0$0:	
+	.db $C9
 	
 A$_sms_manager$323:	
 C$_sms_manager.c$55$1$87:	
@@ -1319,7 +1455,7 @@ A$scroll_manager$61:
 		xor a
 		push af
 		inc sp
-		call _LABEL_846_
+		call A$_sms_manager$222
 		inc sp
 		ret
 	
@@ -1533,10 +1669,11 @@ _SMS_VDPturnOffFeature:
 		ei
 		ret
 	
-	; Data from 1BE6 to 1BEF (10 bytes)
+; Data from 1BE6 to 1BEF (10 bytes)	
+_SMS_setBGScrollX:	
 	.db $F3 $7D $D3 $BF $3E $88 $D3 $BF $FB $C9
 	
-_LABEL_1BF0_:	
+_SMS_setBGScrollY:	
 		di
 		ld a, l
 		out (Port_VDPAddress), a
