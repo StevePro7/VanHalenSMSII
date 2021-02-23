@@ -50,13 +50,13 @@ _RAM_C045_ db
 .ende	
 	
 .enum $C05B export	
-_RAM_C05B_ db	
-_RAM_C05C_ db	
-_RAM_C05D_ db	
-_RAM_C05E_ db	
-_RAM_C05F_ dw	
-_RAM_C061_ dw	
-_RAM_C063_ db	
+VDPBlank db		                        ; VDPBlank = $C05B
+SMS_VDPFlags db		                    ; SMS_VDPFlags = $C05C
+PauseRequested db		                ; PauseRequested = $C05D
+VDPType db		                        ; VDPType = $C05E
+KeysStatus dw		                    ; KeysStatus = $C05F
+PreviousKeysStatus dw		            ; PreviousKeysStatus = $C061
+SpriteTableY db		                    ; SpriteTableY = $C063
 .ende	
 	
 .enum $C0A3 export	

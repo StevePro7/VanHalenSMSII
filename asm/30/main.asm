@@ -2420,7 +2420,7 @@ H$engine_content_manager_load_ti:
 _engine_content_manager_load_til:	
 		ld hl, $0000
 		push hl
-		ld hl, $17A2
+		ld hl, _font__tiles__psgcompr	; _font__tiles__psgcompr = $17A2
 		push hl
 		call A$_sms_manager$400
 		pop af
@@ -9185,7 +9185,7 @@ _UNSAFE_SMS_copySpritestoSAT:
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
-		ld hl, _RAM_C063_
+		ld hl, SpriteTableY
 		call _OUTI64
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
@@ -9246,12 +9246,12 @@ _SMS_init:
 		ld a, c
 		sub $E7
 		jr c, +
-		ld hl, _RAM_C05E_
+		ld hl, VDPType
 		ld (hl), $80
 		ret
 	
 +:	
-		ld hl, _RAM_C05E_
+		ld hl, VDPType
 		ld (hl), $40
 		ret
 	
@@ -9446,7 +9446,7 @@ _SMS_finalizeSprites:
 _LABEL_1D1E_:	
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
-		ld bc, _RAM_C063_
+		ld bc, SpriteTableY
 		ld e, $40
 -:	
 		ld a, (bc)
@@ -9475,16 +9475,16 @@ _LABEL_1D1E_:
 		ret
 	
 _SMS_waitForVBlank:	
-		ld hl, _RAM_C05B_
+		ld hl, VDPBlank
 		ld (hl), $00
 -:	
-		ld hl, _RAM_C05B_
+		ld hl, VDPBlank
 		bit 0, (hl)
 		jr z, -
 		ret
 	
 _SMS_getKeysStatus:	
-		ld hl, (_RAM_C05F_)
+		ld hl, (KeysStatus)
 		ret
 	
 	; Data from 1D58 to 1DA8 (81 bytes)
@@ -9496,12 +9496,12 @@ _SMS_getKeysStatus:
 	.db $C9
 	
 _SMS_queryPauseRequested:	
-		ld iy, _RAM_C05D_
+		ld iy, PauseRequested
 		ld l, (iy+0)
 		ret
 	
 _SMS_resetPauseRequest:	
-		ld hl, _RAM_C05D_
+		ld hl, PauseRequested
 		ld (hl), $00
 		ret
 	
@@ -9514,16 +9514,16 @@ _SMS_isr:
 		push af
 		push hl
 		in a, (Port_VDPStatus)
-		ld (_RAM_C05C_), a
+		ld (SMS_VDPFlags), a
 		rlca
 		jr nc, +
-		ld hl, _RAM_C05B_
+		ld hl, VDPBlank
 		ld (hl), $01
-		ld hl, (_RAM_C05F_)
-		ld (_RAM_C061_), hl
+		ld hl, (KeysStatus)
+		ld (PreviousKeysStatus), hl
 		in a, (Port_IOPort1)
 		cpl
-		ld hl, _RAM_C05F_
+		ld hl, KeysStatus
 		ld (hl), a
 		in a, (Port_IOPort2)
 		cpl
@@ -9552,7 +9552,7 @@ _SMS_nmi_isr:
 		push de
 		push hl
 		push iy
-		ld hl, _RAM_C05D_
+		ld hl, PauseRequested
 		ld (hl), $01
 		pop iy
 		pop hl
