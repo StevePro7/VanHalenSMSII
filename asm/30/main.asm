@@ -1099,71 +1099,684 @@ _devkit_SMS_setSpriteMode:
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy+0)
-		jp _LABEL_1C18_
+		jp _SMS_setSpriteMode
 	
 A$_sms_manager$343:	
+C$_sms_manager.c$59$1$89:	
+C$_sms_manager.c$61$1$90:	
+G$devkit_SMS_useFirstHalfTilesfo:	
+_devkit_SMS_useFirstHalfTilesfor:	
 		ld l, $00
-		jp _LABEL_1C04_
+		jp _SMS_useFirstHalfTilesforSprites
 	
-	; Data from 882 to 886 (5 bytes)
-	.db $2E $01 $C3 $04 $1C
+; Data from 882 to 883 (2 bytes)	
+A$_sms_manager$361:	
+C$_sms_manager.c$63$1$90:	
+C$_sms_manager.c$65$1$91:	
+H$devkit_SMS_useFirstHalfTilesfo:	
+_dewkit_SMS_useFirstHalfTilesfor:	
+	.db $2E $01
+	
+; Data from 884 to 886 (3 bytes)	
+A$_sms_manager$366:	
+C$_sms_manager.c$66$1$91:	
+XG$devkit_SMS_useFirstHalfTilesf:	
+	.db $C3 $04 $1C
 	
 A$_sms_manager$379:	
+C$_sms_manager.c$67$1$91:	
+C$_sms_manager.c$69$1$93:	
+G$devkit_SMS_VDPturnOnFeature$0$:	
+_devkit_SMS_VDPturnOnFeature:	
 		pop bc
 		pop hl
 		push hl
 		push bc
 		jp _SMS_VDPturnOnFeature
 	
-_LABEL_88E_:	
-		ld hl, $0004
+A$_sms_manager$400:	
+C$_sms_manager.c$72$1$93:	
+C$_sms_manager.c$74$1$95:	
+G$devkit_SMS_loadPSGaidencompres:	
+_devkit_SMS_loadPSGaidencompress:
+		ld hl, _SMS_crt0_RST08 - 2	; _SMS_crt0_RST08 - 2 = $0004
 		add hl, sp
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
 		push bc
-		ld hl, $0004
+		ld hl, _SMS_crt0_RST08 - 2	; _SMS_crt0_RST08 - 2 = $0004
 		add hl, sp
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
 		push bc
-		call _LABEL_2021_
+		call _SMS_loadPSGaidencompressedTiles
 		pop af
 		pop af
 		ret
 	
-	; Data from 8A4 to 8C4 (33 bytes)
-	.db $3E $20 $F5 $33 $21 $05 $00 $39 $4E $23 $46 $C5 $21 $06 $00 $39
-	.db $7E $F5 $33 $21 $06 $00 $39 $7E $F5 $33 $CD $3F $1E $F1 $F1 $33
+; Data from 8A4 to 8A5 (2 bytes)	
+A$_sms_manager$432:	
+C$_sms_manager.c$76$1$95:	
+C$_sms_manager.c$78$1$97:	
+G$devkit_SMS_loadSTMcompressedTi:	
+_devkit_SMS_loadSTMcompressedTil:	
+	.db $3E $20
+	
+; Data from 8A6 to 8A6 (1 bytes)	
+A$_sms_manager$433:	
+	.db $F5
+	
+; Data from 8A7 to 8A7 (1 bytes)	
+A$_sms_manager$434:	
+	.db $33
+	
+; Data from 8A8 to 8AA (3 bytes)	
+A$_sms_manager$435:	
+	.db $21 $05 $00
+	
+; Data from 8AB to 8AB (1 bytes)	
+A$_sms_manager$436:	
+	.db $39
+	
+; Data from 8AC to 8AC (1 bytes)	
+A$_sms_manager$437:	
+	.db $4E
+	
+; Data from 8AD to 8AD (1 bytes)	
+A$_sms_manager$438:	
+	.db $23
+	
+; Data from 8AE to 8AE (1 bytes)	
+A$_sms_manager$439:	
+	.db $46
+	
+; Data from 8AF to 8AF (1 bytes)	
+A$_sms_manager$440:	
+	.db $C5
+	
+; Data from 8B0 to 8B2 (3 bytes)	
+A$_sms_manager$441:	
+	.db $21 $06 $00
+	
+; Data from 8B3 to 8B3 (1 bytes)	
+A$_sms_manager$442:	
+	.db $39
+	
+; Data from 8B4 to 8B4 (1 bytes)	
+A$_sms_manager$443:	
+	.db $7E
+	
+; Data from 8B5 to 8B5 (1 bytes)	
+A$_sms_manager$444:	
+	.db $F5
+	
+; Data from 8B6 to 8B6 (1 bytes)	
+A$_sms_manager$445:	
+	.db $33
+	
+; Data from 8B7 to 8B9 (3 bytes)	
+A$_sms_manager$446:	
+	.db $21 $06 $00
+	
+; Data from 8BA to 8BA (1 bytes)	
+A$_sms_manager$447:	
+	.db $39
+	
+; Data from 8BB to 8BB (1 bytes)	
+A$_sms_manager$448:	
+	.db $7E
+	
+; Data from 8BC to 8BC (1 bytes)	
+A$_sms_manager$449:	
+	.db $F5
+	
+; Data from 8BD to 8BD (1 bytes)	
+A$_sms_manager$450:	
+	.db $33
+	
+; Data from 8BE to 8C0 (3 bytes)	
+A$_sms_manager$451:	
+	.db $CD $3F $1E
+	
+; Data from 8C1 to 8C1 (1 bytes)	
+A$_sms_manager$452:	
+	.db $F1
+	
+; Data from 8C2 to 8C2 (1 bytes)	
+A$_sms_manager$453:	
+	.db $F1
+	
+; Data from 8C3 to 8C3 (1 bytes)	
+A$_sms_manager$454:	
+	.db $33
+	
+; Data from 8C4 to 8C4 (1 bytes)	
+A$_sms_manager$459:	
+C$_sms_manager.c$79$1$97:	
+XG$devkit_SMS_loadSTMcompressedT:	
 	.db $C9
 	
-_LABEL_8C5_:	
+A$_sms_manager$472:	
+C$_sms_manager.c$81$1$97:	
+C$_sms_manager.c$83$1$99:	
+G$devkit_SMS_loadBGPalette$0$0:	
+_devkit_SMS_loadBGPalette:	
 		pop bc
 		pop hl
 		push hl
 		push bc
-		jp _LABEL_1C85_
+		jp _SMS_loadBGPalette
 	
-_LABEL_8CC_:	
+A$_sms_manager$493:	
+C$_sms_manager.c$85$1$99:	
+C$_sms_manager.c$87$1$101:	
+G$devkit_SMS_loadSpritePalette$0:	
+_devkit_SMS_loadSpritePalette:	
 		pop bc
 		pop hl
 		push hl
 		push bc
-		jp _LABEL_1C99_
+		jp _SMS_loadSpritePalette
 	
-	; Data from 8D3 to 97E (172 bytes)
-	.db $21 $04 $00 $39 $7E $87 $87 $21 $03 $00 $39 $B6 $4F $21 $05 $00
-	.db $39 $7E $07 $07 $07 $07 $E6 $F0 $B1 $47 $C5 $33 $21 $03 $00 $39
-	.db $7E $F5 $33 $CD $5D $1C $F1 $C9 $21 $04 $00 $39 $7E $87 $87 $21
-	.db $03 $00 $39 $B6 $4F $21 $05 $00 $39 $7E $07 $07 $07 $07 $E6 $F0
-	.db $B1 $47 $C5 $33 $21 $03 $00 $39 $7E $F5 $33 $CD $71 $1C $F1 $C9
-	.db $DD $E5 $DD $21 $00 $00 $DD $39 $DD $6E $05 $26 $00 $29 $29 $29
-	.db $29 $29 $29 $4D $7C $F6 $78 $47 $DD $6E $04 $26 $00 $29 $7D $B1
-	.db $6F $7C $B0 $67 $DD $E1 $C3 $06 $00 $C1 $E1 $E5 $C5 $C3 $11 $00
-	.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $3E $00 $F6 $18 $67 $C3 $11
-	.db $00 $21 $04 $00 $39 $46 $C5 $33 $21 $04 $00 $39 $7E $F5 $33 $21
-	.db $04 $00 $39 $7E $F5 $33 $CD $B7 $1C $F1 $33 $C9
+; Data from 8D3 to 8D5 (3 bytes)	
+A$_sms_manager$514:	
+C$_sms_manager.c$89$1$101:	
+C$_sms_manager.c$91$1$103:	
+G$devkit_SMS_setBGPaletteColor$0:	
+_devkit_SMS_setBGPaletteColor:	
+	.db $21 $04 $00
+	
+; Data from 8D6 to 8D6 (1 bytes)	
+A$_sms_manager$515:	
+	.db $39
+	
+; Data from 8D7 to 8D7 (1 bytes)	
+A$_sms_manager$516:	
+	.db $7E
+	
+; Data from 8D8 to 8D8 (1 bytes)	
+A$_sms_manager$517:	
+	.db $87
+	
+; Data from 8D9 to 8D9 (1 bytes)	
+A$_sms_manager$518:	
+	.db $87
+	
+; Data from 8DA to 8DC (3 bytes)	
+A$_sms_manager$519:	
+	.db $21 $03 $00
+	
+; Data from 8DD to 8DD (1 bytes)	
+A$_sms_manager$520:	
+	.db $39
+	
+; Data from 8DE to 8DE (1 bytes)	
+A$_sms_manager$521:	
+	.db $B6
+	
+; Data from 8DF to 8DF (1 bytes)	
+A$_sms_manager$522:	
+	.db $4F
+	
+; Data from 8E0 to 8E2 (3 bytes)	
+A$_sms_manager$523:	
+	.db $21 $05 $00
+	
+; Data from 8E3 to 8E3 (1 bytes)	
+A$_sms_manager$524:	
+	.db $39
+	
+; Data from 8E4 to 8E4 (1 bytes)	
+A$_sms_manager$525:	
+	.db $7E
+	
+; Data from 8E5 to 8E5 (1 bytes)	
+A$_sms_manager$526:	
+	.db $07
+	
+; Data from 8E6 to 8E6 (1 bytes)	
+A$_sms_manager$527:	
+	.db $07
+	
+; Data from 8E7 to 8E7 (1 bytes)	
+A$_sms_manager$528:	
+	.db $07
+	
+; Data from 8E8 to 8E8 (1 bytes)	
+A$_sms_manager$529:	
+	.db $07
+	
+; Data from 8E9 to 8EA (2 bytes)	
+A$_sms_manager$530:	
+	.db $E6 $F0
+	
+; Data from 8EB to 8EB (1 bytes)	
+A$_sms_manager$531:	
+	.db $B1
+	
+; Data from 8EC to 8EC (1 bytes)	
+A$_sms_manager$532:	
+	.db $47
+	
+; Data from 8ED to 8ED (1 bytes)	
+A$_sms_manager$536:	
+C$_sms_manager.c$92$1$103:	
+	.db $C5
+	
+; Data from 8EE to 8EE (1 bytes)	
+A$_sms_manager$537:	
+	.db $33
+	
+; Data from 8EF to 8F1 (3 bytes)	
+A$_sms_manager$538:	
+	.db $21 $03 $00
+	
+; Data from 8F2 to 8F2 (1 bytes)	
+A$_sms_manager$539:	
+	.db $39
+	
+; Data from 8F3 to 8F3 (1 bytes)	
+A$_sms_manager$540:	
+	.db $7E
+	
+; Data from 8F4 to 8F4 (1 bytes)	
+A$_sms_manager$541:	
+	.db $F5
+	
+; Data from 8F5 to 8F5 (1 bytes)	
+A$_sms_manager$542:	
+	.db $33
+	
+; Data from 8F6 to 8F8 (3 bytes)	
+A$_sms_manager$543:	
+	.db $CD $5D $1C
+	
+; Data from 8F9 to 8F9 (1 bytes)	
+A$_sms_manager$544:	
+	.db $F1
+	
+; Data from 8FA to 8FA (1 bytes)	
+A$_sms_manager$549:	
+C$_sms_manager.c$93$1$103:	
+XG$devkit_SMS_setBGPaletteColor$:	
+	.db $C9
+	
+; Data from 8FB to 8FD (3 bytes)	
+A$_sms_manager$562:	
+C$_sms_manager.c$94$1$103:	
+C$_sms_manager.c$96$1$105:	
+G$devkit_SMS_setSpritePaletteCol:	
+_devkit_SMS_setSpritePaletteColo:	
+	.db $21 $04 $00
+	
+; Data from 8FE to 8FE (1 bytes)	
+A$_sms_manager$563:	
+	.db $39
+	
+; Data from 8FF to 8FF (1 bytes)	
+A$_sms_manager$564:	
+	.db $7E
+	
+; Data from 900 to 900 (1 bytes)	
+A$_sms_manager$565:	
+	.db $87
+	
+; Data from 901 to 901 (1 bytes)	
+A$_sms_manager$566:	
+	.db $87
+	
+; Data from 902 to 904 (3 bytes)	
+A$_sms_manager$567:	
+	.db $21 $03 $00
+	
+; Data from 905 to 905 (1 bytes)	
+A$_sms_manager$568:	
+	.db $39
+	
+; Data from 906 to 906 (1 bytes)	
+A$_sms_manager$569:	
+	.db $B6
+	
+; Data from 907 to 907 (1 bytes)	
+A$_sms_manager$570:	
+	.db $4F
+	
+; Data from 908 to 90A (3 bytes)	
+A$_sms_manager$571:	
+	.db $21 $05 $00
+	
+; Data from 90B to 90B (1 bytes)	
+A$_sms_manager$572:	
+	.db $39
+	
+; Data from 90C to 90C (1 bytes)	
+A$_sms_manager$573:	
+	.db $7E
+	
+; Data from 90D to 90D (1 bytes)	
+A$_sms_manager$574:	
+	.db $07
+	
+; Data from 90E to 90E (1 bytes)	
+A$_sms_manager$575:	
+	.db $07
+	
+; Data from 90F to 90F (1 bytes)	
+A$_sms_manager$576:	
+	.db $07
+	
+; Data from 910 to 910 (1 bytes)	
+A$_sms_manager$577:	
+	.db $07
+	
+; Data from 911 to 912 (2 bytes)	
+A$_sms_manager$578:	
+	.db $E6 $F0
+	
+; Data from 913 to 913 (1 bytes)	
+A$_sms_manager$579:	
+	.db $B1
+	
+; Data from 914 to 914 (1 bytes)	
+A$_sms_manager$580:	
+	.db $47
+	
+; Data from 915 to 915 (1 bytes)	
+A$_sms_manager$584:	
+C$_sms_manager.c$97$1$105:	
+	.db $C5
+	
+; Data from 916 to 916 (1 bytes)	
+A$_sms_manager$585:	
+	.db $33
+	
+; Data from 917 to 919 (3 bytes)	
+A$_sms_manager$586:	
+	.db $21 $03 $00
+	
+; Data from 91A to 91A (1 bytes)	
+A$_sms_manager$587:	
+	.db $39
+	
+; Data from 91B to 91B (1 bytes)	
+A$_sms_manager$588:	
+	.db $7E
+	
+; Data from 91C to 91C (1 bytes)	
+A$_sms_manager$589:	
+	.db $F5
+	
+; Data from 91D to 91D (1 bytes)	
+A$_sms_manager$590:	
+	.db $33
+	
+; Data from 91E to 920 (3 bytes)	
+A$_sms_manager$591:	
+	.db $CD $71 $1C
+	
+; Data from 921 to 921 (1 bytes)	
+A$_sms_manager$592:	
+	.db $F1
+	
+; Data from 922 to 922 (1 bytes)	
+A$_sms_manager$597:	
+C$_sms_manager.c$98$1$105:	
+XG$devkit_SMS_setSpritePaletteCo:	
+	.db $C9
+	
+; Data from 923 to 924 (2 bytes)	
+A$_sms_manager$607:	
+C$_sms_manager.c$100$1$105:	
+G$devkit_SMS_setNextTileatXY$0$0:	
+_devkit_SMS_setNextTileatXY:	
+	.db $DD $E5
+	
+; Data from 925 to 928 (4 bytes)	
+A$_sms_manager$608:	
+	.db $DD $21 $00 $00
+	
+; Data from 929 to 92A (2 bytes)	
+A$_sms_manager$609:	
+	.db $DD $39
+	
+; Data from 92B to 92D (3 bytes)	
+A$_sms_manager$613:	
+C$_sms_manager.c$102$1$107:	
+	.db $DD $6E $05
+	
+; Data from 92E to 92F (2 bytes)	
+A$_sms_manager$614:	
+	.db $26 $00
+	
+; Data from 930 to 930 (1 bytes)	
+A$_sms_manager$615:	
+	.db $29
+	
+; Data from 931 to 931 (1 bytes)	
+A$_sms_manager$616:	
+	.db $29
+	
+; Data from 932 to 932 (1 bytes)	
+A$_sms_manager$617:	
+	.db $29
+	
+; Data from 933 to 933 (1 bytes)	
+A$_sms_manager$618:	
+	.db $29
+	
+; Data from 934 to 934 (1 bytes)	
+A$_sms_manager$619:	
+	.db $29
+	
+; Data from 935 to 935 (1 bytes)	
+A$_sms_manager$620:	
+	.db $29
+	
+; Data from 936 to 936 (1 bytes)	
+A$_sms_manager$621:	
+	.db $4D
+	
+; Data from 937 to 937 (1 bytes)	
+A$_sms_manager$622:	
+	.db $7C
+	
+; Data from 938 to 939 (2 bytes)	
+A$_sms_manager$623:	
+	.db $F6 $78
+	
+; Data from 93A to 93A (1 bytes)	
+A$_sms_manager$624:	
+	.db $47
+	
+; Data from 93B to 93D (3 bytes)	
+A$_sms_manager$625:	
+	.db $DD $6E $04
+	
+; Data from 93E to 93F (2 bytes)	
+A$_sms_manager$626:	
+	.db $26 $00
+	
+; Data from 940 to 940 (1 bytes)	
+A$_sms_manager$627:	
+	.db $29
+	
+; Data from 941 to 941 (1 bytes)	
+A$_sms_manager$628:	
+	.db $7D
+	
+; Data from 942 to 942 (1 bytes)	
+A$_sms_manager$629:	
+	.db $B1
+	
+; Data from 943 to 943 (1 bytes)	
+A$_sms_manager$630:	
+	.db $6F
+	
+; Data from 944 to 944 (1 bytes)	
+A$_sms_manager$631:	
+	.db $7C
+	
+; Data from 945 to 945 (1 bytes)	
+A$_sms_manager$632:	
+	.db $B0
+	
+; Data from 946 to 946 (1 bytes)	
+A$_sms_manager$633:	
+	.db $67
+	
+; Data from 947 to 948 (2 bytes)	
+A$_sms_manager$638:	
+C$_sms_manager.c$103$1$107:	
+XG$devkit_SMS_setNextTileatXY$0$:	
+	.db $DD $E1
+	
+; Data from 949 to 94B (3 bytes)	
+A$_sms_manager$639:	
+	.db $C3 $06 $00
+	
+; Data from 94C to 94C (1 bytes)	
+A$_sms_manager$652:	
+C$_sms_manager.c$104$1$107:	
+C$_sms_manager.c$106$1$109:	
+G$devkit_SMS_setTile$0$0:	
+_devkit_SMS_setTile:	
+	.db $C1
+	
+; Data from 94D to 94D (1 bytes)	
+A$_sms_manager$653:	
+	.db $E1
+	
+; Data from 94E to 94E (1 bytes)	
+A$_sms_manager$654:	
+	.db $E5
+	
+; Data from 94F to 94F (1 bytes)	
+A$_sms_manager$655:	
+	.db $C5
+	
+; Data from 950 to 952 (3 bytes)	
+A$_sms_manager$660:	
+C$_sms_manager.c$107$1$109:	
+XG$devkit_SMS_setTile$0$0:	
+	.db $C3 $11 $00
+	
+; Data from 953 to 956 (4 bytes)	
+A$_sms_manager$673:	
+C$_sms_manager.c$108$1$109:	
+C$_sms_manager.c$110$1$111:	
+G$devkit_SMS_setTilePriority$0$0:	
+_devkit_SMS_setTilePriority:	
+	.db $FD $21 $02 $00
+	
+; Data from 957 to 958 (2 bytes)	
+A$_sms_manager$674:	
+	.db $FD $39
+	
+; Data from 959 to 95B (3 bytes)	
+A$_sms_manager$675:	
+	.db $FD $6E $00
+	
+; Data from 95C to 95D (2 bytes)	
+A$_sms_manager$676:	
+	.db $3E $00
+	
+; Data from 95E to 95F (2 bytes)	
+A$_sms_manager$677:	
+	.db $F6 $18
+	
+; Data from 960 to 960 (1 bytes)	
+A$_sms_manager$678:	
+	.db $67
+	
+; Data from 961 to 963 (3 bytes)	
+A$_sms_manager$683:	
+C$_sms_manager.c$111$1$111:	
+XG$devkit_SMS_setTilePriority$0$:	
+	.db $C3 $11 $00
+	
+; Data from 964 to 966 (3 bytes)	
+A$_sms_manager$696:	
+C$_sms_manager.c$113$1$111:	
+C$_sms_manager.c$115$1$113:	
+G$devkit_SMS_addSprite$0$0:	
+_devkit_SMS_addSprite:	
+	.db $21 $04 $00
+	
+; Data from 967 to 967 (1 bytes)	
+A$_sms_manager$697:	
+	.db $39
+	
+; Data from 968 to 968 (1 bytes)	
+A$_sms_manager$698:	
+	.db $46
+	
+; Data from 969 to 969 (1 bytes)	
+A$_sms_manager$699:	
+	.db $C5
+	
+; Data from 96A to 96A (1 bytes)	
+A$_sms_manager$700:	
+	.db $33
+	
+; Data from 96B to 96D (3 bytes)	
+A$_sms_manager$701:	
+	.db $21 $04 $00
+	
+; Data from 96E to 96E (1 bytes)	
+A$_sms_manager$702:	
+	.db $39
+	
+; Data from 96F to 96F (1 bytes)	
+A$_sms_manager$703:	
+	.db $7E
+	
+; Data from 970 to 970 (1 bytes)	
+A$_sms_manager$704:	
+	.db $F5
+	
+; Data from 971 to 971 (1 bytes)	
+A$_sms_manager$705:	
+	.db $33
+	
+; Data from 972 to 974 (3 bytes)	
+A$_sms_manager$706:	
+	.db $21 $04 $00
+	
+; Data from 975 to 975 (1 bytes)	
+A$_sms_manager$707:	
+	.db $39
+	
+; Data from 976 to 976 (1 bytes)	
+A$_sms_manager$708:	
+	.db $7E
+	
+; Data from 977 to 977 (1 bytes)	
+A$_sms_manager$709:	
+	.db $F5
+	
+; Data from 978 to 978 (1 bytes)	
+A$_sms_manager$710:	
+	.db $33
+	
+; Data from 979 to 97B (3 bytes)	
+A$_sms_manager$711:	
+	.db $CD $B7 $1C
+	
+; Data from 97C to 97C (1 bytes)	
+A$_sms_manager$712:	
+	.db $F1
+	
+; Data from 97D to 97D (1 bytes)	
+A$_sms_manager$713:	
+	.db $33
+	
+; Data from 97E to 97E (1 bytes)	
+A$_sms_manager$718:	
+C$_sms_manager.c$116$1$113:	
+XG$devkit_SMS_addSprite$0$0:	
+	.db $C9
 	
 A$_sms_manager$735:	
 		jp _LABEL_1CB1_
@@ -1265,12 +1878,12 @@ A$content_manager$65:
 		push hl
 		ld hl, $17A2
 		push hl
-		call _LABEL_88E_
+		call A$_sms_manager$400
 		pop af
 		pop af
 		ld bc, _DATA_1712_
 		push bc
-		call _LABEL_8C5_
+		call A$_sms_manager$472
 		pop af
 		ret
 	
@@ -1291,12 +1904,12 @@ A$content_manager$263:
 		push hl
 		ld hl, $1657
 		push hl
-		call _LABEL_88E_
+		call A$_sms_manager$400
 		pop af
 		pop af
 		ld bc, _DATA_1647_
 		push bc
-		call _LABEL_8CC_
+		call A$_sms_manager$493
 		pop af
 		ret
 	
@@ -1685,7 +2298,7 @@ _SMS_setBGScrollY:
 	; Data from 1BFA to 1C03 (10 bytes)
 	.db $F3 $7D $D3 $BF $3E $87 $D3 $BF $FB $C9
 	
-_LABEL_1C04_:	
+_SMS_useFirstHalfTilesforSprites:	
 		bit 0, l
 		jr z, +
 		ld c, $FB
@@ -1702,7 +2315,7 @@ _LABEL_1C04_:
 		ei
 		ret
 	
-_LABEL_1C18_:	
+_SMS_setSpriteMode:	
 		ld c, l
 		bit 0, c
 		jr z, +
@@ -1757,7 +2370,7 @@ _LABEL_1C71_:
 		out (Port_VDPData), a
 		ret
 	
-_LABEL_1C85_:	
+_SMS_loadBGPalette:	
 		ld de, $C000
 		ld c, Port_VDPAddress
 		di
@@ -1771,7 +2384,7 @@ _LABEL_1C85_:
 		jr nz, -
 		ret
 	
-_LABEL_1C99_:	
+_SMS_loadSpritePalette:	
 		ld de, $C010
 		ld c, Port_VDPAddress
 		di
@@ -1967,7 +2580,7 @@ _SMS_nmi_isr:
 _LABEL_2020_:	
 		jp (hl)
 	
-_LABEL_2021_:	
+_SMS_loadPSGaidencompressedTiles:	
 		ld iy, $0004
 		add iy, sp
 		ld l, (iy+0)

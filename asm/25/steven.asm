@@ -1113,8 +1113,8 @@ _devkit_SMS_useFirstHalfTilesfor:
 A$_sms_manager$361:	
 C$_sms_manager.c$63$1$90:	
 C$_sms_manager.c$65$1$91:	
-G$devkit_SMS_useFirstHalfTilesfo:	
-_devkit_SMS_useFirstHalfTilesfor:	
+H$devkit_SMS_useFirstHalfTilesfo:	
+_dewkit_SMS_useFirstHalfTilesfor:	
 	.db $2E $01
 	
 ; Data from 884 to 886 (3 bytes)	
