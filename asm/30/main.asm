@@ -2163,15 +2163,39 @@ _devkit_PSGSFXGetStatus:
 	.db $C3 $5A $06
 	
 A$_snd_manager$275:	
+C$_snd_manager.c$47$1$47:	
+C$_snd_manager.c$49$1$49:	
+C$_snd_manager.c$50$1$49:	
+G$devkit_PSGSilenceChannels$0$0:	
+XG$devkit_PSGSilenceChannels$0$0:	
+_devkit_PSGSilenceChannels:	
 		jp _PSGSilenceChannels
 	
 A$_snd_manager$292:	
+C$_snd_manager.c$51$1$49:	
+C$_snd_manager.c$53$1$51:	
+C$_snd_manager.c$54$1$51:	
+G$devkit_PSGRestoreVolumes$0$0:	
+XG$devkit_PSGRestoreVolumes$0$0:	
+_devkit_PSGRestoreVolumes:
 		jp _PSGRestoreVolumes
 	
 A$_snd_manager$309:	
+C$_snd_manager.c$56$1$51:	
+C$_snd_manager.c$58$1$53:	
+C$_snd_manager.c$59$1$53:	
+G$devkit_PSGFrame$0$0:	
+XG$devkit_PSGFrame$0$0:	
+_devkit_PSGFrame:	
 		jp _PSGFrame
 	
 A$_snd_manager$326:	
+C$_snd_manager.c$60$1$53:	
+C$_snd_manager.c$62$1$55:	
+C$_snd_manager.c$63$1$55:	
+G$devkit_PSGSFXFrame$0$0:	
+XG$devkit_PSGSFXFrame$0$0:	
+_devkit_PSGSFXFrame:	
 		jp _PSGSFXFrame
 	
 	; Data from A51 to A59 (9 bytes)
