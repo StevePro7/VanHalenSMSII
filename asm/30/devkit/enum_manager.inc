@@ -75,12 +75,12 @@ Finput_manager$prev_joypad1$0$0 dw		; Finput_manager$prev_joypad1$0$0 = $C148
 .ende	
 	
 .enum $C1AA export	
-_RAM_C1AA_ db	
+VDPReg db                               ; VDPReg = $C1AA
 .ende	
 	
 .enum $C1AC export	
-_RAM_C1AC_ db	
-_RAM_C1AD_ db	
+spritesHeight db		                ; spritesHeight = $C1AC
+spritesWidth db		                    ; spritesWidth = $C1AD
 .ende	
 	
 .enum $FFFC export	

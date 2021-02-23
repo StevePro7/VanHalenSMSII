@@ -9262,16 +9262,19 @@ _SMS_init:
 		ld (hl), $40
 		ret
 	
-; Data from 1BA3 to 1BB5 (19 bytes)	
+; Data from 1BA3 to 1BAD (11 bytes)	
 _VDPReg_init:	
-	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF $FD $21 $5E $C0 $FD
-	.db $6E $00 $C9
+	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF
+	
+; Data from 1BAE to 1BB5 (8 bytes)	
+_SMS_VDPType:	
+	.db $FD $21 $5E $C0 $FD $6E $00 $C9
 	
 _SMS_VDPturnOnFeature:	
 		ld c, l
 		ld e, h
 		ld d, $00
-		ld hl, _RAM_C1AA_
+		ld hl, VDPReg	; VDPReg = $C1AA
 		add hl, de
 		ld a, (hl)
 		or c
@@ -9292,7 +9295,7 @@ _SMS_VDPturnOffFeature:
 		cpl
 		ld b, a
 		ld d, $00
-		ld hl, $C1AA
+		ld hl, VDPReg	; VDPReg = $C1AA
 		add hl, de
 		ld a, (hl)
 		and b
@@ -9320,7 +9323,8 @@ _SMS_setBGScrollY:
 		ei
 		ret
 	
-	; Data from 1BFA to 1C03 (10 bytes)
+; Data from 1BFA to 1C03 (10 bytes)	
+_SMS_setBackdropColor:	
 	.db $F3 $7D $D3 $BF $3E $87 $D3 $BF $FB $C9
 	
 _SMS_useFirstHalfTilesforSprites:	
@@ -9348,7 +9352,7 @@ _SMS_setSpriteMode:
 		ld hl, $0102
 		call _SMS_VDPturnOnFeature
 		pop bc
-		ld hl, _RAM_C1AC_
+		ld hl, spritesHeight	; spritesHeight = $C1AC
 		ld (hl), $10
 		jr ++
 	
@@ -9357,27 +9361,28 @@ _SMS_setSpriteMode:
 		ld hl, $0102
 		call _SMS_VDPturnOffFeature
 		pop bc
-		ld hl, _RAM_C1AC_
+		ld hl, spritesHeight	; spritesHeight = $C1AC
 		ld (hl), $08
 ++:	
 		bit 1, c
 		jr z, +
 		ld hl, $0101
 		call _SMS_VDPturnOnFeature
-		ld hl, _RAM_C1AD_
+		ld hl, spritesWidth	; spritesWidth = $C1AD
 		ld (hl), $10
-		ld iy, _RAM_C1AC_
+		ld iy, spritesHeight	; spritesHeight = $C1AC
 		sla (iy+0)
 		ret
 	
 +:	
 		ld hl, $0101
 		call _SMS_VDPturnOffFeature
-		ld hl, _RAM_C1AD_
+		ld hl, spritesWidth	; spritesWidth = $C1AD
 		ld (hl), $08
 		ret
 	
-	; Data from 1C5D to 1C70 (20 bytes)
+; Data from 1C5D to 1C70 (20 bytes)	
+_SMS_setBGPaletteColor:	
 	.db $21 $02 $00 $39 $4E $06 $00 $21 $00 $C0 $09 $CF $21 $03 $00 $39
 	.db $7E $D3 $BE $C9
 	
