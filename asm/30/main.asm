@@ -9822,7 +9822,7 @@ gsinit:
 		or c
 		jr z, +
 		ld de, Finput_manager$curr_joypad1$0$0	; Finput_manager$curr_joypad1$0$0 = $C146
-		ld hl, $2103	;	Finput_manager$__xinit_curr_joyp	; Finput_manager$__xinit_curr_joyp = $2103	; stevepro
+		ld hl, Finput_manager$__xinit_curr_joyp	; Finput_manager$__xinit_curr_joyp = $2103
 		ldir
 +:	
 		ret
