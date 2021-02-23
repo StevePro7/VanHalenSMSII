@@ -917,15 +917,29 @@ _LABEL_7AB_:
 	.db $C9
 	
 A$_sms_manager$132:	
+C$_sms_manager.c$11$0$0:	
+C$_sms_manager.c$13$1$74:	
+C$_sms_manager.c$14$1$74:	
+G$devkit_SMS_init$0$0:	
+XG$devkit_SMS_init$0$0:	
+_devkit_SMS_init:	
 		jp _SMS_init
 	
 A$_sms_manager$145:	
+C$_sms_manager.c$15$1$74:	
+C$_sms_manager.c$17$1$75:	
+G$devkit_SMS_displayOn$0$0:	
+_devkit_SMS_displayOn:	
 		ld hl, $0140
-		jp _LABEL_1BB6_
+		jp _SMS_VDPturnOnFeature
 	
 A$_sms_manager$163:	
+C$_sms_manager.c$19$1$75:	
+C$_sms_manager.c$21$1$76:	
+G$devkit_SMS_displayOff$0$0:	
+_devkit_SMS_displayOff:	
 		ld hl, $0140
-		jp _LABEL_1BCD_
+		jp _SMS_VDPturnOffFeature
 	
 	; Data from 831 to 845 (21 bytes)
 	.db $21 $02 $00 $39 $7E $32 $FF $FF $C9 $FD $21 $02 $00 $FD $39 $FD
@@ -942,6 +956,10 @@ _LABEL_846_:
 	.db $0C $32 $FC $FF $C9 $21 $FC $FF $36 $00 $C9 $21 $00 $80 $C9
 	
 A$_sms_manager$323:	
+C$_sms_manager.c$55$1$87:	
+C$_sms_manager.c$57$1$89:	
+G$devkit_SMS_setSpriteMode$0$0:	
+_devkit_SMS_setSpriteMode:	
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy+0)
@@ -959,7 +977,7 @@ A$_sms_manager$379:
 		pop hl
 		push hl
 		push bc
-		jp _LABEL_1BB6_
+		jp _SMS_VDPturnOnFeature
 	
 _LABEL_88E_:	
 		ld hl, $0004
@@ -1475,7 +1493,7 @@ _DATA_1BA3_:
 	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF $FD $21 $5E $C0 $FD
 	.db $6E $00 $C9
 	
-_LABEL_1BB6_:	
+_SMS_VDPturnOnFeature:	
 		ld c, l
 		ld e, h
 		ld d, $00
@@ -1494,7 +1512,7 @@ _LABEL_1BB6_:
 		ei
 		ret
 	
-_LABEL_1BCD_:	
+_SMS_VDPturnOffFeature:	
 		ld a, l
 		ld e, h
 		cpl
@@ -1553,7 +1571,7 @@ _LABEL_1C18_:
 		jr z, +
 		push bc
 		ld hl, $0102
-		call _LABEL_1BB6_
+		call _SMS_VDPturnOnFeature
 		pop bc
 		ld hl, _RAM_C1AC_
 		ld (hl), $10
@@ -1562,7 +1580,7 @@ _LABEL_1C18_:
 +:	
 		push bc
 		ld hl, $0102
-		call _LABEL_1BCD_
+		call _SMS_VDPturnOffFeature
 		pop bc
 		ld hl, _RAM_C1AC_
 		ld (hl), $08
@@ -1570,7 +1588,7 @@ _LABEL_1C18_:
 		bit 1, c
 		jr z, +
 		ld hl, $0101
-		call _LABEL_1BB6_
+		call _SMS_VDPturnOnFeature
 		ld hl, _RAM_C1AD_
 		ld (hl), $10
 		ld iy, _RAM_C1AC_
@@ -1579,7 +1597,7 @@ _LABEL_1C18_:
 	
 +:	
 		ld hl, $0101
-		call _LABEL_1BCD_
+		call _SMS_VDPturnOffFeature
 		ld hl, _RAM_C1AD_
 		ld (hl), $08
 		ret
