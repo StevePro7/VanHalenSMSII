@@ -2241,6 +2241,10 @@ XG$devkit_SFX_CHANNELS2AND3$0$0:
 	.db $C9
 	
 A$asm_manager$59:	
+C$asm_manager.c$11$0$0:	
+C$asm_manager.c$30$1$1:	
+G$engine_asm_manager_clear_VRAM$:	
+_engine_asm_manager_clear_VRAM:	
 		ld a, $00
 		out (Port_VDPAddress), a
 		ld a, $40
@@ -2255,13 +2259,165 @@ A$asm_manager$59:
 		jp nz, -
 		ret
 	
-	; Data from A70 to AA1 (50 bytes)
-	.db $21 $5C $1A $E5 $CD $8B $0A $F1 $C9 $21 $7C $1A $E5 $CD $8B $0A
-	.db $F1 $C9 $21 $39 $1A $E5 $CD $8B $0A $F1 $C9 $CD $42 $0A $7D $B7
-	.db $C0 $CD $51 $0A $65 $D1 $C1 $C5 $D5 $E5 $33 $C5 $CD $2A $0A $F1
-	.db $33 $C9
+; Data from A70 to A72 (3 bytes)	
+A$audio_manager$60:	
+C$audio_manager.c$18$0$0:	
+C$audio_manager.c$20$1$15:	
+G$engine_audio_manager_sfx_right:	
+_engine_audio_manager_sfx_right:	
+	.db $21 $5C $1A
+	
+; Data from A73 to A73 (1 bytes)	
+A$audio_manager$61:	
+	.db $E5
+	
+; Data from A74 to A76 (3 bytes)	
+A$audio_manager$62:	
+	.db $CD $8B $0A
+	
+; Data from A77 to A77 (1 bytes)	
+A$audio_manager$63:	
+	.db $F1
+	
+; Data from A78 to A78 (1 bytes)	
+A$audio_manager$68:	
+C$audio_manager.c$21$1$15:	
+XG$engine_audio_manager_sfx_righ:	
+	.db $C9
+	
+; Data from A79 to A7B (3 bytes)	
+A$audio_manager$81:	
+C$audio_manager.c$22$1$15:	
+C$audio_manager.c$24$1$16:	
+G$engine_audio_manager_sfx_wrong:	
+_engine_audio_manager_sfx_wrong:	
+	.db $21 $7C $1A
+	
+; Data from A7C to A7C (1 bytes)	
+A$audio_manager$82:	
+	.db $E5
+	
+; Data from A7D to A7F (3 bytes)	
+A$audio_manager$83:	
+	.db $CD $8B $0A
+	
+; Data from A80 to A80 (1 bytes)	
+A$audio_manager$84:	
+	.db $F1
+	
+; Data from A81 to A81 (1 bytes)	
+A$audio_manager$89:	
+C$audio_manager.c$25$1$16:	
+XG$engine_audio_manager_sfx_wron:	
+	.db $C9
+	
+; Data from A82 to A84 (3 bytes)	
+A$audio_manager$102:	
+C$audio_manager.c$26$1$16:	
+C$audio_manager.c$28$1$17:	
+G$engine_audio_manager_sfx_cheat:	
+_engine_audio_manager_sfx_cheat:	
+	.db $21 $39 $1A
+	
+; Data from A85 to A85 (1 bytes)	
+A$audio_manager$103:	
+	.db $E5
+	
+; Data from A86 to A88 (3 bytes)	
+A$audio_manager$104:	
+	.db $CD $8B $0A
+	
+; Data from A89 to A89 (1 bytes)	
+A$audio_manager$105:	
+	.db $F1
+	
+; Data from A8A to A8A (1 bytes)	
+A$audio_manager$110:	
+C$audio_manager.c$29$1$17:	
+XG$engine_audio_manager_sfx_chea:	
+	.db $C9
+	
+; Data from A8B to A8D (3 bytes)	
+A$audio_manager$123:	
+C$audio_manager.c$31$1$17:	
+C$audio_manager.c$36$1$19:	
+Faudio_manager$play_sfx$0$0:	
+	.db $CD $42 $0A
+	
+; Data from A8E to A8E (1 bytes)	
+A$audio_manager$127:	
+C$audio_manager.c$37$1$19:	
+	.db $7D
+	
+; Data from A8F to A8F (1 bytes)	
+A$audio_manager$128:	
+	.db $B7
+	
+; Data from A90 to A90 (1 bytes)	
+A$audio_manager$132:	
+C$audio_manager.c$39$2$20:	
+	.db $C0
+	
+; Data from A91 to A93 (3 bytes)	
+A$audio_manager$136:	
+C$audio_manager.c$42$1$19:	
+	.db $CD $51 $0A
+	
+; Data from A94 to A94 (1 bytes)	
+A$audio_manager$137:	
+	.db $65
+	
+; Data from A95 to A95 (1 bytes)	
+A$audio_manager$138:	
+	.db $D1
+	
+; Data from A96 to A96 (1 bytes)	
+A$audio_manager$139:	
+	.db $C1
+	
+; Data from A97 to A97 (1 bytes)	
+A$audio_manager$140:	
+	.db $C5
+	
+; Data from A98 to A98 (1 bytes)	
+A$audio_manager$141:	
+	.db $D5
+	
+; Data from A99 to A99 (1 bytes)	
+A$audio_manager$142:	
+	.db $E5
+	
+; Data from A9A to A9A (1 bytes)	
+A$audio_manager$143:	
+	.db $33
+	
+; Data from A9B to A9B (1 bytes)	
+A$audio_manager$144:	
+	.db $C5
+	
+; Data from A9C to A9E (3 bytes)	
+A$audio_manager$145:	
+	.db $CD $2A $0A
+	
+; Data from A9F to A9F (1 bytes)	
+A$audio_manager$146:	
+	.db $F1
+	
+; Data from AA0 to AA0 (1 bytes)	
+A$audio_manager$147:	
+	.db $33
+	
+; Data from AA1 to AA1 (1 bytes)	
+A$audio_manager$152:	
+C$audio_manager.c$43$1$19:	
+XFaudio_manager$play_sfx$0$0:	
+	.db $C9
 	
 A$content_manager$65:	
+C$content_manager.c$12$0$0:	
+C$content_manager.c$14$1$17:	
+H$engine_content_manager_load_ti:	
+_engine_content_manager_load_til:	
 		ld hl, $0000
 		push hl
 		ld hl, $17A2
@@ -2275,17 +2431,378 @@ A$content_manager$65:
 		pop af
 		ret
 	
-	; Data from AB8 to B50 (153 bytes)
-	.db $3E $02 $F5 $33 $CD $31 $08 $33 $21 $40 $00 $E5 $21 $57 $80 $E5
-	.db $CD $8E $08 $F1 $F1 $01 $10 $80 $C5 $21 $00 $00 $E5 $CD $A4 $08
-	.db $F1 $F1 $01 $00 $80 $C5 $CD $C5 $08 $F1 $C9 $3E $03 $F5 $33 $CD
-	.db $31 $08 $33 $21 $40 $00 $E5 $21 $77 $80 $E5 $CD $8E $08 $F1 $F1
-	.db $01 $10 $80 $C5 $21 $00 $00 $E5 $CD $A4 $08 $F1 $F1 $01 $00 $80
-	.db $C5 $CD $C5 $08 $F1 $21 $03 $03 $E5 $2E $0F $E5 $CD $D3 $08 $F1
-	.db $F1 $C9 $3E $03 $F5 $33 $CD $31 $08 $33 $21 $40 $00 $E5 $21 $45
-	.db $93 $E5 $CD $8E $08 $F1 $F1 $01 $E8 $92 $C5 $21 $00 $00 $E5 $CD
-	.db $A4 $08 $F1 $F1 $01 $D8 $92 $C5 $CD $C5 $08 $F1 $21 $03 $03 $E5
-	.db $2E $0F $E5 $CD $D3 $08 $F1 $F1 $C9
+; Data from AB8 to AB9 (2 bytes)	
+A$content_manager$96:	
+C$content_manager.c$17$1$17:	
+C$content_manager.c$19$1$18:	
+G$engine_content_manager_load_sp:	
+_engine_content_manager_load_spl:	
+	.db $3E $02
+	
+; Data from ABA to ABA (1 bytes)	
+A$content_manager$97:	
+	.db $F5
+	
+; Data from ABB to ABB (1 bytes)	
+A$content_manager$98:	
+	.db $33
+	
+; Data from ABC to ABE (3 bytes)	
+A$content_manager$99:	
+	.db $CD $31 $08
+	
+; Data from ABF to ABF (1 bytes)	
+A$content_manager$100:	
+	.db $33
+	
+; Data from AC0 to AC2 (3 bytes)	
+A$content_manager$104:	
+C$content_manager.c$20$1$18:	
+	.db $21 $40 $00
+	
+; Data from AC3 to AC3 (1 bytes)	
+A$content_manager$105:	
+	.db $E5
+	
+; Data from AC4 to AC6 (3 bytes)	
+A$content_manager$106:	
+	.db $21 $57 $80
+	
+; Data from AC7 to AC7 (1 bytes)	
+A$content_manager$107:	
+	.db $E5
+	
+; Data from AC8 to ACA (3 bytes)	
+A$content_manager$108:	
+	.db $CD $8E $08
+	
+; Data from ACB to ACB (1 bytes)	
+A$content_manager$109:	
+	.db $F1
+	
+; Data from ACC to ACC (1 bytes)	
+A$content_manager$110:	
+	.db $F1
+	
+; Data from ACD to ACF (3 bytes)	
+A$content_manager$114:	
+C$content_manager.c$21$1$18:	
+	.db $01 $10 $80
+	
+; Data from AD0 to AD0 (1 bytes)	
+A$content_manager$115:	
+	.db $C5
+	
+; Data from AD1 to AD3 (3 bytes)	
+A$content_manager$116:	
+	.db $21 $00 $00
+	
+; Data from AD4 to AD4 (1 bytes)	
+A$content_manager$117:	
+	.db $E5
+	
+; Data from AD5 to AD7 (3 bytes)	
+A$content_manager$118:	
+	.db $CD $A4 $08
+	
+; Data from AD8 to AD8 (1 bytes)	
+A$content_manager$119:	
+	.db $F1
+	
+; Data from AD9 to AD9 (1 bytes)	
+A$content_manager$120:	
+	.db $F1
+	
+; Data from ADA to ADC (3 bytes)	
+A$content_manager$124:	
+C$content_manager.c$22$1$18:	
+	.db $01 $00 $80
+	
+; Data from ADD to ADD (1 bytes)	
+A$content_manager$125:	
+	.db $C5
+	
+; Data from ADE to AE0 (3 bytes)	
+A$content_manager$126:	
+	.db $CD $C5 $08
+	
+; Data from AE1 to AE1 (1 bytes)	
+A$content_manager$127:	
+	.db $F1
+	
+; Data from AE2 to AE2 (1 bytes)	
+A$content_manager$132:	
+C$content_manager.c$23$1$18:	
+XG$engine_content_manager_load_s:	
+	.db $C9
+	
+; Data from AE3 to AE4 (2 bytes)	
+A$content_manager$145:	
+C$content_manager.c$25$1$18:	
+C$content_manager.c$27$1$19:	
+G$engine_content_manager_load_ti:	
+_engine_content_manager_load_tit:	
+	.db $3E $03
+	
+; Data from AE5 to AE5 (1 bytes)	
+A$content_manager$146:	
+	.db $F5
+	
+; Data from AE6 to AE6 (1 bytes)	
+A$content_manager$147:	
+	.db $33
+	
+; Data from AE7 to AE9 (3 bytes)	
+A$content_manager$148:	
+	.db $CD $31 $08
+	
+; Data from AEA to AEA (1 bytes)	
+A$content_manager$149:	
+	.db $33
+	
+; Data from AEB to AED (3 bytes)	
+A$content_manager$153:	
+C$content_manager.c$28$1$19:	
+	.db $21 $40 $00
+	
+; Data from AEE to AEE (1 bytes)	
+A$content_manager$154:	
+	.db $E5
+	
+; Data from AEF to AF1 (3 bytes)	
+A$content_manager$155:	
+	.db $21 $77 $80
+	
+; Data from AF2 to AF2 (1 bytes)	
+A$content_manager$156:	
+	.db $E5
+	
+; Data from AF3 to AF5 (3 bytes)	
+A$content_manager$157:	
+	.db $CD $8E $08
+	
+; Data from AF6 to AF6 (1 bytes)	
+A$content_manager$158:	
+	.db $F1
+	
+; Data from AF7 to AF7 (1 bytes)	
+A$content_manager$159:	
+	.db $F1
+	
+; Data from AF8 to AFA (3 bytes)	
+A$content_manager$163:	
+C$content_manager.c$29$1$19:	
+	.db $01 $10 $80
+	
+; Data from AFB to AFB (1 bytes)	
+A$content_manager$164:	
+	.db $C5
+	
+; Data from AFC to AFE (3 bytes)	
+A$content_manager$165:	
+	.db $21 $00 $00
+	
+; Data from AFF to AFF (1 bytes)	
+A$content_manager$166:	
+	.db $E5
+	
+; Data from B00 to B02 (3 bytes)	
+A$content_manager$167:	
+	.db $CD $A4 $08
+	
+; Data from B03 to B03 (1 bytes)	
+A$content_manager$168:	
+	.db $F1
+	
+; Data from B04 to B04 (1 bytes)	
+A$content_manager$169:	
+	.db $F1
+	
+; Data from B05 to B07 (3 bytes)	
+A$content_manager$173:	
+C$content_manager.c$30$1$19:	
+	.db $01 $00 $80
+	
+; Data from B08 to B08 (1 bytes)	
+A$content_manager$174:	
+	.db $C5
+	
+; Data from B09 to B0B (3 bytes)	
+A$content_manager$175:	
+	.db $CD $C5 $08
+	
+; Data from B0C to B0C (1 bytes)	
+A$content_manager$176:	
+	.db $F1
+	
+; Data from B0D to B0F (3 bytes)	
+A$content_manager$180:	
+C$content_manager.c$33$1$19:	
+	.db $21 $03 $03
+	
+; Data from B10 to B10 (1 bytes)	
+A$content_manager$181:	
+	.db $E5
+	
+; Data from B11 to B12 (2 bytes)	
+A$content_manager$182:	
+	.db $2E $0F
+	
+; Data from B13 to B13 (1 bytes)	
+A$content_manager$183:	
+	.db $E5
+	
+; Data from B14 to B16 (3 bytes)	
+A$content_manager$184:	
+	.db $CD $D3 $08
+	
+; Data from B17 to B17 (1 bytes)	
+A$content_manager$185:	
+	.db $F1
+	
+; Data from B18 to B18 (1 bytes)	
+A$content_manager$186:	
+	.db $F1
+	
+; Data from B19 to B19 (1 bytes)	
+A$content_manager$191:	
+C$content_manager.c$34$1$19:	
+XG$engine_content_manager_load_t:	
+	.db $C9
+	
+; Data from B1A to B1B (2 bytes)	
+A$content_manager$204:	
+C$content_manager.c$35$1$19:	
+C$content_manager.c$37$1$20:	
+I$engine_content_manager_load_ti:	
+_fngine_content_manager_load_tit:	
+	.db $3E $03
+	
+; Data from B1C to B1C (1 bytes)	
+A$content_manager$205:	
+	.db $F5
+	
+; Data from B1D to B1D (1 bytes)	
+A$content_manager$206:	
+	.db $33
+	
+; Data from B1E to B20 (3 bytes)	
+A$content_manager$207:	
+	.db $CD $31 $08
+	
+; Data from B21 to B21 (1 bytes)	
+A$content_manager$208:	
+	.db $33
+	
+; Data from B22 to B24 (3 bytes)	
+A$content_manager$212:	
+C$content_manager.c$38$1$20:	
+	.db $21 $40 $00
+	
+; Data from B25 to B25 (1 bytes)	
+A$content_manager$213:	
+	.db $E5
+	
+; Data from B26 to B28 (3 bytes)	
+A$content_manager$214:	
+	.db $21 $45 $93
+	
+; Data from B29 to B29 (1 bytes)	
+A$content_manager$215:	
+	.db $E5
+	
+; Data from B2A to B2C (3 bytes)	
+A$content_manager$216:	
+	.db $CD $8E $08
+	
+; Data from B2D to B2D (1 bytes)	
+A$content_manager$217:	
+	.db $F1
+	
+; Data from B2E to B2E (1 bytes)	
+A$content_manager$218:	
+	.db $F1
+	
+; Data from B2F to B31 (3 bytes)	
+A$content_manager$222:	
+C$content_manager.c$39$1$20:	
+	.db $01 $E8 $92
+	
+; Data from B32 to B32 (1 bytes)	
+A$content_manager$223:	
+	.db $C5
+	
+; Data from B33 to B35 (3 bytes)	
+A$content_manager$224:	
+	.db $21 $00 $00
+	
+; Data from B36 to B36 (1 bytes)	
+A$content_manager$225:	
+	.db $E5
+	
+; Data from B37 to B39 (3 bytes)	
+A$content_manager$226:	
+	.db $CD $A4 $08
+	
+; Data from B3A to B3A (1 bytes)	
+A$content_manager$227:	
+	.db $F1
+	
+; Data from B3B to B3B (1 bytes)	
+A$content_manager$228:	
+	.db $F1
+	
+; Data from B3C to B3E (3 bytes)	
+A$content_manager$232:	
+C$content_manager.c$40$1$20:	
+	.db $01 $D8 $92
+	
+; Data from B3F to B3F (1 bytes)	
+A$content_manager$233:	
+	.db $C5
+	
+; Data from B40 to B42 (3 bytes)	
+A$content_manager$234:	
+	.db $CD $C5 $08
+	
+; Data from B43 to B43 (1 bytes)	
+A$content_manager$235:	
+	.db $F1
+	
+; Data from B44 to B46 (3 bytes)	
+A$content_manager$239:	
+C$content_manager.c$43$1$20:	
+	.db $21 $03 $03
+	
+; Data from B47 to B47 (1 bytes)	
+A$content_manager$240:	
+	.db $E5
+	
+; Data from B48 to B49 (2 bytes)	
+A$content_manager$241:	
+	.db $2E $0F
+	
+; Data from B4A to B4A (1 bytes)	
+A$content_manager$242:	
+	.db $E5
+	
+; Data from B4B to B4D (3 bytes)	
+A$content_manager$243:	
+	.db $CD $D3 $08
+	
+; Data from B4E to B4E (1 bytes)	
+A$content_manager$244:	
+	.db $F1
+	
+; Data from B4F to B4F (1 bytes)	
+A$content_manager$245:	
+	.db $F1
+	
+; Data from B50 to B50 (1 bytes)	
+A$content_manager$250:	
+C$content_manager.c$44$1$20:	
+XH$engine_content_manager_load_t:	
+	.db $C9
 	
 A$content_manager$263:	
 		ld hl, $0120

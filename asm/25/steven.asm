@@ -2250,13 +2250,13 @@ _engine_asm_manager_clear_VRAM:
 		ld a, $40
 		out (Port_VDPAddress), a
 		ld bc, $4000
-A$asm_manager$65:	
+-:	
 		ld a, $00
 		out (Port_VDPData), a
 		dec bc
 		ld a, b
 		or c
-		jp nz, A$asm_manager$65
+		jp nz, -
 		ret
 	
 ; Data from A70 to A72 (3 bytes)	
@@ -2540,7 +2540,7 @@ XG$engine_content_manager_load_s:
 A$content_manager$145:	
 C$content_manager.c$25$1$18:	
 C$content_manager.c$27$1$19:	
-G$engine_content_manager_load_ti:	
+H$engine_content_manager_load_ti:	
 _engine_content_manager_load_tit:	
 	.db $3E $03
 	
@@ -2674,8 +2674,8 @@ XG$engine_content_manager_load_t:
 A$content_manager$204:	
 C$content_manager.c$35$1$19:	
 C$content_manager.c$37$1$20:	
-G$engine_content_manager_load_ti:	
-_engine_content_manager_load_tit:	
+I$engine_content_manager_load_ti:	
+_fngine_content_manager_load_tit:	
 	.db $3E $03
 	
 ; Data from B1C to B1C (1 bytes)	
@@ -2801,7 +2801,7 @@ A$content_manager$245:
 ; Data from B50 to B50 (1 bytes)	
 A$content_manager$250:	
 C$content_manager.c$44$1$20:	
-XG$engine_content_manager_load_t:	
+XH$engine_content_manager_load_t:	
 	.db $C9
 	
 A$content_manager$263:	
