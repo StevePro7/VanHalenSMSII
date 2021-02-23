@@ -1831,7 +1831,7 @@ C$_sms_manager.c$141$1$119:
 G$devkit_SMS_queryPauseRequested:	
 XG$devkit_SMS_queryPauseRequeste:	
 _devkit_SMS_queryPauseRequested:
-		jp _LABEL_1DA9_
+		jp _SMS_queryPauseRequested
 	
 A$_sms_manager$837:	
 C$_sms_manager.c$142$1$119:	
@@ -1840,19 +1840,52 @@ C$_sms_manager.c$145$1$120:
 G$devkit_SMS_resetPauseRequest$0:	
 XG$devkit_SMS_resetPauseRequest$:	
 _devkit_SMS_resetPauseRequest:
-		jp _LABEL_1DB1_
+		jp _SMS_resetPauseRequest
 	
-	; Data from 994 to 99A (7 bytes)
-	.db $3A $5C $C0 $E6 $20 $6F $C9
+; Data from 994 to 996 (3 bytes)	
+A$_sms_manager$850:	
+C$_sms_manager.c$148$1$120:	
+C$_sms_manager.c$150$1$121:	
+G$devkit_isCollisionDetected$0$0:	
+_devkit_isCollisionDetected:	
+	.db $3A $5C $C0
 	
-_LABEL_99B_:	
-		jp _LABEL_1D54_
+; Data from 997 to 998 (2 bytes)	
+A$_sms_manager$851:	
+	.db $E6 $20
+	
+; Data from 999 to 999 (1 bytes)	
+A$_sms_manager$852:	
+	.db $6F
+	
+; Data from 99A to 99A (1 bytes)	
+A$_sms_manager$857:	
+C$_sms_manager.c$151$1$121:	
+XG$devkit_isCollisionDetected$0$:	
+	.db $C9
+	
+A$_sms_manager$874:	
+C$_sms_manager.c$154$1$121:	
+C$_sms_manager.c$156$1$122:	
+C$_sms_manager.c$157$1$122:	
+G$devkit_SMS_getKeysStatus$0$0:	
+XG$devkit_SMS_getKeysStatus$0$0:	
+_devkit_SMS_getKeysStatus:
+		jp _SMS_getKeysStatus
 	
 A$_sms_manager$887:	
+C$_sms_manager.c$160$1$122:	
+C$_sms_manager.c$162$1$123:	
+G$devkit_SPRITEMODE_NORMAL$0$0:	
+_devkit_SPRITEMODE_NORMAL:	
 		ld l, $00
 		ret
 	
 A$_sms_manager$905:	
+C$_sms_manager.c$164$1$123:	
+C$_sms_manager.c$166$1$124:	
+G$devkit_VDPFEATURE_HIDEFIRSTCOL:	
+_devkit_VDPFEATURE_HIDEFIRSTCOL:	
 		ld hl, $0020
 		ret
 	
@@ -2003,7 +2036,7 @@ A$content_manager$263:
 A$input_manager$64:	
 		ld hl, (_RAM_C146_)
 		ld (_RAM_C148_), hl
-		call _LABEL_99B_
+		call A$_sms_manager$874
 		ld (_RAM_C146_), hl
 		ret
 	
@@ -2239,7 +2272,7 @@ _SMS_init:
 		call _SMS_initSprites
 		call _SMS_finalizeSprites
 		call _LABEL_1D1E_
-		call _LABEL_1DB1_
+		call _SMS_resetPauseRequest
 -:	
 		in a, (Port_VCounter)
 		ld b, a
@@ -2496,7 +2529,7 @@ _SMS_waitForVBlank:
 		jr z, -
 		ret
 	
-_LABEL_1D54_:	
+_SMS_getKeysStatus:	
 		ld hl, (_RAM_C05F_)
 		ret
 	
@@ -2508,12 +2541,12 @@ _LABEL_1D54_:
 	.db $2F $47 $79 $FD $21 $61 $C0 $FD $A6 $00 $6F $78 $FD $A6 $01 $67
 	.db $C9
 	
-_LABEL_1DA9_:	
+_SMS_queryPauseRequested:	
 		ld iy, _RAM_C05D_
 		ld l, (iy+0)
 		ret
 	
-_LABEL_1DB1_:	
+_SMS_resetPauseRequest:	
 		ld hl, _RAM_C05D_
 		ld (hl), $00
 		ret
