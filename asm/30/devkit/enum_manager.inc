@@ -28,7 +28,7 @@ PSGSFXLoopPoint dw		            ; PSGSFXLoopPoint = $C01F
 PSGSFXSkipFrames db		            ; PSGSFXSkipFrames = $C021
 PSGSFXLoopFlag db		            ; PSGSFXLoopFlag = $C022
 PSGSFXSubstringLen db		        ; PSGSFXSubstringLen = $C023
-PSGSFXSubstringRetAddr dw		    ; PSGSFXSubstringRetAddr = $C024
+PSGSFXSubstringRetAddr dw		        ; PSGSFXSubstringRetAddr = $C024
 .ende	
 	
 .enum $C02B export	
@@ -46,7 +46,7 @@ _RAM_C03D_ dw
 _RAM_C03F_ dw	
 _RAM_C041_ dw	
 _RAM_C043_ dw	
-_RAM_C045_ db	
+G$global_scroll_object$0$0 db	        ; G$global_scroll_object$0$0 = $C045
 .ende	
 	
 .enum $C05B export	

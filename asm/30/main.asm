@@ -5565,7 +5565,7 @@ _engine_screen_manager_init:
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
-		ld (Fscreen_manager$next_screen_type), a	; Fscreen_manager$next_screen_type = $C02C
+		ld (Fscreen_manager$next_screen_type), a	; Fscreen_manager$next_screen_type = Fscreen_manager$next_screen_type
 		ld hl, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
 		ld (hl), $00
 		ld hl, $1195
@@ -5626,7 +5626,7 @@ _engine_screen_manager_update:
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
-		ld hl, $C02C
+		ld hl, Fscreen_manager$next_screen_type	; Fscreen_manager$next_screen_type = $C02C
 		push hl
 		ld l, c
 		ld h, b
@@ -5652,7 +5652,7 @@ _engine_scroll_manager_reset:
 		ret
 	
 +:	
-		ld hl, _RAM_C045_
+		ld hl, G$global_scroll_object$0$0	; G$global_scroll_object$0$0 = $C045
 		ld iy, $0002
 		add iy, sp
 		ld a, (iy+0)
