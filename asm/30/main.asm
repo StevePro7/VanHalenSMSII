@@ -5561,7 +5561,7 @@ A$screen_manager$80:
 C$screen_manager.c$19$0$0:	
 C$screen_manager.c$21$1$10:	
 G$engine_screen_manager_init$0$0:	
-_engine_screen_manager_init:
+_engine_screen_manager_init:	
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
@@ -5571,26 +5571,26 @@ _engine_screen_manager_init:
 		ld hl, A$none_screen$60	; A$none_screen$60 = $1195
 		ld (Fscreen_manager$load_method$0$0), hl	; Fscreen_manager$load_method$0$0 = $C02D
 		ld hl, A$splash_screen$69	; A$splash_screen$69 = $119D
-		ld (_RAM_C02F_), hl
-		ld hl, $1220
+		ld (Fscreen_manager$load_method$0$0 + 2), hl	; Fscreen_manager$load_method$0$0 + 2 = $C02F
+		ld hl, A$title_screen$81	; A$title_screen$81 = $1220
 		ld (_RAM_C031_), hl
-		ld hl, $1389
+		ld hl, A$scroll_screen$62	; A$scroll_screen$62 = $1389
 		ld (_RAM_C033_), hl
-		ld hl, $13EA
+		ld hl, A$select_screen$86	; A$select_screen$86 = $13EA
 		ld (_RAM_C035_), hl
-		ld hl, $14E2
+		ld hl, A$record_screen$71	; A$record_screen$71 = $14E2
 		ld (_RAM_C037_), hl
-		ld hl, $1196
-		ld (Fscreen_manager$update_method$0$), hl
-		ld hl, $11B9
-		ld (_RAM_C03B_), hl
-		ld hl, $12BE
+		ld hl, A$none_screen$73	; A$none_screen$73 = $1196
+		ld (Fscreen_manager$update_method$0$), hl	; Fscreen_manager$update_method$0$ = $C039
+		ld hl, A$splash_screen$109	; A$splash_screen$109 = $11B9
+		ld (Fscreen_manager$update_method$0$ + 2), hl	; Fscreen_manager$update_method$0$ + 2 = $C03B
+		ld hl, A$title_screen$229	; A$title_screen$229 = $12BE
 		ld (_RAM_C03D_), hl
-		ld hl, $138F
+		ld hl, A$scroll_screen$78	; A$scroll_screen$78 = $138F
 		ld (_RAM_C03F_), hl
-		ld hl, $144D
+		ld hl, A$select_screen$190	; A$select_screen$190 = $144D
 		ld (_RAM_C041_), hl
-		ld hl, $14E8
+		ld hl, A$record_screen$89	; A$record_screen$89 = $14E8
 		ld (_RAM_C043_), hl
 		ret
 	
