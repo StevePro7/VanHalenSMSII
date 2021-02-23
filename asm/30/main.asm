@@ -1779,18 +1779,49 @@ XG$devkit_SMS_addSprite$0$0:
 	.db $C9
 	
 A$_sms_manager$735:	
-		jp _LABEL_1CB1_
+C$_sms_manager.c$117$1$113:	
+C$_sms_manager.c$119$1$114:	
+C$_sms_manager.c$120$1$114:	
+G$devkit_SMS_initSprites$0$0:	
+XG$devkit_SMS_initSprites$0$0:	
+_devkit_SMS_initSprites:
+		jp _SMS_initSprites
 	
 A$_sms_manager$752:	
-		jp _LABEL_1D0C_
+C$_sms_manager.c$121$1$114:	
+C$_sms_manager.c$123$1$115:	
+C$_sms_manager.c$124$1$115:	
+G$devkit_SMS_finalizeSprites$0$0:	
+XG$devkit_SMS_finalizeSprites$0$:	
+_devkit_SMS_finalizeSprites:	
+		jp _SMS_finalizeSprites
 	
 A$_sms_manager$769:	
-		jp _LABEL_1D47_
+C$_sms_manager.c$125$1$115:	
+C$_sms_manager.c$127$1$116:	
+C$_sms_manager.c$128$1$116:	
+G$devkit_SMS_waitForVBlank$0$0:	
+XG$devkit_SMS_waitForVBlank$0$0:	
+_devkit_SMS_waitForVBlank:	
+		jp _SMS_waitForVBlank
 	
 A$_sms_manager$786:	
-		jp _LABEL_1AE0_
+C$_sms_manager.c$129$1$116:	
+C$_sms_manager.c$131$1$117:	
+C$_sms_manager.c$132$1$117:	
+G$devkit_SMS_copySpritestoSAT$0$:	
+XG$devkit_SMS_copySpritestoSAT$0:	
+_devkit_SMS_copySpritestoSAT:
+		jp _UNSAFE_SMS_copySpritestoSAT
 	
-	; Data from 98B to 98D (3 bytes)
+; Data from 98B to 98D (3 bytes)	
+A$_sms_manager$803:	
+C$_sms_manager.c$133$1$117:	
+C$_sms_manager.c$135$1$118:	
+C$_sms_manager.c$136$1$118:	
+G$devkit_UNSAFE_SMS_copySpritest:	
+XG$devkit_UNSAFE_SMS_copySprites:	
+_devkit_UNSAFE_SMS_copySpritesto:	
 	.db $C3 $E0 $1A
 	
 A$_sms_manager$820:	
@@ -2163,7 +2194,7 @@ _DATA_1712_:
 	.db $6A $10 $F6 $5F $C9 $06 $09 $7D $6C $26 $00 $CB $1D $ED $6A $ED
 	.db $52 $30 $01 $19 $3F $17 $10 $F5 $CB $10 $50 $5F $EB $C9
 	
-_LABEL_1AE0_:	
+_UNSAFE_SMS_copySpritestoSAT:	
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
@@ -2205,8 +2236,8 @@ _SMS_init:
 		ld a, c
 		sub $0B
 		jr c, -
-		call _LABEL_1CB1_
-		call _LABEL_1D0C_
+		call _SMS_initSprites
+		call _SMS_finalizeSprites
 		call _LABEL_1D1E_
 		call _LABEL_1DB1_
 -:	
@@ -2401,7 +2432,7 @@ _SMS_loadSpritePalette:
 	; Data from 1CAD to 1CB0 (4 bytes)
 	.db $7D $D3 $BE $C9
 	
-_LABEL_1CB1_:	
+_SMS_initSprites:	
 		ld hl, _RAM_C123_
 		ld (hl), $00
 		ret
@@ -2414,7 +2445,7 @@ _LABEL_1CB1_:
 	.db $FD $39 $FD $7E $00 $77 $FD $21 $23 $C1 $FD $4E $00 $FD $34 $00
 	.db $69 $C9 $2E $FF $C9
 	
-_LABEL_1D0C_:	
+_SMS_finalizeSprites:	
 		ld a, (_RAM_C123_)
 		sub $40
 		ret nc
@@ -2456,7 +2487,7 @@ _LABEL_1D1E_:
 		jr nz, -
 		ret
 	
-_LABEL_1D47_:	
+_SMS_waitForVBlank:	
 		ld hl, _RAM_C05B_
 		ld (hl), $00
 -:	
