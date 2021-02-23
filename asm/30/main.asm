@@ -378,7 +378,7 @@ _PSGRestoreVolumes:
 		ld a, e
 		or $90
 		out (Port_PSG), a
-		ld a, (PSGChan1Volume)	; PSGChan1Volume = PSGChan1Volume
+		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
 		and $0F
 		ld e, a
 		ld d, $00
@@ -397,7 +397,7 @@ _PSGRestoreVolumes:
 		jr ++
 	
 +:	
-		ld a, (PSGChan1Volume)	; PSGChan1Volume = PSGChan1Volume
+		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
 		and $0F
 		add a, c
 		ld e, a
@@ -713,7 +713,7 @@ _LABEL_692_:
 		jr nz, ++
 		bit 5, a
 		jr z, +
-		ld (PSGChan1Volume), a	; PSGChan1Volume = PSGChan1Volume
+		ld (PSGChan1Volume), a	; PSGChan1Volume = $C010
 		jp _LABEL_749_
 	
 +:	
@@ -2416,7 +2416,7 @@ XFaudio_manager$play_sfx$0$0:
 A$content_manager$65:	
 C$content_manager.c$12$0$0:	
 C$content_manager.c$14$1$17:	
-H$engine_content_manager_load_ti:	
+G$engine_content_manager_load_ti:	
 _engine_content_manager_load_til:	
 		ld hl, $0000
 		push hl
@@ -2540,7 +2540,7 @@ XG$engine_content_manager_load_s:
 A$content_manager$145:	
 C$content_manager.c$25$1$18:	
 C$content_manager.c$27$1$19:	
-G$engine_content_manager_load_ti:	
+H$engine_content_manager_load_ti:	
 _engine_content_manager_load_tit:	
 	.db $3E $03
 	
