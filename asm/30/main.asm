@@ -9489,55 +9489,74 @@ _SMS_copySpritestoSAT:
 		ret
 	
 _SMS_waitForVBlank:	
-		ld hl, VDPBlank
+		ld hl, VDPBlank	; VDPBlank = $C05B
 		ld (hl), $00
 -:	
-		ld hl, VDPBlank
+		ld hl, VDPBlank	; VDPBlank = $C05B
 		bit 0, (hl)
 		jr z, -
 		ret
 	
 _SMS_getKeysStatus:	
-		ld hl, (KeysStatus)
+		ld hl, (KeysStatus)	; KeysStatus = $C05F
 		ret
 	
-	; Data from 1D58 to 1DA8 (81 bytes)
+; Data from 1D58 to 1D74 (29 bytes)	
+_SMS_getKeysPressed:	
 	.db $FD $21 $61 $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $FD $21
-	.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9 $3A $5F $C0
-	.db $FD $21 $61 $C0 $FD $A6 $00 $6F $3A $60 $C0 $FD $21 $61 $C0 $FD
-	.db $A6 $01 $67 $C9 $FD $21 $5F $C0 $FD $7E $00 $2F $4F $FD $7E $01
-	.db $2F $47 $79 $FD $21 $61 $C0 $FD $A6 $00 $6F $78 $FD $A6 $01 $67
-	.db $C9
+	.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9
+	
+; Data from 1D75 to 1D8B (23 bytes)	
+_SMS_getKeysHeld:	
+	.db $3A $5F $C0 $FD $21 $61 $C0 $FD $A6 $00 $6F $3A $60 $C0 $FD $21
+	.db $61 $C0 $FD $A6 $01 $67 $C9
+	
+; Data from 1D8C to 1DA8 (29 bytes)	
+_SMS_getKeysReleased:	
+	.db $FD $21 $5F $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $79 $FD
+	.db $21 $61 $C0 $FD $A6 $00 $6F $78 $FD $A6 $01 $67 $C9
 	
 _SMS_queryPauseRequested:	
-		ld iy, PauseRequested
+		ld iy, PauseRequested	; PauseRequested = $C05D
 		ld l, (iy+0)
 		ret
 	
 _SMS_resetPauseRequest:	
-		ld hl, PauseRequested
+		ld hl, PauseRequested	; PauseRequested = $C05D
 		ld (hl), $00
 		ret
 	
-	; Data from 1DB7 to 1DDE (40 bytes)
+; Data from 1DB7 to 1DC7 (17 bytes)	
+_SMS_setLineInterruptHandler:	
 	.db $21 $02 $00 $39 $7E $32 $24 $C1 $21 $03 $00 $39 $7E $32 $25 $C1
-	.db $C9 $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
-	.db $DB $7E $6F $C9 $DB $7F $6F $C9
+	.db $C9
+	
+; Data from 1DC8 to 1DD6 (15 bytes)	
+_SMS_setLineCounter:	
+	.db $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
+	
+; Data from 1DD7 to 1DDA (4 bytes)	
+_SMS_getVCount:	
+	.db $DB $7E $6F $C9
+	
+; Data from 1DDB to 1DDE (4 bytes)	
+_SMS_getHCount:	
+	.db $DB $7F $6F $C9
 	
 _SMS_isr:	
 		push af
 		push hl
 		in a, (Port_VDPStatus)
-		ld (SMS_VDPFlags), a
+		ld (SMS_VDPFlags), a	; SMS_VDPFlags = $C05C
 		rlca
 		jr nc, +
-		ld hl, VDPBlank
+		ld hl, VDPBlank	; VDPBlank = $C05B
 		ld (hl), $01
-		ld hl, (KeysStatus)
-		ld (PreviousKeysStatus), hl
+		ld hl, (KeysStatus)	; KeysStatus = $C05F
+		ld (PreviousKeysStatus), hl	; PreviousKeysStatus = $C061
 		in a, (Port_IOPort1)
 		cpl
-		ld hl, KeysStatus
+		ld hl, KeysStatus	; KeysStatus = $C05F
 		ld (hl), a
 		in a, (Port_IOPort2)
 		cpl
@@ -9549,7 +9568,7 @@ _SMS_isr:
 		push bc
 		push de
 		push iy
-		ld hl, (SMS_theLineInterruptHandler)
+		ld hl, (SMS_theLineInterruptHandler)	; SMS_theLineInterruptHandler = $C124
 		call ___sdcc_call_hl
 		pop iy
 		pop de
@@ -9566,7 +9585,7 @@ _SMS_nmi_isr:
 		push de
 		push hl
 		push iy
-		ld hl, PauseRequested
+		ld hl, PauseRequested	; PauseRequested = $C05D
 		ld (hl), $01
 		pop iy
 		pop hl
