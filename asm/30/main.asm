@@ -5565,12 +5565,12 @@ _engine_screen_manager_init:
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
-		ld (Fscreen_manager$next_screen_type), a	; Fscreen_manager$next_screen_type = Fscreen_manager$next_screen_type
+		ld (Fscreen_manager$next_screen_type), a	; Fscreen_manager$next_screen_type = $C02C
 		ld hl, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
 		ld (hl), $00
-		ld hl, $1195
+		ld hl, A$none_screen$60	; A$none_screen$60 = $1195
 		ld (Fscreen_manager$load_method$0$0), hl	; Fscreen_manager$load_method$0$0 = $C02D
-		ld hl, $119D
+		ld hl, A$splash_screen$69	; A$splash_screen$69 = $119D
 		ld (_RAM_C02F_), hl
 		ld hl, $1220
 		ld (_RAM_C031_), hl
