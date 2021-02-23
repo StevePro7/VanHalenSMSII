@@ -378,7 +378,7 @@ _PSGRestoreVolumes:
 		ld a, e
 		or $90
 		out (Port_PSG), a
-		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
+		ld a, (PSGChan1Volume)	; PSGChan1Volume = PSGChan1Volume
 		and $0F
 		ld e, a
 		ld d, $00
@@ -397,7 +397,7 @@ _PSGRestoreVolumes:
 		jr ++
 	
 +:	
-		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
+		ld a, (PSGChan1Volume)	; PSGChan1Volume = PSGChan1Volume
 		and $0F
 		add a, c
 		ld e, a
@@ -713,7 +713,7 @@ _LABEL_692_:
 		jr nz, ++
 		bit 5, a
 		jr z, +
-		ld (PSGChan1Volume), a	; PSGChan1Volume = $C010
+		ld (PSGChan1Volume), a	; PSGChan1Volume = PSGChan1Volume
 		jp _LABEL_749_
 	
 +:	
@@ -9391,17 +9391,17 @@ _SMS_setSpritePaletteColor:
 		add hl, sp
 		ld c, (hl)
 		ld b, $00
-		ld hl, $C010
+		ld hl, PSGChan1Volume	; PSGChan1Volume = $C010
 		add hl, bc
 		rst $08	; _LABEL_8_
-		ld hl, $0003
+		ld hl, _SMS_crt0_RST08 - 3	; _SMS_crt0_RST08 - 3 = $0003
 		add hl, sp
 		ld a, (hl)
 		out (Port_VDPData), a
 		ret
 	
 _SMS_loadBGPalette:	
-		ld de, $C000
+		ld de, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		ld c, Port_VDPAddress
 		di
 		out (c), e
@@ -9415,7 +9415,7 @@ _SMS_loadBGPalette:
 		ret
 	
 _SMS_loadSpritePalette:	
-		ld de, $C010
+		ld de, PSGChan1Volume	; PSGChan1Volume = $C010
 		ld c, Port_VDPAddress
 		di
 		out (c), e
@@ -9428,15 +9428,17 @@ _SMS_loadSpritePalette:
 		jr nz, -
 		ret
 	
-	; Data from 1CAD to 1CB0 (4 bytes)
+; Data from 1CAD to 1CB0 (4 bytes)	
+_SMS_setColor:	
 	.db $7D $D3 $BE $C9
 	
 _SMS_initSprites:	
-		ld hl, _RAM_C123_
+		ld hl, SpriteNextFree
 		ld (hl), $00
 		ret
 	
-	; Data from 1CB7 to 1D0B (85 bytes)
+; Data from 1CB7 to 1D0B (85 bytes)	
+_SMS_addSprite:	
 	.db $3A $23 $C1 $D6 $40 $30 $4B $FD $21 $03 $00 $FD $39 $FD $7E $00
 	.db $D6 $D1 $28 $3E $3E $63 $21 $23 $C1 $86 $4F $3E $C0 $CE $00 $47
 	.db $FD $5E $00 $1D $7B $02 $3A $23 $C1 $87 $4F $21 $A3 $C0 $06 $00
@@ -9445,11 +9447,11 @@ _SMS_initSprites:
 	.db $69 $C9 $2E $FF $C9
 	
 _SMS_finalizeSprites:	
-		ld a, (_RAM_C123_)
+		ld a, (SpriteNextFree)
 		sub $40
 		ret nc
 		ld bc, $C063
-		ld hl, (_RAM_C123_)
+		ld hl, (SpriteNextFree)
 		ld h, $00
 		add hl, bc
 		ld (hl), $D0
@@ -9547,7 +9549,7 @@ _SMS_isr:
 		push bc
 		push de
 		push iy
-		ld hl, (_RAM_C124_)
+		ld hl, (SMS_theLineInterruptHandler)
 		call ___sdcc_call_hl
 		pop iy
 		pop de
@@ -9633,7 +9635,7 @@ _SMS_loadPSGaidencompressedTiles:
 _LABEL_2045_:	
 		push bc
 		ld b, $04
-		ld de, _RAM_C126_
+		ld de, decompBuffer
 		ld c, (ix+0)
 		inc ix
 _LABEL_2050_:	
@@ -9652,7 +9654,7 @@ _LABEL_2050_:
 		ld e, a
 		ld a, d
 		ld d, $00
-		ld iy, _RAM_C126_
+		ld iy, decompBuffer
 		add iy, de
 		ex de, hl
 		cp $03
@@ -9739,7 +9741,7 @@ _LABEL_20B1_:
 		jp nz, _LABEL_2050_
 		ld de, $0008
 		ld c, e
-		ld hl, _RAM_C126_
+		ld hl, decompBuffer
 --:	
 		ld b, $04
 		push hl
