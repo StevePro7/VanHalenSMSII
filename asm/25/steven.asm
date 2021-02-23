@@ -662,7 +662,7 @@ _PSGFrame:
 		ret z
 		ld a, (PSGMusicSkipFrames)	; PSGMusicSkipFrames = $C008
 		or a
-		jp nz, _LABEL_717_
+		jp nz, _LABEL_717_			; stevepro
 		ld hl, (PSGMusicPointer)	; PSGMusicPointer = $C004
 _LABEL_692_:	
 		ld b, (hl)
