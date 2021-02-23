@@ -1889,17 +1889,278 @@ _devkit_VDPFEATURE_HIDEFIRSTCOL:
 		ld hl, $0020
 		ret
 	
-	; Data from 9A5 to A44 (160 bytes)
-	.db $21 $00 $10 $C9 $21 $00 $08 $C9 $53 $74 $65 $76 $65 $6E $20 $42
-	.db $6F $6C $61 $6E $64 $00 $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
+; Data from 9A5 to 9A7 (3 bytes)	
+A$_sms_manager$923:	
+C$_sms_manager.c$168$1$124:	
+C$_sms_manager.c$170$1$125:	
+G$devkit_TILE_PRIORITY$0$0:	
+_devkit_TILE_PRIORITY:	
+	.db $21 $00 $10
+	
+; Data from 9A8 to 9A8 (1 bytes)	
+A$_sms_manager$928:	
+C$_sms_manager.c$171$1$125:	
+XG$devkit_TILE_PRIORITY$0$0:	
+	.db $C9
+	
+; Data from 9A9 to 9AB (3 bytes)	
+A$_sms_manager$941:	
+C$_sms_manager.c$172$1$125:	
+C$_sms_manager.c$174$1$126:	
+G$devkit_TILE_USE_SPRITE_PALETTE:	
+_devkit_TILE_USE_SPRITE_PALETTE:	
+	.db $21 $00 $08
+	
+; Data from 9AC to 9AC (1 bytes)	
+A$_sms_manager$946:	
+C$_sms_manager.c$175$1$126:	
+XG$devkit_TILE_USE_SPRITE_PALETT:	
+	.db $C9
+	
+; Data from 9AD to 9BA (14 bytes)	
+F_sms_manager$__str_0$0$0:	
+	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
+	
+; Data from 9BB to 9C4 (10 bytes)	
+F_sms_manager$__str_1$0$0:	
+	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
+	
+; Data from 9C5 to A00 (60 bytes)	
+F_sms_manager$__str_2$0$0:	
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
 	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
 	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
-	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00 $C1 $E1 $E5 $C5
-	.db $E5 $CD $F4 $02 $F1 $C9 $C1 $E1 $E5 $C5 $E5 $CD $27 $03 $F1 $C9
-	.db $C3 $81 $02 $C3 $A8 $02 $C3 $36 $03 $21 $02 $00 $39 $7E $F5 $33
-	.db $CD $4E $04 $33 $C9 $21 $04 $00 $39 $7E $F5 $33 $21 $03 $00 $39
-	.db $4E $23 $46 $C5 $CD $07 $06 $F1 $33 $C9 $C3 $3D $05 $C3 $5A $06
+	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
+	
+; Data from A01 to A01 (1 bytes)	
+A$_snd_manager$83:	
+C$_snd_manager.c$11$1$31:	
+C$_snd_manager.c$9$0$0:	
+G$devkit_PSGPlay$0$0:	
+_devkit_PSGPlay:	
+	.db $C1
+	
+; Data from A02 to A02 (1 bytes)	
+A$_snd_manager$84:	
+	.db $E1
+	
+; Data from A03 to A03 (1 bytes)	
+A$_snd_manager$85:	
+	.db $E5
+	
+; Data from A04 to A04 (1 bytes)	
+A$_snd_manager$86:	
+	.db $C5
+	
+; Data from A05 to A05 (1 bytes)	
+A$_snd_manager$87:	
+	.db $E5
+	
+; Data from A06 to A08 (3 bytes)	
+A$_snd_manager$88:	
+	.db $CD $F4 $02
+	
+; Data from A09 to A09 (1 bytes)	
+A$_snd_manager$89:	
+	.db $F1
+	
+; Data from A0A to A0A (1 bytes)	
+A$_snd_manager$94:	
+C$_snd_manager.c$12$1$31:	
+XG$devkit_PSGPlay$0$0:	
+	.db $C9
+	
+; Data from A0B to A0B (1 bytes)	
+A$_snd_manager$107:	
+C$_snd_manager.c$13$1$31:	
+C$_snd_manager.c$15$1$33:	
+G$devkit_PSGPlayNoRepeat$0$0:	
+_devkit_PSGPlayNoRepeat:	
+	.db $C1
+	
+; Data from A0C to A0C (1 bytes)	
+A$_snd_manager$108:	
+	.db $E1
+	
+; Data from A0D to A0D (1 bytes)	
+A$_snd_manager$109:	
+	.db $E5
+	
+; Data from A0E to A0E (1 bytes)	
+A$_snd_manager$110:	
+	.db $C5
+	
+; Data from A0F to A0F (1 bytes)	
+A$_snd_manager$111:	
+	.db $E5
+	
+; Data from A10 to A12 (3 bytes)	
+A$_snd_manager$112:	
+	.db $CD $27 $03
+	
+; Data from A13 to A13 (1 bytes)	
+A$_snd_manager$113:	
+	.db $F1
+	
+; Data from A14 to A14 (1 bytes)	
+A$_snd_manager$118:	
+C$_snd_manager.c$16$1$33:	
+XG$devkit_PSGPlayNoRepeat$0$0:	
+	.db $C9
+	
+; Data from A15 to A17 (3 bytes)	
+A$_snd_manager$135:	
+C$_snd_manager.c$17$1$33:	
+C$_snd_manager.c$19$1$35:	
+C$_snd_manager.c$20$1$35:	
+G$devkit_PSGStop$0$0:	
+XG$devkit_PSGStop$0$0:	
+_devkit_PSGStop:	
+	.db $C3 $81 $02
+	
+; Data from A18 to A1A (3 bytes)	
+A$_snd_manager$152:	
+C$_snd_manager.c$21$1$35:	
+C$_snd_manager.c$23$1$37:	
+C$_snd_manager.c$24$1$37:	
+G$devkit_PSGResume$0$0:	
+XG$devkit_PSGResume$0$0:	
+_devkit_PSGResume:	
+	.db $C3 $A8 $02
+	
+; Data from A1B to A1D (3 bytes)	
+A$_snd_manager$169:	
+C$_snd_manager.c$25$1$37:	
+C$_snd_manager.c$27$1$39:	
+C$_snd_manager.c$28$1$39:	
+G$devkit_PSGGetStatus$0$0:	
+XG$devkit_PSGGetStatus$0$0:	
+_devkit_PSGGetStatus:	
+	.db $C3 $36 $03
+	
+; Data from A1E to A20 (3 bytes)	
+A$_snd_manager$182:	
+C$_snd_manager.c$29$1$39:	
+C$_snd_manager.c$31$1$41:	
+G$devkit_PSGSetMusicVolumeAttenu:	
+_devkit_PSGSetMusicVolumeAttenua:	
+	.db $21 $02 $00
+	
+; Data from A21 to A21 (1 bytes)	
+A$_snd_manager$183:	
+	.db $39
+	
+; Data from A22 to A22 (1 bytes)	
+A$_snd_manager$184:	
+	.db $7E
+	
+; Data from A23 to A23 (1 bytes)	
+A$_snd_manager$185:	
+	.db $F5
+	
+; Data from A24 to A24 (1 bytes)	
+A$_snd_manager$186:	
+	.db $33
+	
+; Data from A25 to A27 (3 bytes)	
+A$_snd_manager$187:	
+	.db $CD $4E $04
+	
+; Data from A28 to A28 (1 bytes)	
+A$_snd_manager$188:	
+	.db $33
+	
+; Data from A29 to A29 (1 bytes)	
+A$_snd_manager$193:	
+C$_snd_manager.c$32$1$41:	
+XG$devkit_PSGSetMusicVolumeAtten:	
+	.db $C9
+	
+; Data from A2A to A2C (3 bytes)	
+A$_snd_manager$206:	
+C$_snd_manager.c$34$1$41:	
+C$_snd_manager.c$36$1$43:	
+G$devkit_PSGSFXPlay$0$0:	
+_devkit_PSGSFXPlay:	
+	.db $21 $04 $00
+	
+; Data from A2D to A2D (1 bytes)	
+A$_snd_manager$207:	
+	.db $39
+	
+; Data from A2E to A2E (1 bytes)	
+A$_snd_manager$208:	
+	.db $7E
+	
+; Data from A2F to A2F (1 bytes)	
+A$_snd_manager$209:	
+	.db $F5
+	
+; Data from A30 to A30 (1 bytes)	
+A$_snd_manager$210:	
+	.db $33
+	
+; Data from A31 to A33 (3 bytes)	
+A$_snd_manager$211:	
+	.db $21 $03 $00
+	
+; Data from A34 to A34 (1 bytes)	
+A$_snd_manager$212:	
+	.db $39
+	
+; Data from A35 to A35 (1 bytes)	
+A$_snd_manager$213:	
+	.db $4E
+	
+; Data from A36 to A36 (1 bytes)	
+A$_snd_manager$214:	
+	.db $23
+	
+; Data from A37 to A37 (1 bytes)	
+A$_snd_manager$215:	
+	.db $46
+	
+; Data from A38 to A38 (1 bytes)	
+A$_snd_manager$216:	
+	.db $C5
+	
+; Data from A39 to A3B (3 bytes)	
+A$_snd_manager$217:	
+	.db $CD $07 $06
+	
+; Data from A3C to A3C (1 bytes)	
+A$_snd_manager$218:	
+	.db $F1
+	
+; Data from A3D to A3D (1 bytes)	
+A$_snd_manager$219:	
+	.db $33
+	
+; Data from A3E to A3E (1 bytes)	
+A$_snd_manager$224:	
+C$_snd_manager.c$37$1$43:	
+XG$devkit_PSGSFXPlay$0$0:	
+	.db $C9
+	
+; Data from A3F to A41 (3 bytes)	
+A$_snd_manager$241:	
+C$_snd_manager.c$38$1$43:	
+C$_snd_manager.c$40$1$45:	
+C$_snd_manager.c$41$1$45:	
+G$devkit_PSGSFXStop$0$0:	
+XG$devkit_PSGSFXStop$0$0:	
+_devkit_PSGSFXStop:	
+	.db $C3 $3D $05
+	
+; Data from A42 to A44 (3 bytes)	
+A$_snd_manager$258:	
+C$_snd_manager.c$42$1$45:	
+C$_snd_manager.c$44$1$47:	
+C$_snd_manager.c$45$1$47:	
+G$devkit_PSGSFXGetStatus$0$0:	
+XG$devkit_PSGSFXGetStatus$0$0:	
+_devkit_PSGSFXGetStatus:	
+	.db $C3 $5A $06
 	
 A$_snd_manager$275:	
 		jp _PSGSilenceChannels
