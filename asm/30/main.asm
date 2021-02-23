@@ -576,20 +576,20 @@ _LABEL_5A8_:
 		ld a, $DF
 		out (Port_PSG), a
 +:	
-		ld hl, PSGChannel2SFX
+		ld hl, PSGChannel2SFX	; PSGChannel2SFX = $C016
 		ld (hl), $00
 _LABEL_5B1_:	
-		ld a, (PSGChannel3SFX)
+		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
 		or a
 		jr z, _LABEL_5FD_
-		ld a, (PSGMusicStatus)
+		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
 		or a
 		jr z, +++
-		ld a, (PSGChan3LowTone)
+		ld a, (PSGChan3LowTone)	; PSGChan3LowTone = $C015
 		and $0F
 		or $E0
 		out (Port_PSG), a
-		ld a, (PSGChan3Volume)
+		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
 		and $0F
 		ld l, a
 		ld h, $00
@@ -604,11 +604,11 @@ _LABEL_5B1_:
 		xor $80
 +:	
 		jp p, +
-		ld bc, $000F
+		ld bc, _SMS_crt0_RST18 - 2	; _SMS_crt0_RST18 - 2 = $000F
 		jr ++
 	
 +:	
-		ld a, (PSGChan3Volume)
+		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
 		and $0F
 		add a, c
 		ld c, a
@@ -624,10 +624,10 @@ _LABEL_5B1_:
 		ld a, $FF
 		out (Port_PSG), a
 ++++:	
-		ld hl, PSGChannel3SFX
+		ld hl, PSGChannel3SFX	; PSGChannel3SFX = $C017
 		ld (hl), $00
 _LABEL_5FD_:	
-		ld hl, PSGSFXStatus
+		ld hl, PSGSFXStatus	; PSGSFXStatus = $C01A
 		ld (hl), $00
 _LABEL_602_:	
 		ld sp, ix

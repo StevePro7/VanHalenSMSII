@@ -348,7 +348,7 @@ _PSGRestoreVolumes:
 		ld c, (iy+0)
 		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
 		or a
-		jr z, _LABEL_3C7_
+		jr z, _LABEL_3C7_		; stevepro
 		ld a, (PSGChan0Volume)	; PSGChan0Volume = $C00F
 		and $0F
 		ld e, a
@@ -530,10 +530,10 @@ _PSGSFXStop:
 		ld c, (iy+0)
 		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
 		or a
-		jr z, _LABEL_5B1_
+		jr z, _LABEL_5B1_		; stevepro
 		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
 		or a
-		jr z, _LABEL_5A8_
+		jr z, _LABEL_5A8_		; stevepro
 		ld a, (PSGChan2LowTone)	; PSGChan2LowTone = $C013
 		and $0F
 		or $C0
