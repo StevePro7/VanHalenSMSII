@@ -2197,9 +2197,48 @@ G$devkit_PSGSFXFrame$0$0:
 XG$devkit_PSGSFXFrame$0$0:	
 _devkit_PSGSFXFrame:	
 		jp _PSGSFXFrame
+
+; Data from A51 to A52 (2 bytes)	
+A$_snd_manager$339:	
+C$_snd_manager.c$66$1$55:	
+C$_snd_manager.c$68$1$56:	
+G$devkit_SFX_CHANNEL2$0$0:	
+_devkit_SFX_CHANNEL2:	
+	.db $2E $01
 	
-	; Data from A51 to A59 (9 bytes)
-	.db $2E $01 $C9 $2E $02 $C9 $2E $03 $C9
+; Data from A53 to A53 (1 bytes)	
+A$_snd_manager$344:	
+C$_snd_manager.c$69$1$56:	
+XG$devkit_SFX_CHANNEL2$0$0:	
+	.db $C9
+	
+; Data from A54 to A55 (2 bytes)	
+A$_snd_manager$357:	
+C$_snd_manager.c$70$1$56:	
+C$_snd_manager.c$72$1$57:	
+G$devkit_SFX_CHANNEL3$0$0:	
+_devkit_SFX_CHANNEL3:	
+	.db $2E $02
+	
+; Data from A56 to A56 (1 bytes)	
+A$_snd_manager$362:	
+C$_snd_manager.c$73$1$57:	
+XG$devkit_SFX_CHANNEL3$0$0:	
+	.db $C9
+	
+; Data from A57 to A58 (2 bytes)	
+A$_snd_manager$375:	
+C$_snd_manager.c$74$1$57:	
+C$_snd_manager.c$76$1$58:	
+G$devkit_SFX_CHANNELS2AND3$0$0:	
+_devkit_SFX_CHANNELS2AND3:	
+	.db $2E $03
+	
+; Data from A59 to A59 (1 bytes)	
+A$_snd_manager$380:	
+C$_snd_manager.c$77$1$58:	
+XG$devkit_SFX_CHANNELS2AND3$0$0:	
+	.db $C9
 	
 A$asm_manager$59:	
 		ld a, $00
