@@ -70,8 +70,8 @@ _RAM_C126_ db
 .ende	
 	
 .enum $C146 export	
-_RAM_C146_ dw	
-_RAM_C148_ dw	
+Finput_manager$curr_joypad1$0$0 dw		; Finput_manager$curr_joypad1$0$0 = $C146
+Finput_manager$prev_joypad1$0$0 dw		; Finput_manager$prev_joypad1$0$0 = $C148
 .ende	
 	
 .enum $C1AA export	

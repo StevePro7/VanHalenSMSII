@@ -2807,7 +2807,7 @@ XH$engine_content_manager_load_t:
 A$content_manager$263:	
 C$content_manager.c$47$1$20:	
 C$content_manager.c$50$1$21:	
-G$engine_content_manager_load_sp:	
+H$engine_content_manager_load_sp:	
 _engine_content_manager_load_spr:	
 		ld hl, $0120
 		push hl

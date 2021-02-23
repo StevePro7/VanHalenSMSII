@@ -2807,16 +2807,16 @@ XH$engine_content_manager_load_t:
 A$content_manager$263:	
 C$content_manager.c$47$1$20:	
 C$content_manager.c$50$1$21:	
-G$engine_content_manager_load_sp:	
+H$engine_content_manager_load_sp:	
 _engine_content_manager_load_spr:
 		ld hl, $0120
 		push hl
-		ld hl, _cursor__tiles__psgcompr	; _cursor__tiles__psgcompr = $1657
+		ld hl, $1657 ; _cursor__tiles__psgcompr	; _cursor__tiles__psgcompr = $1657		; stevepro
 		push hl
 		call A$_sms_manager$400
 		pop af
 		pop af
-		ld bc, _cursor__palette__bin	; _cursor__palette__bin = $1647
+		ld bc, $1647	; _cursor__palette__bin	; _cursor__palette__bin = $1647			; stevepro
 		push bc
 		call A$_sms_manager$493
 		pop af
@@ -5062,10 +5062,14 @@ XG$engine_font_manager_draw_data:
 	.db $C9
 	
 A$input_manager$64:	
-		ld hl, (_RAM_C146_)
-		ld (_RAM_C148_), hl
+C$input_manager.c$10$0$0:	
+C$input_manager.c$12$1$19:	
+G$engine_input_manager_update$0$:	
+_engine_input_manager_update:	
+		ld hl, (Finput_manager$curr_joypad1$0$0)	; Finput_manager$curr_joypad1$0$0 = $C146
+		ld (Finput_manager$prev_joypad1$0$0), hl	; Finput_manager$prev_joypad1$0$0 = $C148
 		call A$_sms_manager$874
-		ld (_RAM_C146_), hl
+		ld (Finput_manager$curr_joypad1$0$0), hl	; Finput_manager$curr_joypad1$0$0 = $C146
 		ret
 	
 	; Data from ED3 to F8B (185 bytes)
@@ -5836,8 +5840,8 @@ gsinit:
 		ld a, b
 		or c
 		jr z, +
-		ld de, _RAM_C146_
-		ld hl, _DATA_2103_
+		ld de, Finput_manager$curr_joypad1$0$0	; Finput_manager$curr_joypad1$0$0 = $C146
+		ld hl, $2103	;	Finput_manager$__xinit_curr_joyp	; Finput_manager$__xinit_curr_joyp = $2103	; stevepro
 		ldir
 +:	
 		ret
