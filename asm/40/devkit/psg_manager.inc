@@ -386,7 +386,13 @@ _PSGSFXPlay:
 		push de
 		ld (PSGSFXStart), bc		; PSGSFXStart = $C01B
 
-	.db $ED $43 $1D $C0 $ED $43 $1F $C0 $21 $21 $C0 $36 $00 $21 $23 $C0
+	;.db $ED $43 $1D $C0 $ED $43 $1F $C0 $21 $21 $C0 $36 $00 $21 $23 $C0
+		ld (PSGSFXPointer), bc		; PSGSFXPointer = $C01D
+		ld (PSGSFXLoopPoint), bc	; PSGSFXLoopPoint = $C01F
+		ld hl, PSGSFXSkipFrames		; PSGSFXSkipFrames = $C021
+		ld (hl), $00
+		ld hl, PSGSFXSubstringLen	; PSGSFXSubstringLen = $C023
+	
 	.db $36 $00 $21 $04 $00 $39 $4E $CB $41 $28 $05 $11 $01 $00 $18 $03
 	.db $11 $00 $00 $21 $16 $C0 $73 $CB $49 $28 $05 $01 $01 $00 $18 $03
 	.db $01 $00 $00 $21 $17 $C0 $71 $21 $1A $C0 $36 $01 $C9
