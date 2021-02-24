@@ -51,7 +51,7 @@ _PSGPlayNoRepeat:
 		push hl
 		push bc
 		push hl
-		call $02F4
+		call _PSGPlay				; _PSGPlay = $02F4
 		pop af
 		ld hl, PSGLoopFlag			; PSGLoopFlag = $C009
 		ld (hl), $00
