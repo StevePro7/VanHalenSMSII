@@ -1,9 +1,10 @@
 ; .sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
-; This disassembly was created using Emulicious (http://www.emulicious.net)	
 
 .include "devkit/memory_manager.inc"
 .include "devkit/enum_manager.inc"
 .include "devkit/define_manager.inc"
+
+;.include "content/gfx.inc"
 
 .BANK 0 SLOT 0	
 .ORG $0000	
@@ -63,7 +64,7 @@ _LABEL_70_:
 		call gsinit
 		call _SMS_init
 		ei
-		call A$main$83
+		call _main
 		jp _exit
 	
 _OUTI128:	
@@ -212,10 +213,6 @@ _exit:
 		halt
 		jr -
 	
-A$main$83:	
-C$main.c$3$0$0:	
-C$main.c$9$1$55:	
-G$main$0$0:	
 _main:	
 		call A$asm_manager$59
 		call _devkit_SMS_init
