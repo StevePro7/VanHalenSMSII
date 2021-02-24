@@ -619,7 +619,7 @@ __moduint:
 		push de
 		push hl
 		push af
-		call $1AB1
+		call __divu16			; __divu16 = $1AB1
 		ex de, hl
 		ret
 
