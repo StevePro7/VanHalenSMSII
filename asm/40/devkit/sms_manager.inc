@@ -417,8 +417,17 @@ _SMS_getKeysPressed:
 	
 ; Data from 1D75 to 1D8B (23 bytes)	
 _SMS_getKeysHeld:	
-	.db $3A $5F $C0 $FD $21 $61 $C0 $FD $A6 $00 $6F $3A $60 $C0 $FD $21
-	.db $61 $C0 $FD $A6 $01 $67 $C9
+	;.db $3A $5F $C0 $FD $21 $61 $C0 $FD $A6 $00 $6F $3A $60 $C0 $FD $21
+	;.db $61 $C0 $FD $A6 $01 $67 $C9
+		ld a, (KeysStatus)				; KeysStatus = $C05F
+		ld iy, PreviousKeysStatus		; PreviousKeysStatus = $C061
+		and (iy + $00)
+		ld l, a
+		ld a, (KeysStatus + 1)			; KeysStatus = $C05F
+		ld iy, PreviousKeysStatus		; PreviousKeysStatus = $C061
+		and (iy + $01)
+		ld h, a
+		ret
 	
 ; Data from 1D8C to 1DA8 (29 bytes)	
 _SMS_getKeysReleased:	
