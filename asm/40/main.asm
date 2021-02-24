@@ -109,17 +109,17 @@ infinite_loop:
 		ld a, l
 		or a
 		jr z, global_pause
-		call A$_sms_manager$837
+		call _devkit_SMS_resetPauseRequest
 		ld iy, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		ld a, (iy+0)
 		xor $01
 		ld (iy+0), a
 		bit 0, (iy+0)
-		jr z, A$main$169
-		call A$_snd_manager$275
+		jr z, else_clause
+		call _devkit_PSGSilenceChannels
 		jr global_pause
 
-A$main$169:
+else_clause:
 C$main.c$37$5$60:
 		call A$_snd_manager$292
 global_pause:
