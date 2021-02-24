@@ -154,21 +154,13 @@ A$_sms_manager$310:
 C$_sms_manager.c$52$1$87:	
 XG$devkit_SMS_SRAM$0$0:	
 	.db $C9
-	
-A$_sms_manager$323:	
-C$_sms_manager.c$55$1$87:	
-C$_sms_manager.c$57$1$89:	
-G$devkit_SMS_setSpriteMode$0$0:	
+
 _devkit_SMS_setSpriteMode:	
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy+0)
 		jp _SMS_setSpriteMode
-	
-A$_sms_manager$343:	
-C$_sms_manager.c$59$1$89:	
-C$_sms_manager.c$61$1$90:	
-G$devkit_SMS_useFirstHalfTilesfo:	
+
 _devkit_SMS_useFirstHalfTilesfor:	
 		ld l, $00
 		jp _SMS_useFirstHalfTilesforSprites

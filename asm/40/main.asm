@@ -88,9 +88,9 @@ _main:
 		ld b, l
 		push bc
 		inc sp
-		call A$_sms_manager$323
+		call _devkit_SMS_setSpriteMode
 		inc sp
-		call A$_sms_manager$343
+		call _devkit_SMS_useFirstHalfTilesfor
 		call A$_sms_manager$905
 		push hl
 		call A$_sms_manager$379
