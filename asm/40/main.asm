@@ -218,8 +218,8 @@ C$main.c$9$1$55:
 G$main$0$0:	
 _main:	
 		call A$asm_manager$59
-		call A$_sms_manager$132
-		call A$_sms_manager$163
+		call _devkit_SMS_init
+		call _devkit_SMS_displayOff
 		call A$_sms_manager$887
 		ld b, l
 		push bc
@@ -239,7 +239,7 @@ _main:
 		inc sp
 		call A$screen_manager$80
 		inc sp
-		call A$_sms_manager$145
+		call _devkit_SMS_displayOn
 A$main$140:	
 C$main.c$27$3$57:
 		call A$_sms_manager$820
