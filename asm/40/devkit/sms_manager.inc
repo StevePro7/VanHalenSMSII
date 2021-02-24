@@ -606,7 +606,7 @@ __moduchar:
 		ld e, (hl)
 		dec hl
 		ld l, (hl)
-		call $1AAE
+		call __divu8			; __divu8 = $1AAE
 		ex de, hl
 		ret
 	
