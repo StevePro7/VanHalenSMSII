@@ -461,8 +461,17 @@ _SMS_resetPauseRequest:
 	
 ; Data from 1DB7 to 1DC7 (17 bytes)	
 _SMS_setLineInterruptHandler:	
-	.db $21 $02 $00 $39 $7E $32 $24 $C1 $21 $03 $00 $39 $7E $32 $25 $C1
-	.db $C9
+	;.db $21 $02 $00 $39 $7E $32 $24 $C1 $21 $03 $00 $39 $7E $32 $25 $C1
+	;.db $C9
+		ld hl, $0002
+		add hl, sp
+		ld a, (hl)
+		ld ($C124), a
+		ld hl, $0003
+		add hl, sp
+		ld a, (hl)
+		ld ($C125), a
+		ret
 	
 ; Data from 1DC8 to 1DD6 (15 bytes)	
 _SMS_setLineCounter:	
