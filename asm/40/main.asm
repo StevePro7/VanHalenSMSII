@@ -142,8 +142,35 @@ global_pause:
 
 ; engine
 .include "engine/asm_manager.inc"
+; .include "engine/audio_manager.inc"
+; .include "engine/content_manager.inc"
+; .include "engine/cursor_manager.inc"
+; .include "engine/font_manager.inc"
+; .include "engine/input_manager.inc"
+; .include "engine/record_manager.inc"
+; .include "engine/screen_manager.inc"
+; .include "engine/scroll_manager.inc"
+; .include "engine/storage_manager.inc"
+; .include "engine/timer_manager.inc"
 
-	
+
+; ; object
+; .include "object/cursor_object.inc"
+; .include "object/record_object.inc"
+
+
+; ; screen
+; .include "screen/none_screen.inc"
+; .include "screen/splash_screen.inc"	
+; .include "screen/title_screen.inc"	
+; .include "screen/scroll_screen.inc"
+; .include "screen/select_screen.inc"
+; .include "screen/record_screen.inc"
+; .include "screen/detail_screen.inc"
+; .include "screen/test_screen.inc"
+; .include "screen/func_screen.inc"
+
+
 ; Data from A70 to A72 (3 bytes)	
 A$audio_manager$60:
 C$audio_manager.c$18$0$0:
