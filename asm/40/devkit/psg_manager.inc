@@ -449,7 +449,7 @@ _PSGSFXPlayLoop:
 		ld l, (iy + $00)
 		ld h, (iy + $01)
 		push hl
-		call $0607
+		call _PSGSFXPlay			; _PSGSFXPlay = $0607
 		pop af
 		inc sp
 		ld hl, PSGSFXLoopFlag		; PSGSFXLoopFlag = $C022
