@@ -381,7 +381,7 @@ _PSGSFXPlay:
 	;.db $36 $00 $21 $04 $00 $39 $4E $CB $41 $28 $05 $11 $01 $00 $18 $03
 	;.db $11 $00 $00 $21 $16 $C0 $73 $CB $49 $28 $05 $01 $01 $00 $18 $03
 	;.db $01 $00 $00 $21 $17 $C0 $71 $21 $1A $C0 $36 $01 $C9
-		call $053D
+		call _PSGSFXStop			; _PSGSFXStop = $053D
 		ld hl, PSGSFXLoopFlag		; PSGSFXLoopFlag = $C022
 		ld (hl), $00
 		pop de
