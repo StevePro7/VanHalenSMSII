@@ -554,11 +554,29 @@ _SMS_nmi_isr:
 	
 ; Data from 1E28 to 1E33 (12 bytes)	
 __moduchar:	
-	.db $21 $03 $00 $39 $5E $2B $6E $CD $AE $1A $EB $C9
+	;.db $21 $03 $00 $39 $5E $2B $6E $CD $AE $1A $EB $C9
+		ld hl, $0003
+		add hl, sp
+		ld e, (hl)
+		dec hl
+		ld l, (hl)
+		call $1AAE
+		ex de, hl
+		ret
 	
 ; Data from 1E34 to 1E3E (11 bytes)	
 __moduint:	
-	.db $F1 $E1 $D1 $D5 $E5 $F5 $CD $B1 $1A $EB $C9
+	;.db $F1 $E1 $D1 $D5 $E5 $F5 $CD $B1 $1A $EB $C9
+		pop af
+		pop hl
+		pop de
+		push de
+		push hl
+		push af
+		call $1AB1
+		ex de, hl
+		ret
+
 	
 ; Data from 1E3F to 201F (481 bytes)	
 _SMS_loadSTMcompressedTileMapAre:	
