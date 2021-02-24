@@ -930,11 +930,7 @@ G$devkit_SMS_getKeysStatus$0$0:
 XG$devkit_SMS_getKeysStatus$0$0:	
 _devkit_SMS_getKeysStatus:
 		jp _SMS_getKeysStatus
-	
-A$_sms_manager$887:	
-C$_sms_manager.c$160$1$122:	
-C$_sms_manager.c$162$1$123:	
-G$devkit_SPRITEMODE_NORMAL$0$0:	
+
 _devkit_SPRITEMODE_NORMAL:	
 		ld l, $00
 		ret

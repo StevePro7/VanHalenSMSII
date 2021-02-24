@@ -81,10 +81,10 @@ _exit:
 		jr -
 	
 _main:	
-		call A$asm_manager$59
+		call _engine_asm_manager_clear_VRAM
 		call _devkit_SMS_init
 		call _devkit_SMS_displayOff
-		call A$_sms_manager$887
+		call _devkit_SPRITEMODE_NORMAL
 		ld b, l
 		push bc
 		inc sp
@@ -142,24 +142,10 @@ C$main.c$41$3$57:
 .include "devkit/psg_manager.inc"
 .include "devkit/devkit_manager.inc"
 
-A$asm_manager$59:	
-C$asm_manager.c$11$0$0:	
-C$asm_manager.c$30$1$1:	
-G$engine_asm_manager_clear_VRAM$:	
-_engine_asm_manager_clear_VRAM:	
-		ld a, $00
-		out (Port_VDPAddress), a
-		ld a, $40
-		out (Port_VDPAddress), a
-		ld bc, $4000
--:	
-		ld a, $00
-		out (Port_VDPData), a
-		dec bc
-		ld a, b
-		or c
-		jp nz, -
-		ret
+
+; engine
+.include "engine/asm_manager.inc"
+
 	
 ; Data from A70 to A72 (3 bytes)	
 A$audio_manager$60:	
