@@ -431,8 +431,23 @@ _SMS_getKeysHeld:
 	
 ; Data from 1D8C to 1DA8 (29 bytes)	
 _SMS_getKeysReleased:	
-	.db $FD $21 $5F $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $79 $FD
-	.db $21 $61 $C0 $FD $A6 $00 $6F $78 $FD $A6 $01 $67 $C9
+	;.db $FD $21 $5F $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $79 $FD
+	;.db $21 $61 $C0 $FD $A6 $00 $6F $78 $FD $A6 $01 $67 $C9
+		ld iy, KeysStatus				; KeysStatus = $C05F
+		ld a, (iy + $00)
+		cpl
+		ld c, a
+		ld a, (iy + $01)
+		cpl
+		ld b, a
+		ld a, c
+		ld iy, PreviousKeysStatus		; PreviousKeysStatus = $C061
+		and (iy + $00)
+		ld l, a
+		ld a, b
+		and (iy + $01)
+		ld h, a
+		ret
 	
 _SMS_queryPauseRequested:	
 		ld iy, PauseRequested	; PauseRequested = $C05D
