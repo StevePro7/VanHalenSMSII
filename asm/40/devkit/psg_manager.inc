@@ -422,11 +422,17 @@ _PSGSFXPlay:
 
 ; Data from 654 to 659 (6 bytes)	
 _PSGSFXCancelLoop:	
-	.db $21 $22 $C0 $36 $00 $C9
+	;.db $21 $22 $C0 $36 $00 $C9
+		ld hl, PSGSFXLoopFlag		; PSGSFXLoopFlag = $C022
+		ld (hl), $00
+		ret
 	
 ; Data from 65A to 661 (8 bytes)	
 _PSGSFXGetStatus:	
-	.db $FD $21 $1A $C0 $FD $6E $00 $C9
+	;.db $FD $21 $1A $C0 $FD $6E $00 $C9
+		ld iy, PSGSFXStatus			; PSGSFXStatus = $C01A
+		ld l, (iy + $00)
+		ret
 	
 ; Data from 662 to 682 (33 bytes)	
 _PSGSFXPlayLoop:	
