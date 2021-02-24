@@ -379,7 +379,8 @@ _PSGSFXPlay:
 	;.db $CD $3D $05 $21 $22 $C0 $36 $00 $D1 $C1 $C5 $D5 $ED $43 $1B $C0
 	;.db $ED $43 $1D $C0 $ED $43 $1F $C0 $21 $21 $C0 $36 $00 $21 $23 $C0
 	;.db $36 $00 $21 $04 $00 $39 $4E $CB $41 $28 $05 $11 $01 $00 $18 $03
-	
+	;.db $11 $00 $00 $21 $16 $C0 $73 $CB $49 $28 $05 $01 $01 $00 $18 $03
+	;.db $01 $00 $00 $21 $17 $C0 $71 $21 $1A $C0 $36 $01 $C9
 		call $053D
 		ld hl, PSGSFXLoopFlag		; PSGSFXLoopFlag = $C022
 		ld (hl), $00
@@ -404,17 +405,21 @@ _PSGSFXPlay:
 		ld de, $0001
 		jr $03
 
-	.db $11 $00 $00 $21 $16 $C0 $73 $CB $49 $28 $05 $01 $01 $00 $18 $03
-		; ld de, $0000
-		; ld hl, PSGChannel2SFX		; PSGChannel2SFX = $C016
-		; ld (hl), e
-		; bit 1, c
-		; jr z, $05
-		; ld bc, $0001
-		; jr $03
-		
-	.db $01 $00 $00 $21 $17 $C0 $71 $21 $1A $C0 $36 $01 $C9
+		ld de, $0000
+		ld hl, PSGChannel2SFX		; PSGChannel2SFX = $C016
+		ld (hl), e
+		bit 1, c
+		jr z, $05
+		ld bc, $0001
+		jr $03
 	
+		ld bc, $0000
+		ld hl, PSGChannel3SFX		; PSGChannel3SFX = $C017
+		ld (hl), c
+		ld hl, PSGSFXStatus			; PSGSFXStatus = $C01A
+		ld (hl), $01
+		ret
+
 ; Data from 654 to 659 (6 bytes)	
 _PSGSFXCancelLoop:	
 	.db $21 $22 $C0 $36 $00 $C9
