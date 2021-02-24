@@ -264,10 +264,10 @@ C$main.c$41$3$57:
 		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		bit 0, (hl)
 		jr nz, A$main$140
-		call A$_sms_manager$735
-		call A$input_manager$64
-		call A$screen_manager$166
-		call A$_sms_manager$752
+		call _devkit_SMS_initSprites
+		call _engine_input_manager_update
+		call _engine_screen_manager_update
+		call _devkit_SMS_finalizeSprites
 		call _devkit_SMS_waitForVBlank
 		call _devkit_SMS_copySpritestoSAT
 		call _devkit_PSGFrame
@@ -3631,11 +3631,7 @@ _engine_screen_manager_init:
 		ld hl, A$record_screen$89	; A$record_screen$89 = $14E8
 		ld (_RAM_C043_), hl
 		ret
-	
-A$screen_manager$166:	
-C$screen_manager.c$41$1$10:	
-C$screen_manager.c$43$1$11:	
-G$engine_screen_manager_update$0:	
+
 _engine_screen_manager_update:
 		ld a, (Fscreen_manager$curr_screen_type)	; Fscreen_manager$curr_screen_type = $C02B
 		ld iy, Fscreen_manager$next_screen_type	; Fscreen_manager$next_screen_type = $C02C
