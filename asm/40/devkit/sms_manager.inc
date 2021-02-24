@@ -466,11 +466,11 @@ _SMS_setLineInterruptHandler:
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
-		ld ($C124), a
+		ld (SMS_theLineInterruptHandler), a		; SMS_theLineInterruptHandler = $C124
 		ld hl, $0003
 		add hl, sp
 		ld a, (hl)
-		ld ($C125), a
+		ld (SMS_theLineInterruptHandler + 1), a	; SMS_theLineInterruptHandler = $C124
 		ret
 	
 ; Data from 1DC8 to 1DD6 (15 bytes)	
