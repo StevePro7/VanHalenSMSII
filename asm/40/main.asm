@@ -95,9 +95,9 @@ _main:
 		push hl
 		call _devkit_SMS_VDPturnOnFeature
 		pop af
-		call A$content_manager$65
-		call A$content_manager$263
-		call A$scroll_manager$61
+		call _engine_content_manager_load_til
+		call _engine_content_manager_load_spr
+		call _engine_scroll_manager_reset
 		ld a, $01
 		push af
 		inc sp
@@ -300,11 +300,7 @@ A$audio_manager$152:
 C$audio_manager.c$43$1$19:
 XFaudio_manager$play_sfx$0$0:
 	.db $C9
-	
-A$content_manager$65:
-C$content_manager.c$12$0$0:
-C$content_manager.c$14$1$17:
-G$engine_content_manager_load_ti:
+
 _engine_content_manager_load_til:
 		ld hl, $0000
 		push hl
@@ -691,11 +687,6 @@ A$content_manager$250:
 C$content_manager.c$44$1$20:
 XH$engine_content_manager_load_t:
 	.db $C9
-	
-A$content_manager$263:
-C$content_manager.c$47$1$20:
-C$content_manager.c$50$1$21:
-H$engine_content_manager_load_sp:
 _engine_content_manager_load_spr:
 		ld hl, $0120
 		push hl
@@ -3517,11 +3508,6 @@ _engine_screen_manager_update:
 		call ___sdcc_call_hl
 		pop af
 		ret
-	
-A$scroll_manager$61:
-C$scroll_manager.c$10$1$18:
-C$scroll_manager.c$8$0$0:
-G$engine_scroll_manager_reset$0$:
 _engine_scroll_manager_reset:
 		xor a
 		push af
