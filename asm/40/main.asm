@@ -98,18 +98,17 @@ _main:
 		call _engine_content_manager_load_til
 		call _engine_content_manager_load_spr
 		call _engine_scroll_manager_reset
-		ld a, $01
+		ld a, $01			; screen_type_splash
 		push af
 		inc sp
-		call A$screen_manager$80
+		call _engine_screen_manager_init
 		inc sp
 		call _devkit_SMS_displayOn
-A$main$140:
-C$main.c$27$3$57:
-		call A$_sms_manager$820
+infinite_loop:
+		call _devkit_SMS_queryPauseRequested
 		ld a, l
 		or a
-		jr z, A$main$174
+		jr z, global_pause
 		call A$_sms_manager$837
 		ld iy, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		ld a, (iy+0)
@@ -118,16 +117,16 @@ C$main.c$27$3$57:
 		bit 0, (iy+0)
 		jr z, A$main$169
 		call A$_snd_manager$275
-		jr A$main$174
+		jr global_pause
 
 A$main$169:
 C$main.c$37$5$60:
 		call A$_snd_manager$292
-A$main$174:
+global_pause:
 C$main.c$41$3$57:
 		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		bit 0, (hl)
-		jr nz, A$main$140
+		jr nz, infinite_loop
 		call _devkit_SMS_initSprites
 		call _engine_input_manager_update
 		call _engine_screen_manager_update
@@ -136,7 +135,7 @@ C$main.c$41$3$57:
 		call _devkit_SMS_copySpritestoSAT
 		call _devkit_PSGFrame
 		call _devkit_PSGSFXFrame
-		jr A$main$140
+		jr infinite_loop
 	
 ; devkit
 .include "devkit/psg_manager.inc"
@@ -3435,11 +3434,7 @@ A$record_manager$236:
 C$record_manager.c$57$1$24:
 XG$engine_record_manager_increme:
 	.db $C9
-	
-A$screen_manager$80:
-C$screen_manager.c$19$0$0:
-C$screen_manager.c$21$1$10:
-G$engine_screen_manager_init$0$0:
+
 _engine_screen_manager_init:
 		ld hl, $0002
 		add hl, sp
