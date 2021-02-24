@@ -475,15 +475,31 @@ _SMS_setLineInterruptHandler:
 	
 ; Data from 1DC8 to 1DD6 (15 bytes)	
 _SMS_setLineCounter:	
-	.db $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
+	;.db $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
+		ld hl, $0002
+		add hl, sp
+		ld c, (hl)
+		di
+		ld a, c
+		out ($bf), a
+		ld a, $8A
+		out ($bf), a
+		ei
+		ret
 	
 ; Data from 1DD7 to 1DDA (4 bytes)	
 _SMS_getVCount:	
-	.db $DB $7E $6F $C9
+	;.db $DB $7E $6F $C9
+		in a, ($7E)
+		ld l, a
+		ret
 	
 ; Data from 1DDB to 1DDE (4 bytes)	
 _SMS_getHCount:	
-	.db $DB $7F $6F $C9
+	;.db $DB $7F $6F $C9
+		in a, ($7F)
+		ld l, a
+		ret
 	
 _SMS_isr:	
 		push af
