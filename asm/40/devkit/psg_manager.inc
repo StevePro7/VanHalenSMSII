@@ -38,15 +38,31 @@ _PSGPlay:
 	
 ; Data from 321 to 326 (6 bytes)	
 _PSGCancelLoop:	
-	.db $21 $09 $C0 $36 $00 $C9
+	;.db $21 $09 $C0 $36 $00 $C9
+		ld hl, PSGLoopFlag			; PSGLoopFlag = $C009
+		ld (hl), $00
+		ret
 	
 ; Data from 327 to 335 (15 bytes)	
 _PSGPlayNoRepeat:	
-	.db $C1 $E1 $E5 $C5 $E5 $CD $F4 $02 $F1 $21 $09 $C0 $36 $00 $C9
+	;.db $C1 $E1 $E5 $C5 $E5 $CD $F4 $02 $F1 $21 $09 $C0 $36 $00 $C9
+		pop bc
+		pop hl
+		push hl
+		push bc
+		push hl
+		call $02F4
+		pop af
+		ld hl, PSGLoopFlag			; PSGLoopFlag = $C009
+		ld (hl), $00
+		ret
 	
 ; Data from 336 to 33D (8 bytes)	
 _PSGGetStatus:	
-	.db $FD $21 $01 $C0 $FD $6E $00 $C9
+	;.db $FD $21 $01 $C0 $FD $6E $00 $C9
+		ld iy, PSGMusicStatus		; PSGMusicStatus = $C001
+		ld l, (iy + $00)
+		ret
 	
 _PSGSilenceChannels:	
 		ld a, $9F
