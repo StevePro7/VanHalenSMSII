@@ -321,7 +321,10 @@ _SMS_loadSpritePalette:
 	
 ; Data from 1CAD to 1CB0 (4 bytes)	
 _SMS_setColor:	
-	.db $7D $D3 $BE $C9
+	;.db $7D $D3 $BE $C9
+		ld a, l
+		out ($be), a
+		ret
 	
 _SMS_initSprites:	
 		ld hl, SpriteNextFree	; SpriteNextFree = $C123
@@ -394,8 +397,23 @@ _SMS_getKeysStatus:
 	
 ; Data from 1D58 to 1D74 (29 bytes)	
 _SMS_getKeysPressed:	
-	.db $FD $21 $61 $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $FD $21
-	.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9
+	;.db $FD $21 $61 $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $FD $21
+	;.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9
+		ld iy, PreviousKeysStatus		; PreviousKeysStatus = $C061
+		ld a, (iy + $00)
+		cpl
+		ld c, a
+		ld a, (iy + $01)
+		cpl
+		ld b, a
+		ld iy, KeysStatus				; KeysStatus = $C05F
+		ld a, (iy + $00)
+		and c
+		ld l, a
+		ld a, (iy + $01)
+		and b
+		ld h, a
+		ret
 	
 ; Data from 1D75 to 1D8B (23 bytes)	
 _SMS_getKeysHeld:	
