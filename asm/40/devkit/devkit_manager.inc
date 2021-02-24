@@ -179,10 +179,7 @@ C$_sms_manager.c$66$1$91:
 XG$devkit_SMS_useFirstHalfTilesf:	
 	.db $C3 $04 $1C
 	
-A$_sms_manager$379:	
-C$_sms_manager.c$67$1$91:	
-C$_sms_manager.c$69$1$93:	
-G$devkit_SMS_VDPturnOnFeature$0$:	
+
 _devkit_SMS_VDPturnOnFeature:	
 		pop bc
 		pop hl

@@ -93,7 +93,7 @@ _main:
 		call _devkit_SMS_useFirstHalfTilesfor
 		call _devkit_VDPFEATURE_HIDEFIRSTCOL
 		push hl
-		call A$_sms_manager$379
+		call _devkit_SMS_VDPturnOnFeature
 		pop af
 		call A$content_manager$65
 		call A$content_manager$263
