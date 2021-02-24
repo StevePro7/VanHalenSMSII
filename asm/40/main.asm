@@ -120,10 +120,8 @@ infinite_loop:
 		jr global_pause
 
 else_clause:
-C$main.c$37$5$60:
-		call A$_snd_manager$292
+		call _devkit_PSGRestoreVolumes
 global_pause:
-C$main.c$41$3$57:
 		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		bit 0, (hl)
 		jr nz, infinite_loop
