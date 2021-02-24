@@ -4,22 +4,14 @@ _devkit_SMS_init:
 _devkit_SMS_displayOn:	
 		ld hl, $0140
 		jp _SMS_VDPturnOnFeature
-	
-A$_sms_manager$163:	
-C$_sms_manager.c$19$1$75:	
-C$_sms_manager.c$21$1$76:	
-G$devkit_SMS_displayOff$0$0:	
 _devkit_SMS_displayOff:	
 		ld hl, $0140
 		jp _SMS_VDPturnOffFeature
 	
 ; Data from 831 to 833 (3 bytes)	
-A$_sms_manager$181:	
-C$_sms_manager.c$23$1$76:	
-C$_sms_manager.c$25$1$78:	
-G$devkit_SMS_mapROMBank$0$0:	
 _devkit_SMS_mapROMBank:	
-	.db $21 $02 $00
+	;.db $21 $02 $00
+	ld hl, $0002
 	
 ; Data from 834 to 834 (1 bytes)	
 A$_sms_manager$182:	
@@ -876,13 +868,7 @@ G$devkit_SMS_waitForVBlank$0$0:
 XG$devkit_SMS_waitForVBlank$0$0:	
 _devkit_SMS_waitForVBlank:	
 		jp _SMS_waitForVBlank
-	
-A$_sms_manager$786:	
-C$_sms_manager.c$129$1$116:	
-C$_sms_manager.c$131$1$117:	
-C$_sms_manager.c$132$1$117:	
-G$devkit_SMS_copySpritestoSAT$0$:	
-XG$devkit_SMS_copySpritestoSAT$0:	
+
 _devkit_SMS_copySpritestoSAT:
 		jp _UNSAFE_SMS_copySpritestoSAT
 	
@@ -1251,22 +1237,10 @@ G$devkit_PSGRestoreVolumes$0$0:
 XG$devkit_PSGRestoreVolumes$0$0:	
 _devkit_PSGRestoreVolumes:
 		jp _PSGRestoreVolumes
-	
-A$_snd_manager$309:	
-C$_snd_manager.c$56$1$51:	
-C$_snd_manager.c$58$1$53:	
-C$_snd_manager.c$59$1$53:	
-G$devkit_PSGFrame$0$0:	
-XG$devkit_PSGFrame$0$0:	
+
 _devkit_PSGFrame:	
 		jp _PSGFrame
-	
-A$_snd_manager$326:	
-C$_snd_manager.c$60$1$53:	
-C$_snd_manager.c$62$1$55:	
-C$_snd_manager.c$63$1$55:	
-G$devkit_PSGSFXFrame$0$0:	
-XG$devkit_PSGSFXFrame$0$0:	
+
 _devkit_PSGSFXFrame:	
 		jp _PSGSFXFrame
 

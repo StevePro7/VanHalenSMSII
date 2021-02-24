@@ -268,10 +268,10 @@ C$main.c$41$3$57:
 		call A$input_manager$64
 		call A$screen_manager$166
 		call A$_sms_manager$752
-		call A$_sms_manager$769
-		call A$_sms_manager$786
-		call A$_snd_manager$309
-		call A$_snd_manager$326
+		call _devkit_SMS_waitForVBlank
+		call _devkit_SMS_copySpritestoSAT
+		call _devkit_PSGFrame
+		call _devkit_PSGSFXFrame
 		jr A$main$140
 	
 ; devkit
