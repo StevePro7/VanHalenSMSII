@@ -926,11 +926,7 @@ _devkit_SMS_getKeysStatus:
 _devkit_SPRITEMODE_NORMAL:	
 		ld l, $00
 		ret
-	
-A$_sms_manager$905:	
-C$_sms_manager.c$164$1$123:	
-C$_sms_manager.c$166$1$124:	
-G$devkit_VDPFEATURE_HIDEFIRSTCOL:	
+
 _devkit_VDPFEATURE_HIDEFIRSTCOL:	
 		ld hl, $0020
 		ret
