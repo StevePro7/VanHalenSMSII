@@ -339,7 +339,7 @@ _SMS_addSprite:
 	;.db $09 $FD $21 $02 $00 $FD $39 $FD $7E $00 $77 $23 $FD $21 $04 $00
 	;.db $FD $39 $FD $7E $00 $77 $FD $21 $23 $C1 $FD $4E $00 $FD $34 $00
 	;.db $69 $C9 $2E $FF $C9
-		ld a, ($C123)
+		ld a, (SpriteNextFree)			; SpriteNextFree = $C123
 		sub $40
 		jr nc, $4B
 		ld iy, $0003
@@ -349,7 +349,7 @@ _SMS_addSprite:
 		sub	$D1
 		jr z, $3E
 		ld a, $63
-		ld hl, $C123
+		ld hl, SpriteNextFree			; SpriteNextFree = $C123
 		add a, (hl)
 		ld c, a
 		ld a, $C0
@@ -360,7 +360,7 @@ _SMS_addSprite:
 		dec e
 		ld a, e
 		ld (bc), a
-		ld a, ($C123)
+		ld a, (SpriteNextFree)			; SpriteNextFree = $C123
 		add a, a
 		ld c, a
 		ld hl, $C0A3
@@ -377,7 +377,7 @@ _SMS_addSprite:
 		add iy, sp
 		ld a, (iy + $00)
 		ld (hl), a
-		ld iy, $C123
+		ld iy, SpriteNextFree			; SpriteNextFree = $C123
 		ld c, (iy + $00)
 		inc (iy + $00)
 
