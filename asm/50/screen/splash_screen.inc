@@ -163,78 +163,94 @@ C$splash_screen.c$35$1$27:
 
 ; Data from 11DC to 11DC (1 bytes)	
 A$splash_screen$139:
-	.db $B7
-	;or a
+	;.db $B7
+	or a
 
 ; Data from 11DD to 11DE (2 bytes)	
 A$splash_screen$140:
-	.db $28 $1C
-	
+	;.db $28 $1C
+	jr z, $1C
+
 ; Data from 11DF to 11E1 (3 bytes)	
 A$splash_screen$144:
 C$splash_screen.c$37$2$28:
-	.db $CD $1D $11
+	;.db $CD $1D $11
+	call $111D
 	
 ; Data from 11E2 to 11E2 (1 bytes)	
 A$splash_screen$148:
 C$splash_screen.c$38$2$28:
-	.db $7D
+	;.db $7D
+	ld a, l
 	
 ; Data from 11E3 to 11E3 (1 bytes)	
 A$splash_screen$149:
-	.db $B7
+	;.db $B7
+	or a
 	
 ; Data from 11E4 to 11E5 (2 bytes)	
 A$splash_screen$150:
-	.db $28 $18
+	;.db $28 $18
+	jr z, $18
 	
 ; Data from 11E6 to 11E8 (3 bytes)	
 A$splash_screen$154:
 C$splash_screen.c$40$3$29:
-	.db $CD $AB $10
+	;.db $CD $AB $10
+	call $10AB
 	
 ; Data from 11E9 to 11EB (3 bytes)	
 A$splash_screen$158:
 C$splash_screen.c$42$3$29:
-	.db $CD $3F $11
+	;.db $CD $3F $11
+	call $113F
 	
 ; Data from 11EC to 11EE (3 bytes)	
 A$splash_screen$162:
 C$splash_screen.c$43$3$29:
-	.db $21 $1C $17
+	;.db $21 $1C $17
+	ld hl, $171C
 	
 ; Data from 11EF to 11EF (1 bytes)	
 A$splash_screen$163:
-	.db $E5
+	;.db $E5
+	push hl
 	
 ; Data from 11F0 to 11F2 (3 bytes)	
 A$splash_screen$164:
-	.db $21 $1B $12
+	;.db $21 $1B $12
+	ld hl, $121B
 	
 ; Data from 11F3 to 11F3 (1 bytes)	
 A$splash_screen$165:
-	.db $E5
+	;.db $E5
+	push hl
 	
 ; Data from 11F4 to 11F6 (3 bytes)	
 A$splash_screen$166:
-	.db $CD $E9 $0D
+	;.db $CD $E9 $0D
+	call $0DE9
 	
 ; Data from 11F7 to 11F7 (1 bytes)	
 A$splash_screen$167:
-	.db $F1
+	;.db $F1
+	pop af
 	
 ; Data from 11F8 to 11F8 (1 bytes)	
 A$splash_screen$168:
-	.db $F1
+	;.db $F1
+	pop af
 	
 ; Data from 11F9 to 11FA (2 bytes)	
 A$splash_screen$169:
-	.db $18 $03
+	;.db $18 $03
+	jr $03
 	
 ; Data from 11FB to 11FD (3 bytes)	
 A$splash_screen$174:
 C$splash_screen.c$48$2$30:
-	.db $CD $3F $11
+	;.db $CD $3F $11
+	call $113F
 	
 ; Data from 11FE to 1200 (3 bytes)	
 A$splash_screen$179:
