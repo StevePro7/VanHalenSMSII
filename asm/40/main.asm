@@ -15,7 +15,9 @@ _LABEL_0_:
 	
 ; Data from 6 to 7 (2 bytes)	
 _SMS_crt0_RST08:
-	.db $00 $00
+	;.db $00 $00
+	nop
+	nop
 	
 _LABEL_8_:
 		ld c, Port_VDPAddress
@@ -27,8 +29,16 @@ _LABEL_8_:
 	
 ; Data from 11 to 37 (39 bytes)
 _SMS_crt0_RST18:
-	.db $00 $00 $00 $00 $00 $00 $00 $7D $D3 $BE $7C $D6 $00 $00 $D3 $BE
-	.db $C9
+	;.db $00 $00 $00 $00 $00 $00 $00
+.rept 7
+	nop
+.endr
+	.db $7D $D3 $BE $7C $D6 $00 $00 $D3 $BE
+
+	;.db $C9
+	ret
+	
+	; TODO rept macro
 	.dsb 22, $00
 	
 _LABEL_38_:

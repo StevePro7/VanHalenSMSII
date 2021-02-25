@@ -19,7 +19,7 @@ _UNSAFE_SMS_VRAMmemcpy32:
 		ld l, (iy + $00)
 		ld a, (iy + $01)
 		set 6, a
-		ld h, a
+		ld h, a	
 		rst $08
 		ld c, $BE
 		ld hl, $0004
