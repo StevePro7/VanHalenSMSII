@@ -37,46 +37,15 @@ _devkit_SMS_enableSRAM:
 	
 ; Data from 858 to 85A (3 bytes)	
 _devkit_SMS_enableSRAMBank:	
-	;.db $21 $02 $00
 		ld hl, $0002
-	
-; Data from 85B to 85B (1 bytes)	
-A$_sms_manager$262:	
-	;.db $39
 		add hl, sp
-	
-; Data from 85C to 85C (1 bytes)	
-A$_sms_manager$263:	
-	;.db $7E
-	ld a, (hl)
-	
-; Data from 85D to 85D (1 bytes)	
-A$_sms_manager$264:	
-	;.db $87
-	add a, a
-	
-; Data from 85E to 85E (1 bytes)	
-A$_sms_manager$265:	
-	;.db $87
-	add a, a
-	
-; Data from 85F to 860 (2 bytes)	
-A$_sms_manager$266:	
-	;.db $CB $DF
-	set 3, a
-	
-; Data from 861 to 862 (2 bytes)	
-A$_sms_manager$267:	
-	;.db $E6 $0C
-	and $0C
-	
-; Data from 863 to 865 (3 bytes)	
-A$_sms_manager$268:	
-	;.db $32 $FC $FF
-	ld ($FFFC), a
-	
-; Data from 866 to 866 (1 bytes)	
-	ret
+		ld a, (hl)
+		add a, a
+		add a, a
+		set 3, a
+		and $0C
+		ld ($FFFC), a
+		ret
 	
 ; Data from 867 to 869 (3 bytes)	
 A$_sms_manager$286:	
