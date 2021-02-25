@@ -15,9 +15,7 @@ _LABEL_0_:
 	
 ; Data from 6 to 7 (2 bytes)	
 _SMS_crt0_RST08:
-	;.db $00 $00
-	nop
-	nop
+	.db $00 $00
 	
 _LABEL_8_:
 		ld c, Port_VDPAddress
@@ -52,19 +50,14 @@ _LABEL_38_:
 		jp _SMS_isr
 	
 ; Data from 3B to 65 (43 bytes)
-	;.dsb 43, $00
-.rept 43
-	nop
-.endr
-	
+	.dsb 43, $00
+
+
 _LABEL_66_:
 		jp _SMS_nmi_isr
 	
-	; Data from 69 to 6F (7 bytes)
-	;.db $00 $00 $00 $00 $00 $00 $00
-.rept 7
-	nop
-.endr	
+; Data from 69 to 6F (7 bytes)
+	.db $00 $00 $00 $00 $00 $00 $00
 	
 _LABEL_70_:
 		ld sp, $DFF0
@@ -266,7 +259,6 @@ __divu16:
 	ld e, a
 	ex de, hl
 	ret
-	;.db $EB $C9
 
 .include "devkit/sms_manager.inc"
 
