@@ -10,26 +10,11 @@ _devkit_SMS_displayOff:
 	
 ; Data from 831 to 833 (3 bytes)	
 _devkit_SMS_mapROMBank:	
-	;.db $21 $02 $00
-	ld hl, $0002
-	
-; Data from 834 to 834 (1 bytes)	
-A$_sms_manager$182:	
-	.db $39
-	
-; Data from 835 to 835 (1 bytes)	
-A$_sms_manager$183:	
-	.db $7E
-	
-; Data from 836 to 838 (3 bytes)	
-A$_sms_manager$184:	
-	.db $32 $FF $FF
-	
-; Data from 839 to 839 (1 bytes)	
-A$_sms_manager$189:	
-C$_sms_manager.c$26$1$78:	
-XG$devkit_SMS_mapROMBank$0$0:	
-	.db $C9
+		ld hl, $0002
+		add hl, sp
+		ld a, (hl)
+		ld ($FFFF), a
+		ret
 	
 ; Data from 83A to 83D (4 bytes)	
 A$_sms_manager$202:	
@@ -1116,10 +1101,6 @@ XG$devkit_PSGSetMusicVolumeAtten:
 	.db $C9
 	
 ; Data from A2A to A2C (3 bytes)	
-A$_snd_manager$206:	
-C$_snd_manager.c$34$1$41:	
-C$_snd_manager.c$36$1$43:	
-G$devkit_PSGSFXPlay$0$0:	
 _devkit_PSGSFXPlay:	
 	.db $21 $04 $00
 	
@@ -1176,18 +1157,17 @@ A$_snd_manager$219:
 	.db $33
 	
 ; Data from A3E to A3E (1 bytes)	
-A$_snd_manager$224:	
-C$_snd_manager.c$37$1$43:	
-XG$devkit_PSGSFXPlay$0$0:	
 	.db $C9
 	
 ; Data from A3F to A41 (3 bytes)	
 _devkit_PSGSFXStop:	
-	.db $C3 $3D $05
+	;.db $C3 $3D $05
+	jp $053D
 	
 ; Data from A42 to A44 (3 bytes)	
 _devkit_PSGSFXGetStatus:	
-	.db $C3 $5A $06
+	;.db $C3 $5A $06
+	jp $065A
 
 _devkit_PSGSilenceChannels:	
 		jp _PSGSilenceChannels
