@@ -32,28 +32,33 @@ _engine_audio_manager_sfx_cheat:
 	ld a, l
 
 ; Data from A8F to A8F (1 bytes)
-	.db $B7
+	;.db $B7
+	or a
 
 ; Data from A90 to A90 (1 bytes)
-	.db $C0
+	;.db $C0
+	ret nz
 
 ; Data from A91 to A93 (3 bytes)
-	.db $CD $51 $0A
+	;.db $CD $51 $0A
+	;call $0A51
+	call _devkit_SFX_CHANNEL2
 
 ; Data from A94 to A94 (1 bytes)
-	.db $65
+	;.db $65
+	ld h, l
 
 ; Data from A95 to A95 (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from A96 to A96 (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from A97 to A97 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from A98 to A98 (1 bytes)
-	.db $D5
+	push de
 
 ; Data from A99 to A99 (1 bytes)
 	push hl
@@ -62,7 +67,7 @@ _engine_audio_manager_sfx_cheat:
 	.db $33
 
 ; Data from A9B to A9B (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from A9C to A9E (3 bytes)
 	.db $CD $2A $0A
