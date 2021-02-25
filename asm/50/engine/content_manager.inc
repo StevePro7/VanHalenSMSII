@@ -93,20 +93,11 @@ _fngine_content_manager_load_tit:
 		call _devkit_SMS_loadPSGaidencompress
 		pop af
 		pop af
-
-; Data from B2F to B31 (3 bytes)
-	.db $01 $E8 $92
-
+		ld bc, _VanHalenTitleTop__tilemap__stmc
 		push bc
-
-; Data from B33 to B35 (3 bytes)
-	.db $21 $00 $00
-
+		ld hl, $0000					; devkit_SMS_loadSTMcompressedTileMap( 0, 0, ... )
 		push hl
-
-; Data from B37 to B39 (3 bytes)
-	.db $CD $A4 $08
-
+		call _devkit_SMS_loadSTMcompressedTil
 		pop af
 		pop af
 
