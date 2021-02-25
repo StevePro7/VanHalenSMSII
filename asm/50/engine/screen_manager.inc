@@ -17,9 +17,9 @@ _engine_screen_manager_init:
 		ld (_RAM_C035_), hl
 		ld hl, A$record_screen$71	; A$record_screen$71 = $14E2
 		ld (_RAM_C037_), hl
-		ld hl, A$none_screen$73	; A$none_screen$73 = $1196
-		ld (Fscreen_manager$update_method$0$), hl	; Fscreen_manager$update_method$0$ = $C039
-		ld hl, A$splash_screen$109	; A$splash_screen$109 = $11B9
+		ld hl, _screen_none_screen_update				; _screen_none_screen_update = $1196
+		ld (Fscreen_manager$update_method$0$), hl		; Fscreen_manager$update_method$0$ = $C039
+		ld hl, _screen_splash_screen_update				; _screen_splash_screen_update = $11B9
 		ld (Fscreen_manager$update_method$0$ + 2), hl	; Fscreen_manager$update_method$0$ + 2 = $C03B
 		ld hl, A$title_screen$229	; A$title_screen$229 = $12BE
 		ld (_RAM_C03D_), hl
