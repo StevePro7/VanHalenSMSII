@@ -255,8 +255,19 @@ __divu16:
 	rr l
 	adc hl, hl
 
-	.db $ED $52 $30 $01 $19 $3F $17 $10 $F5 $CB $10 $50 $5F $EB $C9
-	
+	sbc hl, de
+	jr nc, $01
+	add hl, de
+	ccf
+	rla
+	djnz $F5
+	rl b
+	ld d, b
+	ld e, a
+	ex de, hl
+	ret
+	;.db $EB $C9
+
 .include "devkit/sms_manager.inc"
 
 
