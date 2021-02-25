@@ -64,19 +64,21 @@ _engine_audio_manager_sfx_cheat:
 	push hl
 
 ; Data from A9A to A9A (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from A9B to A9B (1 bytes)
 	push bc
 
 ; Data from A9C to A9E (3 bytes)
-	.db $CD $2A $0A
+	;.db $CD $2A $0A
+	;call $0A2A
+	call _devkit_PSGSFXPlay
 
 ; Data from A9F to A9F (1 bytes)
 	pop af
 
 ; Data from AA0 to AA0 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from AA1 to AA1 (1 bytes)
 	ret
