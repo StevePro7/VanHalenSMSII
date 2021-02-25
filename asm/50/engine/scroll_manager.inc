@@ -7,7 +7,7 @@ _engine_scroll_manager_reset:
 		xor a
 		push af
 		inc sp
-		call A$_sms_manager$222
+		call _devkit_SMS_setBGScrollY
 		inc sp
 		ret
 	

@@ -18,30 +18,11 @@ _devkit_SMS_mapROMBank:
 	
 ; Data from 83A to 83D (4 bytes)		
 _devkit_SMS_setBGScrollX:	
-	;.db $FD $21 $02 $00
-	ld iy, $0002
+		ld iy, $0002
+		add iy, sp
+		ld l, (iy + $00)
+		jp _SMS_setBGScrollX
 	
-; Data from 83E to 83F (2 bytes)	
-A$_sms_manager$203:	
-	;.db $FD $39
-	add iy, sp
-	
-; Data from 840 to 842 (3 bytes)	
-A$_sms_manager$204:	
-	;.db $FD $6E $00
-	ld l, (iy + $00)
-	
-; Data from 843 to 845 (3 bytes)	
-A$_sms_manager$209:	
-C$_sms_manager.c$31$1$80:	
-XG$devkit_SMS_setBGScrollX$0$0:	
-	;.db $C3 $E6 $1B
-	jp $1BE6
-	
-A$_sms_manager$222:	
-C$_sms_manager.c$32$1$80:	
-C$_sms_manager.c$34$1$82:	
-G$devkit_SMS_setBGScrollY$0$0:	
 _devkit_SMS_setBGScrollY:	
 		ld iy, $0002
 		add iy, sp
@@ -49,22 +30,13 @@ _devkit_SMS_setBGScrollY:
 		jp _SMS_setBGScrollY
 	
 ; Data from 852 to 854 (3 bytes)	
-A$_sms_manager$242:	
-C$_sms_manager.c$37$1$82:	
-C$_sms_manager.c$39$1$83:	
-G$devkit_SMS_enableSRAM$0$0:	
 _devkit_SMS_enableSRAM:	
 	.db $21 $FC $FF
 	
 ; Data from 855 to 856 (2 bytes)	
 A$_sms_manager$243:	
 	.db $36 $08
-	
-; Data from 857 to 857 (1 bytes)	
-A$_sms_manager$248:	
-C$_sms_manager.c$40$1$83:	
-XG$devkit_SMS_enableSRAM$0$0:	
-	.db $C9
+	ret
 	
 ; Data from 858 to 85A (3 bytes)	
 A$_sms_manager$261:	
@@ -106,7 +78,7 @@ A$_sms_manager$268:
 A$_sms_manager$273:	
 C$_sms_manager.c$44$1$85:	
 XG$devkit_SMS_enableSRAMBank$0$0:	
-	.db $C9
+	ret
 	
 ; Data from 867 to 869 (3 bytes)	
 A$_sms_manager$286:	
@@ -124,7 +96,7 @@ A$_sms_manager$287:
 A$_sms_manager$292:	
 C$_sms_manager.c$48$1$86:	
 XG$devkit_SMS_disableSRAM$0$0:	
-	.db $C9
+	ret
 	
 ; Data from 86D to 86F (3 bytes)	
 A$_sms_manager$305:	
@@ -138,7 +110,7 @@ _devkit_SMS_SRAM:
 A$_sms_manager$310:	
 C$_sms_manager.c$52$1$87:	
 XG$devkit_SMS_SRAM$0$0:	
-	.db $C9
+	ret
 
 _devkit_SMS_setSpriteMode:	
 		ld iy, $0002
@@ -294,7 +266,7 @@ A$_sms_manager$454:
 A$_sms_manager$459:	
 C$_sms_manager.c$79$1$97:	
 XG$devkit_SMS_loadSTMcompressedT:	
-	.db $C9
+	ret
 	
 A$_sms_manager$472:	
 C$_sms_manager.c$81$1$97:	
@@ -439,7 +411,7 @@ A$_sms_manager$544:
 A$_sms_manager$549:	
 C$_sms_manager.c$93$1$103:	
 XG$devkit_SMS_setBGPaletteColor$:	
-	.db $C9
+	ret
 	
 ; Data from 8FB to 8FD (3 bytes)	
 A$_sms_manager$562:	
@@ -562,7 +534,7 @@ A$_sms_manager$592:
 A$_sms_manager$597:	
 C$_sms_manager.c$98$1$105:	
 XG$devkit_SMS_setSpritePaletteCo:	
-	.db $C9
+	ret
 	
 ; Data from 923 to 924 (2 bytes)	
 A$_sms_manager$607:	
@@ -814,7 +786,7 @@ A$_sms_manager$713:
 A$_sms_manager$718:	
 C$_sms_manager.c$116$1$113:	
 XG$devkit_SMS_addSprite$0$0:	
-	.db $C9
+	ret
 	
 A$_sms_manager$735:	
 C$_sms_manager.c$117$1$113:	
@@ -894,7 +866,7 @@ A$_sms_manager$852:
 A$_sms_manager$857:	
 C$_sms_manager.c$151$1$121:	
 XG$devkit_isCollisionDetected$0$:	
-	.db $C9
+	ret
 	
 A$_sms_manager$874:	
 C$_sms_manager.c$154$1$121:	
@@ -925,7 +897,7 @@ _devkit_TILE_PRIORITY:
 A$_sms_manager$928:	
 C$_sms_manager.c$171$1$125:	
 XG$devkit_TILE_PRIORITY$0$0:	
-	.db $C9
+	ret
 	
 ; Data from 9A9 to 9AB (3 bytes)	
 A$_sms_manager$941:	
@@ -939,7 +911,7 @@ _devkit_TILE_USE_SPRITE_PALETTE:
 A$_sms_manager$946:	
 C$_sms_manager.c$175$1$126:	
 XG$devkit_TILE_USE_SPRITE_PALETT:	
-	.db $C9
+	ret
 	
 ; Data from 9AD to 9BA (14 bytes)	
 F_sms_manager$__str_0$0$0:	
@@ -992,7 +964,7 @@ A$_snd_manager$89:
 A$_snd_manager$94:	
 C$_snd_manager.c$12$1$31:	
 XG$devkit_PSGPlay$0$0:	
-	.db $C9
+	ret
 	
 ; Data from A0B to A0B (1 bytes)	
 A$_snd_manager$107:	
@@ -1030,7 +1002,7 @@ A$_snd_manager$113:
 A$_snd_manager$118:	
 C$_snd_manager.c$16$1$33:	
 XG$devkit_PSGPlayNoRepeat$0$0:	
-	.db $C9
+	ret
 	
 ; Data from A15 to A17 (3 bytes)	
 A$_snd_manager$135:	
@@ -1098,7 +1070,7 @@ A$_snd_manager$188:
 A$_snd_manager$193:	
 C$_snd_manager.c$32$1$41:	
 XG$devkit_PSGSetMusicVolumeAtten:	
-	.db $C9
+	ret
 	
 ; Data from A2A to A2C (3 bytes)	
 _devkit_PSGSFXPlay:	
@@ -1157,7 +1129,7 @@ A$_snd_manager$219:
 	.db $33
 	
 ; Data from A3E to A3E (1 bytes)	
-	.db $C9
+	ret
 	
 ; Data from A3F to A41 (3 bytes)	
 _devkit_PSGSFXStop:	
@@ -1184,20 +1156,20 @@ _devkit_PSGSFXFrame:
 ; Data from A51 to A52 (2 bytes)	
 _devkit_SFX_CHANNEL2:	
 	;.db $2E $01
-	;.db $C9
+	;ret
 	ld l, $01
 	ret
 	
 ; Data from A54 to A55 (2 bytes)	
 _devkit_SFX_CHANNEL3:	
 	;.db $2E $02
-	;.db $C9
+	;ret
 	ld l, $02
 	ret
 	
 ; Data from A57 to A58 (2 bytes)	
 _devkit_SFX_CHANNELS2AND3:	
 	;.db $2E $03
-	;.db $C9
+	;ret
 	ld l, $03
 	ret
