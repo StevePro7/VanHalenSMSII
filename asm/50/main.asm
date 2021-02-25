@@ -223,8 +223,10 @@ __divuchar:
 
 ; Data from 1AAE to 1AB0 (3 bytes)	
 __divu8:
-	.db $26 $00 $54
-	
+	;.db $26 $00 $54
+	ld h, $00
+	ld d, h
+
 ; Data from 1AB1 to 1ADF (47 bytes)	
 __divu16:
 	.db $7B $E6 $80 $B2 $20 $10 $06 $10 $ED $6A $17 $93 $30 $01 $83 $3F
