@@ -89,11 +89,7 @@ _devkit_SMS_VDPturnOnFeature:
 		push hl
 		push bc
 		jp _SMS_VDPturnOnFeature
-	
-A$_sms_manager$400:	
-C$_sms_manager.c$72$1$93:	
-C$_sms_manager.c$74$1$95:	
-G$devkit_SMS_loadPSGaidencompres:	
+
 _devkit_SMS_loadPSGaidencompress:
 		ld hl, _SMS_crt0_RST08 - 2	; _SMS_crt0_RST08 - 2 = $0004
 		add hl, sp

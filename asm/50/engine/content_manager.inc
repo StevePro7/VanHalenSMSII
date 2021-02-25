@@ -3,7 +3,7 @@ _engine_content_manager_load_til:
 		push hl
 		ld hl, _font__tiles__psgcompr	; _font__tiles__psgcompr = $17A2
 		push hl
-		call A$_sms_manager$400
+		call _devkit_SMS_loadPSGaidencompress
 		pop af
 		pop af
 		ld bc, _font__palette__bin	; _font__palette__bin = $1712
@@ -287,7 +287,7 @@ _engine_content_manager_load_spr:
 		push hl
 		ld hl, _cursor__tiles__psgcompr	; _cursor__tiles__psgcompr = $1657
 		push hl
-		call A$_sms_manager$400
+		call _devkit_SMS_loadPSGaidencompress
 		pop af
 		pop af
 		ld bc, _cursor__palette__bin	; _cursor__palette__bin = $1647
