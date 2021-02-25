@@ -309,21 +309,25 @@ C$splash_screen.c$54$2$31:
 ; Data from 1214 to 1215 (2 bytes)	
 A$splash_screen$203:
 C$splash_screen.c$57$1$27:
-	.db $36 $01
+	;.db $36 $01
+	ld (hl), $01
 	
 ; Data from 1216 to 1217 (2 bytes)	
 A$splash_screen$205:
-	.db $DD $F9
+	;.db $DD $F9
+	ld sp, ix
 	
 ; Data from 1218 to 1219 (2 bytes)	
 A$splash_screen$206:
-	.db $DD $E1
+	;.db $DD $E1
+	pop ix
 	
 ; Data from 121A to 121A (1 bytes)	
 A$splash_screen$211:
 C$splash_screen.c$58$1$27:
 XG$screen_splash_screen_update$0:
-	.db $C9
+	;.db $C9
+	ret
 	
 ; Data from 121B to 121F (5 bytes)	
 Fsplash_screen$__str_0$0$0:
