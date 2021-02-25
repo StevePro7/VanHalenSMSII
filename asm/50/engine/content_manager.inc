@@ -143,7 +143,9 @@ _engine_content_manager_load_tit:
 		push hl
 
 ; Data from B14 to B16 (3 bytes)
-	.db $CD $D3 $08
+	;.db $CD $D3 $08
+	;call $08D3
+	call _devkit_SMS_setBGPaletteColor
 
 ; Data from B17 to B17 (1 bytes)
 		pop af
