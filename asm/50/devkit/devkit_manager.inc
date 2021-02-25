@@ -16,27 +16,27 @@ _devkit_SMS_mapROMBank:
 		ld ($FFFF), a
 		ret
 	
-; Data from 83A to 83D (4 bytes)	
-A$_sms_manager$202:	
-C$_sms_manager.c$28$1$78:	
-C$_sms_manager.c$30$1$80:	
-G$devkit_SMS_setBGScrollX$0$0:	
+; Data from 83A to 83D (4 bytes)		
 _devkit_SMS_setBGScrollX:	
-	.db $FD $21 $02 $00
+	;.db $FD $21 $02 $00
+	ld iy, $0002
 	
 ; Data from 83E to 83F (2 bytes)	
 A$_sms_manager$203:	
-	.db $FD $39
+	;.db $FD $39
+	add iy, sp
 	
 ; Data from 840 to 842 (3 bytes)	
 A$_sms_manager$204:	
-	.db $FD $6E $00
+	;.db $FD $6E $00
+	ld l, (iy + $00)
 	
 ; Data from 843 to 845 (3 bytes)	
 A$_sms_manager$209:	
 C$_sms_manager.c$31$1$80:	
 XG$devkit_SMS_setBGScrollX$0$0:	
-	.db $C3 $E6 $1B
+	;.db $C3 $E6 $1B
+	jp $1BE6
 	
 A$_sms_manager$222:	
 C$_sms_manager.c$32$1$80:	
