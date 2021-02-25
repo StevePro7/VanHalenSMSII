@@ -44,97 +44,115 @@ _engine_content_manager_load_spl:
 ; void engine_content_manager_load_titleGap()
 ; Data from AE3 to AE4 (2 bytes)
 _engine_content_manager_load_tit:
-	.db $3E $03
+	;.db $3E $03
+		ld a, $03						; VanHalenTitleTop__tiles__psgcompr_bank 3
 
 ; Data from AE5 to AE5 (1 bytes)
-	push af
+		push af
 
 ; Data from AE6 to AE6 (1 bytes)
-	inc sp
+		inc sp
 
 ; Data from AE7 to AE9 (3 bytes)
-	.db $CD $31 $08
+	;.db $CD $31 $08
+	;call $0831
+		call _devkit_SMS_mapROMBank
 
 ; Data from AEA to AEA (1 bytes)
-	inc sp
+		inc sp
 
 ; Data from AEB to AED (3 bytes)
-	.db $21 $40 $00
+	;.db $21 $40 $00
+		ld hl, $0040				; #define OPTION_TILES	64
 
 ; Data from AEE to AEE (1 bytes)
-	push hl
+		push hl
 
 ; Data from AEF to AF1 (3 bytes)
-	.db $21 $77 $80
+		;.db $21 $77 $80
+		;ld hl, $8077
+		ld hl, _VanHalenTitleGap__tiles__psgcom
+		;call _devkit_SMS_loadPSGaidencompress
 
 ; Data from AF2 to AF2 (1 bytes)
-	push hl
+		push hl
 
 ; Data from AF3 to AF5 (3 bytes)
-	.db $CD $8E $08
+	;.db $CD $8E $08
+		call _devkit_SMS_loadPSGaidencompress
 
 ; Data from AF6 to AF6 (1 bytes)
-	pop af
+		pop af
 
 ; Data from AF7 to AF7 (1 bytes)
-	pop af
+		pop af
 
 ; Data from AF8 to AFA (3 bytes)
-	.db $01 $10 $80
+	;.db $01 $10 $80
+	;ld bc, $8010
+		ld bc, _VanHalenTitleGap__tilemap__stmc
 
 ; Data from AFB to AFB (1 bytes)
-	push bc
+		push bc
 
 ; Data from AFC to AFE (3 bytes)
-	.db $21 $00 $00
+	;.db $21 $00 $00
+		ld hl, $0000			; devkit_SMS_loadSTMcompressedTileMap( 0, 0, ... )
 
 ; Data from AFF to AFF (1 bytes)
-	push hl
+		push hl
 
 ; Data from B00 to B02 (3 bytes)
-	.db $CD $A4 $08
+	;.db $CD $A4 $08
+	;call $08A4
+		call _devkit_SMS_loadSTMcompressedTil
 
 ; Data from B03 to B03 (1 bytes)
-	pop af
+		pop af
 
 ; Data from B04 to B04 (1 bytes)
-	pop af
+		pop af
 
 ; Data from B05 to B07 (3 bytes)
-	.db $01 $00 $80
+	;.db $01 $00 $80
+	;ld bc, $8000
+		ld bc, _VanHalenTitleGap__palette__bin
 
 ; Data from B08 to B08 (1 bytes)
-	push bc
+		push bc
 
 ; Data from B09 to B0B (3 bytes)
-	.db $CD $C5 $08
+	;.db $CD $C5 $08
+		call _devkit_SMS_loadBGPalette
 
 ; Data from B0C to B0C (1 bytes)
-	pop af
+		pop af
 
 ; Data from B0D to B0F (3 bytes)
-	.db $21 $03 $03
+	;.db $21 $03 $03
+		ld hl, $0303			; devkit_SMS_setBGPaletteColor( ..., 3, 3, 3 );
 
 ; Data from B10 to B10 (1 bytes)
-	push hl
+		push hl
 
 ; Data from B11 to B12 (2 bytes)
-	.db $2E $0F
+	;.db $2E $0F
+		ld l, $0F				; devkit_SMS_setBGPaletteColor( 15, ...
 
 ; Data from B13 to B13 (1 bytes)
-	push hl
+		push hl
 
 ; Data from B14 to B16 (3 bytes)
 	.db $CD $D3 $08
 
 ; Data from B17 to B17 (1 bytes)
-	pop af
+		pop af
 
 ; Data from B18 to B18 (1 bytes)
-	pop af
+		pop af
 
 ; Data from B19 to B19 (1 bytes)
-	ret
+		ret
 
 ; Data from B1A to B1B (2 bytes)
 _fngine_content_manager_load_tit:
