@@ -229,7 +229,19 @@ __divu8:
 
 ; Data from 1AB1 to 1ADF (47 bytes)	
 __divu16:
-	.db $7B $E6 $80 $B2 $20 $10 $06 $10 $ED $6A $17 $93 $30 $01 $83 $3F
+	;.db $7B $E6 $80 $B2 $20 $10 $06 $10 $ED $6A $17 $93 $30 $01 $83 $3F
+	ld a, e
+	and $80
+	or d
+	jr nz, $10
+	ld b, $10
+	adc hl, hl
+	rla
+	sub a, e
+	jr nc, $01
+	add a, e
+	ccf
+	
 	.db $ED $6A $10 $F6 $5F $C9 $06 $09 $7D $6C $26 $00 $CB $1D $ED $6A
 	.db $ED $52 $30 $01 $19 $3F $17 $10 $F5 $CB $10 $50 $5F $EB $C9
 	
