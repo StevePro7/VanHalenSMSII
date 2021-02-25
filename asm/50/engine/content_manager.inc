@@ -16,7 +16,6 @@ _engine_content_manager_load_til:
 _engine_content_manager_load_spl:
 	;.db $3E $02
 	ld a, $02						; splash__tiles__psgcompr_bank 2
-	
 
 ; Data from ABA to ABA (1 bytes)
 	push af
@@ -50,8 +49,8 @@ _engine_content_manager_load_spl:
 
 ; Data from AC8 to ACA (3 bytes)
 	;.db $CD $8E $08
-	call $088E
-	;call _devkit_SMS_loadPSGaidencompress
+	;call $088E
+	call _devkit_SMS_loadPSGaidencompress
 
 ; Data from ACB to ACB (1 bytes)
 	pop af
@@ -60,13 +59,16 @@ _engine_content_manager_load_spl:
 	pop af
 
 ; Data from ACD to ACF (3 bytes)
-	.db $01 $10 $80
+	;.db $01 $10 $80
+	;ld bc, $8010
+	ld bc, _splash__tilemap__stmcompr
 
 ; Data from AD0 to AD0 (1 bytes)
 	push bc
 
 ; Data from AD1 to AD3 (3 bytes)
-	.db $21 $00 $00
+	;.db $21 $00 $00
+	ld hl, $0000					; devkit_SMS_loadSTMcompressedTileMap( 0, 0, ... )
 
 ; Data from AD4 to AD4 (1 bytes)
 	push hl
