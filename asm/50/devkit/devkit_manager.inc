@@ -31,12 +31,9 @@ _devkit_SMS_setBGScrollY:
 	
 ; Data from 852 to 854 (3 bytes)	
 _devkit_SMS_enableSRAM:	
-	.db $21 $FC $FF
-	
-; Data from 855 to 856 (2 bytes)	
-A$_sms_manager$243:	
-	.db $36 $08
-	ret
+		ld hl, $FFFC
+		ld (hl), $08
+		ret
 	
 ; Data from 858 to 85A (3 bytes)	
 A$_sms_manager$261:	
