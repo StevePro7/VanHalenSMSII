@@ -29,21 +29,42 @@ _LABEL_8_:
 	
 ; Data from 11 to 37 (39 bytes)
 _SMS_crt0_RST18:
-	.db $00 $00 $00 $00 $00 $00 $00 $7D $D3 $BE $7C $D6 $00 $00 $D3 $BE
-	.db $C9
-	.dsb 22, $00
+	;.db $00 $00 $00 $00 $00 $00 $00 $7D $D3 $BE $7C $D6 $00 $00 $D3 $BE
+	;.db $C9
+.rept 7
+	nop
+.endr
+
+	ld a, l
+	out ($be), a
+	ld a, h
+	sub a, $00
+	nop
+	out ($be), a
+	ret
+
+	;.dsb 22, $00
+.rept 22
+	nop
+.endr
 	
 _LABEL_38_:
 		jp _SMS_isr
 	
-	; Data from 3B to 65 (43 bytes)
-	.dsb 43, $00
+; Data from 3B to 65 (43 bytes)
+	;.dsb 43, $00
+.rept 43
+	nop
+.endr
 	
 _LABEL_66_:
 		jp _SMS_nmi_isr
 	
 	; Data from 69 to 6F (7 bytes)
-	.db $00 $00 $00 $00 $00 $00 $00
+	;.db $00 $00 $00 $00 $00 $00 $00
+.rept 7
+	nop
+.endr	
 	
 _LABEL_70_:
 		ld sp, $DFF0
