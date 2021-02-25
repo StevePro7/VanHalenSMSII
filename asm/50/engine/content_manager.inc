@@ -1,3 +1,4 @@
+; void engine_content_manager_load_tiles()
 _engine_content_manager_load_til:
 		ld hl, $0000
 		push hl
@@ -6,16 +7,17 @@ _engine_content_manager_load_til:
 		call _devkit_SMS_loadPSGaidencompress
 		pop af
 		pop af
-		ld bc, _font__palette__bin	; _font__palette__bin = $1712
+		ld bc, _font__palette__bin		; _font__palette__bin = $1712
 		push bc
-		call A$_sms_manager$472
+		call _devkit_SMS_loadBGPalette
 		pop af
 		ret
 
+; void engine_content_manager_load_splash()
 ; Data from AB8 to AB9 (2 bytes)
 _engine_content_manager_load_spl:
 	;.db $3E $02
-	ld a, $02						; splash__tiles__psgcompr_bank 2
+	ld a, $02							; splash__tiles__psgcompr_bank 2
 
 ; Data from ABA to ABA (1 bytes)
 	push af
@@ -34,7 +36,7 @@ _engine_content_manager_load_spl:
 
 ; Data from AC0 to AC2 (3 bytes)
 	;.db $21 $40 $00
-	ld hl, $0040					; #define OPTION_TILES	64
+	ld hl, $0040						; #define OPTION_TILES	64
 
 ; Data from AC3 to AC3 (1 bytes)
 	push hl
@@ -103,6 +105,7 @@ _engine_content_manager_load_spl:
 ; Data from AE2 to AE2 (1 bytes)
 	ret
 
+; void engine_content_manager_load_titleGap()
 ; Data from AE3 to AE4 (2 bytes)
 _engine_content_manager_load_tit:
 	.db $3E $03
