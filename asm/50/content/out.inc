@@ -1,134 +1,15 @@
 _OUTI128:	
+.rept 64
 		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
+.endr
 _OUTI64:	
+		.rept 64
 		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
-		outi
+.endr
 		ret
 	
-	; Data from 19A to 1FF (102 bytes)
-	.dsb 102, $00
+; Data from 19A to 1FF (102 bytes)
+;	.dsb 102, $00
+.rept 102
+	nop
+.endr	

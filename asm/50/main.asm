@@ -15,7 +15,9 @@ _LABEL_0_:
 	
 ; Data from 6 to 7 (2 bytes)	
 _SMS_crt0_RST08:
-	.db $00 $00
+	;.db $00 $00
+	nop
+	nop
 	
 _LABEL_8_:
 		ld c, Port_VDPAddress
