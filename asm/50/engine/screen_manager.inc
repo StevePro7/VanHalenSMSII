@@ -7,7 +7,7 @@ _engine_screen_manager_init:
 		ld (hl), $00
 		ld hl, A$none_screen$60	; A$none_screen$60 = $1195
 		ld (Fscreen_manager$load_method$0$0), hl	; Fscreen_manager$load_method$0$0 = $C02D
-		ld hl, A$splash_screen$69	; A$splash_screen$69 = $119D
+		ld hl, _screen_splash_screen_load	; _screen_splash_screen_load = $119D
 		ld (Fscreen_manager$load_method$0$0 + 2), hl	; Fscreen_manager$load_method$0$0 + 2 = $C02F
 		ld hl, A$title_screen$81	; A$title_screen$81 = $1220
 		ld (_RAM_C031_), hl
