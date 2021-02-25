@@ -1182,40 +1182,16 @@ XG$devkit_PSGSFXPlay$0$0:
 	.db $C9
 	
 ; Data from A3F to A41 (3 bytes)	
-A$_snd_manager$241:	
-C$_snd_manager.c$38$1$43:	
-C$_snd_manager.c$40$1$45:	
-C$_snd_manager.c$41$1$45:	
-G$devkit_PSGSFXStop$0$0:	
-XG$devkit_PSGSFXStop$0$0:	
 _devkit_PSGSFXStop:	
 	.db $C3 $3D $05
 	
 ; Data from A42 to A44 (3 bytes)	
-A$_snd_manager$258:	
-C$_snd_manager.c$42$1$45:	
-C$_snd_manager.c$44$1$47:	
-C$_snd_manager.c$45$1$47:	
-G$devkit_PSGSFXGetStatus$0$0:	
-XG$devkit_PSGSFXGetStatus$0$0:	
 _devkit_PSGSFXGetStatus:	
 	.db $C3 $5A $06
-	
-A$_snd_manager$275:	
-C$_snd_manager.c$47$1$47:	
-C$_snd_manager.c$49$1$49:	
-C$_snd_manager.c$50$1$49:	
-G$devkit_PSGSilenceChannels$0$0:	
-XG$devkit_PSGSilenceChannels$0$0:	
+
 _devkit_PSGSilenceChannels:	
 		jp _PSGSilenceChannels
 	
-A$_snd_manager$292:	
-C$_snd_manager.c$51$1$49:	
-C$_snd_manager.c$53$1$51:	
-C$_snd_manager.c$54$1$51:	
-G$devkit_PSGRestoreVolumes$0$0:	
-XG$devkit_PSGRestoreVolumes$0$0:	
 _devkit_PSGRestoreVolumes:
 		jp _PSGRestoreVolumes
 
@@ -1226,43 +1202,22 @@ _devkit_PSGSFXFrame:
 		jp _PSGSFXFrame
 
 ; Data from A51 to A52 (2 bytes)	
-A$_snd_manager$339:	
-C$_snd_manager.c$66$1$55:	
-C$_snd_manager.c$68$1$56:	
-G$devkit_SFX_CHANNEL2$0$0:	
 _devkit_SFX_CHANNEL2:	
-	.db $2E $01
-	
-; Data from A53 to A53 (1 bytes)	
-A$_snd_manager$344:	
-C$_snd_manager.c$69$1$56:	
-XG$devkit_SFX_CHANNEL2$0$0:	
-	.db $C9
+	;.db $2E $01
+	;.db $C9
+	ld l, $01
+	ret
 	
 ; Data from A54 to A55 (2 bytes)	
-A$_snd_manager$357:	
-C$_snd_manager.c$70$1$56:	
-C$_snd_manager.c$72$1$57:	
-G$devkit_SFX_CHANNEL3$0$0:	
 _devkit_SFX_CHANNEL3:	
-	.db $2E $02
-	
-; Data from A56 to A56 (1 bytes)	
-A$_snd_manager$362:	
-C$_snd_manager.c$73$1$57:	
-XG$devkit_SFX_CHANNEL3$0$0:	
-	.db $C9
+	;.db $2E $02
+	;.db $C9
+	ld l, $02
+	ret
 	
 ; Data from A57 to A58 (2 bytes)	
-A$_snd_manager$375:	
-C$_snd_manager.c$74$1$57:	
-C$_snd_manager.c$76$1$58:	
-G$devkit_SFX_CHANNELS2AND3$0$0:	
 _devkit_SFX_CHANNELS2AND3:	
-	.db $2E $03
-	
-; Data from A59 to A59 (1 bytes)	
-A$_snd_manager$380:	
-C$_snd_manager.c$77$1$58:	
-XG$devkit_SFX_CHANNELS2AND3$0$0:	
-	.db $C9
+	;.db $2E $03
+	;.db $C9
+	ld l, $03
+	ret
