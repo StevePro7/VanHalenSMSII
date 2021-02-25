@@ -1,6 +1,6 @@
 ; void engine_content_manager_load_tiles()
 _engine_content_manager_load_til:
-		ld hl, $0000
+		ld hl, $0000					; #define FONT_TILES		0
 		push hl
 		ld hl, _font__tiles__psgcompr	; _font__tiles__psgcompr = $17A2
 		push hl
@@ -16,94 +16,30 @@ _engine_content_manager_load_til:
 ; void engine_content_manager_load_splash()
 ; Data from AB8 to AB9 (2 bytes)
 _engine_content_manager_load_spl:
-	;.db $3E $02
-	ld a, $02							; splash__tiles__psgcompr_bank 2
-
-; Data from ABA to ABA (1 bytes)
-	push af
-
-; Data from ABB to ABB (1 bytes)
-	inc sp
-
-; Data from ABC to ABE (3 bytes)
-	;.db $CD $31 $08
-	;call $0831
-	call _devkit_SMS_mapROMBank
-
-
-; Data from ABF to ABF (1 bytes)
-	inc sp
-
-; Data from AC0 to AC2 (3 bytes)
-	;.db $21 $40 $00
-	ld hl, $0040						; #define OPTION_TILES	64
-
-; Data from AC3 to AC3 (1 bytes)
-	push hl
-
-; Data from AC4 to AC6 (3 bytes)
-	;.db $21 $57 $80
-	;ld hl, $8057
-	ld hl, _splash__tiles__psgcompr
-
-; Data from AC7 to AC7 (1 bytes)
-	push hl
-
-; Data from AC8 to ACA (3 bytes)
-	;.db $CD $8E $08
-	;call $088E
-	call _devkit_SMS_loadPSGaidencompress
-
-; Data from ACB to ACB (1 bytes)
-	pop af
-
-; Data from ACC to ACC (1 bytes)
-	pop af
-
-; Data from ACD to ACF (3 bytes)
-	;.db $01 $10 $80
-	;ld bc, $8010
-	ld bc, _splash__tilemap__stmcompr
-
-; Data from AD0 to AD0 (1 bytes)
-	push bc
-
-; Data from AD1 to AD3 (3 bytes)
-	;.db $21 $00 $00
-	ld hl, $0000					; devkit_SMS_loadSTMcompressedTileMap( 0, 0, ... )
-
-; Data from AD4 to AD4 (1 bytes)
-	push hl
-
-; Data from AD5 to AD7 (3 bytes)
-	;.db $CD $A4 $08
-	;call $08A4
-	call _devkit_SMS_loadSTMcompressedTil
-
-; Data from AD8 to AD8 (1 bytes)
-	pop af
-
-; Data from AD9 to AD9 (1 bytes)
-	pop af
-
-; Data from ADA to ADC (3 bytes)
-	;.db $01 $00 $80
-	;ld bc, $8000
-	ld bc, _splash__palette__bin
-
-; Data from ADD to ADD (1 bytes)
-	push bc
-
-; Data from ADE to AE0 (3 bytes)
-	;.db $CD $C5 $08
-	;call $08C5
-	call _devkit_SMS_loadBGPalette
-
-; Data from AE1 to AE1 (1 bytes)
-	pop af
-
-; Data from AE2 to AE2 (1 bytes)
-	ret
+		ld a, $02						; splash__tiles__psgcompr_bank 2
+		push af
+		inc sp
+		call _devkit_SMS_mapROMBank
+		inc sp
+		ld hl, $0040					; #define OPTION_TILES	64
+		push hl
+		ld hl, _splash__tiles__psgcompr
+		push hl
+		call _devkit_SMS_loadPSGaidencompress
+		pop af
+		pop af
+		ld bc, _splash__tilemap__stmcompr
+		push bc
+		ld hl, $0000					; devkit_SMS_loadSTMcompressedTileMap( 0, 0, ... )
+		push hl
+		call _devkit_SMS_loadSTMcompressedTil
+		pop af
+		pop af
+		ld bc, _splash__palette__bin
+		push bc
+		call _devkit_SMS_loadBGPalette
+		pop af
+		ret
 
 ; void engine_content_manager_load_titleGap()
 ; Data from AE3 to AE4 (2 bytes)
