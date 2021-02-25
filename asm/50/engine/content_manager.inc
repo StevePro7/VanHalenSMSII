@@ -102,36 +102,15 @@ _fngine_content_manager_load_tit:
 		pop af
 		ld bc, _VanHalenTitleTop__palette__bin
 		push bc
-
-; Data from B40 to B42 (3 bytes)
-	;.db $CD $C5 $08
-	call _devkit_SMS_loadBGPalette
-
+		call _devkit_SMS_loadBGPalette
 		pop af
-
-; Data from B44 to B46 (3 bytes)
-	;.db $21 $03 $03
 		ld hl, $0303					; devkit_SMS_setBGPaletteColor( ..., 3, 3, 3 );
 		push hl
-
-; Data from B48 to B49 (2 bytes)
-	;.db $2E $0F
 		ld l, $0F						; devkit_SMS_setBGPaletteColor( 15, ...
-
-; Data from B4A to B4A (1 bytes)
 		push hl
-
-; Data from B4B to B4D (3 bytes)
-	;.db $CD $D3 $08
 		call _devkit_SMS_setBGPaletteColor
-
-; Data from B4E to B4E (1 bytes)
-	pop af
-
-; Data from B4F to B4F (1 bytes)
-	pop af
-
-; Data from B50 to B50 (1 bytes)
+		pop af
+		pop af
 		ret
 
 ; void engine_content_manager_load_sprites()	
