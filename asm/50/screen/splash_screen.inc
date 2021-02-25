@@ -255,16 +255,19 @@ C$splash_screen.c$48$2$30:
 ; Data from 11FE to 1200 (3 bytes)	
 A$splash_screen$179:
 C$splash_screen.c$53$1$27:
-	.db $DD $6E $04
+	;.db $DD $6E $04
+	ld l, (ix + $04)
 	
 ; Data from 1201 to 1203 (3 bytes)	
 A$splash_screen$180:
-	.db $DD $66 $05
+	;.db $DD $66 $05
+	ld h, (ix + $05)
 	
 ; Data from 1204 to 1206 (3 bytes)	
 A$splash_screen$184:
 C$splash_screen.c$51$1$27:
-	.db $DD $7E $FE
+	;.db $DD $7E $FE
+	ld a, (ix - 2)
 	
 ; Data from 1207 to 1207 (1 bytes)	
 A$splash_screen$185:
