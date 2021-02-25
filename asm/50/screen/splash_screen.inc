@@ -1,6 +1,7 @@
 ; Data from 119D to 119F (3 bytes)	
 _screen_splash_screen_load:
-	.db $CD $2B $08
+	;.db $CD $2B $08
+	call $082B
 	
 ; Data from 11A0 to 11A2 (3 bytes)	
 A$splash_screen$73:
