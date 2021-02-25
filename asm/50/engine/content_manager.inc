@@ -74,7 +74,9 @@ _engine_content_manager_load_spl:
 	push hl
 
 ; Data from AD5 to AD7 (3 bytes)
-	.db $CD $A4 $08
+	;.db $CD $A4 $08
+	;call $08A4
+	call _devkit_SMS_loadSTMcompressedTil
 
 ; Data from AD8 to AD8 (1 bytes)
 	pop af
@@ -83,13 +85,17 @@ _engine_content_manager_load_spl:
 	pop af
 
 ; Data from ADA to ADC (3 bytes)
-	.db $01 $00 $80
+	;.db $01 $00 $80
+	;ld bc, $8000
+	ld bc, _splash__palette__bin
 
 ; Data from ADD to ADD (1 bytes)
 	push bc
 
 ; Data from ADE to AE0 (3 bytes)
-	.db $CD $C5 $08
+	;.db $CD $C5 $08
+	;call $08C5
+	call _devkit_SMS_loadBGPalette
 
 ; Data from AE1 to AE1 (1 bytes)
 	pop af
