@@ -104,3 +104,10 @@ sms_manager.inc
 i.e.
 search for following and disassemble
  	.db 
+
+40 => modularized
+now need to disassemble any / all outstanding code + functions
+
+
+50
+disassembly
