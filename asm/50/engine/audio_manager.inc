@@ -1,38 +1,18 @@
 ; Data from A70 to A72 (3 bytes)
 _engine_audio_manager_sfx_right:
-	;.db $21 $5C $1A
-	;ld hl, $1A5C
-	ld hl, _sfx_right_psg
-
-; Data from A73 to A73 (1 bytes)
-	push hl
-
-; Data from A74 to A76 (3 bytes)
-	;.db $CD $8B $0A
-	; call $0A8B
-	call play_sfx
-
-; Data from A77 to A77 (1 bytes)
-	.db $F1
-
-; Data from A78 to A78 (1 bytes)
-	.db $C9
+		ld hl, _sfx_right_psg
+		push hl
+		call play_sfx
+		pop af
+		ret
 
 ; Data from A79 to A7B (3 bytes)
 _engine_audio_manager_sfx_wrong:
-	.db $21 $7C $1A
-
-; Data from A7C to A7C (1 bytes)
-	push hl
-
-; Data from A7D to A7F (3 bytes)
-	.db $CD $8B $0A
-
-; Data from A80 to A80 (1 bytes)
-	.db $F1
-
-; Data from A81 to A81 (1 bytes)
-	.db $C9
+		ld hl, _sfx_wrong_psg
+		push hl
+		call play_sfx
+		pop af
+		ret
 
 ; Data from A82 to A84 (3 bytes)
 _engine_audio_manager_sfx_cheat:
@@ -45,10 +25,10 @@ _engine_audio_manager_sfx_cheat:
 	.db $CD $8B $0A
 
 ; Data from A89 to A89 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from A8A to A8A (1 bytes)
-	.db $C9
+	ret
 
  play_sfx:
 ; Data from A8B to A8D (3 bytes)
@@ -57,7 +37,7 @@ _engine_audio_manager_sfx_cheat:
 	call _devkit_PSGSFXGetStatus
 	
 ; Data from A8E to A8E (1 bytes)
-	.db $7D
+	ld a, l
 
 ; Data from A8F to A8F (1 bytes)
 	.db $B7
@@ -96,10 +76,10 @@ _engine_audio_manager_sfx_cheat:
 	.db $CD $2A $0A
 
 ; Data from A9F to A9F (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from AA0 to AA0 (1 bytes)
 	.db $33
 
 ; Data from AA1 to AA1 (1 bytes)
-	.db $C9
+	ret
