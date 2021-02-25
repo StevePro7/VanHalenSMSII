@@ -220,11 +220,8 @@ _devkit_SMS_loadBGPalette:
 		push hl
 		push bc
 		jp _SMS_loadBGPalette
-	
-A$_sms_manager$493:	
-C$_sms_manager.c$85$1$99:	
-C$_sms_manager.c$87$1$101:	
-G$devkit_SMS_loadSpritePalette$0:	
+
+
 _devkit_SMS_loadSpritePalette:	
 		pop bc
 		pop hl
@@ -233,10 +230,6 @@ _devkit_SMS_loadSpritePalette:
 		jp _SMS_loadSpritePalette
 	
 ; Data from 8D3 to 8D5 (3 bytes)	
-A$_sms_manager$514:	
-C$_sms_manager.c$89$1$101:	
-C$_sms_manager.c$91$1$103:	
-G$devkit_SMS_setBGPaletteColor$0:	
 _devkit_SMS_setBGPaletteColor:	
 	.db $21 $04 $00
 	

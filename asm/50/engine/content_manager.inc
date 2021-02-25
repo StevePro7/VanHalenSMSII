@@ -246,9 +246,11 @@ _fngine_content_manager_load_tit:
 	pop af
 
 ; Data from B50 to B50 (1 bytes)
-	ret
+		ret
+
+; void engine_content_manager_load_sprites()	
 _engine_content_manager_load_spr:
-		ld hl, $0120
+		ld hl, $0120					; #define CURSOR_TILES			256 + 32
 		push hl
 		ld hl, _cursor__tiles__psgcompr	; _cursor__tiles__psgcompr = $1657
 		push hl
@@ -257,6 +259,6 @@ _engine_content_manager_load_spr:
 		pop af
 		ld bc, _cursor__palette__bin	; _cursor__palette__bin = $1647
 		push bc
-		call A$_sms_manager$493
+		call _devkit_SMS_loadSpritePalette
 		pop af
 		ret
