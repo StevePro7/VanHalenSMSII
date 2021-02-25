@@ -93,7 +93,10 @@ _LABEL_70_:
 
 ; Data from 200 to 203 (4 bytes)	
 __clock:
-	.db $3E $02 $CF $C9
+	;.db $3E $02 $CF $C9
+		ld a, $02
+		rst $08
+		ret
 
 _exit:
 		ld a, $00
@@ -200,8 +203,15 @@ global_pause:
 
 ; Data from 1A9F to 1AA6 (8 bytes)	
 __divuint:
-	.db $F1 $E1 $D1 $D5 $E5 $F5 $18 $0A
-	
+	;.db $F1 $E1 $D1 $D5 $E5 $F5 $18 $0A
+	pop af
+	pop hl
+	pop de
+	push de
+	push hl
+	push af
+	jr $0A
+
 ; Data from 1AA7 to 1AAD (7 bytes)	
 __divuchar:
 	.db $21 $03 $00 $39 $5E $2B $6E
