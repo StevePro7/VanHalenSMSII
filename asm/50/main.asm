@@ -214,8 +214,13 @@ __divuint:
 
 ; Data from 1AA7 to 1AAD (7 bytes)	
 __divuchar:
-	.db $21 $03 $00 $39 $5E $2B $6E
-	
+	;.db $21 $03 $00 $39 $5E $2B $6E
+	ld hl, $0003
+	add hl, sp
+	ld e, (hl)
+	dec hl
+	ld l, (hl)
+
 ; Data from 1AAE to 1AB0 (3 bytes)	
 __divu8:
 	.db $26 $00 $54
