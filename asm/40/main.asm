@@ -239,26 +239,26 @@ gsinit:
 	.dsb 24081, $00
 	
 ; Data from 7F8C to 7FC7 (60 bytes)	
-G$__SMS__SDSC_descr$0$0:
 ___SMS__SDSC_descr:
+; "Van Halen Record Covers for the SMS Power! 2021 Competition"
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
 	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
 	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
 	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
 	
 ; Data from 7FC8 to 7FD1 (10 bytes)	
-G$__SMS__SDSC_name$0$0:
 ___SMS__SDSC_name:
+; "Van Halen"
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
 	
 ; Data from 7FD2 to 7FDF (14 bytes)	
-G$__SMS__SDSC_author$0$0:
 ___SMS__SDSC_author:
+; "Steven Boland"
 	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
 	
 ; Data from 7FE0 to 7FEF (16 bytes)	
-G$__SMS__SDSC_signature$0$0:
 ___SMS__SDSC_signature:
+; "SDSC"
 	.db $53 $44 $53 $43 $01 $00 $27 $03 $21 $20 $D2 $7F $C8 $7F $8C $7F
 	
 .BANK 1 SLOT 1	
