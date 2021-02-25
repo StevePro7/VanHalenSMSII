@@ -231,6 +231,7 @@ __divu8:
 __divu16:
 	;.db $7B $E6 $80 $B2 $20 $10 $06 $10 $ED $6A $17 $93 $30 $01 $83 $3F
 	;.db $ED $6A $10 $F6 $5F $C9 $06 $09 $7D $6C $26 $00 $CB $1D $ED $6A
+	;.db $ED $52 $30 $01 $19 $3F $17 $10 $F5 $CB $10 $50 $5F $EB $C9
 	ld a, e
 	and $80
 	or d
@@ -245,8 +246,15 @@ __divu16:
 
 	adc hl, hl
 	djnz $F6
-	.db $5F $C9
-	.db $06 $09 $7D $6C $26 $00 $CB $1D $ED $6A
+	ld e,a
+	ret
+	ld b, $09
+	ld a, l
+	ld l, h
+	ld h, $00
+	rr l
+	adc hl, hl
+
 	.db $ED $52 $30 $01 $19 $3F $17 $10 $F5 $CB $10 $50 $5F $EB $C9
 	
 .include "devkit/sms_manager.inc"
