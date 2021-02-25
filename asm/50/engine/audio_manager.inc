@@ -16,19 +16,11 @@ _engine_audio_manager_sfx_wrong:
 
 ; Data from A82 to A84 (3 bytes)
 _engine_audio_manager_sfx_cheat:
-	.db $21 $39 $1A
-
-; Data from A85 to A85 (1 bytes)
-	push hl
-
-; Data from A86 to A88 (3 bytes)
-	.db $CD $8B $0A
-
-; Data from A89 to A89 (1 bytes)
-	pop af
-
-; Data from A8A to A8A (1 bytes)
-	ret
+		ld hl, _sfx_cheat_psg
+		push hl
+		call play_sfx
+		pop af
+		ret
 
  play_sfx:
 ; Data from A8B to A8D (3 bytes)
