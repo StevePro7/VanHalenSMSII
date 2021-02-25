@@ -88,15 +88,9 @@ _fngine_content_manager_load_tit:
 		inc sp
 		ld hl, $0040					; #define OPTION_TILES	64
 		push hl
-
-;	.db $21 $45 $93
 		ld hl, _VanHalenTitleTop__tiles__psgcom
-
 		push hl
-
-; Data from B2A to B2C (3 bytes)
-	.db $CD $8E $08
-
+		call _devkit_SMS_loadPSGaidencompress
 		pop af
 		pop af
 
