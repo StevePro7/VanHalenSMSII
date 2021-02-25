@@ -271,33 +271,40 @@ C$splash_screen.c$51$1$27:
 	
 ; Data from 1207 to 1207 (1 bytes)	
 A$splash_screen$185:
-	.db $B7
+	;.db $B7
+	or a
 	
 ; Data from 1208 to 1209 (2 bytes)	
 A$splash_screen$186:
-	.db $20 $06
+	;.db $20 $06
+	jr nz, $06
 	
 ; Data from 120A to 120C (3 bytes)	
 A$splash_screen$187:
-	.db $DD $7E $FF
+	;.db $DD $7E $FF
+	ld a, (ix - 1)
 	
 ; Data from 120D to 120D (1 bytes)	
 A$splash_screen$188:
-	.db $B7
+	;.db $B7
+	or a
 	
 ; Data from 120E to 120F (2 bytes)	
 A$splash_screen$189:
-	.db $28 $04
+	;.db $28 $04
+	jr z, $04
 	
 ; Data from 1210 to 1211 (2 bytes)	
 A$splash_screen$194:
 C$splash_screen.c$53$2$31:
-	.db $36 $02
+	;.db $36 $02
+	ld (hl), $02
 	
 ; Data from 1212 to 1213 (2 bytes)	
 A$splash_screen$198:
 C$splash_screen.c$54$2$31:
-	.db $18 $02
+	;.db $18 $02
+	jr $02
 	
 ; Data from 1214 to 1215 (2 bytes)	
 A$splash_screen$203:
