@@ -368,115 +368,42 @@ _engine_cursor_manager_incY:
 		jp update_values
 
 update_values:
-; Data from D88 to D8A (3 bytes)
-	ld bc, $1146
-
-; Data from D8B to D8D (3 bytes)
-	ld hl, cursor_index_x		; cursor_index_x = $C026
-
-; Data from D8E to D8E (1 bytes)
-	ld l, (hl)
-
-; Data from D8F to D90 (2 bytes)
-	ld h, $00
-
-; Data from D91 to D91 (1 bytes)
-	add hl, bc
-
-; Data from D92 to D92 (1 bytes)
-	ld c, (hl)
-
-; Data from D93 to D95 (3 bytes)
-	ld de, _cursor_gridY		; _cursor_gridY$114A 
-
-; Data from D96 to D98 (3 bytes)
-	ld hl, cursor_index_x		; cursor_index_x = $C026
-
-; Data from D99 to D99 (1 bytes)
-	inc hl
-
-; Data from D9A to D9A (1 bytes)
-	ld l, (hl)
-
-; Data from D9B to D9C (2 bytes)
-	ld h, $00
-
-; Data from D9D to D9D (1 bytes)
-	add hl, de
-
-; Data from D9E to D9E (1 bytes)
-	ld e, (hl)
-
-; Data from D9F to D9F (1 bytes)
-	dec c
-
-; Data from DA0 to DA0 (1 bytes)
-	ld a, c
-
-; Data from DA1 to DA1 (1 bytes)
-	rlca
-
-; Data from DA2 to DA2 (1 bytes)
-	rlca
-
-; Data from DA3 to DA3 (1 bytes)
-	rlca
-
-; Data from DA4 to DA5 (2 bytes)
-	and $F8
-
-; Data from DA6 to DA6 (1 bytes)
-	ld d, a
-
-; Data from DA7 to DA9 (3 bytes)
-	;.db $21 $28 $C0
-	ld hl, cursor_value_x		; cursor_value_x = $C028
-
-; Data from DAA to DAA (1 bytes)
-	ld (hl), d
-
-; Data from DAB to DAD (3 bytes)
-	;.db $01 $29 $C0
-	ld bc, cursor_value_y		; cursor_value_y = $C029
-
-; Data from DAE to DAE (1 bytes)
-	dec e
-
-; Data from DAF to DAF (1 bytes)
-	ld a, e
-
-; Data from DB0 to DB0 (1 bytes)
-	rlca
-
-; Data from DB1 to DB1 (1 bytes)
-	rlca
-
-; Data from DB2 to DB2 (1 bytes)
-	rlca
-
-; Data from DB3 to DB4 (2 bytes)
-	and $F8
-
-; Data from DB5 to DB5 (1 bytes)
-	ld e, a
-
-; Data from DB6 to DB6 (1 bytes)
-	ld (bc), a
-
-; Data from DB7 to DB7 (1 bytes)
-	inc d
-
-; Data from DB8 to DB8 (1 bytes)
-	ld (hl), d
-
-; Data from DB9 to DB9 (1 bytes)
-	dec e
-
-; Data from DBA to DBA (1 bytes)
-	ld a, e
-
-; Data from DBB to DBB (1 bytes)
-	ld (bc), a
-
-; Data from DBC to DBC (1 bytes)
-	ret
+		; unsigned char grid_x = cursor_gridX[ co->cursor_index_x ];
+		ld bc, _cursor_gridX		; _cursor_gridX = $1146
+		ld hl, cursor_index_x		; cursor_index_x = $C026
+		ld l, (hl)
+		ld h, $00
+		add hl, bc
+		ld c, (hl)
+		; unsigned char grid_y = cursor_gridY[ co->cursor_index_y ];
+		ld de, _cursor_gridY		; _cursor_gridY = $114A 
+		ld hl, cursor_index_x		; cursor_index_x = $C026
+		inc hl
+		ld l, (hl)
+		ld h, $00
+		add hl, de
+		ld e, (hl)
+		dec c
+		ld a, c
+		rlca						; co->cursor_value_x = ( grid_x - 1 ) * TILE_PIXEL;
+		rlca
+		rlca
+		and $F8
+		ld d, a
+		ld hl, cursor_value_x		; cursor_value_x = $C028
+		ld (hl), d
+		ld bc, cursor_value_y		; cursor_value_y = $C029
+		dec e
+		ld a, e
+		rlca						; co->cursor_value_y = ( grid_y - 1 ) * TILE_PIXEL;
+		rlca
+		rlca
+		and $F8
+		ld e, a
+		ld (bc), a
+		inc d						; co->cursor_value_x += 1;
+		ld (hl), d
+		dec e						; co->cursor_value_y -= 1;
+		ld a, e
+		ld (bc), a
+		ret
