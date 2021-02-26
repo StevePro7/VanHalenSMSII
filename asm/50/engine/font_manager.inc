@@ -119,8 +119,9 @@ _engine_font_manager_draw_data:
 		jr nz, $08
 		ld a, (ix - 2)
 		or a
-		jr z, $02		; todo
+		jr z, +
 		ld c, $00
++:
 		ld b, (ix - 1)
 		dec (ix - 1)
 		ld a, (ix - 1)
