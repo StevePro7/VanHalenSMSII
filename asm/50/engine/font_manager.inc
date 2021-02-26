@@ -40,7 +40,7 @@ _engine_font_manager_draw_text:
 		ld d, a
 		ld a, (de)
 		or a
-		jr z, $2D
+		jr z, $2D						; todo calculate label to jump relative to!
 		add a, $E0
 		ld b, a
 		ld d, c
@@ -69,9 +69,8 @@ _engine_font_manager_draw_text:
 		call _devkit_SMS_setTile
 		pop af
 		pop bc
-		;.db $DD $34 $FF
 		inc (ix - 1)
-		jr $C2
+		jr $C2							; todo calculate label to jump relative to!
 		inc sp
 		pop ix
 		ret
