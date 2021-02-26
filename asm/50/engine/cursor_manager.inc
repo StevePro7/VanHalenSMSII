@@ -84,17 +84,16 @@ _engine_cursor_manager_load:
 		pop bc
 		inc c
 		ld a, c
-		sub a, $04
+		sub a, $04				; MAX_GRID_X	4
 		jr c, $C4
 		inc (ix - 3)
 		ld a, (ix - 3)
-		sub a, $03
+		sub a, $03				; MAX_GRID_Y	3
 		jr c, $A9
 		ld sp, ix
 		pop ix
 		ret
 
-; Data from C05 to C07 (3 bytes)
 ; Data from C05 to C07 (3 bytes)
 _engine_cursor_manager_save:
 	;.db $3A $26 $C0
@@ -897,7 +896,7 @@ update_values:
 	ld c, (hl)
 
 ; Data from D93 to D95 (3 bytes)
-	ld de, $114A 
+	ld de, _cursor_gridY		; _cursor_gridY$114A 
 
 ; Data from D96 to D98 (3 bytes)
 	ld hl, cursor_index_x		; cursor_index_x = $C026
