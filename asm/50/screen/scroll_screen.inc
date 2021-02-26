@@ -1,12 +1,12 @@
 ; Data from 1389 to 138B (3 bytes)
 _screen_scroll_screen_load:
-		ld hl, $C056				; todo	offset	??
+		ld hl, scroll_screen_offset		; scroll_screen_offset = $C056
 		ld (hl), $00
 		ret
 	
 _screen_scroll_screen_update:
 		dec sp
-		ld a, ($C056)
+		ld a, (scroll_screen_offset)	; scroll_screen_offset = $C056
 		sub a, $20						; TOP_SCROLL	32
 		jr nz, +
 		ld a, $01
@@ -18,7 +18,7 @@ _screen_scroll_screen_update:
 		inc sp
 		push af
 		inc sp
-		ld iy, $C056
+		ld iy, scroll_screen_offset		; scroll_screen_offset = $C056
 		ld b, (iy + $00)
 		inc (iy + $00)
 		push bc

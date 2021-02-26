@@ -86,7 +86,7 @@ _screen_splash_screen_update:
 
 ; Data from 11CC to 11CE (3 bytes)
 	;.db $CD $D3 $0E
-	call $0ED3
+	call _engine_input_manager_hold
 
 ; Data from 11CF to 11CF (1 bytes)
 	;.db $33

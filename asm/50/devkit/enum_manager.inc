@@ -95,6 +95,10 @@ spritesHeight db		                ; spritesHeight = $C1AC
 spritesWidth db		                    ; spritesWidth = $C1AD
 .ende	
 	
+.enum $C056 export	
+scroll_screen_offset db                 ; scroll_screen_offset = $C056
+.ende	
+
 .enum $FFFC export	
 _RAM_FFFC_ db	
 .ende	
