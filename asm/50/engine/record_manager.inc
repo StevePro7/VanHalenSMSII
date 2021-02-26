@@ -64,33 +64,35 @@ _engine_record_manager_load:
 
 ; Data from F6F to F71 (3 bytes)
 _engine_record_manager_decrement:
-	.db $01 $2A $C0
+	;.db $01 $2A $C0
+	ld bc, $C02A		; ro->record_album_index
 
-; Data from F72 to F72 (1 bytes)
-	.db $0A
+; Data from FE4 to FE4 (1 bytes)
+	;ld a, (bc)
+	ld a, (bc)
 
-; Data from F73 to F73 (1 bytes)
-	.db $B7
+; Data from FE5 to FE5 (1 bytes)
+	or a		; if( 0 == ro->record_album_index )
 
-; Data from F74 to F75 (2 bytes)
-	.db $20 $04
+; Data from FE6 to FE7 (2 bytes)
+	jr nz, $04
 
-; Data from F76 to F77 (2 bytes)
-	.db $3E $0B
+; Data from FE8 to FE9 (2 bytes)
+	ld a, $0B
 
-; Data from F78 to F78 (1 bytes)
-	.db $02
+; Data from FEA to FEA (1 bytes)
+	ld (bc), a		; ro->record_album_index = MAX_RECORDS - 1;
 
-; Data from F79 to F79 (1 bytes)
+; Data from FEB to FEB (1 bytes)
 	ret
 
-; Data from F7A to F7B (2 bytes)
-	.db $C6 $FF
+; Data from FEC to FED (2 bytes)
+	add a, $FF
 
-; Data from F7C to F7C (1 bytes)
-	.db $02
+; Data from FEE to FEE (1 bytes)
+	ld (bc), a		; ro->record_album_index--;
 
-; Data from F7D to F7D (1 bytes)
+; Data from FEF to FEF (1 bytes)
 	ret
 
 ; Data from F7E to F80 (3 bytes)
