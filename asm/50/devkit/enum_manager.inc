@@ -34,6 +34,8 @@ PSGSFXSubstringRetAddr dw		    ; PSGSFXSubstringRetAddr = $C024
 .enum $C026 export		
 cursor_index_x db                   ; cursor_index_x = $C026
 cursor_index_y db                   ; cursor_index_x = $C027
+cursor_value_x db                   ; cursor_index_x = $C028
+cursor_value_y db                   ; cursor_index_x = $C029
 .ende	
 
 .enum $C02B export	
