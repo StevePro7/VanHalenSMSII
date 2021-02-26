@@ -1,236 +1,80 @@
 ; Data from DBD to DBE (2 bytes)
 _engine_font_manager_draw_char:
-	push ix
-
-; Data from DBF to DC2 (4 bytes)
-	;.db $DD $21 $00 $00
-	ld ix, $0000
-
-; Data from DC3 to DC4 (2 bytes)
-	add ix, sp
-
-; Data from DC5 to DC7 (3 bytes)
-	;.db $DD $7E $04
-	ld a, (ix + $04)
-
-; Data from DC8 to DC9 (2 bytes)
-	add a, $E0
-
-; Data from DCA to DCA (1 bytes)
-	ld c, a
-
-; Data from DCB to DCB (1 bytes)
-	push bc
-
-; Data from DCC to DCE (3 bytes)
-	;.db $DD $66 $06
-	ld h, (ix + $06)
-
-; Data from DCF to DD1 (3 bytes)
-	;.db $DD $6E $05
-	ld l, (ix + $05)
-
-; Data from DD2 to DD2 (1 bytes)
-	push hl
-
-; Data from DD3 to DD5 (3 bytes)
-	;.db $CD $23 $09
-	call _devkit_SMS_setNextTileatXY
-
-; Data from DD6 to DD6 (1 bytes)
-	pop af
-
-; Data from DD7 to DD7 (1 bytes)
-	pop bc
-
-; Data from DD8 to DDA (3 bytes)
-	;.db $21 $B8 $17
-	ld hl, _font__tilemap__bin
-
-; Data from DDB to DDB (1 bytes)
-	ld l, (hl)
-
-; Data from DDC to DDD (2 bytes)
-	ld h, $00
-
-; Data from DDE to DDF (2 bytes)
-	ld b, $00
-
-; Data from DE0 to DE0 (1 bytes)
-	add hl, bc
-
-; Data from DE1 to DE1 (1 bytes)
-	push hl
-
-; Data from DE2 to DE4 (3 bytes)
-	;.db $CD $4C $09
-	call _devkit_SMS_setTile
-
-; Data from DE5 to DE5 (1 bytes)
-	pop af
-
-; Data from DE6 to DE7 (2 bytes)
-	pop ix
-
-; Data from DE8 to DE8 (1 bytes)
-	ret
+		push ix
+		ld ix, $0000
+		add ix, sp
+		ld a, (ix + $04)
+		add a, $E0
+		ld c, a
+		push bc
+		ld h, (ix + $06)
+		ld l, (ix + $05)				; TEXT_ROOT	5
+		push hl
+		call _devkit_SMS_setNextTileatXY
+		pop af
+		pop bc
+		ld hl, _font__tilemap__bin
+		ld l, (hl)
+		ld h, $00
+		ld b, $00
+		add hl, bc
+		push hl
+		call _devkit_SMS_setTile
+		pop af
+		pop ix
+		ret
 
 ; Data from DE9 to DEA (2 bytes)
 _engine_font_manager_draw_text:
-	push ix
-
-; Data from DEB to DEE (4 bytes)
-	;.db $DD $21 $00 $00
-	ld ix, $0000
-
-; Data from DEF to DF0 (2 bytes)
-	add ix, sp
-
-; Data from DF1 to DF1 (1 bytes)
-	dec sp
-
-; Data from DF2 to DF4 (3 bytes)
-	;.db $DD $4E $06
-	ld c, (ix + $06)
-
-; Data from DF5 to DF8 (4 bytes)
-	;.db $DD $36 $FF $00
-	ld (ix -1), $00
-
-; Data from DF9 to DFB (3 bytes)
-	;.db $DD $7E $04
-	ld a, (ix + $04)
-
-; Data from DFC to DFE (3 bytes)
-	;.db $DD $86 $FF
-	add a, (ix - 1)
-
-; Data from DFF to DFF (1 bytes)
-	ld e, a
-
-; Data from E00 to E02 (3 bytes)
-	;.db $DD $7E $05
-	ld a, (ix + $05)
-
-; Data from E03 to E04 (2 bytes)
-	adc a, $00
-
-; Data from E05 to E05 (1 bytes)
-	ld d, a
-
-; Data from E06 to E06 (1 bytes)
-	ld a, (de)
-
-; Data from E07 to E07 (1 bytes)
-	or a
-
-; Data from E08 to E09 (2 bytes)
-	jr z, $2D
-
-; Data from E0A to E0B (2 bytes)
-	add a, $E0
-
-; Data from E0C to E0C (1 bytes)
-	ld b, a
-
-; Data from E0D to E0D (1 bytes)
-	ld d, c
-
-; Data from E0E to E0E (1 bytes)
-	inc c
-
-; Data from E0F to E11 (3 bytes)
-	;.db $DD $71 $06
-	ld (ix + $06), c
-
-; Data from E12 to E12 (1 bytes)
-	push bc
-
-; Data from E13 to E15 (3 bytes)
-	;.db $DD $7E $07
-	ld a, (ix + $07)
-
-; Data from E16 to E16 (1 bytes)
-	push af
-
-; Data from E17 to E17 (1 bytes)
-	inc sp
-
-; Data from E18 to E18 (1 bytes)
-	push de
-
-; Data from E19 to E19 (1 bytes)
-	inc sp
-
-; Data from E1A to E1C (3 bytes)
-	;.db $CD $23 $09
-	call _devkit_SMS_setNextTileatXY
-
-; Data from E1D to E1D (1 bytes)
-	pop af
-
-; Data from E1E to E1E (1 bytes)
-	pop bc
-
-; Data from E1F to E21 (3 bytes)
-	;.db $21 $B8 $17
-	ld hl, _font__tilemap__bin
-
-; Data from E22 to E22 (1 bytes)
-	ld e, (hl)
-
-; Data from E23 to E24 (2 bytes)
-	ld d, $00
-
-; Data from E25 to E25 (1 bytes)
-	ld a, b
-
-; Data from E26 to E26 (1 bytes)
-	ld l, a
-
-; Data from E27 to E27 (1 bytes)
-	rla
-
-; Data from E28 to E28 (1 bytes)
-	sbc a, a
-
-; Data from E29 to E29 (1 bytes)
-	ld h, a
-
-; Data from E2A to E2A (1 bytes)
-	add hl, de
-
-; Data from E2B to E2B (1 bytes)
-	push bc
-
-; Data from E2C to E2C (1 bytes)
-	push hl
-
-; Data from E2D to E2F (3 bytes)
-	;.db $CD $4C $09
-	call _devkit_SMS_setTile
-
-; Data from E30 to E30 (1 bytes)
-	pop af
-
-; Data from E31 to E31 (1 bytes)
-	pop bc
-
-; Data from E32 to E34 (3 bytes)
-	;.db $DD $34 $FF
-	inc (ix - 1)
-
-; Data from E35 to E36 (2 bytes)
-	jr $C2
-
-; Data from E37 to E37 (1 bytes)
-	inc sp
-
-; Data from E38 to E39 (2 bytes)
-	pop ix
-
-; Data from E3A to E3A (1 bytes)
-	ret
+		push ix
+		ld ix, $0000
+		add ix, sp
+		dec sp
+		ld c, (ix + $06)
+		ld (ix -1), $00
+		ld a, (ix + $04)
+		add a, (ix - 1)
+		ld e, a
+		ld a, (ix + $05)
+		adc a, $00
+		ld d, a
+		ld a, (de)
+		or a
+		jr z, $2D
+		add a, $E0
+		ld b, a
+		ld d, c
+		inc c
+		ld (ix + $06), c
+		push bc
+		ld a, (ix + $07)
+		push af
+		inc sp
+		push de
+		inc sp
+		call _devkit_SMS_setNextTileatXY
+		pop af
+		pop bc
+		ld hl, _font__tilemap__bin
+		ld e, (hl)
+		ld d, $00
+		ld a, b
+		ld l, a
+		rla
+		sbc a, a
+		ld h, a
+		add hl, de
+		push bc
+		push hl
+		call _devkit_SMS_setTile
+		pop af
+		pop bc
+		;.db $DD $34 $FF
+		inc (ix - 1)
+		jr $C2
+		inc sp
+		pop ix
+		ret
 
 ; Data from E3B to E3C (2 bytes)
 _engine_font_manager_draw_data:
