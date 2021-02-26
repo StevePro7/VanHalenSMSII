@@ -109,627 +109,207 @@ _engine_cursor_manager_save:
 
 ; Data from C13 to C14 (2 bytes)
 _engine_cursor_manager_draw:
-	push ix
-
-; Data from C15 to C18 (4 bytes)
-	;.db $DD $21 $00 $00
-	ld ix, $0000
-
-; Data from C19 to C1A (2 bytes)
-	add ix, sp
-
-; Data from C1B to C1B (1 bytes)
-	push af
-
-; Data from C1C to C1C (1 bytes)
-	push af
-
-; Data from C1D to C1F (3 bytes)
-	;ld hl, $C026
-	ld hl, cursor_index_x		; cursor_index_x = $C026
-
-; Data from C20 to C20 (1 bytes)
-	inc hl
-
-; Data from C21 to C21 (1 bytes)
-	inc hl
-
-; Data from C22 to C22 (1 bytes)
-	ld c, (hl)
-
-; Data from C23 to C25 (3 bytes)
-	;ld hl, $C026
-	ld hl, cursor_index_x		; cursor_index_x = $C026
-
-; Data from C26 to C26 (1 bytes)
-	inc hl
-
-; Data from C27 to C27 (1 bytes)
-	inc hl
-
-; Data from C28 to C28 (1 bytes)
-	inc hl
-
-; Data from C29 to C29 (1 bytes)
-	ld b, (hl)
-
-; Data from C2A to C2A (1 bytes)
-	push bc
-
-; Data from C2B to C2D (3 bytes)
-	;.db $21 $20 $01
-	ld hl, $0120
-
-; Data from C2E to C2E (1 bytes)
-	push hl
-
-; Data from C2F to C2F (1 bytes)
-	push bc
-
-; Data from C30 to C32 (3 bytes)
-	;call _devkit_SMS_addSprite
-	call _devkit_SMS_addSprite
-
-; Data from C33 to C33 (1 bytes)
-	pop af
-
-; Data from C34 to C34 (1 bytes)
-	pop af
-
-; Data from C35 to C35 (1 bytes)
-	pop bc
-
-; Data from C36 to C36 (1 bytes)
-	ld a, c
-
-; Data from C37 to C38 (2 bytes)
-	;add a, $28
-	add a, $28
-
-; Data from C39 to C39 (1 bytes)
-	ld e, a
-
-; Data from C3A to C3A (1 bytes)
-	push bc
-
-; Data from C3B to C3B (1 bytes)
-	push de
-
-; Data from C3C to C3E (3 bytes)
-	;.db $21 $25 $01
-	ld hl, $0125
-	
-; Data from C3F to C3F (1 bytes)
-	push hl
-
-; Data from C40 to C40 (1 bytes)
-	push bc
-
-; Data from C41 to C41 (1 bytes)
-	inc sp
-
-; Data from C42 to C42 (1 bytes)
-	ld a, e
-
-; Data from C43 to C43 (1 bytes)
-	push af
-
-; Data from C44 to C44 (1 bytes)
-	inc sp
-
-; Data from C45 to C47 (3 bytes)
-	;call _devkit_SMS_addSprite
-	call _devkit_SMS_addSprite
-
-; Data from C48 to C48 (1 bytes)
-	pop af
-
-; Data from C49 to C49 (1 bytes)
-	pop af
-
-; Data from C4A to C4A (1 bytes)
-	pop de
-
-; Data from C4B to C4B (1 bytes)
-	pop bc
-
-; Data from C4C to C4C (1 bytes)
-	ld a, b
-
-; Data from C4D to C4E (2 bytes)
-	add a, $10
-
-; Data from C4F to C4F (1 bytes)
-	ld d, a
-
-; Data from C50 to C50 (1 bytes)
-	push bc
-
-; Data from C51 to C51 (1 bytes)
-	push de
-
-; Data from C52 to C54 (3 bytes)
-	;.db $21 $2C $01
-	ld hl, $012C
-
-; Data from C55 to C55 (1 bytes)
-	push hl
-
-; Data from C56 to C56 (1 bytes)
-	ld e, c
-
-; Data from C57 to C57 (1 bytes)
-	push de
-
-; Data from C58 to C5A (3 bytes)
-	;call _devkit_SMS_addSprite
-	call _devkit_SMS_addSprite
-
-; Data from C5B to C5B (1 bytes)
-	pop af
-
-; Data from C5C to C5C (1 bytes)
-	pop af
-
-; Data from C5D to C5D (1 bytes)
-	pop de
-
-; Data from C5E to C5E (1 bytes)
-	push de
-
-; Data from C5F to C61 (3 bytes)
-	;.db $21 $31 $01
-	ld hl, $0131
-
-; Data from C62 to C62 (1 bytes)
-	push hl
-
-; Data from C63 to C63 (1 bytes)
-	push de
-
-; Data from C64 to C66 (3 bytes)
-	;call _devkit_SMS_addSprite
-	call _devkit_SMS_addSprite
-
-; Data from C67 to C67 (1 bytes)
-	pop af
-
-; Data from C68 to C68 (1 bytes)
-	pop af
-
-; Data from C69 to C69 (1 bytes)
-	pop de
-
-; Data from C6A to C6A (1 bytes)
-	pop bc
-
-; Data from C6B to C6B (1 bytes)
-	ld a, c
-
-; Data from C6C to C6D (2 bytes)
-	add a, $08
-
-; Data from C6E to C70 (3 bytes)
-	ld (ix - 4), a
-
-; Data from C71 to C71 (1 bytes)
-	push bc
-
-; Data from C72 to C72 (1 bytes)
-	push de
-
-; Data from C73 to C75 (3 bytes)
-	;.db $21 $21 $01
-	ld hl, $0121
-
-; Data from C76 to C76 (1 bytes)
-	push hl
-
-; Data from C77 to C77 (1 bytes)
-	push bc
-
-; Data from C78 to C78 (1 bytes)
-	inc sp
-
-; Data from C79 to C7B (3 bytes)
-	ld a, (ix - 4)
-
-; Data from C7C to C7C (1 bytes)
-	push af
-
-; Data from C7D to C7D (1 bytes)
-	inc sp
-
-; Data from C7E to C80 (3 bytes)
-	;call _devkit_SMS_addSprite
-	call _devkit_SMS_addSprite
-
-; Data from C81 to C81 (1 bytes)
-	pop af
-
-; Data from C82 to C82 (1 bytes)
-	pop af
-
-; Data from C83 to C83 (1 bytes)
-	pop de
-
-; Data from C84 to C84 (1 bytes)
-	pop bc
-
-; Data from C85 to C85 (1 bytes)
-	ld a, c
-
-; Data from C86 to C87 (2 bytes)
-	add a, $10
-
-; Data from C88 to C8A (3 bytes)
-	ld (ix - 1), a
-
-; Data from C8B to C8B (1 bytes)
-	push bc
-
-; Data from C8C to C8C (1 bytes)
-	push de
-
-; Data from C8D to C8F (3 bytes)
-	ld hl, $0122
-
-; Data from C90 to C90 (1 bytes)
-	push hl
-
-; Data from C91 to C91 (1 bytes)
-	push bc
-
-; Data from C92 to C92 (1 bytes)
-	inc sp
-
-; Data from C93 to C95 (3 bytes)
-	ld a, (ix - 1)
-
-; Data from C96 to C96 (1 bytes)
-	push af
-
-; Data from C97 to C97 (1 bytes)
-	inc sp
-
-; Data from C98 to C9A (3 bytes)
-	call _devkit_SMS_addSprite
-
-; Data from C9B to C9B (1 bytes)
-	pop af
-
-; Data from C9C to C9C (1 bytes)
-	pop af
-
-; Data from C9D to C9D (1 bytes)
-	pop de
-
-; Data from C9E to C9E (1 bytes)
-	pop bc
-
-; Data from C9F to C9F (1 bytes)
-	ld a, c
-
-; Data from CA0 to CA1 (2 bytes)
-	add a, $18
-
-; Data from CA2 to CA4 (3 bytes)
-	ld (ix - 2), a
-
-; Data from CA5 to CA5 (1 bytes)
-	push bc
-
-; Data from CA6 to CA6 (1 bytes)
-	push de
-
-; Data from CA7 to CA9 (3 bytes)
-	;.db $21 $23 $01
-	ld hl, $0123
-
-; Data from CAA to CAA (1 bytes)
-	push hl
-
-; Data from CAB to CAB (1 bytes)
-	push bc
-
-; Data from CAC to CAC (1 bytes)
-	inc sp
-
-; Data from CAD to CAF (3 bytes)
-	ld a, (ix - 2)
-
-; Data from CB0 to CB0 (1 bytes)
-	push af
-
-; Data from CB1 to CB1 (1 bytes)
-	inc sp
-
-; Data from CB2 to CB4 (3 bytes)
-	call _devkit_SMS_addSprite
-
-; Data from CB5 to CB5 (1 bytes)
-	pop af
-
-; Data from CB6 to CB6 (1 bytes)
-	pop af
-
-; Data from CB7 to CB7 (1 bytes)
-	pop de
-
-; Data from CB8 to CB8 (1 bytes)
-	pop bc
-
-; Data from CB9 to CB9 (1 bytes)
-	ld a, c
-
-; Data from CBA to CBB (2 bytes)
-	add a, $20
-
-; Data from CBC to CBE (3 bytes)
-	ld (ix - 3), a
-
-; Data from CBF to CBF (1 bytes)
-	push bc
-
-; Data from CC0 to CC0 (1 bytes)
-	push de
-
-; Data from CC1 to CC3 (3 bytes)
-	;.db $21 $24 $01
-	ld hl, $0124
-
-; Data from CC4 to CC4 (1 bytes)
-	push hl
-
-; Data from CC5 to CC5 (1 bytes)
-	push bc
-
-; Data from CC6 to CC6 (1 bytes)
-	inc sp
-
-; Data from CC7 to CC9 (3 bytes)
-	ld a, (ix - 3)
-
-; Data from CCA to CCA (1 bytes)
-	push af
-
-; Data from CCB to CCB (1 bytes)
-	inc sp
-
-; Data from CCC to CCE (3 bytes)
-	call _devkit_SMS_addSprite
-
-; Data from CCF to CCF (1 bytes)
-	pop af
-
-; Data from CD0 to CD0 (1 bytes)
-	pop af
-
-; Data from CD1 to CD1 (1 bytes)
-	pop de
-
-; Data from CD2 to CD2 (1 bytes)
-	pop bc
-
-; Data from CD3 to CD3 (1 bytes)
-	ld a, b
-
-; Data from CD4 to CD5 (2 bytes)
-	add a, $08
-
-; Data from CD6 to CD6 (1 bytes)
-	ld b, a
-
-; Data from CD7 to CD7 (1 bytes)
-	push bc
-
-; Data from CD8 to CD8 (1 bytes)
-	push de
-
-; Data from CD9 to CDB (3 bytes)
-	ld hl, $0126
-
-; Data from CDC to CDC (1 bytes)
-	push hl
-
-; Data from CDD to CDD (1 bytes)
-	push bc
-
-; Data from CDE to CE0 (3 bytes)
-	call _devkit_SMS_addSprite
-
-; Data from CE1 to CE1 (1 bytes)
-	pop af
-
-; Data from CE2 to CE2 (1 bytes)
-	pop af
-
-; Data from CE3 to CE3 (1 bytes)
-	pop de
-
-; Data from CE4 to CE4 (1 bytes)
-	pop bc
-
-; Data from CE5 to CE5 (1 bytes)
-	push de
-
-; Data from CE6 to CE8 (3 bytes)
-	ld hl, $012B 
-
-; Data from CE9 to CE9 (1 bytes)
-	push hl
-
-; Data from CEA to CEA (1 bytes)
-	push bc
-
-; Data from CEB to CEB (1 bytes)
-	inc sp
-
-; Data from CEC to CEC (1 bytes)
-	ld a, e
-
-; Data from CED to CED (1 bytes)
-	push af
-
-; Data from CEE to CEE (1 bytes)
-	inc sp
-
-; Data from CEF to CF1 (3 bytes)
-	call _devkit_SMS_addSprite
-
-; Data from CF2 to CF2 (1 bytes)
-	pop af
-
-; Data from CF3 to CF3 (1 bytes)
-	pop af
-
-; Data from CF4 to CF4 (1 bytes)
-	pop de
-
-; Data from CF5 to CF5 (1 bytes)
-	push de
-
-; Data from CF6 to CF8 (3 bytes)
-	;.db $21 $2D $01
-	ld hl, $012D
-
-; Data from CF9 to CF9 (1 bytes)
-	push hl
-
-; Data from CFA to CFA (1 bytes)
-	push de
-
-; Data from CFB to CFB (1 bytes)
-	inc sp
-
-; Data from CFC to CFE (3 bytes)
-	ld a, (ix - 4)
-
-; Data from CFF to CFF (1 bytes)
-	push af
-
-; Data from D00 to D00 (1 bytes)
-	inc sp
-
-; Data from D01 to D03 (3 bytes)
-	call _devkit_SMS_addSprite
-
-; Data from D04 to D04 (1 bytes)
-	pop af
-
-; Data from D05 to D05 (1 bytes)
-	pop af
-
-; Data from D06 to D06 (1 bytes)
-	pop de
-
-; Data from D07 to D07 (1 bytes)
-	push de
-
-; Data from D08 to D0A (3 bytes)
-	;.db $21 $2E $01
-	ld hl, $012E
-
-; Data from D0B to D0B (1 bytes)
-	push hl
-
-; Data from D0C to D0C (1 bytes)
-	push de
-
-; Data from D0D to D0D (1 bytes)
-	inc sp
-
-; Data from D0E to D10 (3 bytes)
-	ld a, (ix - 1)
-
-; Data from D11 to D11 (1 bytes)
-	push af
-
-; Data from D12 to D12 (1 bytes)
-	inc sp
-
-; Data from D13 to D15 (3 bytes)
-	call _devkit_SMS_addSprite
-
-; Data from D16 to D16 (1 bytes)
-	pop af
-
-; Data from D17 to D17 (1 bytes)
-	pop af
-
-; Data from D18 to D18 (1 bytes)
-	pop de
-
-; Data from D19 to D19 (1 bytes)
-	push de
-
-; Data from D1A to D1C (3 bytes)
-	;.db $21 $2F $01
-	ld hl, $012F
-
-; Data from D1D to D1D (1 bytes)
-	push hl
-
-; Data from D1E to D1E (1 bytes)
-	push de
-
-; Data from D1F to D1F (1 bytes)
-	inc sp
-
-; Data from D20 to D22 (3 bytes)
-	ld a, (ix - 2)
-
-; Data from D23 to D23 (1 bytes)
-	push af
-
-; Data from D24 to D24 (1 bytes)
-	inc sp
-
-; Data from D25 to D27 (3 bytes)
-	call _devkit_SMS_addSprite
-
-; Data from D28 to D28 (1 bytes)
-	pop af
-
-; Data from D29 to D29 (1 bytes)
-	pop af
-
-; Data from D2A to D2A (1 bytes)
-	pop de
-
-; Data from D2B to D2D (3 bytes)
-	;.db $21 $30 $01
-	ld hl, $0130
-
-; Data from D2E to D2E (1 bytes)
-	push hl
-
-; Data from D2F to D2F (1 bytes)
-	push de
-
-; Data from D30 to D30 (1 bytes)
-	inc sp
-
-; Data from D31 to D33 (3 bytes)
-	ld a, (ix - 3)
-
-; Data from D34 to D34 (1 bytes)
-	push af
-
-; Data from D35 to D35 (1 bytes)
-	inc sp
-
-; Data from D36 to D38 (3 bytes)
-	call _devkit_SMS_addSprite
-
-; Data from D39 to D3A (2 bytes)
-	ld sp, ix
-
-; Data from D3B to D3C (2 bytes)
-	pop ix
-
-; Data from D3D to D3D (1 bytes)
-	ret
+		push ix
+		ld ix, $0000
+		add ix, sp
+		push af
+		push af
+		ld hl, cursor_index_x		; cursor_index_x = $C026
+		inc hl
+		inc hl
+		ld c, (hl)
+		ld hl, cursor_index_x		; cursor_index_x = $C026
+		inc hl
+		inc hl
+		inc hl
+		ld b, (hl)
+		push bc
+		ld hl, $0120
+		push hl
+		push bc
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop bc
+		ld a, c
+		add a, $28
+		ld e, a
+		push bc
+		push de
+		ld hl, $0125
+		push hl
+		push bc
+		inc sp
+		ld a, e
+		push af
+		inc sp
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		pop bc
+		ld a, b
+		add a, $10
+		ld d, a
+		push bc
+		push de
+		ld hl, $012C
+		push hl
+		ld e, c
+		push de
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		push de
+		ld hl, $0131
+		push hl
+		push de
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		pop bc
+		ld a, c
+		add a, $08
+		ld (ix - 4), a
+		push bc
+		push de
+		ld hl, $0121
+		push hl
+		push bc
+		inc sp
+		ld a, (ix - 4)
+		push af
+		inc sp
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		pop bc
+		ld a, c
+		add a, $10
+		ld (ix - 1), a
+		push bc
+		push de
+		ld hl, $0122
+		push hl
+		push bc
+		inc sp
+		ld a, (ix - 1)
+		push af
+		inc sp
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		pop bc
+		ld a, c
+		add a, $18
+		ld (ix - 2), a
+		push bc
+		push de
+		ld hl, $0123
+		push hl
+		push bc
+		inc sp
+		ld a, (ix - 2)
+		push af
+		inc sp
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		pop bc
+		ld a, c
+		add a, $20
+		ld (ix - 3), a
+		push bc
+		push de
+		ld hl, $0124
+		push hl
+		push bc
+		inc sp
+		ld a, (ix - 3)
+		push af
+		inc sp
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		pop bc
+		ld a, b
+		add a, $08
+		ld b, a
+		push bc
+		push de
+		ld hl, $0126
+		push hl
+		push bc
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		pop bc
+		push de
+		ld hl, $012B 
+		push hl
+		push bc
+		inc sp
+		ld a, e
+		push af
+		inc sp
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		push de
+		ld hl, $012D
+		push hl
+		push de
+		inc sp
+		ld a, (ix - 4)
+		push af
+		inc sp
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		push de
+		ld hl, $012E
+		push hl
+		push de
+		inc sp
+		ld a, (ix - 1)
+		push af
+		inc sp
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		push de
+		ld hl, $012F
+		push hl
+		push de
+		inc sp
+		ld a, (ix - 2)
+		push af
+		inc sp
+		call _devkit_SMS_addSprite
+		pop af
+		pop af
+		pop de
+		ld hl, $0130
+		push hl
+		push de
+		inc sp
+		ld a, (ix - 3)
+		push af
+		inc sp
+		call _devkit_SMS_addSprite
+		ld sp, ix
+		pop ix
+		ret
 
 ; Data from D3E to D40 (3 bytes)
 _engine_cursor_manager_decX:
