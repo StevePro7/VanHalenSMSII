@@ -1,6 +1,6 @@
 ; Data from B67 to B69 (3 bytes)
 _engine_cursor_manager_init:
-	;.db $01 $26 $C0
+	;ld bc, $C026
 	ld bc, cursor_index_x		; cursor_index_x = $C026
 
 ; Data from B6A to B6A (1 bytes)
@@ -22,7 +22,7 @@ _engine_cursor_manager_init:
 	push bc
 
 ; Data from B72 to B73 (2 bytes)
-	;.db $3E $03
+	;ld a, $03
 	ld a, $03					; MAX_GRID_Y	3
 
 ; Data from B74 to B74 (1 bytes)
@@ -64,7 +64,7 @@ _engine_cursor_manager_init:
 	ld (bc), a
 
 ; Data from B84 to B85 (2 bytes)
-	;.db $3E $03
+	;ld a, $03
 	ld a, 03
 
 ; Data from B86 to B86 (1 bytes)
@@ -132,7 +132,7 @@ _engine_cursor_manager_load:
 	ld (ix -3), $00
 
 ; Data from BA9 to BAA (2 bytes)
-	;.db $3E $4A
+	;ld a, $4A
 	ld a, $4A
 
 ; Data from BAB to BAD (3 bytes)
@@ -145,7 +145,7 @@ _engine_cursor_manager_load:
 	
 
 ; Data from BB1 to BB2 (2 bytes)
-	;.db $3E $11
+	;ld a, $11
 	ld a, $11
 
 ; Data from BB3 to BB4 (2 bytes)
@@ -972,7 +972,7 @@ _engine_cursor_manager_draw:
 
 ; Data from D3E to D40 (3 bytes)
 _engine_cursor_manager_decX:
-	;.db $01 $26 $C0
+	;ld bc, $C026
 	ld bc, $C026
 
 ; Data from D41 to D41 (1 bytes)
@@ -985,7 +985,7 @@ _engine_cursor_manager_decX:
 	jr nz, $06
 
 ; Data from D45 to D46 (2 bytes)
-	.db $3E $03
+	ld a, $03
 
 ; Data from D47 to D47 (1 bytes)
 	ld (bc), a
@@ -1004,7 +1004,7 @@ _engine_cursor_manager_decX:
 
 ; Data from D51 to D53 (3 bytes)
 _engine_cursor_manager_incX:
-	.db $01 $26 $C0
+	ld bc, $C026
 
 ; Data from D54 to D54 (1 bytes)
 	ld a, (bc)
@@ -1047,7 +1047,7 @@ _engine_cursor_manager_decY:
 	jr nz, $06
 
 ; Data from D6A to D6B (2 bytes)
-	.db $3E $02
+	ld a, $02
 
 ; Data from D6C to D6C (1 bytes)
 	ld (bc), a
