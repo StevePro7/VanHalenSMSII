@@ -28,9 +28,14 @@ PSGSFXLoopPoint dw		            ; PSGSFXLoopPoint = $C01F
 PSGSFXSkipFrames db		            ; PSGSFXSkipFrames = $C021
 PSGSFXLoopFlag db		            ; PSGSFXLoopFlag = $C022
 PSGSFXSubstringLen db		        ; PSGSFXSubstringLen = $C023
-PSGSFXSubstringRetAddr dw		        ; PSGSFXSubstringRetAddr = $C024
+PSGSFXSubstringRetAddr dw		    ; PSGSFXSubstringRetAddr = $C024
 .ende	
-	
+
+.enum $C026 export		
+cursor_index_x db                   ; cursor_index_x = $C026
+cursor_index_y db                   ; cursor_index_x = $C027
+.ende	
+
 .enum $C02B export	
 Fscreen_manager$curr_screen_type db	    ; Fscreen_manager$curr_screen_type = $C02B
 Fscreen_manager$next_screen_type db	    ; Fscreen_manager$next_screen_type = $C02C

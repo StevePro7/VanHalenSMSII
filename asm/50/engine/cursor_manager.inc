@@ -1,7 +1,7 @@
 ; Data from B67 to B69 (3 bytes)
 _engine_cursor_manager_init:
 	;.db $01 $26 $C0
-	ld bc, $C026
+	ld bc, cursor_index_x
 
 ; Data from B6A to B6A (1 bytes)
 	xor a
@@ -12,7 +12,7 @@ _engine_cursor_manager_init:
 
 ; Data from B6C to B6E (3 bytes)
 	;.db $21 $27 $C0
-	ld hl, $C027
+	ld hl, cursor_index_y
 
 ; Data from B6F to B70 (2 bytes)
 	;.db $36 $00
@@ -23,7 +23,7 @@ _engine_cursor_manager_init:
 
 ; Data from B72 to B73 (2 bytes)
 	;.db $3E $03
-	ld a, $03
+	ld a, $03					; MAX_GRID_Y	3
 
 ; Data from B74 to B74 (1 bytes)
 	push af
@@ -49,8 +49,7 @@ _engine_cursor_manager_init:
 	inc sp
 
 ; Data from B7D to B7F (3 bytes)
-	;.db $CD $A7 $1A
-	call $1AA7
+	call __divuchar
 
 ; Data from B80 to B80 (1 bytes)
 	.db $F1
@@ -89,8 +88,7 @@ _engine_cursor_manager_init:
 	.db $33
 
 ; Data from B8F to B91 (3 bytes)
-	;.db $CD $28 $1E
-	call $1E28
+	call __moduchar
 
 ; Data from B92 to B92 (1 bytes)
 	.db $F1
@@ -238,7 +236,6 @@ _engine_cursor_manager_load:
 	.db $D5
 
 ; Data from BEA to BEC (3 bytes)
-	;.db $CD $E9 $0D
 	call _engine_font_manager_draw_text
 
 ; Data from BED to BED (1 bytes)
