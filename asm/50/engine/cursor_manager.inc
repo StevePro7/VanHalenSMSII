@@ -1,116 +1,39 @@
 ; Data from B67 to B69 (3 bytes)
 _engine_cursor_manager_init:
-	;ld bc, $C026
-	ld bc, cursor_index_x		; cursor_index_x = $C026
+		ld bc, cursor_index_x		; cursor_index_x = $C026
+		xor a
+		ld (bc),a
+		ld hl, cursor_index_y		; cursor_index_y = $C027
+		ld (hl),$00
+		push bc
+		ld a, $03					; MAX_GRID_Y	3
+		push af
+		inc sp
+		ld hl, $0005
+		add hl, sp
+		ld a, (hl)
+		push af
+		inc sp
+		call __divuchar
+		pop af
+		ld a, l
+		pop bc
+		ld (bc), a
+		ld a, 03
+		push af
+		inc sp
+		ld hl, $0003
+		add hl, sp
+		ld a, (hl)
+		push af
+		inc sp
+		call __moduchar
+		pop af
+		ld c, l
+		ld hl, cursor_index_y			; cursor_index_y = $C027
+		ld (hl), c
+		jp $0D88
 
-; Data from B6A to B6A (1 bytes)
-	xor a
-
-; Data from B6B to B6B (1 bytes)
-	;ld (bc), a
-	ld (bc),a
-
-; Data from B6C to B6E (3 bytes)
-	;.db $21 $27 $C0
-	ld hl, cursor_index_y		; cursor_index_y = $C027
-
-; Data from B6F to B70 (2 bytes)
-	;.db $36 $00
-	ld (hl),$00
-
-; Data from B71 to B71 (1 bytes)
-	push bc
-
-; Data from B72 to B73 (2 bytes)
-	;ld a, $03
-	ld a, $03					; MAX_GRID_Y	3
-
-; Data from B74 to B74 (1 bytes)
-	push af
-
-; Data from B75 to B75 (1 bytes)
-	inc sp
-
-; Data from B76 to B78 (3 bytes)
-	;.db $21 $05 $00
-	ld hl, $0005
-
-; Data from B79 to B79 (1 bytes)
-	;add hl, sp
-	add hl, sp
-
-; Data from B7A to B7A (1 bytes)
-	ld a, (hl)
-
-; Data from B7B to B7B (1 bytes)
-	push af
-
-; Data from B7C to B7C (1 bytes)
-	inc sp
-
-; Data from B7D to B7F (3 bytes)
-	call __divuchar
-
-; Data from B80 to B80 (1 bytes)
-	pop af
-
-; Data from B81 to B81 (1 bytes)
-	ld a, l
-
-; Data from B82 to B82 (1 bytes)
-	pop bc
-
-; Data from B83 to B83 (1 bytes)
-	ld (bc), a
-
-; Data from B84 to B85 (2 bytes)
-	;ld a, $03
-	ld a, 03
-
-; Data from B86 to B86 (1 bytes)
-	push af
-
-; Data from B87 to B87 (1 bytes)
-	inc sp
-
-; Data from B88 to B8A (3 bytes)
-	;.db $21 $03 $00
-	ld hl, $0003
-
-; Data from B8B to B8B (1 bytes)
-	add hl, sp
-
-; Data from B8C to B8C (1 bytes)
-	ld a, (hl)
-
-; Data from B8D to B8D (1 bytes)
-	push af
-
-; Data from B8E to B8E (1 bytes)
-	inc sp
-
-; Data from B8F to B91 (3 bytes)
-	call __moduchar
-
-; Data from B92 to B92 (1 bytes)
-	pop af
-
-; Data from B93 to B93 (1 bytes)
-	ld c, l
-
-; Data from B94 to B96 (3 bytes)
-	;.db $21 $27 $C0
-	ld hl, cursor_index_y			; cursor_index_y = $C027
-
-; Data from B97 to B97 (1 bytes)
-	;.db $71
-	ld (hl), c
-
-; Data from B98 to B9A (3 bytes)
-	;jp $0D88
-	jp $0D88
-
-; Data from B9B to B9C (2 bytes)
 _engine_cursor_manager_load:
 	push ix
 
@@ -1095,6 +1018,7 @@ _engine_cursor_manager_incY:
 ; Data from D85 to D87 (3 bytes)
 	jp $0D88
 
+steveproLabel:
 ; Data from D88 to D8A (3 bytes)
 	ld bc, $1146
 
