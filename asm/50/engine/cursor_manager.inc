@@ -1010,13 +1010,13 @@ _engine_cursor_manager_incX:
 	ld a, (bc)
 
 ; Data from D55 to D56 (2 bytes)
-	.db $FE $03
+	cp $03
 
 ; Data from D57 to D58 (2 bytes)
 	jr nz, $05
 
 ; Data from D59 to D59 (1 bytes)
-	.db $AF
+	xor a
 
 ; Data from D5A to D5A (1 bytes)
 	ld (bc), a
@@ -1072,13 +1072,13 @@ _engine_cursor_manager_incY:
 	ld a, (bc)
 
 ; Data from D7A to D7B (2 bytes)
-	.db $FE $02
+	cp $02
 
 ; Data from D7C to D7D (2 bytes)
 	jr nz, $05
 
 ; Data from D7E to D7E (1 bytes)
-	.db $AF
+	xor a
 
 ; Data from D7F to D7F (1 bytes)
 	ld (bc), a
