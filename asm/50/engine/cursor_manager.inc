@@ -313,29 +313,32 @@ _engine_cursor_manager_load:
 	ret
 
 ; Data from C05 to C07 (3 bytes)
+; Data from C05 to C07 (3 bytes)
 _engine_cursor_manager_save:
-	.db $3A $26 $C0
+	;.db $3A $26 $C0
+	ld a, (cursor_index_x)		; cursor_index_x = $C026
 
 ; Data from C08 to C08 (1 bytes)
-	.db $4F
+	ld c, a
 
 ; Data from C09 to C09 (1 bytes)
-	.db $87
+	add a, a
 
 ; Data from C0A to C0A (1 bytes)
-	.db $81
+	add a, c
 
 ; Data from C0B to C0B (1 bytes)
-	.db $4F
+	ld c, a
 
 ; Data from C0C to C0E (3 bytes)
-	.db $21 $26 $C0
+	;.db $21 $26 $C0
+	ld hl, cursor_index_x		; cursor_index_x = $C026
 
 ; Data from C0F to C0F (1 bytes)
 	inc hl
 
 ; Data from C10 to C10 (1 bytes)
-	.db $6E
+	ld l, (hl)
 
 ; Data from C11 to C11 (1 bytes)
 	add hl, bc
@@ -348,7 +351,8 @@ _engine_cursor_manager_draw:
 	push ix
 
 ; Data from C15 to C18 (4 bytes)
-	.db $DD $21 $00 $00
+	;.db $DD $21 $00 $00
+	ld ix, $0000
 
 ; Data from C19 to C1A (2 bytes)
 	add ix, sp
@@ -360,7 +364,8 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from C1D to C1F (3 bytes)
-	.db $21 $26 $C0
+	;.db $21 $26 $C0
+	ld hl, cursor_index_x		; cursor_index_x = $C026
 
 ; Data from C20 to C20 (1 bytes)
 	inc hl
@@ -372,7 +377,8 @@ _engine_cursor_manager_draw:
 	ld c, (hl)
 
 ; Data from C23 to C25 (3 bytes)
-	.db $21 $26 $C0
+	;.db $21 $26 $C0
+	ld hl, cursor_index_x		; cursor_index_x = $C026
 
 ; Data from C26 to C26 (1 bytes)
 	inc hl
@@ -390,10 +396,11 @@ _engine_cursor_manager_draw:
 	push bc
 
 ; Data from C2B to C2D (3 bytes)
-	.db $21 $20 $01
+	;.db $21 $20 $01
+	ld hl, $0120
 
 ; Data from C2E to C2E (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from C2F to C2F (1 bytes)
 	push bc
