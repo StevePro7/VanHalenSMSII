@@ -422,7 +422,8 @@ _engine_cursor_manager_draw:
 	ld a, c
 
 ; Data from C37 to C38 (2 bytes)
-	.db $C6 $28
+	;.db $C6 $28
+	add a, $28
 
 ; Data from C39 to C39 (1 bytes)
 	ld e, a
@@ -466,13 +467,13 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from C4A to C4A (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from C4B to C4B (1 bytes)
 	pop bc
 
 ; Data from C4C to C4C (1 bytes)
-	.db $78
+	ld a, b
 
 ; Data from C4D to C4E (2 bytes)
 	.db $C6 $10
@@ -509,7 +510,7 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from C5D to C5D (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from C5E to C5E (1 bytes)
 	push de
@@ -534,7 +535,7 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from C69 to C69 (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from C6A to C6A (1 bytes)
 	pop bc
@@ -586,7 +587,7 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from C83 to C83 (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from C84 to C84 (1 bytes)
 	pop bc
@@ -637,7 +638,7 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from C9D to C9D (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from C9E to C9E (1 bytes)
 	pop bc
@@ -688,7 +689,7 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from CB7 to CB7 (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from CB8 to CB8 (1 bytes)
 	pop bc
@@ -739,13 +740,13 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from CD1 to CD1 (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from CD2 to CD2 (1 bytes)
 	pop bc
 
 ; Data from CD3 to CD3 (1 bytes)
-	.db $78
+	ld a, b
 
 ; Data from CD4 to CD5 (2 bytes)
 	.db $C6 $08
@@ -778,7 +779,7 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from CE3 to CE3 (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from CE4 to CE4 (1 bytes)
 	pop bc
@@ -817,7 +818,7 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from CF4 to CF4 (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from CF5 to CF5 (1 bytes)
 	push de
@@ -853,7 +854,7 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from D06 to D06 (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from D07 to D07 (1 bytes)
 	push de
@@ -889,7 +890,7 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from D18 to D18 (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from D19 to D19 (1 bytes)
 	push de
@@ -925,7 +926,7 @@ _engine_cursor_manager_draw:
 	pop af
 
 ; Data from D2A to D2A (1 bytes)
-	.db $D1
+	pop de
 
 ; Data from D2B to D2D (3 bytes)
 	.db $21 $30 $01
