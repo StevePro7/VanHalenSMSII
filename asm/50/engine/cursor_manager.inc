@@ -757,7 +757,7 @@ _engine_cursor_manager_draw:
 	add a, $08
 
 ; Data from CD6 to CD6 (1 bytes)
-	.db $47
+	ld b, a
 
 ; Data from CD7 to CD7 (1 bytes)
 	push bc
@@ -766,7 +766,7 @@ _engine_cursor_manager_draw:
 	push de
 
 ; Data from CD9 to CDB (3 bytes)
-	.db $21 $26 $01
+	ld hl, $0126
 
 ; Data from CDC to CDC (1 bytes)
 	push hl
@@ -793,7 +793,7 @@ _engine_cursor_manager_draw:
 	push de
 
 ; Data from CE6 to CE8 (3 bytes)
-	.db $21 $2B $01
+	ld hl, $012B 
 
 ; Data from CE9 to CE9 (1 bytes)
 	push hl
