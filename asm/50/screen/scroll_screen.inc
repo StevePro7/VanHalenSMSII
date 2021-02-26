@@ -45,13 +45,16 @@ _screen_scroll_screen_update:
 	inc sp
 
 ; Data from 139F to 13A2 (4 bytes)
-	.db $FD $21 $56 $C0
+	;.db $FD $21 $56 $C0
+	ld iy, $C056
 
 ; Data from 13A3 to 13A5 (3 bytes)
-	.db $FD $46 $00
+	;.db $FD $46 $00
+	ld b, (iy + $00)
 
 ; Data from 13A6 to 13A8 (3 bytes)
-	.db $FD $34 $00
+	;.db $FD $34 $00
+	inc (iy + $00)
 
 ; Data from 13A9 to 13A9 (1 bytes)
 	push bc
