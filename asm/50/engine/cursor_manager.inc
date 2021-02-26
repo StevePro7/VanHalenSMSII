@@ -973,7 +973,7 @@ _engine_cursor_manager_draw:
 ; Data from D3E to D40 (3 bytes)
 _engine_cursor_manager_decX:
 	;ld bc, $C026
-	ld bc, $C026
+	ld bc, cursor_index_x		; cursor_index_x = $C026
 
 ; Data from D41 to D41 (1 bytes)
 	ld a, (bc)
@@ -1004,7 +1004,7 @@ _engine_cursor_manager_decX:
 
 ; Data from D51 to D53 (3 bytes)
 _engine_cursor_manager_incX:
-	ld bc, $C026
+	ld bc, cursor_index_x		; cursor_index_x = $C026
 
 ; Data from D54 to D54 (1 bytes)
 	ld a, (bc)
@@ -1035,7 +1035,7 @@ _engine_cursor_manager_incX:
 
 ; Data from D63 to D65 (3 bytes)
 _engine_cursor_manager_decY:
-	ld bc, $C027
+	ld bc, cursor_index_y		; cursor_index_y = $C027
 
 ; Data from D66 to D66 (1 bytes)
 	ld a, (bc)
@@ -1066,7 +1066,7 @@ _engine_cursor_manager_decY:
 
 ; Data from D76 to D78 (3 bytes)
 _engine_cursor_manager_incY:
-	ld bc, $C027
+	ld bc, cursor_index_y		; cursor_index_y = $C027
 
 ; Data from D79 to D79 (1 bytes)
 	ld a, (bc)
@@ -1099,7 +1099,7 @@ _engine_cursor_manager_incY:
 	ld bc, $1146
 
 ; Data from D8B to D8D (3 bytes)
-	ld hl, $C026
+	ld hl, cursor_index_x		; cursor_index_x = $C026
 
 ; Data from D8E to D8E (1 bytes)
 	ld l, (hl)
@@ -1117,7 +1117,7 @@ _engine_cursor_manager_incY:
 	ld de, $114A 
 
 ; Data from D96 to D98 (3 bytes)
-	ld hl, $C026
+	ld hl, cursor_index_x		; cursor_index_x = $C026
 
 ; Data from D99 to D99 (1 bytes)
 	inc hl
@@ -1157,14 +1157,14 @@ _engine_cursor_manager_incY:
 
 ; Data from DA7 to DA9 (3 bytes)
 	;.db $21 $28 $C0
-	ld hl, $C028
+	ld hl, cursor_value_x		; cursor_value_x = $C028
 
 ; Data from DAA to DAA (1 bytes)
 	ld (hl), d
 
 ; Data from DAB to DAD (3 bytes)
 	;.db $01 $29 $C0
-	ld bc, $C029
+	ld bc, cursor_value_y		; cursor_value_y = $C029
 
 ; Data from DAE to DAE (1 bytes)
 	dec e
