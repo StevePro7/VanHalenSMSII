@@ -112,13 +112,14 @@ _engine_cursor_manager_init:
 
 ; Data from B9B to B9C (2 bytes)
 _engine_cursor_manager_load:
-	.db $DD $E5
+	push ix
 
 ; Data from B9D to BA0 (4 bytes)
-	.db $DD $21 $00 $00
+	;.db $DD $21 $00 $00
+	ld ix, $0000
 
 ; Data from BA1 to BA2 (2 bytes)
-	.db $DD $39
+	add ix, sp
 
 ; Data from BA3 to BA3 (1 bytes)
 	push af
@@ -128,6 +129,8 @@ _engine_cursor_manager_load:
 
 ; Data from BA5 to BA8 (4 bytes)
 	.db $DD $36 $FD $00
+	;ld (ix -3), $00
+	
 
 ; Data from BA9 to BAA (2 bytes)
 	.db $3E $4A
@@ -318,13 +321,13 @@ _engine_cursor_manager_save:
 
 ; Data from C13 to C14 (2 bytes)
 _engine_cursor_manager_draw:
-	.db $DD $E5
+	push ix
 
 ; Data from C15 to C18 (4 bytes)
 	.db $DD $21 $00 $00
 
 ; Data from C19 to C1A (2 bytes)
-	.db $DD $39
+	add ix, sp
 
 ; Data from C1B to C1B (1 bytes)
 	push af
@@ -1143,7 +1146,7 @@ _engine_cursor_manager_incY:
 	ld (bc), a
 
 ; Data from DB7 to DB7 (1 bytes)
-	.db $14
+	inc d
 
 ; Data from DB8 to DB8 (1 bytes)
 	ld (hl), d
