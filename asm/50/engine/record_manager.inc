@@ -1,23 +1,11 @@
 ; Data from F0B to F0D (3 bytes)
 _engine_record_manager_init:
-	ld hl, record_album_index		; record_album_index = $C02A
-
-; Data from F0E to F11 (4 bytes)
-	;.db $FD $21 $02 $00
-	ld iy, $0002
-
-; Data from F12 to F13 (2 bytes)
-	add iy, sp
-
-; Data from F14 to F16 (3 bytes)
-	;.db $FD $7E $00
-	ld a, (iy + $00)
-
-; Data from F17 to F17 (1 bytes)
-	ld (hl), a
-
-; Data from F18 to F18 (1 bytes)
-	ret
+		ld hl, record_album_index		; record_album_index = $C02A
+		ld iy, $0002
+		add iy, sp
+		ld a, (iy + $00)
+		ld (hl), a
+		ret
 
 ; Data from F19 to F1A (2 bytes)
 _engine_record_manager_load:
