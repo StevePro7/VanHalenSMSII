@@ -35,205 +35,64 @@ _engine_cursor_manager_init:
 		jp update_values
 
 _engine_cursor_manager_load:
-	push ix
-
-; Data from B9D to BA0 (4 bytes)
-	;.db $DD $21 $00 $00
-	ld ix, $0000
-
-; Data from BA1 to BA2 (2 bytes)
-	add ix, sp
-
-; Data from BA3 to BA3 (1 bytes)
-	push af
-
-; Data from BA4 to BA4 (1 bytes)
-	push af
-
-; Data from BA5 to BA8 (4 bytes)
-	;.db $DD $36 $FD $00
-	ld (ix -3), $00
-
-; Data from BA9 to BAA (2 bytes)
-	;ld a, $4A
-	ld a, $4A
-
-; Data from BAB to BAD (3 bytes)
-	;.db $DD $86 $FD
-	add a, (ix - 3)
-
-; Data from BAE to BB0 (3 bytes)
-	;ld (ix - 2), a
-	ld (ix - 2), a
-	
-
-; Data from BB1 to BB2 (2 bytes)
-	;ld a, $11
-	ld a, $11
-
-; Data from BB3 to BB4 (2 bytes)
-	;.db $CE $00
-	adc a, $00
-
-; Data from BB5 to BB7 (3 bytes)
-	;ld (ix - 1), a
-	ld (ix - 1), a
-
-; Data from BB8 to BB9 (2 bytes)
-	;.db $0E $00
-	ld c, $00
-
-; Data from BBA to BBA (1 bytes)
-	ld l, c
-
-; Data from BBB to BBB (1 bytes)
-	add hl, hl
-
-; Data from BBC to BBC (1 bytes)
-	add hl, bc
-
-; Data from BBD to BBD (1 bytes)
-	ld a, l
-
-; Data from BBE to BC0 (3 bytes)
-	;.db $DD $86 $FD
-	add a, (ix - 3)
-
-; Data from BC1 to BC1 (1 bytes)
-	ld e, a
-
-; Data from BC2 to BC4 (3 bytes)
-	;.db $21 $46 $11
-	;ld hl, $1146
-	ld hl, _cursor_gridX
-
-; Data from BC5 to BC6 (2 bytes)
-	;.db $06 $00
-	ld b, $00
-
-; Data from BC7 to BC7 (1 bytes)
-	add hl, bc
-
-; Data from BC8 to BC8 (1 bytes)
-	ld b, (hl)
-
-; Data from BC9 to BCB (3 bytes)
-	;.db $DD $6E $FE
-	ld l, (ix - 2)
-
-; Data from BCC to BCE (3 bytes)
-	;.db $DD $66 $FF
-	ld h, (ix - 1)
-
-; Data from BCF to BCF (1 bytes)
-	ld a, (hl)
-
-; Data from BD0 to BD2 (3 bytes)
-	;ld (ix - 4), a
-	ld (ix - 4), a
-
-; Data from BD3 to BD4 (2 bytes)
-	;ld h, $00
-	ld h, $00
-
-; Data from BD5 to BD5 (1 bytes)
-	ld l, e
-
-; Data from BD6 to BD6 (1 bytes)
-	add hl, hl
-
-; Data from BD7 to BD9 (3 bytes)
-	;.db $11 $4A $C1
-	ld de, $C14A				; stevepro TODO - what is this variable?
-
-; Data from BDA to BDA (1 bytes)
-	add hl, de
-
-; Data from BDB to BDB (1 bytes)
-	ld e, (hl)
-
-; Data from BDC to BDC (1 bytes)
-	inc hl
-
-; Data from BDD to BDD (1 bytes)
-	ld d, (hl)
-
-; Data from BDE to BE0 (3 bytes)
-	;ld a, (ix - 4)
-	ld a, (ix - 4)
-
-; Data from BE1 to BE3 (3 bytes)
-	;.db $DD $86 $04
-	add a, (ix + 04)
-
-; Data from BE4 to BE4 (1 bytes)
-	push bc
-
-; Data from BE5 to BE5 (1 bytes)
-	push af
-
-; Data from BE6 to BE6 (1 bytes)
-	inc sp
-
-; Data from BE7 to BE7 (1 bytes)
-	push bc
-
-; Data from BE8 to BE8 (1 bytes)
-	inc sp
-
-; Data from BE9 to BE9 (1 bytes)
-	push de
-
-; Data from BEA to BEC (3 bytes)
-	call _engine_font_manager_draw_text
-
-; Data from BED to BED (1 bytes)
-	pop af
-
-; Data from BEE to BEE (1 bytes)
-	pop af
-
-; Data from BEF to BEF (1 bytes)
-	pop bc
-
-; Data from BF0 to BF0 (1 bytes)
-	inc c
-
-; Data from BF1 to BF1 (1 bytes)
-	ld a, c
-
-; Data from BF2 to BF3 (2 bytes)
-	;.db $D6 $04
-	sub a, $04
-
-; Data from BF4 to BF5 (2 bytes)
-	;.db $38 $C4
-	jr c, $C4
-
-; Data from BF6 to BF8 (3 bytes)
-	;.db $DD $34 $FD
-	inc (ix - 3)
-
-; Data from BF9 to BFB (3 bytes)
-	;ld a, (ix - 3)
-	ld a, (ix - 3)
-
-; Data from BFC to BFD (2 bytes)
-	;.db $D6 $03
-	sub a, $03
-
-; Data from BFE to BFF (2 bytes)
-	;.db $38 $A9
-	jr c, $A9
-
-; Data from C00 to C01 (2 bytes)
-	ld sp, ix
-
-; Data from C02 to C03 (2 bytes)
-	pop ix
-
-; Data from C04 to C04 (1 bytes)
-	ret
+		push ix
+		ld ix, $0000
+		add ix, sp
+		push af
+		push af
+		ld (ix -3), $00
+		ld a, $4A
+		add a, (ix - 3)
+		ld (ix - 2), a
+		ld a, $11
+		adc a, $00
+		ld (ix - 1), a
+		ld c, $00
+		ld l, c
+		add hl, hl
+		add hl, bc
+		ld a, l
+		add a, (ix - 3)
+		ld e, a
+		ld hl, _cursor_gridX
+		ld b, $00
+		add hl, bc
+		ld b, (hl)
+		ld l, (ix - 2)
+		ld h, (ix - 1)
+		ld a, (hl)
+		ld (ix - 4), a
+		ld h, $00
+		ld l, e
+		add hl, hl
+		ld de, $C14A				; stevepro TODO - what is this variable?
+		add hl, de
+		ld e, (hl)
+		inc hl
+		ld d, (hl)
+		ld a, (ix - 4)
+		add a, (ix + 04)
+		push bc
+		push af
+		inc sp
+		push bc
+		inc sp
+		push de
+		call _engine_font_manager_draw_text
+		pop af
+		pop af
+		pop bc
+		inc c
+		ld a, c
+		sub a, $04
+		jr c, $C4
+		inc (ix - 3)
+		ld a, (ix - 3)
+		sub a, $03
+		jr c, $A9
+		ld sp, ix
+		pop ix
+		ret
 
 ; Data from C05 to C07 (3 bytes)
 ; Data from C05 to C07 (3 bytes)
