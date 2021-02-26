@@ -280,28 +280,34 @@ _engine_cursor_manager_load:
 	ld a, c
 
 ; Data from BF2 to BF3 (2 bytes)
-	.db $D6 $04
+	;.db $D6 $04
+	sub a, $04
 
 ; Data from BF4 to BF5 (2 bytes)
-	.db $38 $C4
+	;.db $38 $C4
+	jr c, $C4
 
 ; Data from BF6 to BF8 (3 bytes)
-	.db $DD $34 $FD
+	;.db $DD $34 $FD
+	inc (ix - 3)
 
 ; Data from BF9 to BFB (3 bytes)
-	.db $DD $7E $FD
+	;.db $DD $7E $FD
+	ld a, (ix - 3)
 
 ; Data from BFC to BFD (2 bytes)
-	.db $D6 $03
+	;.db $D6 $03
+	sub a, $03
 
 ; Data from BFE to BFF (2 bytes)
-	.db $38 $A9
+	;.db $38 $A9
+	jr c, $A9
 
 ; Data from C00 to C01 (2 bytes)
-	.db $DD $F9
+	ld sp, ix
 
 ; Data from C02 to C03 (2 bytes)
-	.db $DD $E1
+	pop ix
 
 ; Data from C04 to C04 (1 bytes)
 	ret
@@ -938,10 +944,10 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from D39 to D3A (2 bytes)
-	.db $DD $F9
+	ld sp, ix
 
 ; Data from D3B to D3C (2 bytes)
-	.db $DD $E1
+	pop ix
 
 ; Data from D3D to D3D (1 bytes)
 	ret
