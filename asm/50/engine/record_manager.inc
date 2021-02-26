@@ -7,161 +7,175 @@ _engine_record_manager_init:
 		ld (hl), a
 		ret
 
-; Data from F19 to F1A (2 bytes)
+; Data from F8B to F8C (2 bytes)
 _engine_record_manager_load:
-	.db $DD $E5
+	push ix
 
-; Data from F1B to F1E (4 bytes)
-	.db $DD $21 $00 $00
+; Data from F8D to F90 (4 bytes)
+	;.db $DD $21 $00 $00
+	ld ix, $0000
 
-; Data from F1F to F20 (2 bytes)
-	.db $DD $39
+; Data from F91 to F92 (2 bytes)
+	add ix, sp
 
-; Data from F21 to F21 (1 bytes)
-	.db $3B
+; Data from F93 to F93 (1 bytes)
+	dec sp
 
-; Data from F22 to F24 (3 bytes)
-	.db $3A $2A $C0
+; Data from F94 to F96 (3 bytes)
+	;.db $3A $2A $C0
+	ld a, ($C02A)		; ro->record_album_index
 
-; Data from F25 to F27 (3 bytes)
-	.db $DD $77 $FF
+; Data from F97 to F99 (3 bytes)
+	;.db $DD $77 $FF
+	ld (ix - 1), a
 
-; Data from F28 to F28 (1 bytes)
-	.db $6F
+; Data from F9A to F9A (1 bytes)
+	ld l, a
 
-; Data from F29 to F2A (2 bytes)
-	.db $26 $00
+; Data from F9B to F9C (2 bytes)
+	ld h, $00
 
-; Data from F2B to F2B (1 bytes)
-	.db $29
+; Data from F9D to F9D (1 bytes)
+	add hl, hl
 
-; Data from F2C to F2C (1 bytes)
-	.db $4D
+; Data from F9E to F9E (1 bytes)
+	ld c, l
 
-; Data from F2D to F2D (1 bytes)
-	.db $44
+; Data from F9F to F9F (1 bytes)
+	ld b, h
 
-; Data from F2E to F30 (3 bytes)
-	.db $21 $62 $C1
+; Data from FA0 to FA2 (3 bytes)
+	;.db $21 $62 $C1
+	ld hl, $C162
 
-; Data from F31 to F31 (1 bytes)
-	.db $09
+; Data from FA3 to FA3 (1 bytes)
+	add hl, bc
 
-; Data from F32 to F32 (1 bytes)
-	.db $5E
+; Data from FA4 to FA4 (1 bytes)
+	ld e, (hl)
 
-; Data from F33 to F33 (1 bytes)
-	.db $23
+; Data from FA5 to FA5 (1 bytes)
+	inc hl
 
-; Data from F34 to F34 (1 bytes)
-	.db $56
+; Data from FA6 to FA6 (1 bytes)
+	ld d, (hl)
 
-; Data from F35 to F37 (3 bytes)
-	.db $21 $7A $C1
+; Data from FA7 to FA9 (3 bytes)
+	;.db $21 $7A  $C1
+	ld hl, $C17A
 
-; Data from F38 to F38 (1 bytes)
-	.db $09
+; Data from FAA to FAA (1 bytes)
+	add hl, bc
 
-; Data from F39 to F39 (1 bytes)
-	.db $4E
+; Data from FAB to FAB (1 bytes)
+	ld c, (hl)
 
-; Data from F3A to F3A (1 bytes)
-	.db $23
+; Data from FAC to FAC (1 bytes)
+	inc hl
 
-; Data from F3B to F3B (1 bytes)
-	.db $46
+; Data from FAD to FAD (1 bytes)
+	ld b, (hl)
 
-; Data from F3C to F3E (3 bytes)
-	.db $DD $7E $FF
+; Data from FAE to FB0 (3 bytes)
+	;.db $DD $7E $FF
+	ld a, (ix - 1)
 
-; Data from F3F to F40 (2 bytes)
-	.db $C6 $89
+; Data from FB1 to FB2 (2 bytes)
+	add a, $89
 
-; Data from F41 to F41 (1 bytes)
-	.db $6F
+; Data from FB3 to FB3 (1 bytes)
+	ld l, a
 
-; Data from F42 to F43 (2 bytes)
-	.db $3E $00
+; Data from FB4 to FB5 (2 bytes)
+	ld a, $00
 
-; Data from F44 to F45 (2 bytes)
-	.db $CE $11
+; Data from FB6 to FB7 (2 bytes)
+	adc a, $11
 
-; Data from F46 to F46 (1 bytes)
-	.db $67
+; Data from FB8 to FB8 (1 bytes)
+	ld h, a
 
-; Data from F47 to F47 (1 bytes)
-	.db $66
+; Data from FB9 to FB9 (1 bytes)
+	ld h, (hl)
 
-; Data from F48 to F48 (1 bytes)
-	.db $C5
+; Data from FBA to FBA (1 bytes)
+	push bc
 
-; Data from F49 to F49 (1 bytes)
-	.db $D5
+; Data from FBB to FBB (1 bytes)
+	push de
 
-; Data from F4A to F4A (1 bytes)
-	.db $E5
+; Data from FBC to FBC (1 bytes)
+	push hl
 
-; Data from F4B to F4B (1 bytes)
-	.db $33
+; Data from FBD to FBD (1 bytes)
+	inc sp
 
-; Data from F4C to F4E (3 bytes)
-	.db $CD $31 $08
+; Data from FBE to FC0 (3 bytes)
+	;.db $CD $31 $08
+	call _devkit_SMS_mapROMBank
 
-; Data from F4F to F4F (1 bytes)
-	.db $33
+; Data from FC1 to FC1 (1 bytes)
+	inc sp
 
-; Data from F50 to F50 (1 bytes)
-	.db $D1
+; Data from FC2 to FC2 (1 bytes)
+	pop de
 
-; Data from F51 to F53 (3 bytes)
-	.db $21 $00 $00
+; Data from FC3 to FC5 (3 bytes)
+	;.db $21 $00 $00
+	ld hl, $0000
 
-; Data from F54 to F54 (1 bytes)
-	.db $E5
+; Data from FC6 to FC6 (1 bytes)
+	push hl
 
-; Data from F55 to F55 (1 bytes)
-	.db $D5
+; Data from FC7 to FC7 (1 bytes)
+	push de
 
-; Data from F56 to F58 (3 bytes)
-	.db $CD $8E $08
+; Data from FC8 to FCA (3 bytes)
+	;.db $CD $8E $08
+	call _devkit_SMS_loadPSGaidencompress
 
-; Data from F59 to F59 (1 bytes)
-	.db $F1
+; Data from FCB to FCB (1 bytes)
+	pop af
 
-; Data from F5A to F5C (3 bytes)
-	.db $21 $00 $00
+; Data from FCC to FCE (3 bytes)
+	;.db $21 $00 $00
+	ld hl, $0000
 
-; Data from F5D to F5D (1 bytes)
-	.db $E3
+; Data from FCF to FCF (1 bytes)
+	ex (sp), hl
 
-; Data from F5E to F60 (3 bytes)
-	.db $CD $A4 $08
+; Data from FD0 to FD2 (3 bytes)
+	;.db $CD $A4 $08
+	call _devkit_SMS_loadSTMcompressedTil
 
-; Data from F61 to F61 (1 bytes)
-	.db $F1
+; Data from FD3 to FD3 (1 bytes)
+	pop af
 
-; Data from F62 to F62 (1 bytes)
-	.db $F1
+; Data from FD4 to FD4 (1 bytes)
+	pop af
 
-; Data from F63 to F65 (3 bytes)
-	.db $2A $92 $C1
+; Data from FD5 to FD7 (3 bytes)
+	;.db $2A $92 $C1
+	ld hl, ($C192)
 
-; Data from F66 to F66 (1 bytes)
-	.db $E5
+; Data from FD8 to FD8 (1 bytes)
+	push hl
 
-; Data from F67 to F69 (3 bytes)
-	.db $CD $C5 $08
+; Data from FD9 to FDB (3 bytes)
+	;.db $CD $C5 $08
+	call _devkit_SMS_loadBGPalette
 
-; Data from F6A to F6A (1 bytes)
-	.db $F1
+; Data from FDC to FDC (1 bytes)
+	pop af
 
-; Data from F6B to F6B (1 bytes)
-	.db $33
+; Data from FDD to FDD (1 bytes)
+	inc sp
 
-; Data from F6C to F6D (2 bytes)
-	.db $DD $E1
+; Data from FDE to FDF (2 bytes)
+	;.db $DD $E1
+	pop ix
 
-; Data from F6E to F6E (1 bytes)
+; Data from FE0 to FE0 (1 bytes)
 	ret
 
 ; Data from F6F to F71 (3 bytes)
