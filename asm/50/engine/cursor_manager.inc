@@ -488,13 +488,14 @@ _engine_cursor_manager_draw:
 	push de
 
 ; Data from C52 to C54 (3 bytes)
-	.db $21 $2C $01
+	;.db $21 $2C $01
+	ld hl, $012C
 
 ; Data from C55 to C55 (1 bytes)
 	push hl
 
 ; Data from C56 to C56 (1 bytes)
-	.db $59
+	ld e, c
 
 ; Data from C57 to C57 (1 bytes)
 	push de
@@ -516,7 +517,8 @@ _engine_cursor_manager_draw:
 	push de
 
 ; Data from C5F to C61 (3 bytes)
-	.db $21 $31 $01
+	;.db $21 $31 $01
+	ld hl, $0131
 
 ; Data from C62 to C62 (1 bytes)
 	push hl
