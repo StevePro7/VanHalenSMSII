@@ -220,7 +220,8 @@ _engine_cursor_manager_load:
 	add hl, hl
 
 ; Data from BD7 to BD9 (3 bytes)
-	.db $11 $4A $C1
+	;.db $11 $4A $C1
+	ld de, $C14A				; stevepro TODO - what is this variable?
 
 ; Data from BDA to BDA (1 bytes)
 	add hl, de
@@ -232,7 +233,7 @@ _engine_cursor_manager_load:
 	inc hl
 
 ; Data from BDD to BDD (1 bytes)
-	.db $56
+	ld d, (hl)
 
 ; Data from BDE to BE0 (3 bytes)
 	.db $DD $7E $FC
@@ -241,7 +242,7 @@ _engine_cursor_manager_load:
 	.db $DD $86 $04
 
 ; Data from BE4 to BE4 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from BE5 to BE5 (1 bytes)
 	push af
@@ -250,7 +251,7 @@ _engine_cursor_manager_load:
 	inc sp
 
 ; Data from BE7 to BE7 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from BE8 to BE8 (1 bytes)
 	inc sp
@@ -378,7 +379,7 @@ _engine_cursor_manager_draw:
 	ld b, (hl)
 
 ; Data from C2A to C2A (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from C2B to C2D (3 bytes)
 	.db $21 $20 $01
@@ -387,7 +388,7 @@ _engine_cursor_manager_draw:
 	.db $E5
 
 ; Data from C2F to C2F (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from C30 to C32 (3 bytes)
 	;call _devkit_SMS_addSprite
@@ -412,7 +413,7 @@ _engine_cursor_manager_draw:
 	ld e, a
 
 ; Data from C3A to C3A (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from C3B to C3B (1 bytes)
 	.db $D5
@@ -424,7 +425,7 @@ _engine_cursor_manager_draw:
 	.db $E5
 
 ; Data from C40 to C40 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from C41 to C41 (1 bytes)
 	inc sp
@@ -464,7 +465,7 @@ _engine_cursor_manager_draw:
 	ld d, a
 
 ; Data from C50 to C50 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from C51 to C51 (1 bytes)
 	.db $D5
@@ -532,7 +533,7 @@ _engine_cursor_manager_draw:
 	.db $DD $77 $FC
 
 ; Data from C71 to C71 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from C72 to C72 (1 bytes)
 	.db $D5
@@ -544,7 +545,7 @@ _engine_cursor_manager_draw:
 	.db $E5
 
 ; Data from C77 to C77 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from C78 to C78 (1 bytes)
 	inc sp
@@ -584,7 +585,7 @@ _engine_cursor_manager_draw:
 	.db $DD $77 $FF
 
 ; Data from C8B to C8B (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from C8C to C8C (1 bytes)
 	.db $D5
@@ -596,7 +597,7 @@ _engine_cursor_manager_draw:
 	.db $E5
 
 ; Data from C91 to C91 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from C92 to C92 (1 bytes)
 	inc sp
@@ -635,7 +636,7 @@ _engine_cursor_manager_draw:
 	.db $DD $77 $FE
 
 ; Data from CA5 to CA5 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from CA6 to CA6 (1 bytes)
 	.db $D5
@@ -647,7 +648,7 @@ _engine_cursor_manager_draw:
 	.db $E5
 
 ; Data from CAB to CAB (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from CAC to CAC (1 bytes)
 	inc sp
@@ -686,7 +687,7 @@ _engine_cursor_manager_draw:
 	.db $DD $77 $FD
 
 ; Data from CBF to CBF (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from CC0 to CC0 (1 bytes)
 	.db $D5
@@ -698,7 +699,7 @@ _engine_cursor_manager_draw:
 	.db $E5
 
 ; Data from CC5 to CC5 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from CC6 to CC6 (1 bytes)
 	inc sp
@@ -737,7 +738,7 @@ _engine_cursor_manager_draw:
 	.db $47
 
 ; Data from CD7 to CD7 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from CD8 to CD8 (1 bytes)
 	.db $D5
@@ -749,7 +750,7 @@ _engine_cursor_manager_draw:
 	.db $E5
 
 ; Data from CDD to CDD (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from CDE to CE0 (3 bytes)
 	call _devkit_SMS_addSprite
@@ -776,7 +777,7 @@ _engine_cursor_manager_draw:
 	.db $E5
 
 ; Data from CEA to CEA (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from CEB to CEB (1 bytes)
 	inc sp
