@@ -14,12 +14,12 @@ _engine_cursor_manager_init:
 		ld a, (hl)
 		push af
 		inc sp
-		call __divuchar
+		call __divuchar				; co->cursor_index_x = index / MAX_GRID_Y;
 		pop af
 		ld a, l
 		pop bc
 		ld (bc), a
-		ld a, 03
+		ld a, 03					; MAX_GRID_Y	3
 		push af
 		inc sp
 		ld hl, $0003
@@ -27,14 +27,16 @@ _engine_cursor_manager_init:
 		ld a, (hl)
 		push af
 		inc sp
-		call __moduchar
+		call __moduchar				; co->cursor_index_y = index % MAX_GRID_Y;
 		pop af
 		ld c, l
-		ld hl, cursor_index_y			; cursor_index_y = $C027
+		ld hl, cursor_index_y		; cursor_index_y = $C027
 		ld (hl), c
 		jp update_values
 
 _engine_cursor_manager_load:
+		; MAX_GRID_X	4
+		; MAX_GRID_Y	3
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -65,7 +67,7 @@ _engine_cursor_manager_load:
 		ld h, $00
 		ld l, e
 		add hl, hl
-		ld de, $C14A				; stevepro TODO - what is this variable?
+		ld de, $C14A				; stevepro TODO : text = cursor_album[ idx ];	??
 		add hl, de
 		ld e, (hl)
 		inc hl
@@ -110,7 +112,7 @@ _engine_cursor_manager_save:
 ; Data from C13 to C14 (2 bytes)
 _engine_cursor_manager_draw:
 		push ix
-		ld ix, $0000
+		ld ix, $0000				; tile + 0 
 		add ix, sp
 		push af
 		push af
@@ -136,7 +138,7 @@ _engine_cursor_manager_draw:
 		ld e, a
 		push bc
 		push de
-		ld hl, $0125
+		ld hl, $0125				; tile + 5
 		push hl
 		push bc
 		inc sp
@@ -153,7 +155,7 @@ _engine_cursor_manager_draw:
 		ld d, a
 		push bc
 		push de
-		ld hl, $012C
+		ld hl, $012C				; tile + 12
 		push hl
 		ld e, c
 		push de
@@ -162,7 +164,7 @@ _engine_cursor_manager_draw:
 		pop af
 		pop de
 		push de
-		ld hl, $0131
+		ld hl, $0131				; tile + 17
 		push hl
 		push de
 		call _devkit_SMS_addSprite
@@ -175,7 +177,7 @@ _engine_cursor_manager_draw:
 		ld (ix - 4), a
 		push bc
 		push de
-		ld hl, $0121
+		ld hl, $0121				; tile + 1
 		push hl
 		push bc
 		inc sp
@@ -192,7 +194,7 @@ _engine_cursor_manager_draw:
 		ld (ix - 1), a
 		push bc
 		push de
-		ld hl, $0122
+		ld hl, $0122				; tile + 2
 		push hl
 		push bc
 		inc sp
@@ -209,7 +211,7 @@ _engine_cursor_manager_draw:
 		ld (ix - 2), a
 		push bc
 		push de
-		ld hl, $0123
+		ld hl, $0123				; tile + 3
 		push hl
 		push bc
 		inc sp
@@ -226,7 +228,7 @@ _engine_cursor_manager_draw:
 		ld (ix - 3), a
 		push bc
 		push de
-		ld hl, $0124
+		ld hl, $0124				; tile + 4
 		push hl
 		push bc
 		inc sp
@@ -243,7 +245,7 @@ _engine_cursor_manager_draw:
 		ld b, a
 		push bc
 		push de
-		ld hl, $0126
+		ld hl, $0126				; tile + 6
 		push hl
 		push bc
 		call _devkit_SMS_addSprite
@@ -252,7 +254,7 @@ _engine_cursor_manager_draw:
 		pop de
 		pop bc
 		push de
-		ld hl, $012B 
+		ld hl, $012B 				; tile + 11
 		push hl
 		push bc
 		inc sp
@@ -264,7 +266,7 @@ _engine_cursor_manager_draw:
 		pop af
 		pop de
 		push de
-		ld hl, $012D
+		ld hl, $012D				; tile + 13
 		push hl
 		push de
 		inc sp
@@ -276,7 +278,7 @@ _engine_cursor_manager_draw:
 		pop af
 		pop de
 		push de
-		ld hl, $012E
+		ld hl, $012E				; tile + 14
 		push hl
 		push de
 		inc sp
@@ -288,7 +290,7 @@ _engine_cursor_manager_draw:
 		pop af
 		pop de
 		push de
-		ld hl, $012F
+		ld hl, $012F				; tile + 15
 		push hl
 		push de
 		inc sp
@@ -299,7 +301,7 @@ _engine_cursor_manager_draw:
 		pop af
 		pop af
 		pop de
-		ld hl, $0130
+		ld hl, $0130				; tile + 16
 		push hl
 		push de
 		inc sp
