@@ -21,7 +21,7 @@ _screen_scroll_screen_update:
 	sub a, $20						; TOP_SCROLL	32
 
 ; Data from 1395 to 1396 (2 bytes)
-	;.db $20 $04
+	;jr nz, $04
 	jr nz, +
 
 ; Data from 1397 to 1398 (2 bytes)
@@ -107,10 +107,10 @@ _screen_scroll_screen_update:
 	ld a, c
 
 ; Data from 13C1 to 13C1 (1 bytes)
-	.db $B7
+	or a
 
 ; Data from 13C2 to 13C3 (2 bytes)
-	.db $20 $0C
+	jr nz, $0C
 
 ; Data from 13C4 to 13C7 (4 bytes)
 	.db $FD $21 $00 $00
@@ -122,10 +122,10 @@ _screen_scroll_screen_update:
 	.db $FD $7E $00
 
 ; Data from 13CD to 13CD (1 bytes)
-	.db $B7
+	or a
 
 ; Data from 13CE to 13CF (2 bytes)
-	.db $28 $16
+	jr z, $16
 
 ; Data from 13D0 to 13D0 (1 bytes)
 	.db $E5
