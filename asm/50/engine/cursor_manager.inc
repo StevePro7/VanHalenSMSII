@@ -315,41 +315,35 @@ _engine_cursor_manager_draw:
 _engine_cursor_manager_decX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
-		or a
+		or a						; if( 0 == co->cursor_index_x )
 		jr nz, +
 		ld a, $03					; co->cursor_index_x = MAX_GRID_X - 1;
 		ld (bc), a
 		jp update_values
 +:
-		add a, $FF
-		ld (bc), a					; co->cursor_index_x--;
+		add a, $FF					; co->cursor_index_x--;
+		ld (bc), a
 		jp update_values
 
 ; Data from D51 to D53 (3 bytes)
 _engine_cursor_manager_incX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
-		cp $03
+		cp $03						; if( MAX_GRID_X - 1 == co->cursor_index_x )
 		jr nz, +
-		xor a
+		xor a						; co->cursor_index_x = 0;
 		ld (bc), a
 		jp update_values
 +:
-		inc a
+		inc a						; co->cursor_index_x++;
 		ld (bc), a
 		jp update_values
 
 ; Data from D63 to D65 (3 bytes)
 _engine_cursor_manager_decY:
 	ld bc, cursor_index_y		; cursor_index_y = $C027
-
-; Data from D66 to D66 (1 bytes)
 	ld a, (bc)
-
-; Data from D67 to D67 (1 bytes)
 	or a
-
-; Data from D68 to D69 (2 bytes)
 	jr nz, $06
 
 ; Data from D6A to D6B (2 bytes)
