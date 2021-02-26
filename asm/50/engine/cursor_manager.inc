@@ -206,7 +206,7 @@ _engine_cursor_manager_load:
 	ld a, (hl)
 
 ; Data from BD0 to BD2 (3 bytes)
-	;.db $DD $77 $FC
+	;ld (ix - 4), a
 	ld (ix - 4), a
 
 ; Data from BD3 to BD4 (2 bytes)
@@ -549,7 +549,7 @@ _engine_cursor_manager_draw:
 	add a, $08
 
 ; Data from C6E to C70 (3 bytes)
-	.db $DD $77 $FC
+	ld (ix - 4), a
 
 ; Data from C71 to C71 (1 bytes)
 	push bc
@@ -558,7 +558,8 @@ _engine_cursor_manager_draw:
 	push de
 
 ; Data from C73 to C75 (3 bytes)
-	.db $21 $21 $01
+	;.db $21 $21 $01
+	ld hl, $0121
 
 ; Data from C76 to C76 (1 bytes)
 	push hl
