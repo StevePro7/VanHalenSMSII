@@ -22,7 +22,7 @@ _screen_scroll_screen_update:
 
 ; Data from 1395 to 1396 (2 bytes)
 	;.db $20 $04
-	jr nz, $04
+	jr nz, +
 
 ; Data from 1397 to 1398 (2 bytes)
 	;.db $3E $01
@@ -30,16 +30,16 @@ _screen_scroll_screen_update:
 
 ; Data from 1399 to 139A (2 bytes)
 	;.db $18 $01
-	jr $01
+	jr ++
 +:
 ; Data from 139B to 139B (1 bytes)
 	xor a
-
+++:
 ; Data from 139C to 139C (1 bytes)
 	inc sp
 
 ; Data from 139D to 139D (1 bytes)
-	.db $F5
+	push af
 
 ; Data from 139E to 139E (1 bytes)
 	inc sp
@@ -69,7 +69,7 @@ _screen_scroll_screen_update:
 	.db $3E $10
 
 ; Data from 13B1 to 13B1 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from 13B2 to 13B2 (1 bytes)
 	inc sp
@@ -132,7 +132,7 @@ _screen_scroll_screen_update:
 	.db $3E $04						; TOP_OFFSET	4
 
 ; Data from 13D3 to 13D3 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from 13D4 to 13D4 (1 bytes)
 	inc sp
@@ -149,7 +149,7 @@ _screen_scroll_screen_update:
 	.db $3E $20						; TOP_SCROLL	32
 
 ; Data from 13DB to 13DB (1 bytes)
-	.db $F5
+	push af
 
 ; Data from 13DC to 13DC (1 bytes)
 	inc sp
