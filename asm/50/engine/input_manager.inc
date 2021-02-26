@@ -36,24 +36,10 @@ _engine_input_manager_hold:
 
 ; Data from F00 to F02 (3 bytes)
 _engine_input_manager_move:
-	;.db $21 $02 $00
-	ld hl, $0002
-
-; Data from F03 to F03 (1 bytes)
-	add hl, sp
-
-; Data from F04 to F04 (1 bytes)
-	ld c, (hl)
-
-; Data from F05 to F07 (3 bytes)
-	;.db $3A $52 $C1
-	ld a, (Finput_manager$curr_joypad1$0$0)
-
-; Data from F08 to F08 (1 bytes)
-	and c
-
-; Data from F09 to F09 (1 bytes)
-	ld l, a
-
-; Data from F0A to F0A (1 bytes)
-	ret
+		ld hl, $0002
+		add hl, sp
+		ld c, (hl)
+		ld a, (Finput_manager$curr_joypad1$0$0)
+		and c
+		ld l, a
+		ret
