@@ -38,6 +38,10 @@ cursor_value_x db                   ; cursor_index_x = $C028
 cursor_value_y db                   ; cursor_index_x = $C029
 .ende	
 
+.enum $C02A export	
+record_album_index db	            ; ro->record_album_index = $C02A
+.ende	
+
 .enum $C02B export	
 Fscreen_manager$curr_screen_type db	    ; Fscreen_manager$curr_screen_type = $C02B
 Fscreen_manager$next_screen_type db	    ; Fscreen_manager$next_screen_type = $C02C

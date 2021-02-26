@@ -1,21 +1,23 @@
 ; Data from F0B to F0D (3 bytes)
 _engine_record_manager_init:
-	.db $21 $2A $C0
+	ld hl, record_album_index		; record_album_index = $C02A
 
 ; Data from F0E to F11 (4 bytes)
-	.db $FD $21 $02 $00
+	;.db $FD $21 $02 $00
+	ld iy, $0002
 
 ; Data from F12 to F13 (2 bytes)
-	.db $FD $39
+	add iy, sp
 
 ; Data from F14 to F16 (3 bytes)
-	.db $FD $7E $00
+	;.db $FD $7E $00
+	ld a, (iy + $00)
 
 ; Data from F17 to F17 (1 bytes)
-	.db $77
+	ld (hl), a
 
 ; Data from F18 to F18 (1 bytes)
-	.db $C9
+	ret
 
 ; Data from F19 to F1A (2 bytes)
 _engine_record_manager_load:
@@ -172,7 +174,7 @@ _engine_record_manager_load:
 	.db $DD $E1
 
 ; Data from F6E to F6E (1 bytes)
-	.db $C9
+	ret
 
 ; Data from F6F to F71 (3 bytes)
 _engine_record_manager_decrement:
@@ -194,7 +196,7 @@ _engine_record_manager_decrement:
 	.db $02
 
 ; Data from F79 to F79 (1 bytes)
-	.db $C9
+	ret
 
 ; Data from F7A to F7B (2 bytes)
 	.db $C6 $FF
@@ -203,7 +205,7 @@ _engine_record_manager_decrement:
 	.db $02
 
 ; Data from F7D to F7D (1 bytes)
-	.db $C9
+	ret
 
 ; Data from F7E to F80 (3 bytes)
 _engine_record_manager_increment:
@@ -225,7 +227,7 @@ _engine_record_manager_increment:
 	.db $02
 
 ; Data from F88 to F88 (1 bytes)
-	.db $C9
+	ret
 
 ; Data from F89 to F89 (1 bytes)
 	.db $3C
@@ -234,4 +236,4 @@ _engine_record_manager_increment:
 	.db $02
 
 ; Data from F8B to F8B (1 bytes)
-	.db $C9
+	ret
