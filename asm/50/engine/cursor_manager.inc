@@ -52,13 +52,13 @@ _engine_cursor_manager_init:
 	call __divuchar
 
 ; Data from B80 to B80 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from B81 to B81 (1 bytes)
-	.db $7D
+	ld a, l
 
 ; Data from B82 to B82 (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from B83 to B83 (1 bytes)
 	.db $02
@@ -67,7 +67,7 @@ _engine_cursor_manager_init:
 	.db $3E $03
 
 ; Data from B86 to B86 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from B87 to B87 (1 bytes)
 	.db $33
@@ -82,7 +82,7 @@ _engine_cursor_manager_init:
 	.db $7E
 
 ; Data from B8D to B8D (1 bytes)
-	.db $F5
+	push af
 
 ; Data from B8E to B8E (1 bytes)
 	.db $33
@@ -91,7 +91,7 @@ _engine_cursor_manager_init:
 	call __moduchar
 
 ; Data from B92 to B92 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from B93 to B93 (1 bytes)
 	.db $4D
@@ -116,10 +116,10 @@ _engine_cursor_manager_load:
 	.db $DD $39
 
 ; Data from BA3 to BA3 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from BA4 to BA4 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from BA5 to BA8 (4 bytes)
 	.db $DD $36 $FD $00
@@ -146,16 +146,16 @@ _engine_cursor_manager_load:
 	.db $0E $00
 
 ; Data from BBA to BBA (1 bytes)
-	.db $69
+	ld l, c
 
 ; Data from BBB to BBB (1 bytes)
-	.db $29
+	add hl, hl
 
 ; Data from BBC to BBC (1 bytes)
-	.db $09
+	add hl, bc
 
 ; Data from BBD to BBD (1 bytes)
-	.db $7D
+	ld a, l
 
 ; Data from BBE to BC0 (3 bytes)
 	.db $DD $86 $FD
@@ -170,7 +170,7 @@ _engine_cursor_manager_load:
 	.db $06 $00
 
 ; Data from BC7 to BC7 (1 bytes)
-	.db $09
+	add hl, bc
 
 ; Data from BC8 to BC8 (1 bytes)
 	.db $46
@@ -194,7 +194,7 @@ _engine_cursor_manager_load:
 	.db $6B
 
 ; Data from BD6 to BD6 (1 bytes)
-	.db $29
+	add hl, hl
 
 ; Data from BD7 to BD9 (3 bytes)
 	.db $11 $4A $C1
@@ -221,7 +221,7 @@ _engine_cursor_manager_load:
 	.db $C5
 
 ; Data from BE5 to BE5 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from BE6 to BE6 (1 bytes)
 	.db $33
@@ -239,13 +239,13 @@ _engine_cursor_manager_load:
 	call _engine_font_manager_draw_text
 
 ; Data from BED to BED (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from BEE to BEE (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from BEF to BEF (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from BF0 to BF0 (1 bytes)
 	.db $0C
@@ -306,7 +306,7 @@ _engine_cursor_manager_save:
 	.db $6E
 
 ; Data from C11 to C11 (1 bytes)
-	.db $09
+	add hl, bc
 
 ; Data from C12 to C12 (1 bytes)
 	.db $C9
@@ -322,10 +322,10 @@ _engine_cursor_manager_draw:
 	.db $DD $39
 
 ; Data from C1B to C1B (1 bytes)
-	.db $F5
+	push af
 
 ; Data from C1C to C1C (1 bytes)
-	.db $F5
+	push af
 
 ; Data from C1D to C1F (3 bytes)
 	.db $21 $26 $C0
@@ -371,13 +371,13 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from C33 to C33 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C34 to C34 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C35 to C35 (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from C36 to C36 (1 bytes)
 	.db $79
@@ -410,7 +410,7 @@ _engine_cursor_manager_draw:
 	.db $7B
 
 ; Data from C43 to C43 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from C44 to C44 (1 bytes)
 	.db $33
@@ -420,16 +420,16 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from C48 to C48 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C49 to C49 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C4A to C4A (1 bytes)
 	.db $D1
 
 ; Data from C4B to C4B (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from C4C to C4C (1 bytes)
 	.db $78
@@ -463,10 +463,10 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from C5B to C5B (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C5C to C5C (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C5D to C5D (1 bytes)
 	.db $D1
@@ -488,16 +488,16 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from C67 to C67 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C68 to C68 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C69 to C69 (1 bytes)
 	.db $D1
 
 ; Data from C6A to C6A (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from C6B to C6B (1 bytes)
 	.db $79
@@ -530,7 +530,7 @@ _engine_cursor_manager_draw:
 	.db $DD $7E $FC
 
 ; Data from C7C to C7C (1 bytes)
-	.db $F5
+	push af
 
 ; Data from C7D to C7D (1 bytes)
 	.db $33
@@ -540,16 +540,16 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from C81 to C81 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C82 to C82 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C83 to C83 (1 bytes)
 	.db $D1
 
 ; Data from C84 to C84 (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from C85 to C85 (1 bytes)
 	.db $79
@@ -582,7 +582,7 @@ _engine_cursor_manager_draw:
 	.db $DD $7E $FF
 
 ; Data from C96 to C96 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from C97 to C97 (1 bytes)
 	.db $33
@@ -591,16 +591,16 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from C9B to C9B (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C9C to C9C (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from C9D to C9D (1 bytes)
 	.db $D1
 
 ; Data from C9E to C9E (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from C9F to C9F (1 bytes)
 	.db $79
@@ -633,7 +633,7 @@ _engine_cursor_manager_draw:
 	.db $DD $7E $FE
 
 ; Data from CB0 to CB0 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from CB1 to CB1 (1 bytes)
 	.db $33
@@ -642,16 +642,16 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from CB5 to CB5 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from CB6 to CB6 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from CB7 to CB7 (1 bytes)
 	.db $D1
 
 ; Data from CB8 to CB8 (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from CB9 to CB9 (1 bytes)
 	.db $79
@@ -684,7 +684,7 @@ _engine_cursor_manager_draw:
 	.db $DD $7E $FD
 
 ; Data from CCA to CCA (1 bytes)
-	.db $F5
+	push af
 
 ; Data from CCB to CCB (1 bytes)
 	.db $33
@@ -693,16 +693,16 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from CCF to CCF (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from CD0 to CD0 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from CD1 to CD1 (1 bytes)
 	.db $D1
 
 ; Data from CD2 to CD2 (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from CD3 to CD3 (1 bytes)
 	.db $78
@@ -732,16 +732,16 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from CE1 to CE1 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from CE2 to CE2 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from CE3 to CE3 (1 bytes)
 	.db $D1
 
 ; Data from CE4 to CE4 (1 bytes)
-	.db $C1
+	pop bc
 
 ; Data from CE5 to CE5 (1 bytes)
 	.db $D5
@@ -762,7 +762,7 @@ _engine_cursor_manager_draw:
 	.db $7B
 
 ; Data from CED to CED (1 bytes)
-	.db $F5
+	push af
 
 ; Data from CEE to CEE (1 bytes)
 	.db $33
@@ -771,10 +771,10 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from CF2 to CF2 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from CF3 to CF3 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from CF4 to CF4 (1 bytes)
 	.db $D1
@@ -798,7 +798,7 @@ _engine_cursor_manager_draw:
 	.db $DD $7E $FC
 
 ; Data from CFF to CFF (1 bytes)
-	.db $F5
+	push af
 
 ; Data from D00 to D00 (1 bytes)
 	.db $33
@@ -807,10 +807,10 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from D04 to D04 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from D05 to D05 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from D06 to D06 (1 bytes)
 	.db $D1
@@ -834,7 +834,7 @@ _engine_cursor_manager_draw:
 	.db $DD $7E $FF
 
 ; Data from D11 to D11 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from D12 to D12 (1 bytes)
 	.db $33
@@ -843,10 +843,10 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from D16 to D16 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from D17 to D17 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from D18 to D18 (1 bytes)
 	.db $D1
@@ -870,7 +870,7 @@ _engine_cursor_manager_draw:
 	.db $DD $7E $FE
 
 ; Data from D23 to D23 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from D24 to D24 (1 bytes)
 	.db $33
@@ -879,10 +879,10 @@ _engine_cursor_manager_draw:
 	call _devkit_SMS_addSprite
 
 ; Data from D28 to D28 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from D29 to D29 (1 bytes)
-	.db $F1
+	pop af
 
 ; Data from D2A to D2A (1 bytes)
 	.db $D1
@@ -903,7 +903,7 @@ _engine_cursor_manager_draw:
 	.db $DD $7E $FD
 
 ; Data from D34 to D34 (1 bytes)
-	.db $F5
+	push af
 
 ; Data from D35 to D35 (1 bytes)
 	.db $33
@@ -1057,7 +1057,7 @@ _engine_cursor_manager_incY:
 	.db $26 $00
 
 ; Data from D91 to D91 (1 bytes)
-	.db $09
+	add hl, bc
 
 ; Data from D92 to D92 (1 bytes)
 	.db $4E
