@@ -979,10 +979,10 @@ _engine_cursor_manager_decX:
 	ld a, (bc)
 
 ; Data from D42 to D42 (1 bytes)
-	.db $B7
+	or a
 
 ; Data from D43 to D44 (2 bytes)
-	.db $20 $06
+	jr nz, $06
 
 ; Data from D45 to D46 (2 bytes)
 	.db $3E $03
@@ -1013,7 +1013,7 @@ _engine_cursor_manager_incX:
 	.db $FE $03
 
 ; Data from D57 to D58 (2 bytes)
-	.db $20 $05
+	jr nz, $05
 
 ; Data from D59 to D59 (1 bytes)
 	.db $AF
@@ -1041,10 +1041,10 @@ _engine_cursor_manager_decY:
 	ld a, (bc)
 
 ; Data from D67 to D67 (1 bytes)
-	.db $B7
+	or a
 
 ; Data from D68 to D69 (2 bytes)
-	.db $20 $06
+	jr nz, $06
 
 ; Data from D6A to D6B (2 bytes)
 	.db $3E $02
@@ -1075,7 +1075,7 @@ _engine_cursor_manager_incY:
 	.db $FE $02
 
 ; Data from D7C to D7D (2 bytes)
-	.db $20 $05
+	jr nz, $05
 
 ; Data from D7E to D7E (1 bytes)
 	.db $AF
