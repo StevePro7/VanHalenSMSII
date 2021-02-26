@@ -292,7 +292,7 @@ _engine_cursor_manager_load:
 	inc (ix - 3)
 
 ; Data from BF9 to BFB (3 bytes)
-	;.db $DD $7E $FD
+	;ld a, (ix - 3)
 	ld a, (ix - 3)
 
 ; Data from BFC to BFD (2 bytes)
@@ -727,7 +727,7 @@ _engine_cursor_manager_draw:
 	inc sp
 
 ; Data from CC7 to CC9 (3 bytes)
-	.db $DD $7E $FD
+	ld a, (ix - 3)
 
 ; Data from CCA to CCA (1 bytes)
 	push af
@@ -946,7 +946,7 @@ _engine_cursor_manager_draw:
 	inc sp
 
 ; Data from D31 to D33 (3 bytes)
-	.db $DD $7E $FD
+	ld a, (ix - 3)
 
 ; Data from D34 to D34 (1 bytes)
 	push af
