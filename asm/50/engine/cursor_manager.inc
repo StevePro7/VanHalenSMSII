@@ -128,30 +128,37 @@ _engine_cursor_manager_load:
 	push af
 
 ; Data from BA5 to BA8 (4 bytes)
-	.db $DD $36 $FD $00
-	;ld (ix -3), $00
-	
+	;.db $DD $36 $FD $00
+	ld (ix -3), $00
 
 ; Data from BA9 to BAA (2 bytes)
-	.db $3E $4A
+	;.db $3E $4A
+	ld a, $4A
 
 ; Data from BAB to BAD (3 bytes)
-	.db $DD $86 $FD
+	;.db $DD $86 $FD
+	add a, (ix - 3)
 
 ; Data from BAE to BB0 (3 bytes)
-	.db $DD $77 $FE
+	;.db $DD $77 $FE
+	ld (ix - 2), a
+	
 
 ; Data from BB1 to BB2 (2 bytes)
-	.db $3E $11
+	;.db $3E $11
+	ld a, $11
 
 ; Data from BB3 to BB4 (2 bytes)
-	.db $CE $00
+	;.db $CE $00
+	adc a, $00
 
 ; Data from BB5 to BB7 (3 bytes)
-	.db $DD $77 $FF
+	;.db $DD $77 $FF
+	ld (ix - 1), a
 
 ; Data from BB8 to BB9 (2 bytes)
-	.db $0E $00
+	;.db $0E $00
+	ld c, $00
 
 ; Data from BBA to BBA (1 bytes)
 	ld l, c
