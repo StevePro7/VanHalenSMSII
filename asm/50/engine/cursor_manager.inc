@@ -205,10 +205,10 @@ _engine_cursor_manager_load:
 	.db $11 $4A $C1
 
 ; Data from BDA to BDA (1 bytes)
-	.db $19
+	add hl, de
 
 ; Data from BDB to BDB (1 bytes)
-	.db $5E
+	ld e, (hl)
 
 ; Data from BDC to BDC (1 bytes)
 	inc hl
@@ -1083,13 +1083,13 @@ _engine_cursor_manager_incY:
 	.db $26 $00
 
 ; Data from D9D to D9D (1 bytes)
-	.db $19
+	add hl, de
 
 ; Data from D9E to D9E (1 bytes)
-	.db $5E
+	ld e, (hl)
 
 ; Data from D9F to D9F (1 bytes)
-	.db $0D
+	dec c
 
 ; Data from DA0 to DA0 (1 bytes)
 	ld a, c
