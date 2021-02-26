@@ -313,35 +313,16 @@ _engine_cursor_manager_draw:
 
 ; Data from D3E to D40 (3 bytes)
 _engine_cursor_manager_decX:
-	;ld bc, $C026
-	ld bc, cursor_index_x		; cursor_index_x = $C026
-
-; Data from D41 to D41 (1 bytes)
-	ld a, (bc)
-
-; Data from D42 to D42 (1 bytes)
-	or a
-
-; Data from D43 to D44 (2 bytes)
-	jr nz, $06
-
-; Data from D45 to D46 (2 bytes)
-	ld a, $03
-
-; Data from D47 to D47 (1 bytes)
-	ld (bc), a
-
-; Data from D48 to D4A (3 bytes)
-	jp update_values
-
-; Data from D4B to D4C (2 bytes)
-	add a, $FF
-
-; Data from D4D to D4D (1 bytes)
-	ld (bc), a
-
-; Data from D4E to D50 (3 bytes)
-	jp update_values
+		ld bc, cursor_index_x		; cursor_index_x = $C026
+		ld a, (bc)
+		or a
+		jr nz, $06
+		ld a, $03					; co->cursor_index_x = MAX_GRID_X - 1;
+		ld (bc), a
+		jp update_values
+		add a, $FF
+		ld (bc), a					; co->cursor_index_x--;
+		jp update_values
 
 ; Data from D51 to D53 (3 bytes)
 _engine_cursor_manager_incX:
