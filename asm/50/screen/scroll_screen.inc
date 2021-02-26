@@ -33,16 +33,16 @@ _screen_scroll_screen_update:
 	jr $01
 +:
 ; Data from 139B to 139B (1 bytes)
-	.db $AF
+	xor a
 
 ; Data from 139C to 139C (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 139D to 139D (1 bytes)
 	.db $F5
 
 ; Data from 139E to 139E (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 139F to 13A2 (4 bytes)
 	.db $FD $21 $56 $C0
@@ -57,13 +57,13 @@ _screen_scroll_screen_update:
 	.db $C5
 
 ; Data from 13AA to 13AA (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 13AB to 13AD (3 bytes)
 	.db $CD $46 $08
 
 ; Data from 13AE to 13AE (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 13AF to 13B0 (2 bytes)
 	.db $3E $10
@@ -72,13 +72,13 @@ _screen_scroll_screen_update:
 	.db $F5
 
 ; Data from 13B2 to 13B2 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 13B3 to 13B5 (3 bytes)
 	.db $CD $D3 $0E
 
 ; Data from 13B6 to 13B6 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 13B7 to 13B7 (1 bytes)
 	.db $4D
@@ -135,7 +135,7 @@ _screen_scroll_screen_update:
 	.db $F5
 
 ; Data from 13D4 to 13D4 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 13D5 to 13D7 (3 bytes)
 	;.db $CD $34 $10
@@ -143,7 +143,7 @@ _screen_scroll_screen_update:
 	call _engine_scroll_manager_load
 	
 ; Data from 13D8 to 13D8 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 13D9 to 13DA (2 bytes)
 	.db $3E $20						; TOP_SCROLL	32
@@ -152,13 +152,13 @@ _screen_scroll_screen_update:
 	.db $F5
 
 ; Data from 13DC to 13DC (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 13DD to 13DF (3 bytes)
 	.db $CD $46 $08
 
 ; Data from 13E0 to 13E0 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 13E1 to 13E1 (1 bytes)
 	.db $E1
@@ -173,7 +173,7 @@ _screen_scroll_screen_update:
 	ld (hl), $03
 
 ; Data from 13E8 to 13E8 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from 13E9 to 13E9 (1 bytes)
 	ret
