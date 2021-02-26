@@ -422,7 +422,7 @@ _engine_cursor_manager_draw:
 	ld a, c
 
 ; Data from C37 to C38 (2 bytes)
-	;.db $C6 $28
+	;add a, $28
 	add a, $28
 
 ; Data from C39 to C39 (1 bytes)
@@ -476,7 +476,7 @@ _engine_cursor_manager_draw:
 	ld a, b
 
 ; Data from C4D to C4E (2 bytes)
-	.db $C6 $10
+	add a, $10
 
 ; Data from C4F to C4F (1 bytes)
 	ld d, a
@@ -544,7 +544,7 @@ _engine_cursor_manager_draw:
 	ld a, c
 
 ; Data from C6C to C6D (2 bytes)
-	.db $C6 $08
+	add a, $08
 
 ; Data from C6E to C70 (3 bytes)
 	.db $DD $77 $FC
@@ -596,7 +596,7 @@ _engine_cursor_manager_draw:
 	ld a, c
 
 ; Data from C86 to C87 (2 bytes)
-	.db $C6 $10
+	add a, $10
 
 ; Data from C88 to C8A (3 bytes)
 	.db $DD $77 $FF
@@ -647,7 +647,7 @@ _engine_cursor_manager_draw:
 	ld a, c
 
 ; Data from CA0 to CA1 (2 bytes)
-	.db $C6 $18
+	add a, $18
 
 ; Data from CA2 to CA4 (3 bytes)
 	.db $DD $77 $FE
@@ -698,7 +698,7 @@ _engine_cursor_manager_draw:
 	ld a, c
 
 ; Data from CBA to CBB (2 bytes)
-	.db $C6 $20
+	add a, $20
 
 ; Data from CBC to CBE (3 bytes)
 	.db $DD $77 $FD
@@ -749,7 +749,7 @@ _engine_cursor_manager_draw:
 	ld a, b
 
 ; Data from CD4 to CD5 (2 bytes)
-	.db $C6 $08
+	add a, $08
 
 ; Data from CD6 to CD6 (1 bytes)
 	.db $47
@@ -984,7 +984,7 @@ _engine_cursor_manager_decX:
 	jp $0D88
 
 ; Data from D4B to D4C (2 bytes)
-	.db $C6 $FF
+	add a, $FF
 
 ; Data from D4D to D4D (1 bytes)
 	ld (bc), a
@@ -1046,7 +1046,7 @@ _engine_cursor_manager_decY:
 	jp $0D88
 
 ; Data from D70 to D71 (2 bytes)
-	.db $C6 $FF
+	add a, $FF
 
 ; Data from D72 to D72 (1 bytes)
 	ld (bc), a
