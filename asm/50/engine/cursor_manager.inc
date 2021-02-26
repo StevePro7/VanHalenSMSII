@@ -206,13 +206,15 @@ _engine_cursor_manager_load:
 	ld a, (hl)
 
 ; Data from BD0 to BD2 (3 bytes)
-	.db $DD $77 $FC
+	;.db $DD $77 $FC
+	ld (ix - 4), a
 
 ; Data from BD3 to BD4 (2 bytes)
-	.db $26 $00
+	;.db $26 $00
+	ld h, $00
 
 ; Data from BD5 to BD5 (1 bytes)
-	.db $6B
+	ld l, e
 
 ; Data from BD6 to BD6 (1 bytes)
 	add hl, hl
