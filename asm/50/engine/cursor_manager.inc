@@ -236,7 +236,7 @@ _engine_cursor_manager_load:
 	ld d, (hl)
 
 ; Data from BDE to BE0 (3 bytes)
-	;.db $DD $7E $FC
+	;ld a, (ix - 4)
 	ld a, (ix - 4)
 
 ; Data from BE1 to BE3 (3 bytes)
@@ -571,7 +571,7 @@ _engine_cursor_manager_draw:
 	inc sp
 
 ; Data from C79 to C7B (3 bytes)
-	.db $DD $7E $FC
+	ld a, (ix - 4)
 
 ; Data from C7C to C7C (1 bytes)
 	push af
@@ -839,7 +839,7 @@ _engine_cursor_manager_draw:
 	inc sp
 
 ; Data from CFC to CFE (3 bytes)
-	.db $DD $7E $FC
+	ld a, (ix - 4)
 
 ; Data from CFF to CFF (1 bytes)
 	push af
