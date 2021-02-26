@@ -829,7 +829,8 @@ _engine_cursor_manager_draw:
 	push de
 
 ; Data from CF6 to CF8 (3 bytes)
-	.db $21 $2D $01
+	;.db $21 $2D $01
+	ld hl, $012D
 
 ; Data from CF9 to CF9 (1 bytes)
 	push hl
@@ -865,7 +866,8 @@ _engine_cursor_manager_draw:
 	push de
 
 ; Data from D08 to D0A (3 bytes)
-	.db $21 $2E $01
+	;.db $21 $2E $01
+	ld hl, $012E
 
 ; Data from D0B to D0B (1 bytes)
 	push hl
@@ -901,7 +903,8 @@ _engine_cursor_manager_draw:
 	push de
 
 ; Data from D1A to D1C (3 bytes)
-	.db $21 $2F $01
+	;.db $21 $2F $01
+	ld hl, $012F
 
 ; Data from D1D to D1D (1 bytes)
 	push hl
@@ -934,7 +937,8 @@ _engine_cursor_manager_draw:
 	pop de
 
 ; Data from D2B to D2D (3 bytes)
-	.db $21 $30 $01
+	;.db $21 $30 $01
+	ld hl, $0130
 
 ; Data from D2E to D2E (1 bytes)
 	push hl
@@ -968,10 +972,11 @@ _engine_cursor_manager_draw:
 
 ; Data from D3E to D40 (3 bytes)
 _engine_cursor_manager_decX:
-	.db $01 $26 $C0
+	;.db $01 $26 $C0
+	ld bc, $C026
 
 ; Data from D41 to D41 (1 bytes)
-	.db $0A
+	ld a, (bc)
 
 ; Data from D42 to D42 (1 bytes)
 	.db $B7
@@ -1002,7 +1007,7 @@ _engine_cursor_manager_incX:
 	.db $01 $26 $C0
 
 ; Data from D54 to D54 (1 bytes)
-	.db $0A
+	ld a, (bc)
 
 ; Data from D55 to D56 (2 bytes)
 	.db $FE $03
@@ -1033,7 +1038,7 @@ _engine_cursor_manager_decY:
 	.db $01 $27 $C0
 
 ; Data from D66 to D66 (1 bytes)
-	.db $0A
+	ld a, (bc)
 
 ; Data from D67 to D67 (1 bytes)
 	.db $B7
@@ -1064,7 +1069,7 @@ _engine_cursor_manager_incY:
 	.db $01 $27 $C0
 
 ; Data from D79 to D79 (1 bytes)
-	.db $0A
+	ld a, (bc)
 
 ; Data from D7A to D7B (2 bytes)
 	.db $FE $02
@@ -1145,7 +1150,7 @@ _engine_cursor_manager_incY:
 	rlca
 
 ; Data from DA4 to DA5 (2 bytes)
-	.db $E6 $F8
+	and $F8
 
 ; Data from DA6 to DA6 (1 bytes)
 	ld d, a
@@ -1175,7 +1180,7 @@ _engine_cursor_manager_incY:
 	rlca
 
 ; Data from DB3 to DB4 (2 bytes)
-	.db $E6 $F8
+	and $F8
 
 ; Data from DB5 to DB5 (1 bytes)
 	ld e, a
