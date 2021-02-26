@@ -1,32 +1,37 @@
 ; Data from 1389 to 138B (3 bytes)
 _screen_scroll_screen_load:
-	.db $21 $56 $C0
+	;.db $21 $56 $C0
+	ld hl, $C056				; todo	offset	??
 
 ; Data from 138C to 138D (2 bytes)
-	.db $36 $00
+	ld (hl), $00
 
 ; Data from 138E to 138E (1 bytes)
-	.db $C9
+	ret
 
 ; Data from 138F to 138F (1 bytes)
 _screen_scroll_screen_update:
-	.db $3B
+	dec sp
 
 ; Data from 1390 to 1392 (3 bytes)
-	.db $3A $56 $C0
+	;.db $3A $56 $C0
+	ld a, ($C056)
 
 ; Data from 1393 to 1394 (2 bytes)
-	.db $D6 $20
+	sub a, $20						; TOP_SCROLL	32
 
 ; Data from 1395 to 1396 (2 bytes)
-	.db $20 $04
+	;.db $20 $04
+	jr nz, $04
 
 ; Data from 1397 to 1398 (2 bytes)
-	.db $3E $01
+	;.db $3E $01
+	ld a, $01
 
 ; Data from 1399 to 139A (2 bytes)
-	.db $18 $01
-
+	;.db $18 $01
+	jr $01
++:
 ; Data from 139B to 139B (1 bytes)
 	.db $AF
 
@@ -159,16 +164,16 @@ _screen_scroll_screen_update:
 	.db $E1
 
 ; Data from 13E2 to 13E3 (2 bytes)
-	.db $36 $04
+	ld (hl), $04
 
 ; Data from 13E4 to 13E5 (2 bytes)
 	.db $18 $02
 
 ; Data from 13E6 to 13E7 (2 bytes)
-	.db $36 $03
+	ld (hl), $03
 
 ; Data from 13E8 to 13E8 (1 bytes)
 	.db $33
 
 ; Data from 13E9 to 13E9 (1 bytes)
-	.db $C9
+	ret
