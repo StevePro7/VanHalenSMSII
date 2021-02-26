@@ -32,7 +32,7 @@ _engine_cursor_manager_init:
 		ld c, l
 		ld hl, cursor_index_y			; cursor_index_y = $C027
 		ld (hl), c
-		jp $0D88
+		jp update_values
 
 _engine_cursor_manager_load:
 	push ix
@@ -914,7 +914,7 @@ _engine_cursor_manager_decX:
 	ld (bc), a
 
 ; Data from D48 to D4A (3 bytes)
-	jp $0D88
+	jp update_values
 
 ; Data from D4B to D4C (2 bytes)
 	add a, $FF
@@ -923,7 +923,7 @@ _engine_cursor_manager_decX:
 	ld (bc), a
 
 ; Data from D4E to D50 (3 bytes)
-	jp $0D88
+	jp update_values
 
 ; Data from D51 to D53 (3 bytes)
 _engine_cursor_manager_incX:
@@ -945,7 +945,7 @@ _engine_cursor_manager_incX:
 	ld (bc), a
 
 ; Data from D5B to D5D (3 bytes)
-	jp $0D88
+	jp update_values
 
 ; Data from D5E to D5E (1 bytes)
 	inc a
@@ -954,7 +954,7 @@ _engine_cursor_manager_incX:
 	ld (bc), a
 
 ; Data from D60 to D62 (3 bytes)
-	jp $0D88
+	jp update_values
 
 ; Data from D63 to D65 (3 bytes)
 _engine_cursor_manager_decY:
@@ -976,7 +976,7 @@ _engine_cursor_manager_decY:
 	ld (bc), a
 
 ; Data from D6D to D6F (3 bytes)
-	jp $0D88
+	jp update_values
 
 ; Data from D70 to D71 (2 bytes)
 	add a, $FF
@@ -985,7 +985,7 @@ _engine_cursor_manager_decY:
 	ld (bc), a
 
 ; Data from D73 to D75 (3 bytes)
-	jp $0D88
+	jp update_values
 
 ; Data from D76 to D78 (3 bytes)
 _engine_cursor_manager_incY:
@@ -1007,7 +1007,7 @@ _engine_cursor_manager_incY:
 	ld (bc), a
 
 ; Data from D80 to D82 (3 bytes)
-	jp $0D88
+	jp update_values
 
 ; Data from D83 to D83 (1 bytes)
 	inc a
@@ -1016,9 +1016,9 @@ _engine_cursor_manager_incY:
 	ld (bc), a
 
 ; Data from D85 to D87 (3 bytes)
-	jp $0D88
+	jp update_values
 
-steveproLabel:
+update_values:
 ; Data from D88 to D8A (3 bytes)
 	ld bc, $1146
 
