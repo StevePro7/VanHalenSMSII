@@ -61,7 +61,7 @@ _screen_scroll_screen_update:
 
 ; Data from 13AB to 13AD (3 bytes)
 	;.db $CD $46 $08
-	call $0846
+	call _devkit_SMS_setBGScrollY
 
 ; Data from 13AE to 13AE (1 bytes)
 	inc sp
@@ -161,7 +161,7 @@ _screen_scroll_screen_update:
 
 ; Data from 13DD to 13DF (3 bytes)
 	;.db $CD $46 $08
-	call $0846				; todo
+	call _devkit_SMS_setBGScrollY				; todo
 
 ; Data from 13E0 to 13E0 (1 bytes)
 	inc sp
