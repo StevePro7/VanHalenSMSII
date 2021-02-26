@@ -13,19 +13,19 @@ _engine_record_manager_load:
 		ld ix, $0000
 		add ix, sp
 		dec sp
-		ld a, ($C02A)		; ro->record_album_index
+		ld a, (record_album_index)		; ro->record_album_index
 		ld (ix - 1), a
 		ld l, a
 		ld h, $00
 		add hl, hl
 		ld c, l
 		ld b, h
-		ld hl, $C162
+		ld hl, $C162		; todo		; record_tiles_data	?
 		add hl, bc
 		ld e, (hl)
 		inc hl
 		ld d, (hl)
-		ld hl, $C17A
+		ld hl, $C17A		; todo		; record_tilemap_data	?
 		add hl, bc
 		ld c, (hl)
 		inc hl
@@ -44,17 +44,17 @@ _engine_record_manager_load:
 		call _devkit_SMS_mapROMBank
 		inc sp
 		pop de
-		ld hl, $0000
+		ld hl, $0000					; RECORD_TILES	0
 		push hl
 		push de
 		call _devkit_SMS_loadPSGaidencompress
 		pop af
-		ld hl, $0000
+		ld hl, $0000					; devkit_SMS_loadSTMcompressedTileMap( 0, 0
 		ex (sp), hl
 		call _devkit_SMS_loadSTMcompressedTil
 		pop af
 		pop af
-		ld hl, ($C192)
+		ld hl, ($C192)			; todo		record_palette_data ??
 		push hl
 		call _devkit_SMS_loadBGPalette
 		pop af
