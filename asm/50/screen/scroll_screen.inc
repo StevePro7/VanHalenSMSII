@@ -54,7 +54,7 @@ _screen_scroll_screen_update:
 	.db $FD $34 $00
 
 ; Data from 13A9 to 13A9 (1 bytes)
-	.db $C5
+	push bc
 
 ; Data from 13AA to 13AA (1 bytes)
 	inc sp
@@ -75,7 +75,8 @@ _screen_scroll_screen_update:
 	inc sp
 
 ; Data from 13B3 to 13B5 (3 bytes)
-	.db $CD $D3 $0E
+	;.db $CD $D3 $0E
+	call $0ED3
 
 ; Data from 13B6 to 13B6 (1 bytes)
 	inc sp
@@ -84,25 +85,26 @@ _screen_scroll_screen_update:
 	.db $4D
 
 ; Data from 13B8 to 13BA (3 bytes)
-	.db $21 $03 $00
+	;.db $21 $03 $00
+	ld hl, $0003
 
 ; Data from 13BB to 13BB (1 bytes)
-	.db $39
+	add hl, sp
 
 ; Data from 13BC to 13BC (1 bytes)
-	.db $7E
+	ld a, (hl)
 
 ; Data from 13BD to 13BD (1 bytes)
-	.db $23
+	inc hl
 
 ; Data from 13BE to 13BE (1 bytes)
-	.db $66
+	ld h, (hl)
 
 ; Data from 13BF to 13BF (1 bytes)
-	.db $6F
+	ld l, a
 
 ; Data from 13C0 to 13C0 (1 bytes)
-	.db $79
+	ld a, c
 
 ; Data from 13C1 to 13C1 (1 bytes)
 	.db $B7
@@ -156,7 +158,7 @@ _screen_scroll_screen_update:
 
 ; Data from 13DD to 13DF (3 bytes)
 	;.db $CD $46 $08
-	call $0846
+	call $0846				; todo
 
 ; Data from 13E0 to 13E0 (1 bytes)
 	inc sp
