@@ -60,7 +60,8 @@ _screen_scroll_screen_update:
 	inc sp
 
 ; Data from 13AB to 13AD (3 bytes)
-	.db $CD $46 $08
+	;.db $CD $46 $08
+	call $0846
 
 ; Data from 13AE to 13AE (1 bytes)
 	inc sp
@@ -113,13 +114,15 @@ _screen_scroll_screen_update:
 	jr nz, $0C
 
 ; Data from 13C4 to 13C7 (4 bytes)
-	.db $FD $21 $00 $00
+	;.db $FD $21 $00 $00
+	ld iy, $0000
 
 ; Data from 13C8 to 13C9 (2 bytes)
-	.db $FD $39
+	add iy, sp
 
 ; Data from 13CA to 13CC (3 bytes)
-	.db $FD $7E $00
+	;.db $FD $7E $00
+	ld a, (iy + $00)
 
 ; Data from 13CD to 13CD (1 bytes)
 	or a
