@@ -86,7 +86,7 @@ _screen_scroll_screen_update:
 	inc sp
 
 ; Data from 13B7 to 13B7 (1 bytes)
-	.db $4D
+	ld c, l
 
 ; Data from 13B8 to 13BA (3 bytes)
 	;.db $21 $03 $00
@@ -134,7 +134,7 @@ _screen_scroll_screen_update:
 	jr z, $16
 
 ; Data from 13D0 to 13D0 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from 13D1 to 13D2 (2 bytes)
 	ld a, $04						; TOP_OFFSET	4
