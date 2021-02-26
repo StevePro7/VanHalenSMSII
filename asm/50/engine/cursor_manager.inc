@@ -355,34 +355,17 @@ _engine_cursor_manager_decY:
 
 ; Data from D76 to D78 (3 bytes)
 _engine_cursor_manager_incY:
-	ld bc, cursor_index_y		; cursor_index_y = $C027
-
-; Data from D79 to D79 (1 bytes)
-	ld a, (bc)
-
-; Data from D7A to D7B (2 bytes)
-	cp $02
-
-; Data from D7C to D7D (2 bytes)
-	jr nz, $05
-
-; Data from D7E to D7E (1 bytes)
-	xor a
-
-; Data from D7F to D7F (1 bytes)
-	ld (bc), a
-
-; Data from D80 to D82 (3 bytes)
-	jp update_values
-
-; Data from D83 to D83 (1 bytes)
-	inc a
-
-; Data from D84 to D84 (1 bytes)
-	ld (bc), a
-
-; Data from D85 to D87 (3 bytes)
-	jp update_values
+		ld bc, cursor_index_y		; cursor_index_y = $C027
+		ld a, (bc)
+		cp $02						; if( MAX_GRID_Y - 1 == co->cursor_index_y )
+		jr nz, +
+		xor a						; co->cursor_index_y = 0;
+		ld (bc), a
+		jp update_values
++:
+		inc a						; co->cursor_index_y++;
+		ld (bc), a
+		jp update_values
 
 update_values:
 ; Data from D88 to D8A (3 bytes)
