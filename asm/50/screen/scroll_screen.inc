@@ -124,7 +124,7 @@ _screen_scroll_screen_update:
 	.db $E5
 
 ; Data from 13D1 to 13D2 (2 bytes)
-	.db $3E $04
+	.db $3E $04						; TOP_OFFSET	4
 
 ; Data from 13D3 to 13D3 (1 bytes)
 	.db $F5
@@ -133,13 +133,15 @@ _screen_scroll_screen_update:
 	.db $33
 
 ; Data from 13D5 to 13D7 (3 bytes)
-	.db $CD $34 $10
-
+	;.db $CD $34 $10
+	;call $1034
+	call _engine_scroll_manager_load
+	
 ; Data from 13D8 to 13D8 (1 bytes)
 	.db $33
 
 ; Data from 13D9 to 13DA (2 bytes)
-	.db $3E $20
+	.db $3E $20						; TOP_SCROLL	32
 
 ; Data from 13DB to 13DB (1 bytes)
 	.db $F5
