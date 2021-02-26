@@ -434,10 +434,11 @@ _engine_cursor_manager_draw:
 	push de
 
 ; Data from C3C to C3E (3 bytes)
-	.db $21 $25 $01
-
+	;.db $21 $25 $01
+	ld hl, $0125
+	
 ; Data from C3F to C3F (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from C40 to C40 (1 bytes)
 	push bc
@@ -489,7 +490,7 @@ _engine_cursor_manager_draw:
 	.db $21 $2C $01
 
 ; Data from C55 to C55 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from C56 to C56 (1 bytes)
 	.db $59
@@ -517,7 +518,7 @@ _engine_cursor_manager_draw:
 	.db $21 $31 $01
 
 ; Data from C62 to C62 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from C63 to C63 (1 bytes)
 	push de
@@ -557,7 +558,7 @@ _engine_cursor_manager_draw:
 	.db $21 $21 $01
 
 ; Data from C76 to C76 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from C77 to C77 (1 bytes)
 	push bc
@@ -609,7 +610,7 @@ _engine_cursor_manager_draw:
 	.db $21 $22 $01
 
 ; Data from C90 to C90 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from C91 to C91 (1 bytes)
 	push bc
@@ -660,7 +661,7 @@ _engine_cursor_manager_draw:
 	.db $21 $23 $01
 
 ; Data from CAA to CAA (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from CAB to CAB (1 bytes)
 	push bc
@@ -711,7 +712,7 @@ _engine_cursor_manager_draw:
 	.db $21 $24 $01
 
 ; Data from CC4 to CC4 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from CC5 to CC5 (1 bytes)
 	push bc
@@ -762,7 +763,7 @@ _engine_cursor_manager_draw:
 	.db $21 $26 $01
 
 ; Data from CDC to CDC (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from CDD to CDD (1 bytes)
 	push bc
@@ -789,7 +790,7 @@ _engine_cursor_manager_draw:
 	.db $21 $2B $01
 
 ; Data from CE9 to CE9 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from CEA to CEA (1 bytes)
 	push bc
@@ -825,7 +826,7 @@ _engine_cursor_manager_draw:
 	.db $21 $2D $01
 
 ; Data from CF9 to CF9 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from CFA to CFA (1 bytes)
 	push de
@@ -861,7 +862,7 @@ _engine_cursor_manager_draw:
 	.db $21 $2E $01
 
 ; Data from D0B to D0B (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from D0C to D0C (1 bytes)
 	push de
@@ -897,7 +898,7 @@ _engine_cursor_manager_draw:
 	.db $21 $2F $01
 
 ; Data from D1D to D1D (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from D1E to D1E (1 bytes)
 	push de
@@ -930,7 +931,7 @@ _engine_cursor_manager_draw:
 	.db $21 $30 $01
 
 ; Data from D2E to D2E (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from D2F to D2F (1 bytes)
 	push de
