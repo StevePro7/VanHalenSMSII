@@ -412,7 +412,7 @@ _engine_cursor_manager_draw:
 	inc sp
 
 ; Data from C42 to C42 (1 bytes)
-	.db $7B
+	ld a, e
 
 ; Data from C43 to C43 (1 bytes)
 	push af
@@ -443,7 +443,7 @@ _engine_cursor_manager_draw:
 	.db $C6 $10
 
 ; Data from C4F to C4F (1 bytes)
-	.db $57
+	ld d, a
 
 ; Data from C50 to C50 (1 bytes)
 	.db $C5
@@ -764,7 +764,7 @@ _engine_cursor_manager_draw:
 	inc sp
 
 ; Data from CEC to CEC (1 bytes)
-	.db $7B
+	ld a, e
 
 ; Data from CED to CED (1 bytes)
 	push af
@@ -1095,43 +1095,43 @@ _engine_cursor_manager_incY:
 	ld a, c
 
 ; Data from DA1 to DA1 (1 bytes)
-	.db $07
+	rlca
 
 ; Data from DA2 to DA2 (1 bytes)
-	.db $07
+	rlca
 
 ; Data from DA3 to DA3 (1 bytes)
-	.db $07
+	rlca
 
 ; Data from DA4 to DA5 (2 bytes)
 	.db $E6 $F8
 
 ; Data from DA6 to DA6 (1 bytes)
-	.db $57
+	ld d, a
 
 ; Data from DA7 to DA9 (3 bytes)
 	.db $21 $28 $C0
 
 ; Data from DAA to DAA (1 bytes)
-	.db $72
+	ld (hl), d
 
 ; Data from DAB to DAD (3 bytes)
 	.db $01 $29 $C0
 
 ; Data from DAE to DAE (1 bytes)
-	.db $1D
+	dec e
 
 ; Data from DAF to DAF (1 bytes)
-	.db $7B
+	ld a, e
 
 ; Data from DB0 to DB0 (1 bytes)
-	.db $07
+	rlca
 
 ; Data from DB1 to DB1 (1 bytes)
-	.db $07
+	rlca
 
 ; Data from DB2 to DB2 (1 bytes)
-	.db $07
+	rlca
 
 ; Data from DB3 to DB4 (2 bytes)
 	.db $E6 $F8
@@ -1146,13 +1146,13 @@ _engine_cursor_manager_incY:
 	.db $14
 
 ; Data from DB8 to DB8 (1 bytes)
-	.db $72
+	ld (hl), d
 
 ; Data from DB9 to DB9 (1 bytes)
-	.db $1D
+	dec e
 
 ; Data from DBA to DBA (1 bytes)
-	.db $7B
+	ld a, e
 
 ; Data from DBB to DBB (1 bytes)
 	ld (bc), a
