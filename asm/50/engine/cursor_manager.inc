@@ -1,7 +1,7 @@
 ; Data from B67 to B69 (3 bytes)
 _engine_cursor_manager_init:
 	;.db $01 $26 $C0
-	ld bc, cursor_index_x
+	ld bc, cursor_index_x		; cursor_index_x = $C026
 
 ; Data from B6A to B6A (1 bytes)
 	xor a
@@ -12,7 +12,7 @@ _engine_cursor_manager_init:
 
 ; Data from B6C to B6E (3 bytes)
 	;.db $21 $27 $C0
-	ld hl, cursor_index_y
+	ld hl, cursor_index_y		; cursor_index_y = $C027
 
 ; Data from B6F to B70 (2 bytes)
 	;.db $36 $00
@@ -36,7 +36,7 @@ _engine_cursor_manager_init:
 	ld hl, $0005
 
 ; Data from B79 to B79 (1 bytes)
-	;.db $39
+	;add hl, sp
 	add hl, sp
 
 ; Data from B7A to B7A (1 bytes)
@@ -64,28 +64,30 @@ _engine_cursor_manager_init:
 	ld (bc), a
 
 ; Data from B84 to B85 (2 bytes)
-	.db $3E $03
+	;.db $3E $03
+	ld a, 03
 
 ; Data from B86 to B86 (1 bytes)
 	push af
 
 ; Data from B87 to B87 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from B88 to B8A (3 bytes)
-	.db $21 $03 $00
+	;.db $21 $03 $00
+	ld hl, $0003
 
 ; Data from B8B to B8B (1 bytes)
-	.db $39
+	add hl, sp
 
 ; Data from B8C to B8C (1 bytes)
-	.db $7E
+	ld a, (hl)
 
 ; Data from B8D to B8D (1 bytes)
 	push af
 
 ; Data from B8E to B8E (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from B8F to B91 (3 bytes)
 	call __moduchar
@@ -94,10 +96,11 @@ _engine_cursor_manager_init:
 	pop af
 
 ; Data from B93 to B93 (1 bytes)
-	.db $4D
+	ld c, l
 
 ; Data from B94 to B96 (3 bytes)
-	.db $21 $27 $C0
+	;.db $21 $27 $C0
+	ld hl, cursor_index_y			; cursor_index_y = $C027
 
 ; Data from B97 to B97 (1 bytes)
 	.db $71
@@ -182,7 +185,7 @@ _engine_cursor_manager_load:
 	.db $DD $66 $FF
 
 ; Data from BCF to BCF (1 bytes)
-	.db $7E
+	ld a, (hl)
 
 ; Data from BD0 to BD2 (3 bytes)
 	.db $DD $77 $FC
@@ -224,13 +227,13 @@ _engine_cursor_manager_load:
 	push af
 
 ; Data from BE6 to BE6 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from BE7 to BE7 (1 bytes)
 	.db $C5
 
 ; Data from BE8 to BE8 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from BE9 to BE9 (1 bytes)
 	.db $D5
@@ -404,7 +407,7 @@ _engine_cursor_manager_draw:
 	.db $C5
 
 ; Data from C41 to C41 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from C42 to C42 (1 bytes)
 	.db $7B
@@ -413,7 +416,7 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from C44 to C44 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from C45 to C47 (3 bytes)
 	;call _devkit_SMS_addSprite
@@ -524,7 +527,7 @@ _engine_cursor_manager_draw:
 	.db $C5
 
 ; Data from C78 to C78 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from C79 to C7B (3 bytes)
 	.db $DD $7E $FC
@@ -533,7 +536,7 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from C7D to C7D (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from C7E to C80 (3 bytes)
 	;call _devkit_SMS_addSprite
@@ -576,7 +579,7 @@ _engine_cursor_manager_draw:
 	.db $C5
 
 ; Data from C92 to C92 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from C93 to C95 (3 bytes)
 	.db $DD $7E $FF
@@ -585,7 +588,7 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from C97 to C97 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from C98 to C9A (3 bytes)
 	call _devkit_SMS_addSprite
@@ -627,7 +630,7 @@ _engine_cursor_manager_draw:
 	.db $C5
 
 ; Data from CAC to CAC (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from CAD to CAF (3 bytes)
 	.db $DD $7E $FE
@@ -636,7 +639,7 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from CB1 to CB1 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from CB2 to CB4 (3 bytes)
 	call _devkit_SMS_addSprite
@@ -678,7 +681,7 @@ _engine_cursor_manager_draw:
 	.db $C5
 
 ; Data from CC6 to CC6 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from CC7 to CC9 (3 bytes)
 	.db $DD $7E $FD
@@ -687,7 +690,7 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from CCB to CCB (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from CCC to CCE (3 bytes)
 	call _devkit_SMS_addSprite
@@ -756,7 +759,7 @@ _engine_cursor_manager_draw:
 	.db $C5
 
 ; Data from CEB to CEB (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from CEC to CEC (1 bytes)
 	.db $7B
@@ -765,7 +768,7 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from CEE to CEE (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from CEF to CF1 (3 bytes)
 	call _devkit_SMS_addSprite
@@ -792,7 +795,7 @@ _engine_cursor_manager_draw:
 	.db $D5
 
 ; Data from CFB to CFB (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from CFC to CFE (3 bytes)
 	.db $DD $7E $FC
@@ -801,7 +804,7 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from D00 to D00 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from D01 to D03 (3 bytes)
 	call _devkit_SMS_addSprite
@@ -828,7 +831,7 @@ _engine_cursor_manager_draw:
 	.db $D5
 
 ; Data from D0D to D0D (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from D0E to D10 (3 bytes)
 	.db $DD $7E $FF
@@ -837,7 +840,7 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from D12 to D12 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from D13 to D15 (3 bytes)
 	call _devkit_SMS_addSprite
@@ -864,7 +867,7 @@ _engine_cursor_manager_draw:
 	.db $D5
 
 ; Data from D1F to D1F (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from D20 to D22 (3 bytes)
 	.db $DD $7E $FE
@@ -873,7 +876,7 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from D24 to D24 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from D25 to D27 (3 bytes)
 	call _devkit_SMS_addSprite
@@ -897,7 +900,7 @@ _engine_cursor_manager_draw:
 	.db $D5
 
 ; Data from D30 to D30 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from D31 to D33 (3 bytes)
 	.db $DD $7E $FD
@@ -906,7 +909,7 @@ _engine_cursor_manager_draw:
 	push af
 
 ; Data from D35 to D35 (1 bytes)
-	.db $33
+	inc sp
 
 ; Data from D36 to D38 (3 bytes)
 	call _devkit_SMS_addSprite
