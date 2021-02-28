@@ -360,25 +360,19 @@ _devkit_PSGPlayNoRepeat:
 
 
 _devkit_PSGStop:	
-	;jp $0281
 	jp _PSGStop
 	
 	
 _devkit_PSGResume:	
-	;.db $C3 $A8 $02
-	;jp $02A8
 	jp _PSGResume
 	
 
 _devkit_PSGGetStatus:	
 	;.db $C3 $36 $03
-	jp $0336
+	;jp $0336
+	jp _PSGGetStatus
 	
-; Data from A1E to A20 (3 bytes)	
-A$_snd_manager$182:	
-C$_snd_manager.c$29$1$39:	
-C$_snd_manager.c$31$1$41:	
-G$devkit_PSGSetMusicVolumeAttenu:	
+
 _devkit_PSGSetMusicVolumeAttenua:	
 	;.db $21 $02 $00
 	ld hl, $0002
