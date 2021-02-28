@@ -166,125 +166,35 @@ _devkit_SMS_setBGPaletteColor:
 		call $1C5D
 		pop af
 		ret
-	
-; Data from 8FB to 8FD (3 bytes)	
-
-	.db $21 $04 $00
-	
-; Data from 8FE to 8FE (1 bytes)	
-A$_sms_manager$563:	
-	add hl, sp
-	
-; Data from 8FF to 8FF (1 bytes)	
-A$_sms_manager$564:	
-	ld a, (hl)
-	
-; Data from 900 to 900 (1 bytes)	
-A$_sms_manager$565:	
-	add a, a
-	
-; Data from 901 to 901 (1 bytes)	
-A$_sms_manager$566:	
-	add a, a
-	
-; Data from 902 to 904 (3 bytes)	
-A$_sms_manager$567:	
-	.db $21 $03 $00
-	
-; Data from 905 to 905 (1 bytes)	
-A$_sms_manager$568:	
-	add hl, sp
-	
-; Data from 906 to 906 (1 bytes)	
-A$_sms_manager$569:	
-	.db $B6
-	
-; Data from 907 to 907 (1 bytes)	
-A$_sms_manager$570:	
-	ld c, a
-	
-; Data from 908 to 90A (3 bytes)	
-A$_sms_manager$571:	
-	.db $21 $05 $00
-	
-; Data from 90B to 90B (1 bytes)	
-A$_sms_manager$572:	
-	add hl, sp
-	
-; Data from 90C to 90C (1 bytes)	
-A$_sms_manager$573:	
-	ld a, (hl)
-	
-; Data from 90D to 90D (1 bytes)	
-A$_sms_manager$574:	
-	rlca
-	
-; Data from 90E to 90E (1 bytes)	
-A$_sms_manager$575:	
-	rlca
-	
-; Data from 90F to 90F (1 bytes)	
-A$_sms_manager$576:	
-	rlca
-	
-; Data from 910 to 910 (1 bytes)	
-A$_sms_manager$577:	
-	rlca
-	
-; Data from 911 to 912 (2 bytes)	
-A$_sms_manager$578:	
-	and $F0
-	
-; Data from 913 to 913 (1 bytes)	
-A$_sms_manager$579:	
-	.db $B1
-	
-; Data from 914 to 914 (1 bytes)	
-A$_sms_manager$580:	
-	ld b, a
-	
-; Data from 915 to 915 (1 bytes)	
-A$_sms_manager$584:	
-C$_sms_manager.c$97$1$105:	
-	push bc
-	
-; Data from 916 to 916 (1 bytes)	
-A$_sms_manager$585:	
-	inc sp
-	
-; Data from 917 to 919 (3 bytes)	
-A$_sms_manager$586:	
-	.db $21 $03 $00
-	
-; Data from 91A to 91A (1 bytes)	
-A$_sms_manager$587:	
-	add hl, sp
-	
-; Data from 91B to 91B (1 bytes)	
-A$_sms_manager$588:	
-	ld a, (hl)
-	
-; Data from 91C to 91C (1 bytes)	
-A$_sms_manager$589:	
-	push af
-	
-; Data from 91D to 91D (1 bytes)	
-A$_sms_manager$590:	
-	inc sp
-	
-; Data from 91E to 920 (3 bytes)	
-A$_sms_manager$591:	
-	.db $CD $71 $1C
-	
-; Data from 921 to 921 (1 bytes)	
-A$_sms_manager$592:	
-	pop af
-	
-; Data from 922 to 922 (1 bytes)	
-A$_sms_manager$597:	
-C$_sms_manager.c$98$1$105:	
-XG$devkit_SMS_setSpritePaletteCo:	
-	ret
+		ld hl, $0004
+		add hl, sp
+		ld a, (hl)
+		add a, a
+		add a, a
+		ld hl, $0003
+		add hl, sp
+		or (hl)
+		ld c, a
+		ld hl, $0005
+		add hl, sp
+		ld a, (hl)
+		rlca
+		rlca
+		rlca
+		rlca
+		and $F0
+		or c
+		ld b, a
+		push bc
+		inc sp
+		ld hl, $0003
+		add hl, sp
+		ld a, (hl)
+		push af
+		inc sp
+		call $1C71
+		pop af
+		ret
 	
 ; Data from 923 to 924 (2 bytes)	
 A$_sms_manager$607:	
@@ -368,7 +278,7 @@ A$_sms_manager$628:
 	
 ; Data from 942 to 942 (1 bytes)	
 A$_sms_manager$629:	
-	.db $B1
+	or c
 	
 ; Data from 943 to 943 (1 bytes)	
 A$_sms_manager$630:	
