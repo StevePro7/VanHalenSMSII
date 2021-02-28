@@ -272,22 +272,19 @@ _devkit_SMS_copySpritestoSAT:
 		jp _UNSAFE_SMS_copySpritestoSAT
 
 _devkit_UNSAFE_SMS_copySpritesto:	
-	jp $1AE0
+		jp _UNSAFE_SMS_copySpritestoSAT
 
 _devkit_SMS_queryPauseRequested:
 		jp _SMS_queryPauseRequested
-	
 
 _devkit_SMS_resetPauseRequest:
 		jp _SMS_resetPauseRequest
-	
 	
 _devkit_isCollisionDetected:	
 		ld a, ($C05C)
 		and $20
 		ld l, a
 		ret
-
 
 _devkit_SMS_getKeysStatus:
 		jp _SMS_getKeysStatus
@@ -300,35 +297,29 @@ _devkit_VDPFEATURE_HIDEFIRSTCOL:
 		ld hl, $0020
 		ret
 
-
 _devkit_TILE_PRIORITY:	
 		ld hl, $1000
 		ret
-
 
 _devkit_TILE_USE_SPRITE_PALETTE:	
 		ld hl, $0800
 		ret
 	
-; Data from 9AD to 9BA (14 bytes)	
 F_sms_manager$__str_0$0$0:
 ; "Steven Boland"
 	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
 	
-; Data from 9BB to 9C4 (10 bytes)	
 F_sms_manager$__str_1$0$0:	
 ; "Van Halen"
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
 	
-; Data from 9C5 to A00 (60 bytes)	
-F_sms_manager$__str_2$0$0:	
+; Data from 9C5 to A00 (60 bytes)	F_sms_manager$__str_2$0$0:	
 ; "Van Halen Record Covers for the SMS Power! 2021 Competition"
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
 	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
 	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
 	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
-	
-	
+
 _devkit_PSGPlay:	
 		pop bc
 		pop hl
@@ -338,7 +329,6 @@ _devkit_PSGPlay:
 		call _PSGPlay
 		pop af
 		ret
-	
 
 _devkit_PSGPlayNoRepeat:	
 		pop bc
@@ -350,18 +340,14 @@ _devkit_PSGPlayNoRepeat:
 		pop af
 		ret
 
-
 _devkit_PSGStop:	
 		jp _PSGStop
-	
-	
+
 _devkit_PSGResume:	
 		jp _PSGResume
-	
 
 _devkit_PSGGetStatus:	
 		jp _PSGGetStatus
-	
 
 _devkit_PSGSetMusicVolumeAttenua:	
 		ld hl, $0002
@@ -372,7 +358,6 @@ _devkit_PSGSetMusicVolumeAttenua:
 		call _PSGSetMusicVolumeAttenuation
 		inc sp
 		ret
-
 
 _devkit_PSGSFXPlay:	
 		ld hl, $0004
@@ -390,10 +375,9 @@ _devkit_PSGSFXPlay:
 		pop af
 		inc sp
 		ret
-	
+
 _devkit_PSGSFXStop:	
 		jp _PSGSFXStop
-
 
 _devkit_PSGSFXGetStatus:	
 		jp _PSGSFXGetStatus
@@ -413,12 +397,11 @@ _devkit_PSGSFXFrame:
 _devkit_SFX_CHANNEL2:	
 		ld l, $01
 		ret
-	
+
 _devkit_SFX_CHANNEL3:	
 		ld l, $02
 		ret
-	
-; Data from A57 to A58 (2 bytes)	
+
 _devkit_SFX_CHANNELS2AND3:	
 		ld l, $03
 		ret
