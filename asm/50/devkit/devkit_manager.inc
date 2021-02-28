@@ -165,6 +165,8 @@ _devkit_SMS_setBGPaletteColor:
 		call $1C5D
 		pop af
 		ret
+		
+_devkit_SMS_setSpritePaletteColo:
 		ld hl, $0004
 		add hl, sp
 		ld a, (hl)
