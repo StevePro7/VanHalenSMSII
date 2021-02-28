@@ -108,6 +108,16 @@ Finput_manager$prev_joypad1$0$0 dw		; Finput_manager$prev_joypad1$0$0 = $C148
 VDPReg db                               ; VDPReg = $C1AA
 .ende	
 	
+.enum $C162 export	
+record_tiles_data db		            ; record_tiles_data = $C162
+.ende	
+.enum $C17A export	
+record_tilemap_data db                  ; record_tilemap_data = $C17A	
+.ende
+.enum $C192 export	
+record_palette_data db                  ; record_palette_data = $C192	
+.ende
+
 .enum $C1AC export	
 spritesHeight db		                ; spritesHeight = $C1AC
 spritesWidth db		                    ; spritesWidth = $C1AD

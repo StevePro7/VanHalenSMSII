@@ -18,12 +18,12 @@ _engine_record_manager_load:
 		add hl, hl
 		ld c, l
 		ld b, h
-		ld hl, $C162		; todo		; record_tiles_data	?
+		ld hl, record_tiles_data		; record_tiles_data = $C162		; todo		; record_tiles_data	?
 		add hl, bc
 		ld e, (hl)
 		inc hl
 		ld d, (hl)
-		ld hl, $C17A		; todo		; record_tilemap_data	?
+		ld hl, record_tilemap_data		; record_tilemap_data = $C17A		; todo		; record_tilemap_data	?
 		add hl, bc
 		ld c, (hl)
 		inc hl
@@ -52,7 +52,7 @@ _engine_record_manager_load:
 		call _devkit_SMS_loadSTMcompressedTil
 		pop af
 		pop af
-		ld hl, ($C192)			; todo		record_palette_data ??
+		ld hl, (record_palette_data)	; record_palette_data = $C192
 		push hl
 		call _devkit_SMS_loadBGPalette
 		pop af

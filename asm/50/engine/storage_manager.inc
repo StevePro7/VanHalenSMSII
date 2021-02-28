@@ -35,7 +35,6 @@ _engine_storage_manager_availabl:
 		pop hl
 		ret
 
-; Data from 1107 to 1109 (3 bytes)
 _engine_storage_manager_read:
 		call _devkit_SMS_SRAM
 		push hl
@@ -70,7 +69,6 @@ _engine_storage_manager_write:
 		ld (hl), $FE		; savegame->terminal = FINAL;
 		jp _devkit_SMS_disableSRAM
 
-; Data from 1141 to 1143 (3 bytes)
 _engine_storage_manager_erase:
 		call _devkit_SMS_SRAM
 		push hl
