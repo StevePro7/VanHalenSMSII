@@ -240,6 +240,7 @@ _LABEL_3C7_:
 	
 ; Data from 44E to 53C (239 bytes)	
 _PSGSetMusicVolumeAttenuation:	
+; todo
 	.db $DD $E5 $DD $21 $00 $00 $DD $39 $F5 $DD $7E $04 $32 $0B $C0 $3A
 	.db $01 $C0 $B7 $CA $38 $05 $3A $0F $C0 $E6 $0F $4F $1E $00 $FD $21
 	.db $0B $C0 $FD $7E $00 $DD $77 $FE $AF $DD $77 $FF $79 $DD $86 $FE

@@ -368,103 +368,35 @@ _devkit_PSGResume:
 	
 
 _devkit_PSGGetStatus:	
-	;.db $C3 $36 $03
-	;jp $0336
 	jp _PSGGetStatus
 	
 
 _devkit_PSGSetMusicVolumeAttenua:	
-	;.db $21 $02 $00
 	ld hl, $0002
-	
-; Data from A21 to A21 (1 bytes)	
-A$_snd_manager$183:	
 	add hl, sp
-	
-; Data from A22 to A22 (1 bytes)	
-A$_snd_manager$184:	
 	ld a, (hl)
-	
-; Data from A23 to A23 (1 bytes)	
-A$_snd_manager$185:	
 	push af
-	
-; Data from A24 to A24 (1 bytes)	
-A$_snd_manager$186:	
 	inc sp
-	
-; Data from A25 to A27 (3 bytes)	
-A$_snd_manager$187:	
-	;.db $CD $4E $04
-	call $044E
-	
-; Data from A28 to A28 (1 bytes)	
-A$_snd_manager$188:	
+	call _PSGSetMusicVolumeAttenuation
 	inc sp
-	
-; Data from A29 to A29 (1 bytes)	
-A$_snd_manager$193:	
-C$_snd_manager.c$32$1$41:	
-XG$devkit_PSGSetMusicVolumeAtten:	
 	ret
 	
-; Data from A2A to A2C (3 bytes)	
 _devkit_PSGSFXPlay:	
-	.db $21 $04 $00
-	
-; Data from A2D to A2D (1 bytes)	
-A$_snd_manager$207:	
+	ld hl, $0004
 	add hl, sp
-	
-; Data from A2E to A2E (1 bytes)	
-A$_snd_manager$208:	
 	ld a, (hl)
-	
-; Data from A2F to A2F (1 bytes)	
-A$_snd_manager$209:	
 	push af
-	
-; Data from A30 to A30 (1 bytes)	
-A$_snd_manager$210:	
 	inc sp
-	
-; Data from A31 to A33 (3 bytes)	
-A$_snd_manager$211:	
-	.db $21 $03 $00
-	
-; Data from A34 to A34 (1 bytes)	
-A$_snd_manager$212:	
+	ld hl, $0003
 	add hl, sp
-	
-; Data from A35 to A35 (1 bytes)	
-A$_snd_manager$213:	
 	ld c, (hl)
-	
-; Data from A36 to A36 (1 bytes)	
-A$_snd_manager$214:	
 	inc hl
-	
-; Data from A37 to A37 (1 bytes)	
-A$_snd_manager$215:	
 	ld b, (hl)
-	
-; Data from A38 to A38 (1 bytes)	
-A$_snd_manager$216:	
 	push bc
-	
-; Data from A39 to A3B (3 bytes)	
-A$_snd_manager$217:	
-	.db $CD $07 $06
-	
-; Data from A3C to A3C (1 bytes)	
-A$_snd_manager$218:	
+	;.db $CD $07 $06
+	call $0607
 	pop af
-	
-; Data from A3D to A3D (1 bytes)	
-A$_snd_manager$219:	
 	inc sp
-	
-; Data from A3E to A3E (1 bytes)	
 	ret
 	
 ; Data from A3F to A41 (3 bytes)	
