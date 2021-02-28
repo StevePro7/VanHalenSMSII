@@ -65,11 +65,8 @@ _devkit_SMS_useFirstHalfTilesfor:
 		jp _SMS_useFirstHalfTilesforSprites
 	
 _dewkit_SMS_useFirstHalfTilesfor:	
-	;.db $2E 
-	ld l, $01
-	;.db $C3 $04 $1C
-	jp $1C04
-	
+		ld l, $01
+		jp $1C04
 
 _devkit_SMS_VDPturnOnFeature:	
 		pop bc
@@ -96,21 +93,14 @@ _devkit_SMS_loadPSGaidencompress:
 		pop af
 		ret
 	
-; Data from 8A4 to 8A5 (2 bytes)	
-A$_sms_manager$432:	
-C$_sms_manager.c$76$1$95:	
-C$_sms_manager.c$78$1$97:	
-G$devkit_SMS_loadSTMcompressedTi:	
+
 _devkit_SMS_loadSTMcompressedTil:	
-	.db $3E $20
+	ld a, $20
 	
-; Data from 8A6 to 8A6 (1 bytes)	
-A$_sms_manager$433:	
-	.db $F5
+	push af
 	
 ; Data from 8A7 to 8A7 (1 bytes)	
-A$_sms_manager$434:	
-	.db $33
+	inc sp
 	
 ; Data from 8A8 to 8AA (3 bytes)	
 A$_sms_manager$435:	
@@ -150,11 +140,11 @@ A$_sms_manager$443:
 	
 ; Data from 8B5 to 8B5 (1 bytes)	
 A$_sms_manager$444:	
-	.db $F5
+	push af
 	
 ; Data from 8B6 to 8B6 (1 bytes)	
 A$_sms_manager$445:	
-	.db $33
+	inc sp
 	
 ; Data from 8B7 to 8B9 (3 bytes)	
 A$_sms_manager$446:	
@@ -170,11 +160,11 @@ A$_sms_manager$448:
 	
 ; Data from 8BC to 8BC (1 bytes)	
 A$_sms_manager$449:	
-	.db $F5
+	push af
 	
 ; Data from 8BD to 8BD (1 bytes)	
 A$_sms_manager$450:	
-	.db $33
+	inc sp
 	
 ; Data from 8BE to 8C0 (3 bytes)	
 A$_sms_manager$451:	
@@ -190,7 +180,7 @@ A$_sms_manager$453:
 	
 ; Data from 8C3 to 8C3 (1 bytes)	
 A$_sms_manager$454:	
-	.db $33
+	inc sp
 	
 ; Data from 8C4 to 8C4 (1 bytes)	
 A$_sms_manager$459:	
@@ -300,7 +290,7 @@ C$_sms_manager.c$92$1$103:
 	
 ; Data from 8EE to 8EE (1 bytes)	
 A$_sms_manager$537:	
-	.db $33
+	inc sp
 	
 ; Data from 8EF to 8F1 (3 bytes)	
 A$_sms_manager$538:	
@@ -316,11 +306,11 @@ A$_sms_manager$540:
 	
 ; Data from 8F4 to 8F4 (1 bytes)	
 A$_sms_manager$541:	
-	.db $F5
+	push af
 	
 ; Data from 8F5 to 8F5 (1 bytes)	
 A$_sms_manager$542:	
-	.db $33
+	inc sp
 	
 ; Data from 8F6 to 8F8 (3 bytes)	
 A$_sms_manager$543:	
@@ -423,7 +413,7 @@ C$_sms_manager.c$97$1$105:
 	
 ; Data from 916 to 916 (1 bytes)	
 A$_sms_manager$585:	
-	.db $33
+	inc sp
 	
 ; Data from 917 to 919 (3 bytes)	
 A$_sms_manager$586:	
@@ -439,11 +429,11 @@ A$_sms_manager$588:
 	
 ; Data from 91C to 91C (1 bytes)	
 A$_sms_manager$589:	
-	.db $F5
+	push af
 	
 ; Data from 91D to 91D (1 bytes)	
 A$_sms_manager$590:	
-	.db $33
+	inc sp
 	
 ; Data from 91E to 920 (3 bytes)	
 A$_sms_manager$591:	
@@ -613,7 +603,7 @@ A$_sms_manager$675:
 	
 ; Data from 95C to 95D (2 bytes)	
 A$_sms_manager$676:	
-	.db $3E $00
+	ld a, $00
 	
 ; Data from 95E to 95F (2 bytes)	
 A$_sms_manager$677:	
@@ -651,7 +641,7 @@ A$_sms_manager$699:
 	
 ; Data from 96A to 96A (1 bytes)	
 A$_sms_manager$700:	
-	.db $33
+	inc sp
 	
 ; Data from 96B to 96D (3 bytes)	
 A$_sms_manager$701:	
@@ -667,11 +657,11 @@ A$_sms_manager$703:
 	
 ; Data from 970 to 970 (1 bytes)	
 A$_sms_manager$704:	
-	.db $F5
+	push af
 	
 ; Data from 971 to 971 (1 bytes)	
 A$_sms_manager$705:	
-	.db $33
+	inc sp
 	
 ; Data from 972 to 974 (3 bytes)	
 A$_sms_manager$706:	
@@ -687,11 +677,11 @@ A$_sms_manager$708:
 	
 ; Data from 977 to 977 (1 bytes)	
 A$_sms_manager$709:	
-	.db $F5
+	push af
 	
 ; Data from 978 to 978 (1 bytes)	
 A$_sms_manager$710:	
-	.db $33
+	inc sp
 	
 ; Data from 979 to 97B (3 bytes)	
 A$_sms_manager$711:	
@@ -703,7 +693,7 @@ A$_sms_manager$712:
 	
 ; Data from 97D to 97D (1 bytes)	
 A$_sms_manager$713:	
-	.db $33
+	inc sp
 	
 ; Data from 97E to 97E (1 bytes)	
 A$_sms_manager$718:	
@@ -975,11 +965,11 @@ A$_snd_manager$184:
 	
 ; Data from A23 to A23 (1 bytes)	
 A$_snd_manager$185:	
-	.db $F5
+	push af
 	
 ; Data from A24 to A24 (1 bytes)	
 A$_snd_manager$186:	
-	.db $33
+	inc sp
 	
 ; Data from A25 to A27 (3 bytes)	
 A$_snd_manager$187:	
@@ -987,7 +977,7 @@ A$_snd_manager$187:
 	
 ; Data from A28 to A28 (1 bytes)	
 A$_snd_manager$188:	
-	.db $33
+	inc sp
 	
 ; Data from A29 to A29 (1 bytes)	
 A$_snd_manager$193:	
@@ -1009,11 +999,11 @@ A$_snd_manager$208:
 	
 ; Data from A2F to A2F (1 bytes)	
 A$_snd_manager$209:	
-	.db $F5
+	push af
 	
 ; Data from A30 to A30 (1 bytes)	
 A$_snd_manager$210:	
-	.db $33
+	inc sp
 	
 ; Data from A31 to A33 (3 bytes)	
 A$_snd_manager$211:	
@@ -1049,7 +1039,7 @@ A$_snd_manager$218:
 	
 ; Data from A3D to A3D (1 bytes)	
 A$_snd_manager$219:	
-	.db $33
+	inc sp
 	
 ; Data from A3E to A3E (1 bytes)	
 	ret
