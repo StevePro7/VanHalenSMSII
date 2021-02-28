@@ -350,36 +350,14 @@ _devkit_PSGPlay:
 
 _devkit_PSGPlayNoRepeat:	
 		pop bc
-	
-; Data from A0C to A0C (1 bytes)	
-A$_snd_manager$108:	
 	pop hl
-	
-; Data from A0D to A0D (1 bytes)	
-A$_snd_manager$109:	
 	push hl
-	
-; Data from A0E to A0E (1 bytes)	
-A$_snd_manager$110:	
 	push bc
-	
-; Data from A0F to A0F (1 bytes)	
-A$_snd_manager$111:	
 	push hl
-	
-; Data from A10 to A12 (3 bytes)	
-A$_snd_manager$112:	
-	;.db $CD $27 $03
-	call $0327
-	
-; Data from A13 to A13 (1 bytes)	
-A$_snd_manager$113:	
+	.db $CD $27 $03
+	;call $0327
+	;call _devkit_PSGPlayNoRepeat
 	pop af
-	
-; Data from A14 to A14 (1 bytes)	
-A$_snd_manager$118:	
-C$_snd_manager.c$16$1$33:	
-XG$devkit_PSGPlayNoRepeat$0$0:	
 	ret
 	
 ; Data from A15 to A17 (3 bytes)	
