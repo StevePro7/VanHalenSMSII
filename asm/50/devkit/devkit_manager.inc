@@ -137,27 +137,14 @@ _devkit_SMS_loadSpritePalette:
 	
 
 _devkit_SMS_setBGPaletteColor:	
-	.db $21 $04 $00
-	
-; Data from 8D6 to 8D6 (1 bytes)	
-A$_sms_manager$515:	
+	;.db $21 $04 $00
+	ld hl, $0004
 	add hl, sp
-	
-; Data from 8D7 to 8D7 (1 bytes)	
-A$_sms_manager$516:	
 	ld a, (hl)
-	
-; Data from 8D8 to 8D8 (1 bytes)	
-A$_sms_manager$517:	
-	.db $87
-	
-; Data from 8D9 to 8D9 (1 bytes)	
-A$_sms_manager$518:	
-	.db $87
-	
-; Data from 8DA to 8DC (3 bytes)	
-A$_sms_manager$519:	
-	.db $21 $03 $00
+	add a, a
+	add a, a
+	;.db $21 $03 $00
+	ld hl, $0003
 	
 ; Data from 8DD to 8DD (1 bytes)	
 A$_sms_manager$520:	
@@ -272,11 +259,11 @@ A$_sms_manager$564:
 	
 ; Data from 900 to 900 (1 bytes)	
 A$_sms_manager$565:	
-	.db $87
+	add a, a
 	
 ; Data from 901 to 901 (1 bytes)	
 A$_sms_manager$566:	
-	.db $87
+	add a, a
 	
 ; Data from 902 to 904 (3 bytes)	
 A$_sms_manager$567:	
