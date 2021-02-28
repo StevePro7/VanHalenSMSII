@@ -92,7 +92,6 @@ _devkit_SMS_loadPSGaidencompress:
 		pop af
 		pop af
 		ret
-	
 
 _devkit_SMS_loadSTMcompressedTil:	
 		ld a, $20
@@ -197,111 +196,36 @@ _devkit_SMS_setBGPaletteColor:
 		ret
 	
 _devkit_SMS_setNextTileatXY:	
-	push ix
-	ld ix, $0000
-	add ix, sp
-	ld l, (ix + $05)
-	ld h, $00
-	
-A$_sms_manager$615:	
-	add hl, hl
-	
-A$_sms_manager$616:	
-	add hl, hl
-	
-; Data from 932 to 932 (1 bytes)	
-A$_sms_manager$617:	
-	add hl, hl
-	
-; Data from 933 to 933 (1 bytes)	
-A$_sms_manager$618:	
-	add hl, hl
-	
-; Data from 934 to 934 (1 bytes)	
-A$_sms_manager$619:	
-	add hl, hl
-	
-; Data from 935 to 935 (1 bytes)	
-A$_sms_manager$620:	
-	add hl, hl
-	
-; Data from 936 to 936 (1 bytes)	
-A$_sms_manager$621:	
-	ld c, l
-	
-; Data from 937 to 937 (1 bytes)	
-A$_sms_manager$622:	
-	ld a, h
-	
-; Data from 938 to 939 (2 bytes)	
-A$_sms_manager$623:	
-	or $78
-	
-; Data from 93A to 93A (1 bytes)	
-A$_sms_manager$624:	
-	ld b, a
-	
-; Data from 93B to 93D (3 bytes)	
-A$_sms_manager$625:	
-	;.db $DD $6E $04
-	ld l, (ix + $04)
-	
-; Data from 93E to 93F (2 bytes)	
-A$_sms_manager$626:	
-	ld h, $00
-	
-; Data from 940 to 940 (1 bytes)	
-A$_sms_manager$627:	
-	add hl, hl
-	
-; Data from 941 to 941 (1 bytes)	
-A$_sms_manager$628:	
-	.db $7D
-	
-; Data from 942 to 942 (1 bytes)	
-A$_sms_manager$629:	
-	or c
-	
-; Data from 943 to 943 (1 bytes)	
-A$_sms_manager$630:	
-	ld l, a
-	
-; Data from 944 to 944 (1 bytes)	
-A$_sms_manager$631:	
-	ld a, h
-	
-; Data from 945 to 945 (1 bytes)	
-A$_sms_manager$632:	
-	or b
-	
-; Data from 946 to 946 (1 bytes)	
-A$_sms_manager$633:	
-	ld h, a
-	
-; Data from 947 to 948 (2 bytes)	
-A$_sms_manager$638:	
-C$_sms_manager.c$103$1$107:	
-XG$devkit_SMS_setNextTileatXY$0$:	
-	pop ix
-	
-; Data from 949 to 94B (3 bytes)	
-A$_sms_manager$639:	
-	;.db $C3 $06 $00
-	jp $0006
-	
-; Data from 94C to 94C (1 bytes)	
-A$_sms_manager$652:	
-C$_sms_manager.c$104$1$107:	
-C$_sms_manager.c$106$1$109:	
-G$devkit_SMS_setTile$0$0:	
+		push ix
+		ld ix, $0000
+		add ix, sp
+		ld l, (ix + $05)
+		ld h, $00
+		add hl, hl
+		add hl, hl
+		add hl, hl
+		add hl, hl
+		add hl, hl
+		add hl, hl
+		ld c, l
+		ld a, h
+		or $78
+		ld b, a
+		ld l, (ix + $04)
+		ld h, $00
+		add hl, hl
+		ld a, l
+		or c
+		ld l, a
+		ld a, h
+		or b
+		ld h, a
+		pop ix
+		jp $0006
+
 _devkit_SMS_setTile:	
 	pop bc
-	
-; Data from 94D to 94D (1 bytes)	
-A$_sms_manager$653:	
 	pop hl
-	
-; Data from 94E to 94E (1 bytes)	
 A$_sms_manager$654:	
 	push hl
 	
