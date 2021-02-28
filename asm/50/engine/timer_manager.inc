@@ -1,4 +1,3 @@
-; Data from 1163 to 1165 (3 bytes)
 _engine_delay_manager_load:
 		ld hl, delay_object_value		; delay_object_value = $C04C
 		ld iy, $0002
@@ -67,7 +66,6 @@ _engine_reset_manager_update:
 		ld l, b
 		ret
 
-; Data from 11D5 to 11D7 (3 bytes)
 _engine_reset_manager_reset:
 		ld hl, $0000					; ro->reset_timer = 0;
 		ld (reset_object_timer), hl		; reset_object_timer = $C052

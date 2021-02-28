@@ -1,6 +1,9 @@
 # VanHalenSMS
-22/02/2021
+27/02/2021
+Fun with chips #2: SN76489 sound generator IC
+https://mansfield-devine.com/speculatrix/2019/11/fun-with-chips-2-sn76489-sound-generator-ic
 
+22/02/2021
 SRCE
 steven.asm
 E:\GitHub\StevePro7\VanHalenSMSII\asm\25

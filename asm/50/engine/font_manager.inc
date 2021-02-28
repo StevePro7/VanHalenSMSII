@@ -38,7 +38,7 @@ _engine_font_manager_draw_text:
 		ld d, a
 		ld a, (de)
 		or a
-		jr z, $2D						; todo calculate label to jump relative to!
+		jr z, $2D
 		add a, $E0
 		ld b, a
 		ld d, c
@@ -68,7 +68,7 @@ _engine_font_manager_draw_text:
 		pop af
 		pop bc
 		inc (ix - 1)
-		jr $C2							; todo calculate label to jump relative to!
+		jr $C2
 		inc sp
 		pop ix
 		ret
@@ -146,7 +146,7 @@ _engine_font_manager_draw_data:
 		inc (ix - 2)
 		ld a, (ix - 2)
 		sub a, $05
-		jr c, $8D				; todo
+		jr c, $8D
 		ld sp, ix
 		pop ix
 		ret
