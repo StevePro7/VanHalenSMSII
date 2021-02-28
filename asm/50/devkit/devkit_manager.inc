@@ -313,7 +313,8 @@ A$_sms_manager$655:
 A$_sms_manager$660:	
 C$_sms_manager.c$107$1$109:	
 XG$devkit_SMS_setTile$0$0:	
-	.db $C3 $11 $00
+	;.db $C3 $11 $00
+	jp $0011
 	
 ; Data from 953 to 956 (4 bytes)	
 A$_sms_manager$673:	
@@ -321,7 +322,8 @@ C$_sms_manager.c$108$1$109:
 C$_sms_manager.c$110$1$111:	
 G$devkit_SMS_setTilePriority$0$0:	
 _devkit_SMS_setTilePriority:	
-	.db $FD $21 $02 $00
+	;.db $FD $21 $02 $00
+	ld iy, $0002
 	
 ; Data from 957 to 958 (2 bytes)	
 A$_sms_manager$674:	
