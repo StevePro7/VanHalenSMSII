@@ -235,7 +235,7 @@ A$_sms_manager$622:
 	
 ; Data from 938 to 939 (2 bytes)	
 A$_sms_manager$623:	
-	.db $F6 $78
+	or $78
 	
 ; Data from 93A to 93A (1 bytes)	
 A$_sms_manager$624:	
@@ -335,7 +335,7 @@ A$_sms_manager$676:
 	
 ; Data from 95E to 95F (2 bytes)	
 A$_sms_manager$677:	
-	.db $F6 $18
+	or $18
 	
 ; Data from 960 to 960 (1 bytes)	
 A$_sms_manager$678:	
