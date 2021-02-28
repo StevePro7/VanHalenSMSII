@@ -1,7 +1,7 @@
 ; Data from 1389 to 138B (3 bytes)
 _screen_scroll_screen_load:
 		ld hl, scroll_screen_offset		; scroll_screen_offset = $C056
-		ld (hl), $00
+		ld (hl), $00					; offset = 0;
 		ret
 	
 _screen_scroll_screen_update:
@@ -9,7 +9,7 @@ _screen_scroll_screen_update:
 		ld a, (scroll_screen_offset)	; scroll_screen_offset = $C056
 		sub a, $20						; TOP_SCROLL	32
 		jr nz, +
-		ld a, $01
+		ld a, $01						; offset++
 		jr ++
 	+:
 		xor a
@@ -25,7 +25,7 @@ _screen_scroll_screen_update:
 		inc sp
 		call _devkit_SMS_setBGScrollY
 		inc sp
-		ld a, $10
+		ld a, $10						; input_type_fire1	16
 		push af
 		inc sp
 		call _engine_input_manager_hold
