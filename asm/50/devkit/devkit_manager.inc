@@ -261,95 +261,42 @@ _devkit_SMS_addSprite:
 	pop af
 	inc sp
 	ret
-	
-A$_sms_manager$735:	
-C$_sms_manager.c$117$1$113:	
-C$_sms_manager.c$119$1$114:	
-C$_sms_manager.c$120$1$114:	
-G$devkit_SMS_initSprites$0$0:	
-XG$devkit_SMS_initSprites$0$0:	
+
+
 _devkit_SMS_initSprites:
 		jp _SMS_initSprites
-	
-A$_sms_manager$752:	
-C$_sms_manager.c$121$1$114:	
-C$_sms_manager.c$123$1$115:	
-C$_sms_manager.c$124$1$115:	
-G$devkit_SMS_finalizeSprites$0$0:	
-XG$devkit_SMS_finalizeSprites$0$:	
+
+
 _devkit_SMS_finalizeSprites:	
 		jp _SMS_finalizeSprites
 	
-A$_sms_manager$769:	
-C$_sms_manager.c$125$1$115:	
-C$_sms_manager.c$127$1$116:	
-C$_sms_manager.c$128$1$116:	
-G$devkit_SMS_waitForVBlank$0$0:	
-XG$devkit_SMS_waitForVBlank$0$0:	
+
 _devkit_SMS_waitForVBlank:	
 		jp _SMS_waitForVBlank
 
 _devkit_SMS_copySpritestoSAT:
 		jp _UNSAFE_SMS_copySpritestoSAT
-	
-; Data from 98B to 98D (3 bytes)	
-A$_sms_manager$803:	
-C$_sms_manager.c$133$1$117:	
-C$_sms_manager.c$135$1$118:	
-C$_sms_manager.c$136$1$118:	
-G$devkit_UNSAFE_SMS_copySpritest:	
-XG$devkit_UNSAFE_SMS_copySprites:	
+
+
 _devkit_UNSAFE_SMS_copySpritesto:	
-	;.db $C3 $E0 $1A
 	jp $1AE0
-	
-A$_sms_manager$820:	
-C$_sms_manager.c$138$1$118:	
-C$_sms_manager.c$140$1$119:	
-C$_sms_manager.c$141$1$119:	
-G$devkit_SMS_queryPauseRequested:	
-XG$devkit_SMS_queryPauseRequeste:	
+
+
 _devkit_SMS_queryPauseRequested:
 		jp _SMS_queryPauseRequested
 	
-A$_sms_manager$837:	
-C$_sms_manager.c$142$1$119:	
-C$_sms_manager.c$144$1$120:	
-C$_sms_manager.c$145$1$120:	
-G$devkit_SMS_resetPauseRequest$0:	
-XG$devkit_SMS_resetPauseRequest$:	
+
 _devkit_SMS_resetPauseRequest:
 		jp _SMS_resetPauseRequest
 	
-; Data from 994 to 996 (3 bytes)	
-A$_sms_manager$850:	
-C$_sms_manager.c$148$1$120:	
-C$_sms_manager.c$150$1$121:	
-G$devkit_isCollisionDetected$0$0:	
+	
 _devkit_isCollisionDetected:	
-	;.db $3A $5C $C0
-	ld a, ($C05C)
-	
-; Data from 997 to 998 (2 bytes)	
-A$_sms_manager$851:	
-	and $20
-	
-; Data from 999 to 999 (1 bytes)	
-A$_sms_manager$852:	
-	ld l, a
-	
-; Data from 99A to 99A (1 bytes)	
-A$_sms_manager$857:	
-C$_sms_manager.c$151$1$121:	
-XG$devkit_isCollisionDetected$0$:	
-	ret
-	
-A$_sms_manager$874:	
-C$_sms_manager.c$154$1$121:	
-C$_sms_manager.c$156$1$122:	
-C$_sms_manager.c$157$1$122:	
-G$devkit_SMS_getKeysStatus$0$0:	
-XG$devkit_SMS_getKeysStatus$0$0:	
+		ld a, ($C05C)
+		and $20
+		ld l, a
+		ret
+
+
 _devkit_SMS_getKeysStatus:
 		jp _SMS_getKeysStatus
 
@@ -360,36 +307,16 @@ _devkit_SPRITEMODE_NORMAL:
 _devkit_VDPFEATURE_HIDEFIRSTCOL:	
 		ld hl, $0020
 		ret
-	
-; Data from 9A5 to 9A7 (3 bytes)	
-A$_sms_manager$923:	
-C$_sms_manager.c$168$1$124:	
-C$_sms_manager.c$170$1$125:	
-G$devkit_TILE_PRIORITY$0$0:	
+
+
 _devkit_TILE_PRIORITY:	
-	;.db $21 $00 $10
-	ld hl, $1000
+		ld hl, $1000
+		ret
 	
-; Data from 9A8 to 9A8 (1 bytes)	
-A$_sms_manager$928:	
-C$_sms_manager.c$171$1$125:	
-XG$devkit_TILE_PRIORITY$0$0:	
-	ret
-	
-; Data from 9A9 to 9AB (3 bytes)	
-A$_sms_manager$941:	
-C$_sms_manager.c$172$1$125:	
-C$_sms_manager.c$174$1$126:	
-G$devkit_TILE_USE_SPRITE_PALETTE:	
+
 _devkit_TILE_USE_SPRITE_PALETTE:	
-	;.db $21 $00 $08
-	ld hl, $0800
-	
-; Data from 9AC to 9AC (1 bytes)	
-A$_sms_manager$946:	
-C$_sms_manager.c$175$1$126:	
-XG$devkit_TILE_USE_SPRITE_PALETT:	
-	ret
+		ld hl, $0800
+		ret
 	
 ; Data from 9AD to 9BA (14 bytes)	
 F_sms_manager$__str_0$0$0:
@@ -409,52 +336,20 @@ F_sms_manager$__str_2$0$0:
 	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
 	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
 	
-; Data from A01 to A01 (1 bytes)	
-A$_snd_manager$83:	
-C$_snd_manager.c$11$1$31:	
-C$_snd_manager.c$9$0$0:	
-G$devkit_PSGPlay$0$0:	
+	
 _devkit_PSGPlay:	
-	pop bc
+		pop bc
+		pop hl
+		push hl
+		push bc
+		push hl
+		call _PSGPlay
+		pop af
+		ret
 	
-; Data from A02 to A02 (1 bytes)	
-A$_snd_manager$84:	
-	pop hl
-	
-; Data from A03 to A03 (1 bytes)	
-A$_snd_manager$85:	
-	push hl
-	
-; Data from A04 to A04 (1 bytes)	
-A$_snd_manager$86:	
-	push bc
-	
-; Data from A05 to A05 (1 bytes)	
-A$_snd_manager$87:	
-	push hl
-	
-; Data from A06 to A08 (3 bytes)	
-A$_snd_manager$88:	
-	;.db $CD $F4 $02
-	call $02F4
-	
-; Data from A09 to A09 (1 bytes)	
-A$_snd_manager$89:	
-	pop af
-	
-; Data from A0A to A0A (1 bytes)	
-A$_snd_manager$94:	
-C$_snd_manager.c$12$1$31:	
-XG$devkit_PSGPlay$0$0:	
-	ret
-	
-; Data from A0B to A0B (1 bytes)	
-A$_snd_manager$107:	
-C$_snd_manager.c$13$1$31:	
-C$_snd_manager.c$15$1$33:	
-G$devkit_PSGPlayNoRepeat$0$0:	
+
 _devkit_PSGPlayNoRepeat:	
-	pop bc
+		pop bc
 	
 ; Data from A0C to A0C (1 bytes)	
 A$_snd_manager$108:	
