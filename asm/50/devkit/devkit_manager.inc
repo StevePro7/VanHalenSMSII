@@ -95,20 +95,14 @@ _devkit_SMS_loadPSGaidencompress:
 	
 
 _devkit_SMS_loadSTMcompressedTil:	
-	ld a, $20
+		ld a, $20
+		push af
+		inc sp
 	
-	push af
+	;.db $21 $05 $00
+	ld hl, $0005
 	
-; Data from 8A7 to 8A7 (1 bytes)	
-	inc sp
-	
-; Data from 8A8 to 8AA (3 bytes)	
-A$_sms_manager$435:	
-	.db $21 $05 $00
-	
-; Data from 8AB to 8AB (1 bytes)	
-A$_sms_manager$436:	
-	.db $39
+	add hl, sp
 	
 ; Data from 8AC to 8AC (1 bytes)	
 A$_sms_manager$437:	
@@ -132,7 +126,7 @@ A$_sms_manager$441:
 	
 ; Data from 8B3 to 8B3 (1 bytes)	
 A$_sms_manager$442:	
-	.db $39
+	add hl, sp
 	
 ; Data from 8B4 to 8B4 (1 bytes)	
 A$_sms_manager$443:	
@@ -152,7 +146,7 @@ A$_sms_manager$446:
 	
 ; Data from 8BA to 8BA (1 bytes)	
 A$_sms_manager$447:	
-	.db $39
+	add hl, sp
 	
 ; Data from 8BB to 8BB (1 bytes)	
 A$_sms_manager$448:	
@@ -213,7 +207,7 @@ _devkit_SMS_setBGPaletteColor:
 	
 ; Data from 8D6 to 8D6 (1 bytes)	
 A$_sms_manager$515:	
-	.db $39
+	add hl, sp
 	
 ; Data from 8D7 to 8D7 (1 bytes)	
 A$_sms_manager$516:	
@@ -233,7 +227,7 @@ A$_sms_manager$519:
 	
 ; Data from 8DD to 8DD (1 bytes)	
 A$_sms_manager$520:	
-	.db $39
+	add hl, sp
 	
 ; Data from 8DE to 8DE (1 bytes)	
 A$_sms_manager$521:	
@@ -249,7 +243,7 @@ A$_sms_manager$523:
 	
 ; Data from 8E3 to 8E3 (1 bytes)	
 A$_sms_manager$524:	
-	.db $39
+	add hl, sp
 	
 ; Data from 8E4 to 8E4 (1 bytes)	
 A$_sms_manager$525:	
@@ -298,7 +292,7 @@ A$_sms_manager$538:
 	
 ; Data from 8F2 to 8F2 (1 bytes)	
 A$_sms_manager$539:	
-	.db $39
+	add hl, sp
 	
 ; Data from 8F3 to 8F3 (1 bytes)	
 A$_sms_manager$540:	
@@ -336,7 +330,7 @@ _devkit_SMS_setSpritePaletteColo:
 	
 ; Data from 8FE to 8FE (1 bytes)	
 A$_sms_manager$563:	
-	.db $39
+	add hl, sp
 	
 ; Data from 8FF to 8FF (1 bytes)	
 A$_sms_manager$564:	
@@ -356,7 +350,7 @@ A$_sms_manager$567:
 	
 ; Data from 905 to 905 (1 bytes)	
 A$_sms_manager$568:	
-	.db $39
+	add hl, sp
 	
 ; Data from 906 to 906 (1 bytes)	
 A$_sms_manager$569:	
@@ -372,7 +366,7 @@ A$_sms_manager$571:
 	
 ; Data from 90B to 90B (1 bytes)	
 A$_sms_manager$572:	
-	.db $39
+	add hl, sp
 	
 ; Data from 90C to 90C (1 bytes)	
 A$_sms_manager$573:	
@@ -421,7 +415,7 @@ A$_sms_manager$586:
 	
 ; Data from 91A to 91A (1 bytes)	
 A$_sms_manager$587:	
-	.db $39
+	add hl, sp
 	
 ; Data from 91B to 91B (1 bytes)	
 A$_sms_manager$588:	
@@ -629,7 +623,7 @@ _devkit_SMS_addSprite:
 	
 ; Data from 967 to 967 (1 bytes)	
 A$_sms_manager$697:	
-	.db $39
+	add hl, sp
 	
 ; Data from 968 to 968 (1 bytes)	
 A$_sms_manager$698:	
@@ -649,7 +643,7 @@ A$_sms_manager$701:
 	
 ; Data from 96E to 96E (1 bytes)	
 A$_sms_manager$702:	
-	.db $39
+	add hl, sp
 	
 ; Data from 96F to 96F (1 bytes)	
 A$_sms_manager$703:	
@@ -669,7 +663,7 @@ A$_sms_manager$706:
 	
 ; Data from 975 to 975 (1 bytes)	
 A$_sms_manager$707:	
-	.db $39
+	add hl, sp
 	
 ; Data from 976 to 976 (1 bytes)	
 A$_sms_manager$708:	
@@ -957,7 +951,7 @@ _devkit_PSGSetMusicVolumeAttenua:
 	
 ; Data from A21 to A21 (1 bytes)	
 A$_snd_manager$183:	
-	.db $39
+	add hl, sp
 	
 ; Data from A22 to A22 (1 bytes)	
 A$_snd_manager$184:	
@@ -991,7 +985,7 @@ _devkit_PSGSFXPlay:
 	
 ; Data from A2D to A2D (1 bytes)	
 A$_snd_manager$207:	
-	.db $39
+	add hl, sp
 	
 ; Data from A2E to A2E (1 bytes)	
 A$_snd_manager$208:	
@@ -1011,7 +1005,7 @@ A$_snd_manager$211:
 	
 ; Data from A34 to A34 (1 bytes)	
 A$_snd_manager$212:	
-	.db $39
+	add hl, sp
 	
 ; Data from A35 to A35 (1 bytes)	
 A$_snd_manager$213:	
