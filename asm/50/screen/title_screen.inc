@@ -1,123 +1,36 @@
 _screen_title_screen_load:
-	;.db $CD $2B $08
 	call _devkit_SMS_displayOff
-
-; Data from 12B9 to 12BB (3 bytes)
-	;.db $CD $A2 $0A
 	call _engine_content_manager_load_til
-
-; Data from 12BC to 12BE (3 bytes)
-	;.db $CD $51 $0B
 	call _engine_content_manager_load_spr
-
-; Data from 12BF to 12C1 (3 bytes)
-	;.db $CD $E3 $0A
 	call _engine_content_manager_load_tit
-
-; Data from 12C2 to 12C4 (3 bytes)
-	;.db $21 $0A $15
-	ld hl, $150A
-
-; Data from 12C5 to 12C5 (1 bytes)
+	ld hl, $150A					; engine_font_manager_draw_text( ..., 10, 21 );
 	push hl
-
-; Data from 12C6 to 12C8 (3 bytes)
-	;.db $21 $35 $13
-	;ld hl, $1335
-	ld hl, press_start
-
-; Data from 12C9 to 12C9 (1 bytes)
+	ld hl, press_start				; engine_font_manager_draw_text( LOCALE_PRESS_START
 	push hl
-
-; Data from 12CA to 12CC (3 bytes)
-	;.db $CD $E9 $0D
 	call _engine_font_manager_draw_text
-
-; Data from 12CD to 12CD (1 bytes)
 	pop af
-
-; Data from 12CE to 12D0 (3 bytes)
-	;.db $21 $06 $0C
-	ld hl, $0C06
-
-; Data from 12D1 to 12D1 (1 bytes)
+	ld hl, $0C06					; engine_font_manager_draw_text( ..., 6, 12 );
 	ex (sp), hl
-
-; Data from 12D2 to 12D4 (3 bytes)
-	;.db $21 $41 $13
-	;ld hl, $1341
-	ld hl, title_record_label
-
-; Data from 12D5 to 12D5 (1 bytes)
+	ld hl, title_record_label		; engine_font_manager_draw_text( LOCALE_RECORD_TEXT
 	push hl
-
-; Data from 12D6 to 12D8 (3 bytes)
-	;.db $CD $E9 $0D
 	call _engine_font_manager_draw_text
-
-; Data from 12D9 to 12D9 (1 bytes)
 	pop af
-
-; Data from 12DA to 12DC (3 bytes)
-	;.db $21 $14 $0C
-	ld hl, $0C14
-
-; Data from 12DD to 12DD (1 bytes)
+	ld hl, $0C14					; engine_font_manager_draw_text( ..., 20, 12 );
 	ex (sp), hl
-
-; Data from 12DE to 12E0 (3 bytes)
-	;.db $21 $48 $13
-	;ld hl, $1348
-	ld hl, title_covers_label
-
-; Data from 12E1 to 12E1 (1 bytes)
+	ld hl, title_covers_label		; engine_font_manager_draw_text( LOCALE_COVERS_TEXT
 	push hl
-
-; Data from 12E2 to 12E4 (3 bytes)
-	;.db $CD $E9 $0D
 	call _engine_font_manager_draw_text
-
-; Data from 12E5 to 12E5 (1 bytes)
 	pop af
-
-; Data from 12E6 to 12E8 (3 bytes)
-	;.db $21 $1C $17
-	ld hl, $171C
-
-; Data from 12E9 to 12E9 (1 bytes)
+	ld hl, $171C					; engine_font_manager_draw_text( ..., 28, 23 );
 	ex (sp), hl
-
-; Data from 12EA to 12EC (3 bytes)
-	;.db $21 $4F $13
-	;ld hl, $134F
-	ld hl, title_build_label
-
-; Data from 12ED to 12ED (1 bytes)
+	ld hl, title_build_label		; engine_font_manager_draw_text( LOCALE_BUILD_VALUE
 	push hl
-
-; Data from 12EE to 12F0 (3 bytes)
-	;.db $CD $E9 $0D
 	call _engine_font_manager_draw_text
-
-; Data from 12F1 to 12F1 (1 bytes)
 	pop af
-
-; Data from 12F2 to 12F2 (1 bytes)
 	pop af
-
-; Data from 12F3 to 12F5 (3 bytes)
-	;.db $CD $25 $08
 	call _devkit_SMS_displayOn
-
-; Data from 12F6 to 12F8 (3 bytes)
-	;.db $21 $32 $00
 	ld hl, $0032		; TITLE_FLASH_DELAY	50
-
-; Data from 12F9 to 12F9 (1 bytes)
 	push hl
-
-; Data from 12FA to 12FC (3 bytes)
-	;.db $CD $63 $11
 	call _engine_delay_manager_load
 
 ; Data from 12FD to 12FF (3 bytes)
@@ -162,15 +75,15 @@ _screen_title_screen_load:
 
 ; Data from 1311 to 1312 (2 bytes)
 	;.db $28 $03
-	jr z, $03
+	jr z, +	;$03
 
 ; Data from 1313 to 1315 (3 bytes)
 	;.db $CD $07 $11
 	call _engine_storage_manager_read
-
++:
 ; Data from 1316 to 1318 (3 bytes)
 	;.db $21 $2A $C0
-	ld hl, $C02A		; ro->record_album_index
+	ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 
 ; Data from 1319 to 1319 (1 bytes)
 	ld b, (hl)
@@ -190,7 +103,7 @@ _screen_title_screen_load:
 
 ; Data from 1320 to 1322 (3 bytes)
 	;.db $21 $2A $C0
-	ld hl, $C02A		; ro->record_album_index
+	ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 
 ; Data from 1323 to 1323 (1 bytes)
 	ld b, (hl)
@@ -372,7 +285,7 @@ _screen_title_screen_update:
 
 ; Data from 1395 to 1396 (2 bytes)
 	;.db $28 $04
-	jr z, $04
+	jr z, ++	;$04
 
 ; Data from 1397 to 1398 (2 bytes)
 	;.db $0E $03
@@ -380,12 +293,12 @@ _screen_title_screen_update:
 
 ; Data from 1399 to 139A (2 bytes)
 	;.db $18 $02
-	jr $02
-
+	jr +++	;$02
+++:
 ; Data from 139B to 139C (2 bytes)
 	;.db $0E $02
 	ld c, $02
-
++++:
 ; Data from 139D to 139F (3 bytes)
 	;.db $DD $6E $FE
 	ld l, (ix - 2)
@@ -443,7 +356,7 @@ _screen_title_screen_update:
 
 ; Data from 13BB to 13BC (2 bytes)
 	;.db $28 $0F
-	jr z, $0F
+	jr z, ++++	;$0F
 	
 
 ; Data from 13BD to 13BF (3 bytes)
@@ -473,8 +386,8 @@ _screen_title_screen_update:
 
 ; Data from 13CA to 13CB (2 bytes)
 	;.db $18 $0D
-	jr $0D
-
+	jr +++++	;$0D
+++++:
 ; Data from 13CC to 13CE (3 bytes)
 	;.db $21 $0A $15
 	ld hl, $150A
@@ -499,7 +412,7 @@ _screen_title_screen_update:
 
 ; Data from 13D8 to 13D8 (1 bytes)
 	pop af
-
++++++:
 ; Data from 13D9 to 13DA (2 bytes)
 	;.db $3E $10
 	ld a, $10		; input_type_fire1
