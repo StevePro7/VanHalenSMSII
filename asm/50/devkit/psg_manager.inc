@@ -34,7 +34,17 @@ _PSGResume:
 ; Data from 2F4 to 320 (45 bytes)	
 ; todo
 _PSGPlay:	
-	.db $CD $81 $02 $21 $09 $C0 $36 $01 $D1 $C1 $C5 $D5 $ED $43 $02 $C0
+	;.db $CD $81 $02 $21 $09 $C0 $36 $01 $D1 $C1 $C5 $D5 $ED $43 $02 $C0
+		call $0281
+		ld hl, $C009		; PSGLoopFlag
+		ld (hl), $01
+		pop de
+		pop bc
+		push bc
+		push de
+	;	ld ($C002), bc
+	
+	.db $ED $43 $02 $C0
 	.db $ED $43 $04 $C0 $ED $43 $06 $C0 $21 $08 $C0 $36 $00 $21 $0C $C0
 	.db $36 $00 $21 $0A $C0 $36 $9F $21 $01 $C0 $36 $01 $C9
 	
