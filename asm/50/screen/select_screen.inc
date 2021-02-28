@@ -40,7 +40,6 @@ _screen_select_screen_load:
 		ld (hl), $01
 		ret
 
-; Data from 14D5 to 14DB (7 bytes)
 select_record_label:
 	; "RECORD"
 	.db $52 $45 $43 $4F $52 $44 $00
@@ -50,34 +49,15 @@ select_covers_label:
 	; "COVERS"
 	.db $43 $4F $56 $45 $52 $53 $00
 	
-
-; Data from 14E3 to 14E5 (3 bytes)
 _screen_select_screen_update:
-	;.db $3A $57 $C0
 	ld a, ($C057)		; static unsigned char event_stage
-	
-; Data from 14E6 to 14E6 (1 bytes)
 	dec a
-
-; Data from 14E7 to 14E8 (2 bytes)
-	;.db $20 $2A
 	jr nz, $2A
-
-; Data from 14E9 to 14EB (3 bytes)
-	;.db $3A $64 $C0
 	ld a, ($C058)		; static unsigned char flash
-
-; Data from 14EC to 14EC (1 bytes)
 	or a
-
-; Data from 14ED to 14EE (2 bytes)
-	;.db $28 $03
-	jr z, $03
-
-; Data from 14EF to 14F1 (3 bytes)
-	;.db $CD $13 $0C
+	jr z, +	;$03
 	call _engine_cursor_manager_draw
-
++:
 ; Data from 14F2 to 14F4 (3 bytes)
 	;.db $CD $7C $11
 	call _engine_delay_manager_update
@@ -90,7 +70,7 @@ _screen_select_screen_update:
 
 ; Data from 14F7 to 14F8 (2 bytes)
 	;.db $28 $07
-	jr z, $07
+	jr z, ++	;$07
 
 ; Data from 14F9 to 14FB (3 bytes)
 	;.db $21 $64 $C0
@@ -107,7 +87,7 @@ _screen_select_screen_update:
 ; Data from 14FF to 14FF (1 bytes)
 	;.db $77
 	ld (hl), a
-
+++:
 ; Data from 1500 to 1502 (3 bytes)
 	;.db $CD $B3 $11
 	call _engine_reset_manager_update
@@ -132,7 +112,7 @@ _screen_select_screen_update:
 
 ; Data from 1509 to 150A (2 bytes)
 	;.db $28 $04
-	jr z, $04
+	jr z, +++	;$04
 
 ; Data from 150B to 150C (2 bytes)
 	;.db $3E $05
@@ -140,12 +120,12 @@ _screen_select_screen_update:
 
 ; Data from 150D to 150E (2 bytes)
 	;.db $18 $02
-	jr $02
-
+	jr ++++	;$02
++++:
 ; Data from 150F to 1510 (2 bytes)
 	;.db $3E $04
 	ld a, $04		; screen_type_select	4
-
+++++:
 ; Data from 1511 to 1511 (1 bytes)
 	;.db $02
 	ld (bc), a
@@ -182,7 +162,7 @@ _screen_select_screen_update:
 
 ; Data from 1520 to 1521 (2 bytes)
 	;.db $28 $13
-	jr z, $13
+	jr z, +++++	;$13
 
 ; Data from 1522 to 1524 (3 bytes)
 	;.db $CD $05 $0C
@@ -220,7 +200,7 @@ _screen_select_screen_update:
 
 ; Data from 1534 to 1534 (1 bytes)
 	ret
-
++++++:
 ; Data from 1535 to 1536 (2 bytes)
 	;.db $3E $04
 	ld a, $04		; input_type_left
@@ -246,12 +226,12 @@ _screen_select_screen_update:
 
 ; Data from 153F to 1540 (2 bytes)
 	;.db $28 $03
-	jr z, $03
+	jr z, ++++++	;$03
 
 ; Data from 1541 to 1543 (3 bytes)
 	;.db $CD $3E $0D
 	call _engine_cursor_manager_decX
-
+++++++:
 ; Data from 1544 to 1545 (2 bytes)
 	;.db $3E $08
 	ld a, $08		; input_type_right
@@ -277,13 +257,13 @@ _screen_select_screen_update:
 
 ; Data from 154E to 154F (2 bytes)
 	;.db $28 $03
-	jr z, $03
+	jr z, +++++++	;$03
 
 ; Data from 1550 to 1552 (3 bytes)
 	;.db $CD $51 $0D
 	;call $0D51
 	call _engine_cursor_manager_incX
-
++++++++:
 ; Data from 1553 to 1554 (2 bytes)
 	;.db $3E $01
 	ld a, $01		; input_type_up
@@ -310,7 +290,7 @@ _screen_select_screen_update:
 ; Data from 155D to 155E (2 bytes)
 	;.db $28 $03
 	jr z, $03
-
++++++++
 ; Data from 155F to 1561 (3 bytes)
 	;.db $CD $63 $0D
 	call _engine_cursor_manager_decY
@@ -340,12 +320,12 @@ _screen_select_screen_update:
 
 ; Data from 156C to 156D (2 bytes)
 	;.db $28 $03
-	jr z, $03
+	jr z, ++++++++	;$03
 
 ; Data from 156E to 1570 (3 bytes)
 	;.db $CD $76 $0D
 	call _engine_cursor_manager_incY
-
+++++++++:
 ; Data from 1571 to 1571 (1 bytes)
 	pop bc
 
