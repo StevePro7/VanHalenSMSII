@@ -50,30 +50,18 @@ select_covers_label:
 	.db $43 $4F $56 $45 $52 $53 $00
 	
 _screen_select_screen_update:
-	ld a, ($C057)		; static unsigned char event_stage
-	dec a
-	jr nz, $2A
-	ld a, ($C058)		; static unsigned char flash
-	or a
-	jr z, +	;$03
-	call _engine_cursor_manager_draw
+		ld a, ($C057)		; static unsigned char event_stage
+		dec a
+		jr nz, $2A
+		ld a, ($C058)		; static unsigned char flash
+		or a
+		jr z, +	;$03
+		call _engine_cursor_manager_draw
 +:
-; Data from 14F2 to 14F4 (3 bytes)
-	;.db $CD $7C $11
-	call _engine_delay_manager_update
-
-; Data from 14F5 to 14F5 (1 bytes)
-	ld a, l
-
-; Data from 14F6 to 14F6 (1 bytes)
+		call _engine_delay_manager_update
+		ld a, l
 	or a
-
-; Data from 14F7 to 14F8 (2 bytes)
-	;.db $28 $07
 	jr z, ++	;$07
-
-; Data from 14F9 to 14FB (3 bytes)
-	;.db $21 $64 $C0
 	ld hl, $C058		; static unsigned char flash
 
 ; Data from 14FC to 14FD (2 bytes)
