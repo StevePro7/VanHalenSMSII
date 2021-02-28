@@ -38,7 +38,7 @@ _screen_splash_screen_update:
 		call _engine_reset_manager_update		; $111D
 		ld a, l
 		or a
-		jr z, $18
+		jr z, + ;$18
 		call _engine_storage_manager_erase		; $10AB
 		call _engine_reset_manager_reset		; $113F
 		ld hl, $171C							; ; 17 = 23	1C = 28
