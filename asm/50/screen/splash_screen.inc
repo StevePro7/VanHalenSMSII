@@ -1,4 +1,3 @@
-; Data from 119D to 119F (3 bytes)
 _screen_splash_screen_load:
 		call _devkit_SMS_displayOff				;$082B
 		call _engine_content_manager_load_til	;$0AA2
@@ -13,7 +12,6 @@ _screen_splash_screen_load:
 		pop af
 		ret
 
-; Data from 11B9 to 11BA (2 bytes)
 _screen_splash_screen_update:
 		push ix
 		ld ix, $0000
@@ -70,7 +68,6 @@ _screen_splash_screen_update:
 		pop ix
 		ret
 
-; Data from 121B to 121F (5 bytes)
 ; "5150"
 fiftyonefifty:
 	.db $35 $31 $35 $30 $00

@@ -2,7 +2,7 @@ _UNSAFE_SMS_copySpritestoSAT:
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
-		ld hl, SpriteTableY	; SpriteTableY = $C063
+		ld hl, SpriteTableY		; SpriteTableY = $C063
 		call _OUTI64
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
@@ -10,7 +10,6 @@ _UNSAFE_SMS_copySpritestoSAT:
 		ld hl, SpriteTableXN	; SpriteTableXN = $C0A3
 		jp _OUTI128
 	
-; Data from 1AF8 to 1B14 (29 bytes)	
 _UNSAFE_SMS_VRAMmemcpy32:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01
@@ -30,7 +29,6 @@ _UNSAFE_SMS_VRAMmemcpy32:
 		ld l, a
 		jp $0159
 	
-; Data from 1B15 to 1B31 (29 bytes)	
 _UNSAFE_SMS_VRAMmemcpy64:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01
@@ -49,8 +47,7 @@ _UNSAFE_SMS_VRAMmemcpy64:
 		ld h, (hl)
 		ld l, a
 		jp $0119
-	
-; Data from 1B32 to 1B4E (29 bytes)	
+
 _UNSAFE_SMS_VRAMmemcpy128:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $99 $00
@@ -123,12 +120,10 @@ _SMS_init:
 		ld hl, VDPType	; VDPType = $C05E
 		ld (hl), $40
 		ret
-	
-; Data from 1BA3 to 1BAD (11 bytes)	
+
 _VDPReg_init:	
 	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF
-	
-; Data from 1BAE to 1BB5 (8 bytes)	
+
 _SMS_VDPType:	
 	;.db $FD $21 $5E $C0 $FD $6E $00 $C9
 		ld iy, VDPType	; VDPType = $C05E
@@ -174,8 +169,7 @@ _SMS_VDPturnOffFeature:
 		out (Port_VDPAddress), a
 		ei
 		ret
-	
-; Data from 1BE6 to 1BEF (10 bytes)	
+
 _SMS_setBGScrollX:	
 	;.db $F3 $7D $D3 $BF $3E $88 $D3 $BF $FB $C9
 		di
@@ -194,8 +188,7 @@ _SMS_setBGScrollY:
 		out (Port_VDPAddress), a
 		ei
 		ret
-	
-; Data from 1BFA to 1C03 (10 bytes)	
+
 _SMS_setBackdropColor:	
 	;.db $F3 $7D $D3 $BF $3E $87 $D3 $BF $FB $C9
 		di
@@ -260,7 +253,6 @@ _SMS_setSpriteMode:
 		ld (hl), $08
 		ret
 	
-; Data from 1C5D to 1C70 (20 bytes)	
 _SMS_setBGPaletteColor:	
 	;.db $21 $02 $00 $39 $4E $06 $00 $21 $00 $C0 $09 $CF $21 $03 $00 $39
 	;.db $7E $D3 $BE $C9
@@ -318,8 +310,7 @@ _SMS_loadSpritePalette:
 		outi
 		jr nz, -
 		ret
-	
-; Data from 1CAD to 1CB0 (4 bytes)	
+
 _SMS_setColor:	
 	;.db $7D $D3 $BE $C9
 		ld a, l
@@ -330,8 +321,7 @@ _SMS_initSprites:
 		ld hl, SpriteNextFree	; SpriteNextFree = $C123
 		ld (hl), $00
 		ret
-	
-; Data from 1CB7 to 1D0B (85 bytes)	
+
 _SMS_addSprite:	
 	;.db $3A $23 $C1 $D6 $40 $30 $4B $FD $21 $03 $00 $FD $39 $FD $7E $00
 	;.db $D6 $D1 $28 $3E $3E $63 $21 $23 $C1 $86 $4F $3E $C0 $CE $00 $47
@@ -440,8 +430,7 @@ _SMS_waitForVBlank:
 _SMS_getKeysStatus:	
 		ld hl, (KeysStatus)	; KeysStatus = $C05F
 		ret
-	
-; Data from 1D58 to 1D74 (29 bytes)	
+
 _SMS_getKeysPressed:	
 	;.db $FD $21 $61 $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $FD $21
 	;.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9
@@ -460,8 +449,7 @@ _SMS_getKeysPressed:
 		and b
 		ld h, a
 		ret
-	
-; Data from 1D75 to 1D8B (23 bytes)	
+
 _SMS_getKeysHeld:	
 	;.db $3A $5F $C0 $FD $21 $61 $C0 $FD $A6 $00 $6F $3A $60 $C0 $FD $21
 	;.db $61 $C0 $FD $A6 $01 $67 $C9
@@ -474,8 +462,7 @@ _SMS_getKeysHeld:
 		and (iy + $01)
 		ld h, a
 		ret
-	
-; Data from 1D8C to 1DA8 (29 bytes)	
+
 _SMS_getKeysReleased:	
 	;.db $FD $21 $5F $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $79 $FD
 	;.db $21 $61 $C0 $FD $A6 $00 $6F $78 $FD $A6 $01 $67 $C9
@@ -504,8 +491,7 @@ _SMS_resetPauseRequest:
 		ld hl, PauseRequested	; PauseRequested = $C05D
 		ld (hl), $00
 		ret
-	
-; Data from 1DB7 to 1DC7 (17 bytes)	
+
 _SMS_setLineInterruptHandler:	
 	;.db $21 $02 $00 $39 $7E $32 $24 $C1 $21 $03 $00 $39 $7E $32 $25 $C1
 	;.db $C9
@@ -518,8 +504,7 @@ _SMS_setLineInterruptHandler:
 		ld a, (hl)
 		ld (SMS_theLineInterruptHandler + 1), a	; SMS_theLineInterruptHandler = $C124
 		ret
-	
-; Data from 1DC8 to 1DD6 (15 bytes)	
+
 _SMS_setLineCounter:	
 	;.db $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
 		ld hl, $0002
@@ -532,21 +517,19 @@ _SMS_setLineCounter:
 		out ($bf), a
 		ei
 		ret
-	
-; Data from 1DD7 to 1DDA (4 bytes)	
+
 _SMS_getVCount:	
 	;.db $DB $7E $6F $C9
 		in a, ($7E)
 		ld l, a
 		ret
-	
-; Data from 1DDB to 1DDE (4 bytes)	
+
 _SMS_getHCount:	
 	;.db $DB $7F $6F $C9
 		in a, ($7F)
 		ld l, a
 		ret
-	
+
 _SMS_isr:	
 		push af
 		push hl
@@ -597,8 +580,7 @@ _SMS_nmi_isr:
 		pop bc
 		pop af
 		retn
-	
-; Data from 1E28 to 1E33 (12 bytes)	
+
 __moduchar:	
 	;.db $21 $03 $00 $39 $5E $2B $6E $CD $AE $1A $EB $C9
 		ld hl, $0003
@@ -609,8 +591,7 @@ __moduchar:
 		call __divu8			; __divu8 = $1AAE
 		ex de, hl
 		ret
-	
-; Data from 1E34 to 1E3E (11 bytes)	
+
 __moduint:	
 	;.db $F1 $E1 $D1 $D5 $E5 $F5 $CD $B1 $1A $EB $C9
 		pop af
@@ -623,8 +604,6 @@ __moduint:
 		ex de, hl
 		ret
 
-	
-; Data from 1E3F to 201F (481 bytes)	
 _SMS_loadSTMcompressedTileMapAre:	
 	.db $DD $E5 $DD $21 $00 $00 $DD $39 $21 $F0 $FF $39 $F9 $DD $36 $FE
 	.db $00 $DD $36 $FF $00 $DD $36 $F3 $00 $DD $36 $F4 $00 $DD $6E $05
