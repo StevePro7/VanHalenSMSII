@@ -35,17 +35,17 @@ _screen_splash_screen_update:
 		ld a, l
 		or a
 		jr z, $1C
-		call $111D
+		call _engine_reset_manager_update		; $111D
 		ld a, l
 		or a
 		jr z, $18
-		call $10AB
-		call $113F
-		ld hl, $171C
+		call _engine_storage_manager_erase		; $10AB
+		call _engine_reset_manager_reset		; $113F
+		ld hl, $171C							; ; 17 = 23	1C = 28
 		push hl
-		ld hl, $121B
+		ld hl, _fiftyonefifty					; $121B							
 		push hl
-		call $0DE9
+		call _engine_font_manager_draw_text		; $0DE9
 		pop af
 		pop af
 		jr +
@@ -72,4 +72,5 @@ _screen_splash_screen_update:
 
 ; Data from 121B to 121F (5 bytes)
 ; "5150"
+_fiftyonefifty:
 	.db $35 $31 $35 $30 $00
