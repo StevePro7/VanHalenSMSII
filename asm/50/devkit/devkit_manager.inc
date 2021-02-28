@@ -359,7 +359,8 @@ C$_sms_manager.c$113$1$111:
 C$_sms_manager.c$115$1$113:	
 G$devkit_SMS_addSprite$0$0:	
 _devkit_SMS_addSprite:	
-	.db $21 $04 $00
+	;.db $21 $04 $00
+	ld hl, $0004
 	
 ; Data from 967 to 967 (1 bytes)	
 A$_sms_manager$697:	
@@ -379,7 +380,8 @@ A$_sms_manager$700:
 	
 ; Data from 96B to 96D (3 bytes)	
 A$_sms_manager$701:	
-	.db $21 $04 $00
+	;.db $21 $04 $00
+	ld hl, $0004
 	
 ; Data from 96E to 96E (1 bytes)	
 A$_sms_manager$702:	
@@ -399,7 +401,8 @@ A$_sms_manager$705:
 	
 ; Data from 972 to 974 (3 bytes)	
 A$_sms_manager$706:	
-	.db $21 $04 $00
+	;.db $21 $04 $00
+	ld hl, $0004
 	
 ; Data from 975 to 975 (1 bytes)	
 A$_sms_manager$707:	
@@ -419,7 +422,8 @@ A$_sms_manager$710:
 	
 ; Data from 979 to 97B (3 bytes)	
 A$_sms_manager$711:	
-	.db $CD $B7 $1C
+	;.db $CD $B7 $1C
+	call $1CB7
 	
 ; Data from 97C to 97C (1 bytes)	
 A$_sms_manager$712:	
@@ -473,7 +477,8 @@ C$_sms_manager.c$136$1$118:
 G$devkit_UNSAFE_SMS_copySpritest:	
 XG$devkit_UNSAFE_SMS_copySprites:	
 _devkit_UNSAFE_SMS_copySpritesto:	
-	.db $C3 $E0 $1A
+	;.db $C3 $E0 $1A
+	jp $1AE0
 	
 A$_sms_manager$820:	
 C$_sms_manager.c$138$1$118:	
@@ -499,7 +504,8 @@ C$_sms_manager.c$148$1$120:
 C$_sms_manager.c$150$1$121:	
 G$devkit_isCollisionDetected$0$0:	
 _devkit_isCollisionDetected:	
-	.db $3A $5C $C0
+	;.db $3A $5C $C0
+	ld a, ($C05C)
 	
 ; Data from 997 to 998 (2 bytes)	
 A$_sms_manager$851:	
@@ -538,7 +544,8 @@ C$_sms_manager.c$168$1$124:
 C$_sms_manager.c$170$1$125:	
 G$devkit_TILE_PRIORITY$0$0:	
 _devkit_TILE_PRIORITY:	
-	.db $21 $00 $10
+	;.db $21 $00 $10
+	ld hl, $1000
 	
 ; Data from 9A8 to 9A8 (1 bytes)	
 A$_sms_manager$928:	
