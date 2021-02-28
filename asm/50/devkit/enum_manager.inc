@@ -31,12 +31,14 @@ PSGSFXSubstringLen db		        ; PSGSFXSubstringLen = $C023
 PSGSFXSubstringRetAddr dw		    ; PSGSFXSubstringRetAddr = $C024
 .ende	
 
+
 .enum $C026 export		
 cursor_index_x db                   ; cursor_index_x = $C026
 cursor_index_y db                   ; cursor_index_x = $C027
 cursor_value_x db                   ; cursor_index_x = $C028
 cursor_value_y db                   ; cursor_index_x = $C029
 .ende	
+
 
 .enum $C02A export	
 record_album_index db	            ; ro->record_album_index = $C02A
@@ -59,6 +61,20 @@ _RAM_C041_ dw
 _RAM_C043_ dw	
 G$global_scroll_object$0$0 db	        ; G$global_scroll_object$0$0 = $C045
 .ende	
+
+
+.enum $C04C export	
+delay_object_value dw                   ; delay_object_value = $C04C
+delay_object_timer dw                   ; delay_object_timer = $C04E
+reset_object_value dw                   ; reset_object_value = $C050
+reset_object_timer dw                   ; reset_object_timer = $C052
+.ende	
+
+
+.enum $C056 export	
+scroll_screen_offset db                 ; scroll_screen_offset = $C056
+.ende	
+
 	
 .enum $C05B export	
 VDPBlank db		                        ; VDPBlank = $C05B
@@ -81,11 +97,13 @@ decompBuffer db		                    ; decompBuffer = $C126
 	
 .ende	
 	
+    
 .enum $C146 export	
 Finput_manager$curr_joypad1$0$0 dw		; Finput_manager$curr_joypad1$0$0 = $C146
 Finput_manager$prev_joypad1$0$0 dw		; Finput_manager$prev_joypad1$0$0 = $C148
 .ende	
 	
+    
 .enum $C1AA export	
 VDPReg db                               ; VDPReg = $C1AA
 .ende	
@@ -95,16 +113,6 @@ spritesHeight db		                ; spritesHeight = $C1AC
 spritesWidth db		                    ; spritesWidth = $C1AD
 .ende	
 
-.enum $C04C export	
-delay_object_value dw                   ; delay_object_value = $C04C
-delay_object_timer dw                   ; delay_object_timer = $C04E
-reset_object_value dw                   ; reset_object_value = $C050
-reset_object_timer dw                   ; reset_object_timer = $C052
-.ende	
-
-.enum $C056 export	
-scroll_screen_offset db                 ; scroll_screen_offset = $C056
-.ende	
 
 .enum $FFFC export	
 _RAM_FFFC_ db	

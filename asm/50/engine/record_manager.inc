@@ -1,4 +1,3 @@
-; Data from F0B to F0D (3 bytes)
 _engine_record_manager_init:
 		ld hl, record_album_index		; record_album_index = $C02A
 		ld iy, $0002
@@ -7,7 +6,6 @@ _engine_record_manager_init:
 		ld (hl), a
 		ret
 
-; Data from F8B to F8C (2 bytes)
 _engine_record_manager_load:
 		push ix
 		ld ix, $0000
@@ -62,7 +60,6 @@ _engine_record_manager_load:
 		pop ix
 		ret
 
-; Data from F6F to F71 (3 bytes)
 _engine_record_manager_decrement:
 		ld bc, record_album_index			; ro->record_album_index
 		ld a, (bc)
@@ -76,7 +73,6 @@ _engine_record_manager_decrement:
 		ld (bc), a							; ro->record_album_index--;
 		ret
 
-; Data from F7E to F80 (3 bytes)
 _engine_record_manager_increment:
 		ld bc, record_album_index		; ro->record_album_index
 		ld a, (bc)
@@ -87,6 +83,5 @@ _engine_record_manager_increment:
 		ret
 +:
 		inc a							; ro->record_album_index++;
-		;.db $02	
 		ld (bc), a
 		ret
