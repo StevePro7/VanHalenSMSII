@@ -94,7 +94,14 @@ VDPReg db                               ; VDPReg = $C1AA
 spritesHeight db		                ; spritesHeight = $C1AC
 spritesWidth db		                    ; spritesWidth = $C1AD
 .ende	
-	
+
+.enum $C04C export	
+delay_object_value dw                   ; delay_object_value = $C04C
+delay_object_timer dw                   ; delay_object_timer = $C04E
+reset_object_value dw                   ; reset_object_value = $C050
+reset_object_timer dw                   ; reset_object_timer = $C052
+.ende	
+
 .enum $C056 export	
 scroll_screen_offset db                 ; scroll_screen_offset = $C056
 .ende	
