@@ -18,12 +18,12 @@ _engine_record_manager_load:
 		add hl, hl
 		ld c, l
 		ld b, h
-		ld hl, record_tiles_data		; record_tiles_data = $C162		; todo		; record_tiles_data	?
+		ld hl, record_tiles_data		; record_tiles_data = $C162
 		add hl, bc
 		ld e, (hl)
 		inc hl
 		ld d, (hl)
-		ld hl, record_tilemap_data		; record_tilemap_data = $C17A		; todo		; record_tilemap_data	?
+		ld hl, record_tilemap_data		; record_tilemap_data = $C17A
 		add hl, bc
 		ld c, (hl)
 		inc hl

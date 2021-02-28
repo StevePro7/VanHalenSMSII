@@ -98,16 +98,15 @@ decompBuffer db		                    ; decompBuffer = $C126
 .ende	
 	
     
+.enum $C14A export	
+cursor_album db                         ; cursor_album = $C14A
+.ende	
+	
 .enum $C146 export	
 Finput_manager$curr_joypad1$0$0 dw		; Finput_manager$curr_joypad1$0$0 = $C146
 Finput_manager$prev_joypad1$0$0 dw		; Finput_manager$prev_joypad1$0$0 = $C148
 .ende	
-	
-    
-.enum $C1AA export	
-VDPReg db                               ; VDPReg = $C1AA
-.ende	
-	
+
 .enum $C162 export	
 record_tiles_data db		            ; record_tiles_data = $C162
 .ende	
@@ -116,6 +115,10 @@ record_tilemap_data db                  ; record_tilemap_data = $C17A
 .ende
 .enum $C192 export	
 record_palette_data db                  ; record_palette_data = $C192	
+.ende
+
+.enum $C1AA export	
+VDPReg db                               ; VDPReg = $C1AA
 .ende
 
 .enum $C1AC export	

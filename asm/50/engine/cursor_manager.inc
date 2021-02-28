@@ -67,7 +67,7 @@ _engine_cursor_manager_load:
 		ld h, $00
 		ld l, e
 		add hl, hl
-		ld de, $C14A				; stevepro TODO : text = cursor_album[ idx ];	??
+		ld de, cursor_album				; cursor_album = $C14A
 		add hl, de
 		ld e, (hl)
 		inc hl
