@@ -196,53 +196,36 @@ _devkit_SMS_setBGPaletteColor:
 		pop af
 		ret
 	
-; Data from 923 to 924 (2 bytes)	
-A$_sms_manager$607:	
-C$_sms_manager.c$100$1$105:	
-G$devkit_SMS_setNextTileatXY$0$0:	
 _devkit_SMS_setNextTileatXY:	
-	.db $DD $E5
+	push ix
+	;.db $DD $21 $00 $00
+	ld ix, $0000
+	add ix, sp
+	;.db $DD $6E $05
+	ld l, (ix + $05)
+	ld h, $00
 	
-; Data from 925 to 928 (4 bytes)	
-A$_sms_manager$608:	
-	.db $DD $21 $00 $00
-	
-; Data from 929 to 92A (2 bytes)	
-A$_sms_manager$609:	
-	.db $DD $39
-	
-; Data from 92B to 92D (3 bytes)	
-A$_sms_manager$613:	
-C$_sms_manager.c$102$1$107:	
-	.db $DD $6E $05
-	
-; Data from 92E to 92F (2 bytes)	
-A$_sms_manager$614:	
-	.db $26 $00
-	
-; Data from 930 to 930 (1 bytes)	
 A$_sms_manager$615:	
-	.db $29
+	add hl, hl
 	
-; Data from 931 to 931 (1 bytes)	
 A$_sms_manager$616:	
-	.db $29
+	add hl, hl
 	
 ; Data from 932 to 932 (1 bytes)	
 A$_sms_manager$617:	
-	.db $29
+	add hl, hl
 	
 ; Data from 933 to 933 (1 bytes)	
 A$_sms_manager$618:	
-	.db $29
+	add hl, hl
 	
 ; Data from 934 to 934 (1 bytes)	
 A$_sms_manager$619:	
-	.db $29
+	add hl, hl
 	
 ; Data from 935 to 935 (1 bytes)	
 A$_sms_manager$620:	
-	.db $29
+	add hl, hl
 	
 ; Data from 936 to 936 (1 bytes)	
 A$_sms_manager$621:	
@@ -266,11 +249,11 @@ A$_sms_manager$625:
 	
 ; Data from 93E to 93F (2 bytes)	
 A$_sms_manager$626:	
-	.db $26 $00
+	ld h, $00
 	
 ; Data from 940 to 940 (1 bytes)	
 A$_sms_manager$627:	
-	.db $29
+	add hl, hl
 	
 ; Data from 941 to 941 (1 bytes)	
 A$_sms_manager$628:	
