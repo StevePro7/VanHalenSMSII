@@ -5,7 +5,6 @@ _engine_input_manager_update:
 		ld (Finput_manager$curr_joypad1$0$0), hl	; Finput_manager$curr_joypad1$0$0 = $C152
 		ret
 
-; Data from ED3 to ED5 (3 bytes)
 _engine_input_manager_hold:
 		ld hl, $0002
 		add hl, sp
@@ -34,7 +33,6 @@ _engine_input_manager_hold:
 		ld l, $01
 		ret
 
-; Data from F00 to F02 (3 bytes)
 _engine_input_manager_move:
 		ld hl, $0002
 		add hl, sp
