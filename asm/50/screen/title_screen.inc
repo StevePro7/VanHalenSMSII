@@ -151,7 +151,7 @@ _screen_title_screen_update:
 ++++:
 	ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
 	push hl
-	ld hl, press_start2
+	ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
 	push hl
 	call _engine_font_manager_draw_text
 	pop af
@@ -159,63 +159,21 @@ _screen_title_screen_update:
 +++++:
 	ld a, $10		; input_type_fire1
 	push af
-
-; Data from 13DC to 13DC (1 bytes)
 	inc sp
-
-; Data from 13DD to 13DF (3 bytes)
-	;.db $CD $D3 $0E
 	call _engine_input_manager_hold
-
-; Data from 13E0 to 13E0 (1 bytes)
 	inc sp
-
-; Data from 13E1 to 13E1 (1 bytes)
 	ld a, l
-
-; Data from 13E2 to 13E2 (1 bytes)
 	or a
-
-; Data from 13E3 to 13E4 (2 bytes)
-	;.db $28 $15
 	jr z, $15
-
-; Data from 13E5 to 13E7 (3 bytes)
-	;.db $21 $0A $15
-	ld hl, $150A
-
-; Data from 13E8 to 13E8 (1 bytes)
+	ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
 	push hl
-
-; Data from 13E9 to 13EB (3 bytes)
-	;.db $21 $13 $14
-	;ld hl, $1413
-	ld hl, press_start2
-
-; Data from 13EC to 13EC (1 bytes)
+	ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
 	push hl
-
-; Data from 13ED to 13EF (3 bytes)
-	;.db $CD $E9 $0D
 	call _engine_font_manager_draw_text
-	
-
-; Data from 13F0 to 13F0 (1 bytes)
 	pop af
-
-; Data from 13F1 to 13F1 (1 bytes)
 	pop af
-
-; Data from 13F2 to 13F4 (3 bytes)
-	;.db $CD $70 $0A
 	call _engine_audio_manager_sfx_right
-
-; Data from 13F5 to 13F7 (3 bytes)
-	;.db $21 $60 $C0
 	ld hl, $C054
-
-; Data from 13F8 to 13F9 (2 bytes)
-	;.db $36 $01
 	ld (hl), $01
 
 ; Data from 13FA to 13FC (3 bytes)
