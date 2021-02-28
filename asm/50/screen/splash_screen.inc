@@ -21,13 +21,13 @@ _screen_splash_screen_update:
 		push af
 		call _engine_delay_manager_update		; $10E6
 		ld (ix - 2), l
-		ld a, $10
+		ld a, $10								; input_type_fire1	16
 		push af
 		inc sp
 		call _engine_input_manager_hold
 		inc sp
 		ld (ix - 1), l
-		ld a, $20
+		ld a, $20								; input_type_fire2	32
 		push af
 		inc sp
 		call _engine_input_manager_move			; $0F00
