@@ -1,4 +1,3 @@
-; Data from DBD to DBE (2 bytes)
 _engine_font_manager_draw_char:
 		push ix
 		ld ix, $0000
@@ -24,7 +23,6 @@ _engine_font_manager_draw_char:
 		pop ix
 		ret
 
-; Data from DE9 to DEA (2 bytes)
 _engine_font_manager_draw_text:
 		push ix
 		ld ix, $0000
@@ -75,7 +73,6 @@ _engine_font_manager_draw_text:
 		pop ix
 		ret
 
-; Data from E3B to E3C (2 bytes)
 _engine_font_manager_draw_data:
 		push ix
 		ld ix, $0000

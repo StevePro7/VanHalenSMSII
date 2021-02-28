@@ -14,7 +14,6 @@ _engine_content_manager_load_til:
 		ret
 
 ; void engine_content_manager_load_splash()
-; Data from AB8 to AB9 (2 bytes)
 _engine_content_manager_load_spl:
 		ld a, $02						; splash__tiles__psgcompr_bank 2
 		push af
@@ -42,7 +41,6 @@ _engine_content_manager_load_spl:
 		ret
 
 ; void engine_content_manager_load_titleGap()
-; Data from AE3 to AE4 (2 bytes)
 _engine_content_manager_load_tit:
 		ld a, $03						; VanHalenTitleGap__tiles__psgcompr_bank 3
 		push af
@@ -78,7 +76,6 @@ _engine_content_manager_load_tit:
 
 
 ; void engine_content_manager_load_titleTop()
-; Data from B1A to B1B (2 bytes)
 _fngine_content_manager_load_tit:
 	;.db $3E $03
 		ld a, $03						; VanHalenTitleTop__tiles__psgcompr_bank 3

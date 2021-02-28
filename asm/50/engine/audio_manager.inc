@@ -1,4 +1,3 @@
-; Data from A70 to A72 (3 bytes)
 _engine_audio_manager_sfx_right:
 		ld hl, _sfx_right_psg
 		push hl
@@ -6,7 +5,6 @@ _engine_audio_manager_sfx_right:
 		pop af
 		ret
 
-; Data from A79 to A7B (3 bytes)
 _engine_audio_manager_sfx_wrong:
 		ld hl, _sfx_wrong_psg
 		push hl
@@ -14,7 +12,6 @@ _engine_audio_manager_sfx_wrong:
 		pop af
 		ret
 
-; Data from A82 to A84 (3 bytes)
 _engine_audio_manager_sfx_cheat:
 		ld hl, _sfx_cheat_psg
 		push hl

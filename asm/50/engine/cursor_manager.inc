@@ -1,4 +1,3 @@
-; Data from B67 to B69 (3 bytes)
 _engine_cursor_manager_init:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		xor a
@@ -96,7 +95,6 @@ _engine_cursor_manager_load:
 		pop ix
 		ret
 
-; Data from C05 to C07 (3 bytes)
 _engine_cursor_manager_save:
 		ld a, (cursor_index_x)		; cursor_index_x = $C026
 		ld c, a
@@ -109,7 +107,6 @@ _engine_cursor_manager_save:
 		add hl, bc
 		ret
 
-; Data from C13 to C14 (2 bytes)
 _engine_cursor_manager_draw:
 		push ix
 		ld ix, $0000				; tile + 0 
@@ -313,7 +310,6 @@ _engine_cursor_manager_draw:
 		pop ix
 		ret
 
-; Data from D3E to D40 (3 bytes)
 _engine_cursor_manager_decX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
@@ -327,7 +323,6 @@ _engine_cursor_manager_decX:
 		ld (bc), a
 		jp update_values
 
-; Data from D51 to D53 (3 bytes)
 _engine_cursor_manager_incX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
@@ -341,7 +336,6 @@ _engine_cursor_manager_incX:
 		ld (bc), a
 		jp update_values
 
-; Data from D63 to D65 (3 bytes)
 _engine_cursor_manager_decY:
 		ld bc, cursor_index_y		; cursor_index_y = $C027
 		ld a, (bc)
@@ -355,7 +349,6 @@ _engine_cursor_manager_decY:
 		ld (bc), a
 		jp update_values
 
-; Data from D76 to D78 (3 bytes)
 _engine_cursor_manager_incY:
 		ld bc, cursor_index_y		; cursor_index_y = $C027
 		ld a, (bc)
