@@ -43,7 +43,7 @@ _screen_splash_screen_update:
 		call _engine_reset_manager_reset		; $113F
 		ld hl, $171C							; ; 17 = 23	1C = 28
 		push hl
-		ld hl, _fiftyonefifty					; $121B							
+		ld hl, fiftyonefifty					; $121B							
 		push hl
 		call _engine_font_manager_draw_text		; $0DE9
 		pop af
@@ -72,5 +72,5 @@ _screen_splash_screen_update:
 
 ; Data from 121B to 121F (5 bytes)
 ; "5150"
-_fiftyonefifty:
+fiftyonefifty:
 	.db $35 $31 $35 $30 $00
