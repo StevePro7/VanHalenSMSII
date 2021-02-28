@@ -4,19 +4,18 @@ _devkit_SMS_init:
 _devkit_SMS_displayOn:	
 		ld hl, $0140
 		jp _SMS_VDPturnOnFeature
+		
 _devkit_SMS_displayOff:	
 		ld hl, $0140
 		jp _SMS_VDPturnOffFeature
 	
-; Data from 831 to 833 (3 bytes)	
 _devkit_SMS_mapROMBank:	
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
 		ld ($FFFF), a
 		ret
-	
-; Data from 83A to 83D (4 bytes)		
+
 _devkit_SMS_setBGScrollX:	
 		ld iy, $0002
 		add iy, sp
@@ -33,7 +32,7 @@ _devkit_SMS_enableSRAM:
 		ld hl, $FFFC
 		ld (hl), $08
 		ret
-	
+
 _devkit_SMS_enableSRAMBank:	
 		ld hl, $0002
 		add hl, sp
@@ -44,12 +43,12 @@ _devkit_SMS_enableSRAMBank:
 		and $0C
 		ld ($FFFC), a
 		ret
-	
+
 _devkit_SMS_disableSRAM:	
 		ld hl, $FFFC
 		ld (hl), $00
 		ret
-	
+
 _devkit_SMS_SRAM:	
 		ld hl, $8000
 		ret
@@ -118,7 +117,7 @@ _devkit_SMS_loadSTMcompressedTil:
 		pop af
 		inc sp
 		ret
-	
+
 _devkit_SMS_loadBGPalette:	
 		pop bc
 		pop hl
@@ -126,14 +125,12 @@ _devkit_SMS_loadBGPalette:
 		push bc
 		jp _SMS_loadBGPalette
 
-
 _devkit_SMS_loadSpritePalette:	
 		pop bc
 		pop hl
 		push hl
 		push bc
 		jp _SMS_loadSpritePalette
-	
 
 _devkit_SMS_setBGPaletteColor:	
 		ld hl, $0004
@@ -165,7 +162,7 @@ _devkit_SMS_setBGPaletteColor:
 		call _SMS_setBGPaletteColor
 		pop af
 		ret
-		
+
 _devkit_SMS_setSpritePaletteColo:
 		ld hl, $0004
 		add hl, sp
@@ -196,7 +193,7 @@ _devkit_SMS_setSpritePaletteColo:
 		call _SMS_setSpritePaletteColor
 		pop af
 		ret
-	
+
 _devkit_SMS_setNextTileatXY:	
 		push ix
 		ld ix, $0000
@@ -242,34 +239,31 @@ _devkit_SMS_setTilePriority:
 		jp $0011
 	
 _devkit_SMS_addSprite:	
-	ld hl, $0004
-	add hl, sp
-	ld b, (hl)
-	push bc
-	inc sp
-	ld hl, $0004
-	add hl, sp
-	ld a, (hl)
-	push af
-	inc sp
-	ld hl, $0004
-	add hl, sp
-	ld a, (hl)
-	push af
-	inc sp
-	call _SMS_addSprite
-	pop af
-	inc sp
-	ret
-
+		ld hl, $0004
+		add hl, sp
+		ld b, (hl)
+		push bc
+		inc sp
+		ld hl, $0004
+		add hl, sp
+		ld a, (hl)
+		push af
+		inc sp
+		ld hl, $0004
+		add hl, sp
+		ld a, (hl)
+		push af
+		inc sp
+		call _SMS_addSprite
+		pop af
+		inc sp
+		ret
 
 _devkit_SMS_initSprites:
 		jp _SMS_initSprites
 
-
 _devkit_SMS_finalizeSprites:	
 		jp _SMS_finalizeSprites
-	
 
 _devkit_SMS_waitForVBlank:	
 		jp _SMS_waitForVBlank
@@ -277,10 +271,8 @@ _devkit_SMS_waitForVBlank:
 _devkit_SMS_copySpritestoSAT:
 		jp _UNSAFE_SMS_copySpritestoSAT
 
-
 _devkit_UNSAFE_SMS_copySpritesto:	
 	jp $1AE0
-
 
 _devkit_SMS_queryPauseRequested:
 		jp _SMS_queryPauseRequested
@@ -312,7 +304,7 @@ _devkit_VDPFEATURE_HIDEFIRSTCOL:
 _devkit_TILE_PRIORITY:	
 		ld hl, $1000
 		ret
-	
+
 
 _devkit_TILE_USE_SPRITE_PALETTE:	
 		ld hl, $0800
@@ -399,16 +391,13 @@ _devkit_PSGSFXPlay:
 		inc sp
 		ret
 	
-; Data from A3F to A41 (3 bytes)	
 _devkit_PSGSFXStop:	
-	;.db $C3 $3D $05
-	jp $053D
-	
-; Data from A42 to A44 (3 bytes)	
-_devkit_PSGSFXGetStatus:	
-	;.db $C3 $5A $06
-	jp $065A
+		jp _PSGSFXStop
 
+
+_devkit_PSGSFXGetStatus:	
+		jp _PSGSFXGetStatus
+	
 _devkit_PSGSilenceChannels:	
 		jp _PSGSilenceChannels
 	
