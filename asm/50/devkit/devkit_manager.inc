@@ -227,11 +227,11 @@ A$_sms_manager$620:
 	
 ; Data from 936 to 936 (1 bytes)	
 A$_sms_manager$621:	
-	.db $4D
+	ld c, l
 	
 ; Data from 937 to 937 (1 bytes)	
 A$_sms_manager$622:	
-	.db $7C
+	ld a, h
 	
 ; Data from 938 to 939 (2 bytes)	
 A$_sms_manager$623:	
@@ -267,7 +267,7 @@ A$_sms_manager$630:
 	
 ; Data from 944 to 944 (1 bytes)	
 A$_sms_manager$631:	
-	.db $7C
+	ld a, h
 	
 ; Data from 945 to 945 (1 bytes)	
 A$_sms_manager$632:	
