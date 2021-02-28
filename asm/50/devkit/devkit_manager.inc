@@ -162,7 +162,7 @@ _devkit_SMS_setBGPaletteColor:
 		ld a, (hl)
 		push af
 		inc sp
-		call $1C5D
+		call _SMS_setBGPaletteColor
 		pop af
 		ret
 		
