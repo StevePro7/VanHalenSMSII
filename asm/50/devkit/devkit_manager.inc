@@ -143,73 +143,32 @@ _devkit_SMS_setBGPaletteColor:
 		add a, a
 		add a, a
 		ld hl, $0003
-	add hl, sp
-	or (hl)
-	ld c, a
-	ld hl, $0005
-	add hl, sp
-	ld a, (hl)
-	rlca
-	rlca
-	rlca
-	rlca
-A$_sms_manager$530:	
-	and $F0
-	or c
-	
-; Data from 8EC to 8EC (1 bytes)	
-A$_sms_manager$532:	
-	.db $47
-	
-; Data from 8ED to 8ED (1 bytes)	
-A$_sms_manager$536:	
-C$_sms_manager.c$92$1$103:	
-	push bc
-	
-; Data from 8EE to 8EE (1 bytes)	
-A$_sms_manager$537:	
-	inc sp
-	
-; Data from 8EF to 8F1 (3 bytes)	
-A$_sms_manager$538:	
-	.db $21 $03 $00
-	
-; Data from 8F2 to 8F2 (1 bytes)	
-A$_sms_manager$539:	
-	add hl, sp
-	
-; Data from 8F3 to 8F3 (1 bytes)	
-A$_sms_manager$540:	
-	ld a, (hl)
-	
-; Data from 8F4 to 8F4 (1 bytes)	
-A$_sms_manager$541:	
-	push af
-	
-; Data from 8F5 to 8F5 (1 bytes)	
-A$_sms_manager$542:	
-	inc sp
-	
-; Data from 8F6 to 8F8 (3 bytes)	
-A$_sms_manager$543:	
-	.db $CD $5D $1C
-	
-; Data from 8F9 to 8F9 (1 bytes)	
-A$_sms_manager$544:	
-	pop af
-	
-; Data from 8FA to 8FA (1 bytes)	
-A$_sms_manager$549:	
-C$_sms_manager.c$93$1$103:	
-XG$devkit_SMS_setBGPaletteColor$:	
-	ret
+		add hl, sp
+		or (hl)
+		ld c, a
+		ld hl, $0005
+		add hl, sp
+		ld a, (hl)
+		rlca
+		rlca
+		rlca
+		rlca
+		and $F0
+		or c
+		ld b, a
+		push bc
+		inc sp
+		ld hl, $0003
+		add hl, sp
+		ld a, (hl)
+		push af
+		inc sp
+		call $1C5D
+		pop af
+		ret
 	
 ; Data from 8FB to 8FD (3 bytes)	
-A$_sms_manager$562:	
-C$_sms_manager.c$94$1$103:	
-C$_sms_manager.c$96$1$105:	
-G$devkit_SMS_setSpritePaletteCol:	
-_devkit_SMS_setSpritePaletteColo:	
+
 	.db $21 $04 $00
 	
 ; Data from 8FE to 8FE (1 bytes)	
@@ -282,7 +241,7 @@ A$_sms_manager$579:
 	
 ; Data from 914 to 914 (1 bytes)	
 A$_sms_manager$580:	
-	.db $47
+	ld b, a
 	
 ; Data from 915 to 915 (1 bytes)	
 A$_sms_manager$584:	
@@ -389,7 +348,7 @@ A$_sms_manager$623:
 	
 ; Data from 93A to 93A (1 bytes)	
 A$_sms_manager$624:	
-	.db $47
+	ld b, a
 	
 ; Data from 93B to 93D (3 bytes)	
 A$_sms_manager$625:	
