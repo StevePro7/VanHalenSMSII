@@ -45,9 +45,9 @@ _screen_record_screen_update:
 	ld d, (ix + $05)
 	ld a, c
 	or a
-	jr nz, +++	;$03
+	jr nz, +++
 	or l
-	jr z, $29
+	jr z, ++++	;$29
 +++:
 ; Data from 15CA to 15CA (1 bytes)
 	push de
@@ -83,6 +83,7 @@ _screen_record_screen_update:
 
 ; Data from 15D8 to 15D8 (1 bytes)
 	push bc
+	;15
 
 ; Data from 15D9 to 15D9 (1 bytes)
 	inc sp
@@ -103,7 +104,7 @@ _screen_record_screen_update:
 
 ; Data from 15E2 to 15E2 (1 bytes)
 	ld b, (hl)
-
+;25
 ; Data from 15E3 to 15E3 (1 bytes)
 	push de
 
@@ -134,18 +135,19 @@ _screen_record_screen_update:
 ; Data from 15F0 to 15F0 (1 bytes)
 	;ld (de), a
 	ld (de), a
+	;35
 
 ; Data from 15F1 to 15F2 (2 bytes)
 	;.db $18 $03
-	jr +++++	; $03
-
+	jr ++++
+++++:
 ; Data from 15F3 to 15F4 (2 bytes)
 	;.db $3E $05
 	ld a, $05
 
 ; Data from 15F5 to 15F5 (1 bytes)
 	ld (de), a
-+++++:
+++++:
 
 ; Data from 15F6 to 15F7 (2 bytes)
 	;.db $DD $E1
