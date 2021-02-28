@@ -19,7 +19,7 @@ _screen_splash_screen_update:
 		ld ix, $0000
 		add ix, sp
 		push af
-		call $10E6
+		call _engine_delay_manager_update		; $10E6
 		ld (ix - 2), l
 		ld a, $10
 		push af
@@ -30,7 +30,7 @@ _screen_splash_screen_update:
 		ld a, $20
 		push af
 		inc sp
-		call $0F00
+		call _engine_input_manager_move			; $0F00
 		inc sp
 		ld a, l
 		or a
@@ -49,7 +49,7 @@ _screen_splash_screen_update:
 		pop af
 		pop af
 		jr +
-		call $113F
+		call _engine_reset_manager_reset		; $113F
 	+:
 		ld l, (ix + $04)
 		ld h, (ix + $05)
@@ -61,9 +61,9 @@ _screen_splash_screen_update:
 		jr z, $04
 		
 	++:
-		ld (hl), $02
+		ld (hl), $02						; screen_type
 		jr +++
-		ld (hl), $01
+		ld (hl), $01						; screen_type_splash
 		
 	+++:
 		ld sp, ix
