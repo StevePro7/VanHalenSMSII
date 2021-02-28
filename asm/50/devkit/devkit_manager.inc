@@ -354,9 +354,9 @@ _devkit_PSGPlayNoRepeat:
 	push hl
 	push bc
 	push hl
-	.db $CD $27 $03
+	;.db $CD $27 $03
 	;call $0327
-	;call _devkit_PSGPlayNoRepeat
+	call _PSGPlayNoRepeat
 	pop af
 	ret
 	
