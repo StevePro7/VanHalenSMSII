@@ -29,13 +29,11 @@ _devkit_SMS_setBGScrollY:
 		ld l, (iy+0)
 		jp _SMS_setBGScrollY
 	
-; Data from 852 to 854 (3 bytes)	
 _devkit_SMS_enableSRAM:	
 		ld hl, $FFFC
 		ld (hl), $08
 		ret
 	
-; Data from 858 to 85A (3 bytes)	
 _devkit_SMS_enableSRAMBank:	
 		ld hl, $0002
 		add hl, sp
@@ -47,13 +45,11 @@ _devkit_SMS_enableSRAMBank:
 		ld ($FFFC), a
 		ret
 	
-; Data from 867 to 869 (3 bytes)		
 _devkit_SMS_disableSRAM:	
 		ld hl, $FFFC
 		ld (hl), $00
 		ret
 	
-; Data from 86D to 86F (3 bytes)		
 _devkit_SMS_SRAM:	
 		ld hl, $8000
 		ret
@@ -68,19 +64,11 @@ _devkit_SMS_useFirstHalfTilesfor:
 		ld l, $00
 		jp _SMS_useFirstHalfTilesforSprites
 	
-; Data from 882 to 883 (2 bytes)	
-A$_sms_manager$361:	
-C$_sms_manager.c$63$1$90:	
-C$_sms_manager.c$65$1$91:	
-H$devkit_SMS_useFirstHalfTilesfo:	
 _dewkit_SMS_useFirstHalfTilesfor:	
-	.db $2E $01
-	
-; Data from 884 to 886 (3 bytes)	
-A$_sms_manager$366:	
-C$_sms_manager.c$66$1$91:	
-XG$devkit_SMS_useFirstHalfTilesf:	
-	.db $C3 $04 $1C
+	;.db $2E 
+	ld l, $01
+	;.db $C3 $04 $1C
+	jp $1C04
 	
 
 _devkit_SMS_VDPturnOnFeature:	
