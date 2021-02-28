@@ -1,4 +1,3 @@
-	;.db $21 $07 $14
 _screen_title_screen_load:
 		call _devkit_SMS_displayOff
 		call _engine_content_manager_load_til
