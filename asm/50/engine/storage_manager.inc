@@ -61,12 +61,12 @@ _engine_storage_manager_availabl:
 	ld a, $01
 
 ; Data from 10FD to 10FE (2 bytes)
-	jr +++++
+	jr ++++
 ++:
 ; Data from 10FF to 10FF (1 bytes)
 +++:
 	xor a
-+++++:
+++++:
 ; Data from 1100 to 1100 (1 bytes)
 	ld l, a
 
