@@ -203,29 +203,32 @@ _devkit_SMS_setNextTileatXY:
 	add ix, sp
 	;.db $DD $6E $05
 	ld l, (ix + $05)
-	ld h, $00
+A$_sms_manager$614:	
+	.db $26 $00
 	
+; Data from 930 to 930 (1 bytes)	
 A$_sms_manager$615:	
-	add hl, hl
+	.db $29
 	
+; Data from 931 to 931 (1 bytes)	
 A$_sms_manager$616:	
-	add hl, hl
+	.db $29
 	
 ; Data from 932 to 932 (1 bytes)	
 A$_sms_manager$617:	
-	add hl, hl
+	.db $29
 	
 ; Data from 933 to 933 (1 bytes)	
 A$_sms_manager$618:	
-	add hl, hl
+	.db $29
 	
 ; Data from 934 to 934 (1 bytes)	
 A$_sms_manager$619:	
-	add hl, hl
+	.db $29
 	
 ; Data from 935 to 935 (1 bytes)	
 A$_sms_manager$620:	
-	add hl, hl
+	.db $29
 	
 ; Data from 936 to 936 (1 bytes)	
 A$_sms_manager$621:	
@@ -249,11 +252,11 @@ A$_sms_manager$625:
 	
 ; Data from 93E to 93F (2 bytes)	
 A$_sms_manager$626:	
-	ld h, $00
+	.db $26 $00
 	
 ; Data from 940 to 940 (1 bytes)	
 A$_sms_manager$627:	
-	add hl, hl
+	.db $29
 	
 ; Data from 941 to 941 (1 bytes)	
 A$_sms_manager$628:	
