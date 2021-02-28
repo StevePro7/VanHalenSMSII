@@ -651,7 +651,8 @@ A$_snd_manager$111:
 	
 ; Data from A10 to A12 (3 bytes)	
 A$_snd_manager$112:	
-	.db $CD $27 $03
+	;.db $CD $27 $03
+	call $0327
 	
 ; Data from A13 to A13 (1 bytes)	
 A$_snd_manager$113:	
@@ -671,7 +672,8 @@ C$_snd_manager.c$20$1$35:
 G$devkit_PSGStop$0$0:	
 XG$devkit_PSGStop$0$0:	
 _devkit_PSGStop:	
-	.db $C3 $81 $02
+	;.db $C3 $81 $02
+	jp $0281
 	
 ; Data from A18 to A1A (3 bytes)	
 A$_snd_manager$152:	
@@ -681,7 +683,8 @@ C$_snd_manager.c$24$1$37:
 G$devkit_PSGResume$0$0:	
 XG$devkit_PSGResume$0$0:	
 _devkit_PSGResume:	
-	.db $C3 $A8 $02
+	;.db $C3 $A8 $02
+	jp $02A8
 	
 ; Data from A1B to A1D (3 bytes)	
 A$_snd_manager$169:	
@@ -691,7 +694,8 @@ C$_snd_manager.c$28$1$39:
 G$devkit_PSGGetStatus$0$0:	
 XG$devkit_PSGGetStatus$0$0:	
 _devkit_PSGGetStatus:	
-	.db $C3 $36 $03
+	;.db $C3 $36 $03
+	jp $0336
 	
 ; Data from A1E to A20 (3 bytes)	
 A$_snd_manager$182:	
@@ -699,7 +703,8 @@ C$_snd_manager.c$29$1$39:
 C$_snd_manager.c$31$1$41:	
 G$devkit_PSGSetMusicVolumeAttenu:	
 _devkit_PSGSetMusicVolumeAttenua:	
-	.db $21 $02 $00
+	;.db $21 $02 $00
+	ld hl, $0002
 	
 ; Data from A21 to A21 (1 bytes)	
 A$_snd_manager$183:	
