@@ -75,11 +75,11 @@ _screen_record_screen_update:
 		pop de
 		ld a, $04
 		ld (de), a
-		jr ++++
+		jr +++++
 ++++:
 		ld a, $05
 		ld (de), a
-++++:
++++++:
 		pop ix
 		ret
 
