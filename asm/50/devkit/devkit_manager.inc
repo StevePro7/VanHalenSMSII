@@ -360,44 +360,44 @@ _devkit_PSGPlayNoRepeat:
 
 
 _devkit_PSGStop:	
-	jp _PSGStop
+		jp _PSGStop
 	
 	
 _devkit_PSGResume:	
-	jp _PSGResume
+		jp _PSGResume
 	
 
 _devkit_PSGGetStatus:	
-	jp _PSGGetStatus
+		jp _PSGGetStatus
 	
 
 _devkit_PSGSetMusicVolumeAttenua:	
-	ld hl, $0002
-	add hl, sp
-	ld a, (hl)
-	push af
-	inc sp
-	call _PSGSetMusicVolumeAttenuation
-	inc sp
-	ret
-	
+		ld hl, $0002
+		add hl, sp
+		ld a, (hl)
+		push af
+		inc sp
+		call _PSGSetMusicVolumeAttenuation
+		inc sp
+		ret
+
+
 _devkit_PSGSFXPlay:	
-	ld hl, $0004
-	add hl, sp
-	ld a, (hl)
-	push af
-	inc sp
-	ld hl, $0003
-	add hl, sp
-	ld c, (hl)
-	inc hl
-	ld b, (hl)
-	push bc
-	;.db $CD $07 $06
-	call $0607
-	pop af
-	inc sp
-	ret
+		ld hl, $0004
+		add hl, sp
+		ld a, (hl)
+		push af
+		inc sp
+		ld hl, $0003
+		add hl, sp
+		ld c, (hl)
+		inc hl
+		ld b, (hl)
+		push bc
+		call _PSGSFXPlay
+		pop af
+		inc sp
+		ret
 	
 ; Data from A3F to A41 (3 bytes)	
 _devkit_PSGSFXStop:	
