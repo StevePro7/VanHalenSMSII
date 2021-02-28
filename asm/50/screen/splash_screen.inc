@@ -1,15 +1,15 @@
 ; Data from 119D to 119F (3 bytes)
 _screen_splash_screen_load:
-		call $082B
-		call $0AA2
-		call $0AB8
-		call $0825
-		ld hl, $0096
+		call _devkit_SMS_displayOff				;$082B
+		call _engine_content_manager_load_til	;$0AA2
+		call _engine_content_manager_load_spl	;$0AB8
+		call _devkit_SMS_displayOn				; $0825
+		ld hl, $0096							; SPLASH_SCREEN_DELAY	150
 		push hl
-		call $10CD
-		ld hl, $004B
+		call _engine_delay_manager_load			; $10CD
+		ld hl, $004B							; DELETE_SCREEN_DELAY	75
 		ex (sp), hl
-		call $1108
+		call _engine_reset_manager_load			; $1108
 		pop af
 		ret
 
