@@ -1,12 +1,14 @@
 ; Data from 1042 to 1044 (3 bytes)
 _engine_storage_manager_availabl:
-	.db $CD $6D $08
+	;.db $CD $6D $08
+	call _devkit_SMS_SRAM
 
 ; Data from 1045 to 1045 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from 1046 to 1048 (3 bytes)
-	.db $CD $52 $08
+	;.db $CD $52 $08
+	call _devkit_SMS_enableSRAM
 
 ; Data from 1049 to 1049 (1 bytes)
 	.db $E1
@@ -81,7 +83,7 @@ _engine_storage_manager_availabl:
 	.db $6F
 
 ; Data from 106B to 106B (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from 106C to 106E (3 bytes)
 	.db $CD $67 $08
@@ -97,7 +99,7 @@ _engine_storage_manager_read:
 	.db $CD $6D $08
 
 ; Data from 1074 to 1074 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from 1075 to 1077 (3 bytes)
 	.db $CD $52 $08
@@ -122,7 +124,7 @@ _engine_storage_manager_write:
 	.db $CD $6D $08
 
 ; Data from 1087 to 1087 (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from 1088 to 108A (3 bytes)
 	.db $CD $52 $08
@@ -189,7 +191,7 @@ _engine_storage_manager_erase:
 	.db $CD $6D $08
 
 ; Data from 10AE to 10AE (1 bytes)
-	.db $E5
+	push hl
 
 ; Data from 10AF to 10B1 (3 bytes)
 	.db $CD $52 $08
