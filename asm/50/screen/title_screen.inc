@@ -1,3 +1,4 @@
+	;.db $21 $07 $14
 _screen_title_screen_load:
 		call _devkit_SMS_displayOff
 		call _engine_content_manager_load_til
@@ -133,88 +134,30 @@ _screen_title_screen_update:
 	or a
 	jr z, $29
 	ld hl, title_screen_flash	; title_screen_flash = $C055
-
-; Data from 13B3 to 13B4 (2 bytes)
-	;.db $3E $01
 	ld a, $01
-
-; Data from 13B5 to 13B5 (1 bytes)
 	sub a, (hl)
-
-; Data from 13B6 to 13B6 (1 bytes)
 	ld (hl), a
-
-; Data from 13B7 to 13B9 (3 bytes)
-	;.db $3A $61 $C0
 	ld a,(title_screen_flash)	; title_screen_flash = $C055
-	
-; Data from 13BA to 13BA (1 bytes)
 	or a
-
-; Data from 13BB to 13BC (2 bytes)
-	;.db $28 $0F
 	jr z, ++++	;$0F
-	
-
-; Data from 13BD to 13BF (3 bytes)
-	;.db $21 $0A $15
-	ld hl, $150A				; engine_font_manager_draw_text( LOCALE_PRESS_START, 10, 21 );
-
-; Data from 13C0 to 13C0 (1 bytes)
+	ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
 	push hl
-
-; Data from 13C1 to 13C3 (3 bytes)
-	;.db $21 $07 $14
-	ld hl, $1371
-	
-
-; Data from 13C4 to 13C4 (1 bytes)
+	ld hl, blank_clear			; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
 	push hl
-
-; Data from 13C5 to 13C7 (3 bytes)
-	;.db $CD $E9 $0D
 	call _engine_font_manager_draw_text
-
-; Data from 13C8 to 13C8 (1 bytes)
 	pop af
-
-; Data from 13C9 to 13C9 (1 bytes)
 	pop af
-
-; Data from 13CA to 13CB (2 bytes)
-	;.db $18 $0D
 	jr +++++	;$0D
 ++++:
-; Data from 13CC to 13CE (3 bytes)
-	;.db $21 $0A $15
-	ld hl, $150A
-
-; Data from 13CF to 13CF (1 bytes)
+	ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
 	push hl
-
-; Data from 13D0 to 13D2 (3 bytes)
-	;.db $21 $13 $14
-	;ld hl, $_engine_content_manager_load_spr
 	ld hl, press_start2
-
-; Data from 13D3 to 13D3 (1 bytes)
 	push hl
-
-; Data from 13D4 to 13D6 (3 bytes)
-	;.db $CD $E9 $0D
 	call _engine_font_manager_draw_text
-
-; Data from 13D7 to 13D7 (1 bytes)
 	pop af
-
-; Data from 13D8 to 13D8 (1 bytes)
 	pop af
 +++++:
-; Data from 13D9 to 13DA (2 bytes)
-	;.db $3E $10
 	ld a, $10		; input_type_fire1
-
-; Data from 13DB to 13DB (1 bytes)
 	push af
 
 ; Data from 13DC to 13DC (1 bytes)
