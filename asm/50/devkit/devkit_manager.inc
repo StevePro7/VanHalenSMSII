@@ -98,94 +98,28 @@ _devkit_SMS_loadSTMcompressedTil:
 		ld a, $20
 		push af
 		inc sp
+		ld hl, $0005
+		add hl, sp
+		ld c, (hl)
+		inc hl
+		ld b, (hl)
+		push bc
+		ld hl, $0006
+		add hl, sp
+		ld a, (hl)
+		push af
+		inc sp
+		ld hl, $0006
+		add hl, sp
+		ld a, (hl)
+		push af
+		inc sp
+		call $1E3F
+		pop af
+		pop af
+		inc sp
+		ret
 	
-	;.db $21 $05 $00
-	ld hl, $0005
-	
-	add hl, sp
-	
-; Data from 8AC to 8AC (1 bytes)	
-A$_sms_manager$437:	
-	.db $4E
-	
-; Data from 8AD to 8AD (1 bytes)	
-A$_sms_manager$438:	
-	.db $23
-	
-; Data from 8AE to 8AE (1 bytes)	
-A$_sms_manager$439:	
-	.db $46
-	
-; Data from 8AF to 8AF (1 bytes)	
-A$_sms_manager$440:	
-	.db $C5
-	
-; Data from 8B0 to 8B2 (3 bytes)	
-A$_sms_manager$441:	
-	.db $21 $06 $00
-	
-; Data from 8B3 to 8B3 (1 bytes)	
-A$_sms_manager$442:	
-	add hl, sp
-	
-; Data from 8B4 to 8B4 (1 bytes)	
-A$_sms_manager$443:	
-	.db $7E
-	
-; Data from 8B5 to 8B5 (1 bytes)	
-A$_sms_manager$444:	
-	push af
-	
-; Data from 8B6 to 8B6 (1 bytes)	
-A$_sms_manager$445:	
-	inc sp
-	
-; Data from 8B7 to 8B9 (3 bytes)	
-A$_sms_manager$446:	
-	.db $21 $06 $00
-	
-; Data from 8BA to 8BA (1 bytes)	
-A$_sms_manager$447:	
-	add hl, sp
-	
-; Data from 8BB to 8BB (1 bytes)	
-A$_sms_manager$448:	
-	.db $7E
-	
-; Data from 8BC to 8BC (1 bytes)	
-A$_sms_manager$449:	
-	push af
-	
-; Data from 8BD to 8BD (1 bytes)	
-A$_sms_manager$450:	
-	inc sp
-	
-; Data from 8BE to 8C0 (3 bytes)	
-A$_sms_manager$451:	
-	.db $CD $3F $1E
-	
-; Data from 8C1 to 8C1 (1 bytes)	
-A$_sms_manager$452:	
-	.db $F1
-	
-; Data from 8C2 to 8C2 (1 bytes)	
-A$_sms_manager$453:	
-	.db $F1
-	
-; Data from 8C3 to 8C3 (1 bytes)	
-A$_sms_manager$454:	
-	inc sp
-	
-; Data from 8C4 to 8C4 (1 bytes)	
-A$_sms_manager$459:	
-C$_sms_manager.c$79$1$97:	
-XG$devkit_SMS_loadSTMcompressedT:	
-	ret
-	
-A$_sms_manager$472:	
-C$_sms_manager.c$81$1$97:	
-C$_sms_manager.c$83$1$99:	
-G$devkit_SMS_loadBGPalette$0$0:	
 _devkit_SMS_loadBGPalette:	
 		pop bc
 		pop hl
@@ -201,7 +135,7 @@ _devkit_SMS_loadSpritePalette:
 		push bc
 		jp _SMS_loadSpritePalette
 	
-; Data from 8D3 to 8D5 (3 bytes)	
+
 _devkit_SMS_setBGPaletteColor:	
 	.db $21 $04 $00
 	
@@ -211,7 +145,7 @@ A$_sms_manager$515:
 	
 ; Data from 8D7 to 8D7 (1 bytes)	
 A$_sms_manager$516:	
-	.db $7E
+	ld a, (hl)
 	
 ; Data from 8D8 to 8D8 (1 bytes)	
 A$_sms_manager$517:	
@@ -247,7 +181,7 @@ A$_sms_manager$524:
 	
 ; Data from 8E4 to 8E4 (1 bytes)	
 A$_sms_manager$525:	
-	.db $7E
+	ld a, (hl)
 	
 ; Data from 8E5 to 8E5 (1 bytes)	
 A$_sms_manager$526:	
@@ -280,7 +214,7 @@ A$_sms_manager$532:
 ; Data from 8ED to 8ED (1 bytes)	
 A$_sms_manager$536:	
 C$_sms_manager.c$92$1$103:	
-	.db $C5
+	push bc
 	
 ; Data from 8EE to 8EE (1 bytes)	
 A$_sms_manager$537:	
@@ -296,7 +230,7 @@ A$_sms_manager$539:
 	
 ; Data from 8F3 to 8F3 (1 bytes)	
 A$_sms_manager$540:	
-	.db $7E
+	ld a, (hl)
 	
 ; Data from 8F4 to 8F4 (1 bytes)	
 A$_sms_manager$541:	
@@ -312,7 +246,7 @@ A$_sms_manager$543:
 	
 ; Data from 8F9 to 8F9 (1 bytes)	
 A$_sms_manager$544:	
-	.db $F1
+	pop af
 	
 ; Data from 8FA to 8FA (1 bytes)	
 A$_sms_manager$549:	
@@ -334,7 +268,7 @@ A$_sms_manager$563:
 	
 ; Data from 8FF to 8FF (1 bytes)	
 A$_sms_manager$564:	
-	.db $7E
+	ld a, (hl)
 	
 ; Data from 900 to 900 (1 bytes)	
 A$_sms_manager$565:	
@@ -370,7 +304,7 @@ A$_sms_manager$572:
 	
 ; Data from 90C to 90C (1 bytes)	
 A$_sms_manager$573:	
-	.db $7E
+	ld a, (hl)
 	
 ; Data from 90D to 90D (1 bytes)	
 A$_sms_manager$574:	
@@ -403,7 +337,7 @@ A$_sms_manager$580:
 ; Data from 915 to 915 (1 bytes)	
 A$_sms_manager$584:	
 C$_sms_manager.c$97$1$105:	
-	.db $C5
+	push bc
 	
 ; Data from 916 to 916 (1 bytes)	
 A$_sms_manager$585:	
@@ -419,7 +353,7 @@ A$_sms_manager$587:
 	
 ; Data from 91B to 91B (1 bytes)	
 A$_sms_manager$588:	
-	.db $7E
+	ld a, (hl)
 	
 ; Data from 91C to 91C (1 bytes)	
 A$_sms_manager$589:	
@@ -435,7 +369,7 @@ A$_sms_manager$591:
 	
 ; Data from 921 to 921 (1 bytes)	
 A$_sms_manager$592:	
-	.db $F1
+	pop af
 	
 ; Data from 922 to 922 (1 bytes)	
 A$_sms_manager$597:	
@@ -571,7 +505,7 @@ A$_sms_manager$654:
 	
 ; Data from 94F to 94F (1 bytes)	
 A$_sms_manager$655:	
-	.db $C5
+	push bc
 	
 ; Data from 950 to 952 (3 bytes)	
 A$_sms_manager$660:	
@@ -627,11 +561,11 @@ A$_sms_manager$697:
 	
 ; Data from 968 to 968 (1 bytes)	
 A$_sms_manager$698:	
-	.db $46
+	ld b, (hl)
 	
 ; Data from 969 to 969 (1 bytes)	
 A$_sms_manager$699:	
-	.db $C5
+	push bc
 	
 ; Data from 96A to 96A (1 bytes)	
 A$_sms_manager$700:	
@@ -647,7 +581,7 @@ A$_sms_manager$702:
 	
 ; Data from 96F to 96F (1 bytes)	
 A$_sms_manager$703:	
-	.db $7E
+	ld a, (hl)
 	
 ; Data from 970 to 970 (1 bytes)	
 A$_sms_manager$704:	
@@ -667,7 +601,7 @@ A$_sms_manager$707:
 	
 ; Data from 976 to 976 (1 bytes)	
 A$_sms_manager$708:	
-	.db $7E
+	ld a, (hl)
 	
 ; Data from 977 to 977 (1 bytes)	
 A$_sms_manager$709:	
@@ -683,7 +617,7 @@ A$_sms_manager$711:
 	
 ; Data from 97C to 97C (1 bytes)	
 A$_sms_manager$712:	
-	.db $F1
+	pop af
 	
 ; Data from 97D to 97D (1 bytes)	
 A$_sms_manager$713:	
@@ -853,7 +787,7 @@ A$_snd_manager$85:
 	
 ; Data from A04 to A04 (1 bytes)	
 A$_snd_manager$86:	
-	.db $C5
+	push bc
 	
 ; Data from A05 to A05 (1 bytes)	
 A$_snd_manager$87:	
@@ -865,7 +799,7 @@ A$_snd_manager$88:
 	
 ; Data from A09 to A09 (1 bytes)	
 A$_snd_manager$89:	
-	.db $F1
+	pop af
 	
 ; Data from A0A to A0A (1 bytes)	
 A$_snd_manager$94:	
@@ -891,7 +825,7 @@ A$_snd_manager$109:
 	
 ; Data from A0E to A0E (1 bytes)	
 A$_snd_manager$110:	
-	.db $C5
+	push bc
 	
 ; Data from A0F to A0F (1 bytes)	
 A$_snd_manager$111:	
@@ -903,7 +837,7 @@ A$_snd_manager$112:
 	
 ; Data from A13 to A13 (1 bytes)	
 A$_snd_manager$113:	
-	.db $F1
+	pop af
 	
 ; Data from A14 to A14 (1 bytes)	
 A$_snd_manager$118:	
@@ -955,7 +889,7 @@ A$_snd_manager$183:
 	
 ; Data from A22 to A22 (1 bytes)	
 A$_snd_manager$184:	
-	.db $7E
+	ld a, (hl)
 	
 ; Data from A23 to A23 (1 bytes)	
 A$_snd_manager$185:	
@@ -989,7 +923,7 @@ A$_snd_manager$207:
 	
 ; Data from A2E to A2E (1 bytes)	
 A$_snd_manager$208:	
-	.db $7E
+	ld a, (hl)
 	
 ; Data from A2F to A2F (1 bytes)	
 A$_snd_manager$209:	
@@ -1009,19 +943,19 @@ A$_snd_manager$212:
 	
 ; Data from A35 to A35 (1 bytes)	
 A$_snd_manager$213:	
-	.db $4E
+	ld c, (hl)
 	
 ; Data from A36 to A36 (1 bytes)	
 A$_snd_manager$214:	
-	.db $23
+	inc hl
 	
 ; Data from A37 to A37 (1 bytes)	
 A$_snd_manager$215:	
-	.db $46
+	ld b, (hl)
 	
 ; Data from A38 to A38 (1 bytes)	
 A$_snd_manager$216:	
-	.db $C5
+	push bc
 	
 ; Data from A39 to A3B (3 bytes)	
 A$_snd_manager$217:	
@@ -1029,7 +963,7 @@ A$_snd_manager$217:
 	
 ; Data from A3C to A3C (1 bytes)	
 A$_snd_manager$218:	
-	.db $F1
+	pop af
 	
 ; Data from A3D to A3D (1 bytes)	
 A$_snd_manager$219:	
