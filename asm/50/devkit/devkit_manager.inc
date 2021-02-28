@@ -66,7 +66,7 @@ _devkit_SMS_useFirstHalfTilesfor:
 	
 _dewkit_SMS_useFirstHalfTilesfor:	
 		ld l, $01
-		jp _SMS_useFirstHalfTilesforSprites		; $1C04
+		jp _SMS_useFirstHalfTilesforSprites
 
 _devkit_SMS_VDPturnOnFeature:	
 		pop bc
@@ -725,23 +725,15 @@ _devkit_PSGFrame:
 _devkit_PSGSFXFrame:	
 		jp _PSGSFXFrame
 
-; Data from A51 to A52 (2 bytes)	
 _devkit_SFX_CHANNEL2:	
-	;.db $2E $01
-	;ret
-	ld l, $01
-	ret
+		ld l, $01
+		ret
 	
-; Data from A54 to A55 (2 bytes)	
 _devkit_SFX_CHANNEL3:	
-	;.db $2E $02
-	;ret
-	ld l, $02
-	ret
+		ld l, $02
+		ret
 	
 ; Data from A57 to A58 (2 bytes)	
 _devkit_SFX_CHANNELS2AND3:	
-	;.db $2E $03
-	;ret
-	ld l, $03
-	ret
+		ld l, $03
+		ret
