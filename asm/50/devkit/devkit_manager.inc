@@ -193,7 +193,7 @@ _devkit_SMS_setSpritePaletteColo:
 		ld a, (hl)
 		push af
 		inc sp
-		call $1C71
+		call _SMS_setSpritePaletteColor
 		pop af
 		ret
 	
