@@ -22,7 +22,7 @@ _PSGStop:
 		ld (hl), $00
 		ret
 	
-; Data from 2A8 to 2F3 (76 bytes)	
+
 _PSGResume:	
 ; todo
 	.db $3A $01 $C0 $B7 $C0 $3A $0F $C0 $F6 $90 $D3 $7F $3A $10 $C0 $F6
@@ -30,9 +30,7 @@ _PSGResume:
 	.db $D3 $7F $3A $14 $C0 $E6 $3F $D3 $7F $3A $11 $C0 $F6 $D0 $D3 $7F
 	.db $3A $17 $C0 $B7 $20 $10 $3A $15 $C0 $E6 $0F $F6 $E0 $D3 $7F $3A
 	.db $12 $C0 $F6 $F0 $D3 $7F $21 $01 $C0 $36 $01 $C9
-	
-; Data from 2F4 to 320 (45 bytes)	
-; todo
+
 _PSGPlay:	
 	;.db $CD $81 $02 $21 $09 $C0 $36 $01 $D1 $C1 $C5 $D5 $ED $43 $02 $C0
 	;.db $ED $43 $04 $C0 $ED $43 $06 $C0 $21 $08 $C0 $36 $00 $21 $0C $C0
@@ -60,7 +58,6 @@ _PSGPlay:
 		ret
 
 	
-; Data from 321 to 326 (6 bytes)	
 _PSGCancelLoop:	
 	;.db $21 $09 $C0 $36 $00 $C9
 		ld hl, PSGLoopFlag			; PSGLoopFlag = $C009
@@ -79,7 +76,6 @@ _PSGPlayNoRepeat:
 		ld hl, PSGLoopFlag			; PSGLoopFlag = $C009
 		ld (hl), $00
 		ret
-	
 
 _PSGGetStatus:	
 	;.db $FD $21 $01 $C0 $FD $6E $00 $C9
@@ -258,8 +254,7 @@ _LABEL_3C7_:
 		ld sp, ix
 		pop ix
 		ret
-	
-; Data from 44E to 53C (239 bytes)	
+
 _PSGSetMusicVolumeAttenuation:	
 ; todo
 	.db $DD $E5 $DD $21 $00 $00 $DD $39 $F5 $DD $7E $04 $32 $0B $C0 $3A
@@ -397,8 +392,7 @@ _LABEL_602_:
 		ld sp, ix
 		pop ix
 		ret
-	
-; Data from 607 to 653 (77 bytes)	
+
 _PSGSFXPlay:	
 	;.db $CD $3D $05 $21 $22 $C0 $36 $00 $D1 $C1 $C5 $D5 $ED $43 $1B $C0
 	;.db $ED $43 $1D $C0 $ED $43 $1F $C0 $21 $21 $C0 $36 $00 $21 $23 $C0
@@ -444,21 +438,18 @@ _PSGSFXPlay:
 		ld (hl), $01
 		ret
 
-; Data from 654 to 659 (6 bytes)	
 _PSGSFXCancelLoop:	
 	;.db $21 $22 $C0 $36 $00 $C9
 		ld hl, PSGSFXLoopFlag		; PSGSFXLoopFlag = $C022
 		ld (hl), $00
 		ret
-	
-; Data from 65A to 661 (8 bytes)	
+
 _PSGSFXGetStatus:	
 	;.db $FD $21 $1A $C0 $FD $6E $00 $C9
 		ld iy, PSGSFXStatus			; PSGSFXStatus = $C01A
 		ld l, (iy + $00)
 		ret
-	
-; Data from 662 to 682 (33 bytes)	
+
 _PSGSFXPlayLoop:	
 	;.db $FD $21 $04 $00 $FD $39 $FD $7E $00 $F5 $33 $FD $2B $FD $2B $FD
 	;.db $6E $00 $FD $66 $01 $E5 $CD $07 $06 $F1 $33 $21 $22 $C0 $36 $01
@@ -650,9 +641,6 @@ _LABEL_77B_:
 		or a
 		jr z, _LABEL_742_
 		jp _LABEL_692_
-	
-	; Data from 79B to 79B (1 bytes)
-	;.db $C9
 		ret
 	
 _PSGSFXFrame:	
@@ -737,7 +725,4 @@ _LABEL_7AB_:
 		ld hl, (PSGSFXStart)	; PSGSFXStart = $C01B
 		add hl, bc
 		jp _LABEL_7AB_
-	
-	; Data from 821 to 821 (1 bytes)
-	;.db $C9
 		ret
