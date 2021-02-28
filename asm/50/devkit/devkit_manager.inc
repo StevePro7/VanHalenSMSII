@@ -66,7 +66,7 @@ _devkit_SMS_useFirstHalfTilesfor:
 	
 _dewkit_SMS_useFirstHalfTilesfor:	
 		ld l, $01
-		jp $1C04
+		jp _SMS_useFirstHalfTilesforSprites		; $1C04
 
 _devkit_SMS_VDPturnOnFeature:	
 		pop bc
@@ -226,25 +226,9 @@ _devkit_SMS_setNextTileatXY:
 _devkit_SMS_setTile:	
 	pop bc
 	pop hl
-A$_sms_manager$654:	
 	push hl
-	
-; Data from 94F to 94F (1 bytes)	
-A$_sms_manager$655:	
 	push bc
-	
-; Data from 950 to 952 (3 bytes)	
-A$_sms_manager$660:	
-C$_sms_manager.c$107$1$109:	
-XG$devkit_SMS_setTile$0$0:	
-	;.db $C3 $11 $00
 	jp $0011
-	
-; Data from 953 to 956 (4 bytes)	
-A$_sms_manager$673:	
-C$_sms_manager.c$108$1$109:	
-C$_sms_manager.c$110$1$111:	
-G$devkit_SMS_setTilePriority$0$0:	
 _devkit_SMS_setTilePriority:	
 	;.db $FD $21 $02 $00
 	ld iy, $0002
