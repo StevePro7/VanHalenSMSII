@@ -4,83 +4,35 @@ _screen_record_screen_load:
 
 _screen_record_screen_update:
 		push ix
-
-; Data from 1580 to 1583 (4 bytes)
-	ld ix, $0000
-	add ix, sp
-	ld a, $04			; input_type_left
-	push af
-	inc sp
-	call _engine_input_manager_hold
-	inc sp
-	ld a, l
-	or a
-; Data from 1590 to 1591 (2 bytes)
-	;.db $28 $06
-	jr z, $06
-
-; Data from 1592 to 1594 (3 bytes)
-	;.db $CD $E1 $0F
-	call _engine_record_manager_decrement
-
-; Data from 1595 to 1597 (3 bytes)
-	;.db $CD $F9 $15
-	call load_record
-
-; Data from 1598 to 1599 (2 bytes)
-	;.db $3E $08
-	ld a, $08			; input_type_right
-
-; Data from 159A to 159A (1 bytes)
-	push af
-
-; Data from 159B to 159B (1 bytes)
-	inc sp
-
-; Data from 159C to 159E (3 bytes)
-	;.db $CD $D3 $0E
-	call _engine_input_manager_hold
-
-; Data from 159F to 159F (1 bytes)
-	inc sp
-
-; Data from 15A0 to 15A0 (1 bytes)
-	ld a, l
-
-; Data from 15A1 to 15A1 (1 bytes)
-	or a
-
-; Data from 15A2 to 15A3 (2 bytes)
-	;.db $28 $06
-	jr z, $06
-
-; Data from 15A4 to 15A6 (3 bytes)
-	;.db $CD $F0 $0F
-	call _engine_record_manager_increment
-
-; Data from 15A7 to 15A9 (3 bytes)
-	;.db $CD $F9 $15
-	call load_record
-
-; Data from 15AA to 15AB (2 bytes)
-	;.db $3E $10
+		ld ix, $0000
+		add ix, sp
+		ld a, $04			; input_type_left
+		push af
+		inc sp
+		call _engine_input_manager_hold
+		inc sp
+		ld a, l
+		or a
+		jr z, +;
+		call _engine_record_manager_decrement
+		call load_record
++:
+		ld a, $08			; input_type_right
+		push af
+		inc sp
+		call _engine_input_manager_hold
+		inc sp
+		ld a, l
+		or a
+		jr z, ++
+		call _engine_record_manager_increment
+		call load_record
+++:
 	ld a, $10		; input_type_fire2
-
-; Data from 15AC to 15AC (1 bytes)
 	push af
-
-; Data from 15AD to 15AD (1 bytes)
 	inc sp
-
-; Data from 15AE to 15B0 (3 bytes)
-	;.db $CD $D3 $0E
 	call _engine_input_manager_hold
-
-; Data from 15B1 to 15B1 (1 bytes)
 	inc sp
-
-; Data from 15B2 to 15B2 (1 bytes)
-	;.db $4D
 	ld c, l
 
 ; Data from 15B3 to 15B3 (1 bytes)
