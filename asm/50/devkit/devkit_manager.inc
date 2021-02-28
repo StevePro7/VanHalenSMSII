@@ -146,32 +146,16 @@ _devkit_SMS_setBGPaletteColor:
 	add hl, sp
 	or (hl)
 	ld c, a
-	
-	;.db $21 $05 $00
 	ld hl, $0005
 	add hl, sp
 	ld a, (hl)
 	rlca
-	
-; Data from 8E6 to 8E6 (1 bytes)	
-A$_sms_manager$527:	
 	rlca
-	
-; Data from 8E7 to 8E7 (1 bytes)	
-A$_sms_manager$528:	
 	rlca
-	
-; Data from 8E8 to 8E8 (1 bytes)	
-A$_sms_manager$529:	
 	rlca
-	
-; Data from 8E9 to 8EA (2 bytes)	
 A$_sms_manager$530:	
-	.db $E6 $F0
-	
-; Data from 8EB to 8EB (1 bytes)	
-A$_sms_manager$531:	
-	.db $B1
+	and $F0
+	or c
 	
 ; Data from 8EC to 8EC (1 bytes)	
 A$_sms_manager$532:	
@@ -290,7 +274,7 @@ A$_sms_manager$577:
 	
 ; Data from 911 to 912 (2 bytes)	
 A$_sms_manager$578:	
-	.db $E6 $F0
+	and $F0
 	
 ; Data from 913 to 913 (1 bytes)	
 A$_sms_manager$579:	
@@ -663,7 +647,7 @@ _devkit_isCollisionDetected:
 	
 ; Data from 997 to 998 (2 bytes)	
 A$_sms_manager$851:	
-	.db $E6 $20
+	and $20
 	
 ; Data from 999 to 999 (1 bytes)	
 A$_sms_manager$852:	
