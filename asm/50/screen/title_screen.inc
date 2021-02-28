@@ -45,7 +45,7 @@ _screen_title_screen_load:
 		call _engine_storage_manager_availabl
 		ld a, l
 		or a
-		jr z, +	;$03
+		jr z, +
 		call _engine_storage_manager_read
 +:
 		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
@@ -131,73 +131,56 @@ _screen_title_screen_update:
 		call _engine_delay_manager_update
 		ld (ix - 3), l
 		ld a, l
-	or a
-	jr z, $29
-	ld hl, title_screen_flash	; title_screen_flash = $C055
-	ld a, $01
-	sub a, (hl)
-	ld (hl), a
-	ld a,(title_screen_flash)	; title_screen_flash = $C055
-	or a
-	jr z, ++++	;$0F
-	ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
-	push hl
-	ld hl, blank_clear			; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
-	push hl
-	call _engine_font_manager_draw_text
-	pop af
-	pop af
-	jr +++++	;$0D
+		or a
+		jr z, $29
+		ld hl, title_screen_flash	; title_screen_flash = $C055
+		ld a, $01
+		sub a, (hl)
+		ld (hl), a
+		ld a,(title_screen_flash)	; title_screen_flash = $C055
+		or a
+		jr z, ++++
+		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
+		push hl
+		ld hl, blank_clear			; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
+		push hl
+		call _engine_font_manager_draw_text
+		pop af
+		pop af
+		jr +++++
 ++++:
-	ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
-	push hl
-	ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
-	push hl
-	call _engine_font_manager_draw_text
-	pop af
-	pop af
+		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
+		push hl
+		ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
+		push hl
+		call _engine_font_manager_draw_text
+		pop af
+		pop af
 +++++:
-	ld a, $10		; input_type_fire1
-	push af
-	inc sp
-	call _engine_input_manager_hold
-	inc sp
-	ld a, l
-	or a
-	jr z, $15
-	ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
-	push hl
-	ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
-	push hl
-	call _engine_font_manager_draw_text
-	pop af
-	pop af
-	call _engine_audio_manager_sfx_right
-	ld hl, $C054
-	ld (hl), $01
-
-; Data from 13FA to 13FC (3 bytes)
-	;.db $DD $6E $FE
-	ld l, (ix - 2)
-	
-; Data from 13FD to 13FF (3 bytes)
-	;.db $DD $66 $FF
-	ld h, (ix - 1)
-
-; Data from 1400 to 1401 (2 bytes)
-	;.db $36 $02
-	ld (hl), $02
-
-; Data from 1402 to 1403 (2 bytes)
-	;.db $DD $F9
-	ld sp, ix
-
-; Data from 1404 to 1405 (2 bytes)
-	;.db $DD $E1
-	pop ix
-
-; Data from 1406 to 1406 (1 bytes)
-	ret
+		ld a, $10		; input_type_fire1
+		push af
+		inc sp
+		call _engine_input_manager_hold
+		inc sp
+		ld a, l
+		or a
+		jr z, $15
+		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
+		push hl
+		ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
+		push hl
+		call _engine_font_manager_draw_text
+		pop af
+		pop af
+		call _engine_audio_manager_sfx_right
+		ld hl, title_screen_event	; title_screen_event = $C054
+		ld (hl), $01
+		ld l, (ix - 2)
+		ld h, (ix - 1)
+		ld (hl), $02
+		ld sp, ix
+		pop ix
+		ret
 
 ; Data from 1407 to 1412 (12 bytes)
 blank_clear:
