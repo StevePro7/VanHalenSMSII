@@ -34,53 +34,19 @@ _screen_record_screen_update:
 	call _engine_input_manager_hold
 	inc sp
 	ld c, l
-
-; Data from 15B3 to 15B3 (1 bytes)
 	push bc
-
-; Data from 15B4 to 15B5 (2 bytes)
-	;.db $3E $20
 	ld a, $20		; input_type_fire2
-
-; Data from 15B6 to 15B6 (1 bytes)
 	push af
-
-; Data from 15B7 to 15B7 (1 bytes)
 	inc sp
-
-; Data from 15B8 to 15BA (3 bytes)
-	;.db $CD $D3 $0E
 	call _engine_input_manager_hold
-
-; Data from 15BB to 15BB (1 bytes)
 	inc sp
-
-; Data from 15BC to 15BC (1 bytes)
 	pop bc
-
-; Data from 15BD to 15BF (3 bytes)
-	;.db $DD $5E $04
 	ld e, (ix + $04)
-	
-; Data from 15C0 to 15C2 (3 bytes)
-	;.db $DD $56 $05
 	ld d, (ix + $05)
-
-; Data from 15C3 to 15C3 (1 bytes)
 	ld a, c
-
-; Data from 15C4 to 15C4 (1 bytes)
 	or a
-
-; Data from 15C5 to 15C6 (2 bytes)
-	;.db $20 $03
 	jr nz, +++	;$03
-
-; Data from 15C7 to 15C7 (1 bytes)
 	or l
-
-; Data from 15C8 to 15C9 (2 bytes)
-	;.db $28 $29
 	jr z, $29
 +++:
 ; Data from 15CA to 15CA (1 bytes)
