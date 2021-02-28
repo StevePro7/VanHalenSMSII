@@ -46,7 +46,7 @@ _engine_storage_manager_availabl:
 	sub a, $E0		; MAGIC			0xACE0B004
 
 ; Data from 10F4 to 10F5 (2 bytes)
-	jr nz, $09
+	jr nz, ++++	;$09
 
 ; Data from 10F6 to 10F6 (1 bytes)
 	ld a, d
@@ -55,14 +55,14 @@ _engine_storage_manager_availabl:
 	sub a, $AC		; MAGIC			0xACE0B004
 
 ; Data from 10F9 to 10FA (2 bytes)
-	jr nz, $04
+	jr nz, ++++;	$04
 
 ; Data from 10FB to 10FC (2 bytes)
 	ld a, $01
 
 ; Data from 10FD to 10FE (2 bytes)
 	jr $01
-
+++++:
 ; Data from 10FF to 10FF (1 bytes)
 	xor a
 
