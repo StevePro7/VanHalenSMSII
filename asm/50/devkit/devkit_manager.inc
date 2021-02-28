@@ -243,7 +243,8 @@ A$_sms_manager$624:
 	
 ; Data from 93B to 93D (3 bytes)	
 A$_sms_manager$625:	
-	.db $DD $6E $04
+	;.db $DD $6E $04
+	ld l, (ix + $04)
 	
 ; Data from 93E to 93F (2 bytes)	
 A$_sms_manager$626:	
@@ -263,7 +264,7 @@ A$_sms_manager$629:
 	
 ; Data from 943 to 943 (1 bytes)	
 A$_sms_manager$630:	
-	.db $6F
+	ld l, a
 	
 ; Data from 944 to 944 (1 bytes)	
 A$_sms_manager$631:	
@@ -271,21 +272,22 @@ A$_sms_manager$631:
 	
 ; Data from 945 to 945 (1 bytes)	
 A$_sms_manager$632:	
-	.db $B0
+	or b
 	
 ; Data from 946 to 946 (1 bytes)	
 A$_sms_manager$633:	
-	.db $67
+	ld h, a
 	
 ; Data from 947 to 948 (2 bytes)	
 A$_sms_manager$638:	
 C$_sms_manager.c$103$1$107:	
 XG$devkit_SMS_setNextTileatXY$0$:	
-	.db $DD $E1
+	pop ix
 	
 ; Data from 949 to 94B (3 bytes)	
 A$_sms_manager$639:	
-	.db $C3 $06 $00
+	;.db $C3 $06 $00
+	jp $0006
 	
 ; Data from 94C to 94C (1 bytes)	
 A$_sms_manager$652:	
@@ -293,15 +295,15 @@ C$_sms_manager.c$104$1$107:
 C$_sms_manager.c$106$1$109:	
 G$devkit_SMS_setTile$0$0:	
 _devkit_SMS_setTile:	
-	.db $C1
+	pop bc
 	
 ; Data from 94D to 94D (1 bytes)	
 A$_sms_manager$653:	
-	.db $E1
+	pop hl
 	
 ; Data from 94E to 94E (1 bytes)	
 A$_sms_manager$654:	
-	.db $E5
+	push hl
 	
 ; Data from 94F to 94F (1 bytes)	
 A$_sms_manager$655:	
@@ -339,7 +341,7 @@ A$_sms_manager$677:
 	
 ; Data from 960 to 960 (1 bytes)	
 A$_sms_manager$678:	
-	.db $67
+	ld h, a
 	
 ; Data from 961 to 963 (3 bytes)	
 A$_sms_manager$683:	
@@ -501,7 +503,7 @@ A$_sms_manager$851:
 	
 ; Data from 999 to 999 (1 bytes)	
 A$_sms_manager$852:	
-	.db $6F
+	ld l, a
 	
 ; Data from 99A to 99A (1 bytes)	
 A$_sms_manager$857:	
@@ -575,15 +577,15 @@ C$_snd_manager.c$11$1$31:
 C$_snd_manager.c$9$0$0:	
 G$devkit_PSGPlay$0$0:	
 _devkit_PSGPlay:	
-	.db $C1
+	pop bc
 	
 ; Data from A02 to A02 (1 bytes)	
 A$_snd_manager$84:	
-	.db $E1
+	pop hl
 	
 ; Data from A03 to A03 (1 bytes)	
 A$_snd_manager$85:	
-	.db $E5
+	push hl
 	
 ; Data from A04 to A04 (1 bytes)	
 A$_snd_manager$86:	
@@ -591,7 +593,7 @@ A$_snd_manager$86:
 	
 ; Data from A05 to A05 (1 bytes)	
 A$_snd_manager$87:	
-	.db $E5
+	push hl
 	
 ; Data from A06 to A08 (3 bytes)	
 A$_snd_manager$88:	
@@ -613,15 +615,15 @@ C$_snd_manager.c$13$1$31:
 C$_snd_manager.c$15$1$33:	
 G$devkit_PSGPlayNoRepeat$0$0:	
 _devkit_PSGPlayNoRepeat:	
-	.db $C1
+	pop bc
 	
 ; Data from A0C to A0C (1 bytes)	
 A$_snd_manager$108:	
-	.db $E1
+	pop hl
 	
 ; Data from A0D to A0D (1 bytes)	
 A$_snd_manager$109:	
-	.db $E5
+	push hl
 	
 ; Data from A0E to A0E (1 bytes)	
 A$_snd_manager$110:	
@@ -629,7 +631,7 @@ A$_snd_manager$110:
 	
 ; Data from A0F to A0F (1 bytes)	
 A$_snd_manager$111:	
-	.db $E5
+	push hl
 	
 ; Data from A10 to A12 (3 bytes)	
 A$_snd_manager$112:	
