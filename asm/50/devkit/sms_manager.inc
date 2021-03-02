@@ -607,19 +607,18 @@ __moduint:
 _SMS_loadSTMcompressedTileMapAre:	
 ; todo
 	;.db $DD $E5 $DD $21 $00 $00 $DD $39 $21 $F0 $FF $39 $F9 $DD $36 $FE
-	;.db $00 $DD $36 $FF $00 $DD $36 $F3 $00 $DD $36 $F4 $00 $DD $6E $05
 	push ix
 	ld ix, $0000
 	add ix, sp
 	ld hl, $FFF0
 	add hl, sp
 	ld sp, hl
-	
-	ld (ix -2), $00
-	;.db $DD $36 $FE
+
 	;.db $00 $DD $36 $FF $00 $DD $36 $F3 $00 $DD $36 $F4 $00 $DD $6E $05
-	
-	.db $DD $36 $FF $00 $DD $36 $F3 $00 $DD $36 $F4 $00 $DD $6E $05
+	ld (ix - 2), $00
+	ld (ix - 1), $00
+	ld (ix - 13), $00
+	.db $DD $36 $F4 $00 $DD $6E $05
 	
 	;.db $00 $DD $36 $FF $00 $DD $36 $F3 $00 $DD $36 $F4 $00 $DD $6E $05
 	.db $26 $00 $29 $29 $29 $29 $29 $29 $DD $75 $FC $7C $F6 $78 $DD $77
