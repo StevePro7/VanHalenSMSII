@@ -644,9 +644,17 @@ _SMS_loadSTMcompressedTileMapAre:
 	 rl (ix - 5)
 	ld a, (ix - 4)
 	or (ix - 6)
+	ld e, a
+	ld a, (ix - 3)
+	or (ix - 5)
+
+	;.db $57 $DD $7E $08 $DD $77 $FA $DD $77 $F1 $DD $36 $F0 $00 $6B $62
+	ld d, a
+	ld a, (ix + $08)
+	ld (ix - 6), a
+	ld (ix - 15), a
+	.db $DD $36 $F0 $00 $6B $62
 	
-	.db $5F $DD $7E $FD $DD $B6 $FB
-	.db $57 $DD $7E $08 $DD $77 $FA $DD $77 $F1 $DD $36 $F0 $00 $6B $62
 	.db $CF $DD $6E $06 $DD $66 $07 $7E $DD $77 $F2 $23 $DD $75 $06 $DD
 	.db $74 $07 $DD $7E $06 $DD $77 $FC $DD $7E $07 $DD $77 $FD $DD $7E
 	.db $F2 $E6 $02 $DD $77 $F9 $DD $7E $F2 $0F $0F $E6 $3F $DD $77 $F8
