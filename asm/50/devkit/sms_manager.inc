@@ -607,74 +607,75 @@ __moduint:
 _SMS_loadSTMcompressedTileMapAre:	
 ; todo
 	;.db $DD $E5 $DD $21 $00 $00 $DD $39 $21 $F0 $FF $39 $F9 $DD $36 $FE
-	push ix
-	ld ix, $0000
-	add ix, sp
-	ld hl, $FFF0
-	add hl, sp
-	ld sp, hl
+		push ix
+		ld ix, $0000
+		add ix, sp
+		ld hl, $FFF0
+		add hl, sp
+		ld sp, hl
 
 	;.db $00 $DD $36 $FF $00 $DD $36 $F3 $00 $DD $36 $F4 $00 $DD $6E $05
-	ld (ix - 2), $00
-	ld (ix - 1), $00
-	ld (ix - 13), $00
-	ld (ix - 12), $00
-	ld l, (ix + $05)
+		ld (ix - 2), $00
+		ld (ix - 1), $00
+		ld (ix - 13), $00
+		ld (ix - 12), $00
+		ld l, (ix + $05)
 
 	;.db $26 $00 $29 $29 $29 $29 $29 $29 $DD $75 $FC $7C $F6 $78 $DD $77
-	ld h, $00
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld (ix - 4),l
-	ld a, h
-	or $78
-	ld (ix - 3), a
+		ld h, $00
+		add hl, hl
+		add hl, hl
+		add hl, hl
+		add hl, hl
+		add hl, hl
+		add hl, hl
+		ld (ix - 4),l
+		ld a, h
+		or $78
+		ld (ix - 3), a
 
 	;.db $FD $DD $7E $04 $DD $77 $FA $DD $36 $FB $00 $DD $CB $FA $26 $DD
-	ld a, (ix + 4)
-	ld (ix - 6), a
-	ld (ix - 5), $00
-	sla (ix - 6)
+		ld a, (ix + 4)
+		ld (ix - 6), a
+		ld (ix - 5), $00
+		sla (ix - 6)
 	
 	;.db $CB $FB $16 $DD $7E $FC $DD $B6 $FA $5F $DD $7E $FD $DD $B6 $FB
-	 rl (ix - 5)
-	ld a, (ix - 4)
-	or (ix - 6)
-	ld e, a
-	ld a, (ix - 3)
-	or (ix - 5)
+		rl (ix - 5)
+		ld a, (ix - 4)
+		or (ix - 6)
+		ld e, a
+		ld a, (ix - 3)
+		or (ix - 5)
 
 	;.db $57 $DD $7E $08 $DD $77 $FA $DD $77 $F1 $DD $36 $F0 $00 $6B $62
-	ld d, a
-	ld a, (ix + $08)
-	ld (ix - 6), a
-	ld (ix - 15), a
-	ld (ix - 16), $00
-	ld l, e
-	ld h, d
+		ld d, a
+		ld a, (ix + $08)
+		ld (ix - 6), a
+		ld (ix - 15), a
+		ld (ix - 16), $00
+		ld l, e
+		ld h, d
 
 	;.db $CF $DD $6E $06 $DD $66 $07 $7E $DD $77 $F2 $23 $DD $75 $06 $DD
-	rst $08
-	ld l,(ix + $06)
-	ld h,(ix + $07)
-	ld a, (hl)
-	ld (ix - 14), a
-	inc hl
-	ld (ix + $06),l  
+		rst $08
+		ld l,(ix + $06)
+		ld h,(ix + $07)
+		ld a, (hl)
+		ld (ix - 14), a
+		inc hl
+		ld (ix + $06),l  
 
 	;.db $74 $07 $DD $7E $06 $DD $77 $FC $DD $7E $07 $DD $77 $FD $DD $7E
-	 ld (ix + $07),h
-	 ld a, (ix + $06)
-	 ld (ix - 4), a
-	 ld a, (ix + $07)
-	 ld (ix - 3), a
-	.db $DD $7E
-	
-	.db $F2 $E6 $02 $DD $77 $F9 $DD $7E $F2 $0F $0F $E6 $3F $DD $77 $F8
+		ld (ix + $07),h
+		ld a, (ix + $06)
+		ld (ix - 4), a
+		ld a, (ix + $07)
+		ld (ix - 3), a
+		ld a, (ix - 14)
+
+	;.db $F2 $E6 $02 $DD $77 $F9 $DD $7E $F2 $0F $0F $E6 $3F $DD $77 $F8
+	.db $E6 $02 $DD $77 $F9 $DD $7E $F2 $0F $0F $E6 $3F $DD $77 $F8
 	.db $DD $CB $F2 $46 $CA $78 $1F $DD $36 $F6 $00 $DD $7E $FF $DD $77
 	.db $F7 $DD $4E $FC $DD $46 $FD $03 $DD $6E $FC $DD $66 $FD $6E $DD
 	.db $7E $F8 $C6 $02 $DD $77 $F5 $26 $00 $7D $DD $B6 $F6 $6F $7C $DD
@@ -696,8 +697,9 @@ _SMS_loadSTMcompressedTileMapAre:
 	.db $18 $D0 $DD $71 $FE $DD $70 $FF $18 $08 $18 $06 $DD $71 $06 $DD
 	.db $70 $07 $DD $CB $F0 $46 $CA $A0 $1E $DD $7E $F3 $DD $77 $FE $DD
 	.db $7E $F4 $DD $77 $FF $DD $36 $F0 $00 $C3 $A0 $1E $DD $F9 $DD $E1
-	.db $C9
 	
+	;.db $C9
+	ret
 ___sdcc_call_hl:	
 		jp (hl)
 	
