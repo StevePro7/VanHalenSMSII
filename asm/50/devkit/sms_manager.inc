@@ -629,11 +629,16 @@ _SMS_loadSTMcompressedTileMapAre:
 	add hl, hl
 	add hl, hl
 	add hl, hl
+	ld (ix - 4),l
+	ld a, h
+	or $78
+	ld (ix - 3), a
+
+	;.db $FD $DD $7E $04 $DD $77 $FA $DD $36 $FB $00 $DD $CB $FA $26 $DD
+	ld a, (ix + 4)
+	ld (ix - 6), a
+	.db $DD $36 $FB $00 $DD $CB $FA $26 $DD
 	
-	 .db $DD $75 $FC $7C $F6 $78 $DD $77
-	
-	
-	.db $FD $DD $7E $04 $DD $77 $FA $DD $36 $FB $00 $DD $CB $FA $26 $DD
 	.db $CB $FB $16 $DD $7E $FC $DD $B6 $FA $5F $DD $7E $FD $DD $B6 $FB
 	.db $57 $DD $7E $08 $DD $77 $FA $DD $77 $F1 $DD $36 $F0 $00 $6B $62
 	.db $CF $DD $6E $06 $DD $66 $07 $7E $DD $77 $F2 $23 $DD $75 $06 $DD
