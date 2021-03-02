@@ -637,7 +637,8 @@ _SMS_loadSTMcompressedTileMapAre:
 	;.db $FD $DD $7E $04 $DD $77 $FA $DD $36 $FB $00 $DD $CB $FA $26 $DD
 	ld a, (ix + 4)
 	ld (ix - 6), a
-	.db $DD $36 $FB $00 $DD $CB $FA $26 $DD
+	ld (ix - 5), $00
+	.db  $DD $CB $FA $26 $DD
 	
 	.db $CB $FB $16 $DD $7E $FC $DD $B6 $FA $5F $DD $7E $FD $DD $B6 $FB
 	.db $57 $DD $7E $08 $DD $77 $FA $DD $77 $F1 $DD $36 $F0 $00 $6B $62
