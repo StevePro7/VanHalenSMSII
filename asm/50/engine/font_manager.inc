@@ -114,14 +114,14 @@ A$font_manager$202:
 		ld c, a
 		ld a, d
 		or e
-		jr nz, $0B
+		jr nz, A$font_manager$258
 		or b
-		jr nz, $08
+		jr nz, A$font_manager$258
 		ld a, (ix - 2)
 		or a
-		jr z, +
+		jr z, A$font_manager$258
 		ld c, $00
-+:
+A$font_manager$258:
 		ld b, (ix - 1)
 		dec (ix - 1)
 		ld a, (ix - 1)
