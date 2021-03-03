@@ -220,14 +220,14 @@ _devkit_SMS_setNextTileatXY:
 		or b
 		ld h, a
 		pop ix
-		jp $0006
+		jp _SMS_crt0_RST08	; $0006
 
 _devkit_SMS_setTile:	
 		pop bc
 		pop hl
 		push hl
 		push bc
-		jp $0011
+		jp _SMS_crt0_RST18	; $0011
 
 _devkit_SMS_setTilePriority:	
 		ld iy, $0002
@@ -236,7 +236,7 @@ _devkit_SMS_setTilePriority:
 		ld a, $00
 		or $18
 		ld h, a
-		jp $0011
+		jp _SMS_crt0_RST18	; $0011
 	
 _devkit_SMS_addSprite:	
 		ld hl, $0004
