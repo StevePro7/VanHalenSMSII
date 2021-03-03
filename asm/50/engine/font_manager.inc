@@ -30,6 +30,7 @@ _engine_font_manager_draw_text:
 		dec sp
 		ld c, (ix + $06)
 		ld (ix -1), $00
+ A$font_manager$117:
 		ld a, (ix + $04)
 		add a, (ix - 1)
 		ld e, a
@@ -38,7 +39,7 @@ _engine_font_manager_draw_text:
 		ld d, a
 		ld a, (de)
 		or a
-		jr z, $2D
+		jr z, A$font_manager$169
 		add a, $E0
 		ld b, a
 		ld d, c
@@ -68,7 +69,8 @@ _engine_font_manager_draw_text:
 		pop af
 		pop bc
 		inc (ix - 1)
-		jr $C2
+		jr A$font_manager$117
+A$font_manager$169:	
 		inc sp
 		pop ix
 		ret
@@ -81,6 +83,7 @@ _engine_font_manager_draw_data:
 		ld a, (ix + $06)
 		ld (ix - 1), a
 		ld (ix - 2), $00
+A$font_manager$202:
 		ld hl, $000A						; UNIT_ROOT	10 is decimal
 		push hl
 		ld l, (ix + $04)
@@ -146,7 +149,7 @@ _engine_font_manager_draw_data:
 		inc (ix - 2)
 		ld a, (ix - 2)
 		sub a, $05
-		jr c, $8D
+		jr c, A$font_manager$202
 		ld sp, ix
 		pop ix
 		ret
