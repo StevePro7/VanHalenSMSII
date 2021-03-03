@@ -1,4 +1,3 @@
-
 A$cursor_manager$68:	
 C$cursor_manager.c$13$0$0:	
 C$cursor_manager.c$15$1$23:	
