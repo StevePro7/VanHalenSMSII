@@ -260,7 +260,7 @@ _SMS_setBGPaletteColor:
 		add hl, sp
 		ld c, (hl)
 		ld b, $00
-		ld hl, $c000
+		ld hl, Lmain.main$global_pause$1$55		; Lmain.main$global_pause$1$55 = $c000
 		add hl, bc
 		rst $08
 		ld hl, $0003
@@ -353,7 +353,7 @@ _SMS_addSprite:
 		ld a, (SpriteNextFree)			; SpriteNextFree = $C123
 		add a, a
 		ld c, a
-		ld hl, $C0A3
+		ld hl, SpriteTableXN			; SpriteTableXN = $C0A3
 		ld b, $00
 
 		add hl, bc
