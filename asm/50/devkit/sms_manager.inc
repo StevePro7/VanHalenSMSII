@@ -605,23 +605,48 @@ __moduint:
 		ret
 
 _SMS_loadSTMcompressedTileMapAre:	
-; todo
-	;.db $DD $E5 $DD $21 $00 $00 $DD $39 $21 $F0 $FF $39 $F9 $DD $36 $FE
+	; .db $DD $E5 $DD $21 $00 $00 $DD $39 $21 $F0 $FF $39 $F9 $DD $36 $FE
+	; .db $00 $DD $36 $FF $00 $DD $36 $F3 $00 $DD $36 $F4 $00 $DD $6E $05
+	; .db $26 $00 $29 $29 $29 $29 $29 $29 $DD $75 $FC $7C $F6 $78 $DD $77
+	; .db $FD $DD $7E $04 $DD $77 $FA $DD $36 $FB $00 $DD $CB $FA $26 $DD
+	; .db $CB $FB $16 $DD $7E $FC $DD $B6 $FA $5F $DD $7E $FD $DD $B6 $FB
+	; .db $57 $DD $7E $08 $DD $77 $FA $DD $77 $F1 $DD $36 $F0 $00 $6B $62
+	; .db $CF $DD $6E $06 $DD $66 $07 $7E $DD $77 $F2 $23 $DD $75 $06 $DD
+	; .db $74 $07 $DD $7E $06 $DD $77 $FC $DD $7E $07 $DD $77 $FD $DD $7E
+	; .db $F2 $E6 $02 $DD $77 $F9 $DD $7E $F2 $0F $0F $E6 $3F $DD $77 $F8
+	; .db $DD $CB $F2 $46 $CA $78 $1F $DD $36 $F6 $00 $DD $7E $FF $DD $77
+	; .db $F7 $DD $4E $FC $DD $46 $FD $03 $DD $6E $FC $DD $66 $FD $6E $DD
+	; .db $7E $F8 $C6 $02 $DD $77 $F5 $26 $00 $7D $DD $B6 $F6 $6F $7C $DD
+	; .db $B6 $F7 $67 $DD $7E $F9 $B7 $28 $3C $DD $71 $06 $DD $70 $07 $4D
+	; .db $44 $DD $6E $F5 $7D $B7 $CA $F1 $1F $E5 $69 $60 $DF $E1 $DD $35
+	; .db $F1 $DD $7E $F1 $B7 $20 $15 $7B $C6 $40 $5F $7A $CE $00 $57 $E5
+	; .db $C5 $6B $62 $CF $C1 $E1 $DD $7E $FA $DD $77 $F1 $3E $01 $95 $30
+	; .db $01 $03 $2D $18 $CF $DD $71 $06 $DD $70 $07 $DD $75 $FE $DD $74
+	; .db $FF $DD $46 $F5 $78 $B7 $CA $01 $20 $DD $6E $FE $DD $66 $FF $DF
+	; .db $DD $35 $F1 $DD $7E $F1 $B7 $20 $0D $21 $40 $00 $19 $5D $54 $CF
+	; .db $DD $7E $FA $DD $77 $F1 $05 $18 $DB $DD $7E $F9 $B7 $28 $29 $DD
+	; .db $CB $F2 $56 $28 $10 $DD $7E $FE $DD $77 $F3 $DD $7E $FF $DD $77
+	; .db $F4 $DD $36 $F0 $01 $DD $4E $F2 $CB $39 $CB $39 $CB $39 $DD $71
+	; .db $FF $DD $36 $FE $00 $C3 $A0 $1E $DD $6E $F8 $7D $B7 $28 $6D $DD
+	; .db $7E $FF $DD $77 $F6 $DD $36 $F7 $00 $DD $4E $FC $DD $46 $FD $DD
+	; .db $75 $F5 $DD $7E $F5 $B7 $28 $34 $0A $D3 $BE $03 $00 $00 $00 $DD
+	; .db $7E $F6 $D3 $BE $DD $35 $F1 $DD $7E $F1 $B7 $20 $10 $21 $40 $00
+	; .db $19 $EB $C5 $6B $62 $CF $C1 $DD $7E $FA $DD $77 $F1 $DD $35 $F5
+	; .db $18 $D0 $DD $71 $FE $DD $70 $FF $18 $08 $18 $06 $DD $71 $06 $DD
+	; .db $70 $07 $DD $CB $F0 $46 $CA $A0 $1E $DD $7E $F3 $DD $77 $FE $DD
+	; .db $7E $F4 $DD $77 $FF $DD $36 $F0 $00 $C3 $A0 $1E $DD $F9 $DD $E1
+	; .db $C9
 		push ix
 		ld ix, $0000
 		add ix, sp
 		ld hl, $FFF0
 		add hl, sp
 		ld sp, hl
-
-	;.db $00 $DD $36 $FF $00 $DD $36 $F3 $00 $DD $36 $F4 $00 $DD $6E $05
-		ld (ix - 2), $00
-		ld (ix - 1), $00
-		ld (ix - 13), $00
-		ld (ix - 12), $00
-		ld l, (ix + $05)
-
-	;.db $26 $00 $29 $29 $29 $29 $29 $29 $DD $75 $FC $7C $F6 $78 $DD $77
+		ld (ix-2), $00
+		ld (ix-1), $00
+		ld (ix-13), $00
+		ld (ix-12), $00
+		ld l, (ix+5)
 		ld h, $00
 		add hl, hl
 		add hl, hl
@@ -629,77 +654,229 @@ _SMS_loadSTMcompressedTileMapAre:
 		add hl, hl
 		add hl, hl
 		add hl, hl
-		ld (ix - 4),l
+		ld (ix-4), l
 		ld a, h
 		or $78
-		ld (ix - 3), a
-
-	;.db $FD $DD $7E $04 $DD $77 $FA $DD $36 $FB $00 $DD $CB $FA $26 $DD
-		ld a, (ix + 4)
-		ld (ix - 6), a
-		ld (ix - 5), $00
-		sla (ix - 6)
-	
-	;.db $CB $FB $16 $DD $7E $FC $DD $B6 $FA $5F $DD $7E $FD $DD $B6 $FB
-		rl (ix - 5)
-		ld a, (ix - 4)
-		or (ix - 6)
+		ld (ix-3), a
+		ld a, (ix+4)
+		ld (ix-6), a
+		ld (ix-5), $00
+		sla (ix-6)
+		rl (ix-5)
+		ld a, (ix-4)
+		or (ix-6)
 		ld e, a
-		ld a, (ix - 3)
-		or (ix - 5)
-
-	;.db $57 $DD $7E $08 $DD $77 $FA $DD $77 $F1 $DD $36 $F0 $00 $6B $62
+		ld a, (ix-3)
+		or (ix-5)
 		ld d, a
-		ld a, (ix + $08)
-		ld (ix - 6), a
-		ld (ix - 15), a
-		ld (ix - 16), $00
+		ld a, (ix+8)
+		ld (ix-6), a
+		ld (ix-15), a
+		ld (ix-16), $00
 		ld l, e
 		ld h, d
-
-	;.db $CF $DD $6E $06 $DD $66 $07 $7E $DD $77 $F2 $23 $DD $75 $06 $DD
-		rst $08
-		ld l,(ix + $06)
-		ld h,(ix + $07)
+		rst $08	; _LABEL_8_
+_LABEL_1EA0_:	
+		ld l, (ix+6)
+		ld h, (ix+7)
 		ld a, (hl)
-		ld (ix - 14), a
+		ld (ix-14), a
 		inc hl
-		ld (ix + $06),l  
-
-	;.db $74 $07 $DD $7E $06 $DD $77 $FC $DD $7E $07 $DD $77 $FD $DD $7E
-		ld (ix + $07),h
-		ld a, (ix + $06)
-		ld (ix - 4), a
-		ld a, (ix + $07)
-		ld (ix - 3), a
-		ld a, (ix - 14)
-
-	;.db $F2 $E6 $02 $DD $77 $F9 $DD $7E $F2 $0F $0F $E6 $3F $DD $77 $F8
-	.db $E6 $02 $DD $77 $F9 $DD $7E $F2 $0F $0F $E6 $3F $DD $77 $F8
-	.db $DD $CB $F2 $46 $CA $78 $1F $DD $36 $F6 $00 $DD $7E $FF $DD $77
-	.db $F7 $DD $4E $FC $DD $46 $FD $03 $DD $6E $FC $DD $66 $FD $6E $DD
-	.db $7E $F8 $C6 $02 $DD $77 $F5 $26 $00 $7D $DD $B6 $F6 $6F $7C $DD
-	.db $B6 $F7 $67 $DD $7E $F9 $B7 $28 $3C $DD $71 $06 $DD $70 $07 $4D
-	.db $44 $DD $6E $F5 $7D $B7 $CA $F1 $1F $E5 $69 $60 $DF $E1 $DD $35
-	.db $F1 $DD $7E $F1 $B7 $20 $15 $7B $C6 $40 $5F $7A $CE $00 $57 $E5
-	.db $C5 $6B $62 $CF $C1 $E1 $DD $7E $FA $DD $77 $F1 $3E $01 $95 $30
-	.db $01 $03 $2D $18 $CF $DD $71 $06 $DD $70 $07 $DD $75 $FE $DD $74
-	.db $FF $DD $46 $F5 $78 $B7 $CA $01 $20 $DD $6E $FE $DD $66 $FF $DF
-	.db $DD $35 $F1 $DD $7E $F1 $B7 $20 $0D $21 $40 $00 $19 $5D $54 $CF
-	.db $DD $7E $FA $DD $77 $F1 $05 $18 $DB $DD $7E $F9 $B7 $28 $29 $DD
-	.db $CB $F2 $56 $28 $10 $DD $7E $FE $DD $77 $F3 $DD $7E $FF $DD $77
-	.db $F4 $DD $36 $F0 $01 $DD $4E $F2 $CB $39 $CB $39 $CB $39 $DD $71
-	.db $FF $DD $36 $FE $00 $C3 $A0 $1E $DD $6E $F8 $7D $B7 $28 $6D $DD
-	.db $7E $FF $DD $77 $F6 $DD $36 $F7 $00 $DD $4E $FC $DD $46 $FD $DD
-	.db $75 $F5 $DD $7E $F5 $B7 $28 $34 $0A $D3 $BE $03 $00 $00 $00 $DD
-	.db $7E $F6 $D3 $BE $DD $35 $F1 $DD $7E $F1 $B7 $20 $10 $21 $40 $00
-	.db $19 $EB $C5 $6B $62 $CF $C1 $DD $7E $FA $DD $77 $F1 $DD $35 $F5
-	.db $18 $D0 $DD $71 $FE $DD $70 $FF $18 $08 $18 $06 $DD $71 $06 $DD
-	.db $70 $07 $DD $CB $F0 $46 $CA $A0 $1E $DD $7E $F3 $DD $77 $FE $DD
-	.db $7E $F4 $DD $77 $FF $DD $36 $F0 $00 $C3 $A0 $1E $DD $F9 $DD $E1
+		ld (ix+6), l
+		ld (ix+7), h
+		ld a, (ix+6)
+		ld (ix-4), a
+		ld a, (ix+7)
+		ld (ix-3), a
+		ld a, (ix-14)
+		and $02
+		ld (ix-7), a
+		ld a, (ix-14)
+		rrca
+		rrca
+		and $3F
+		ld (ix-8), a
+		bit 0, (ix-14)
+		jp z, _LABEL_1F78_
+		ld (ix-10), $00
+		ld a, (ix-1)
+		ld (ix-9), a
+		ld c, (ix-4)
+		ld b, (ix-3)
+		inc bc
+		ld l, (ix-4)
+		ld h, (ix-3)
+		ld l, (hl)
+		ld a, (ix-8)
+		add a, $02
+		ld (ix-11), a
+		ld h, $00
+		ld a, l
+		or (ix-10)
+		ld l, a
+		ld a, h
+		or (ix-9)
+		ld h, a
+		ld a, (ix-7)
+		or a
+		jr z, ++
+		ld (ix+6), c
+		ld (ix+7), b
+		ld c, l
+		ld b, h
+		ld l, (ix-11)
+-:	
+		ld a, l
+		or a
+		jp z, _LABEL_1FF1_
+		push hl
+		ld l, c
+		ld h, b
+		rst $18	; _LABEL_18_
+		pop hl
+		dec (ix-15)
+		ld a, (ix-15)
+		or a
+		jr nz, +
+		ld a, e
+		add a, $40
+		ld e, a
+		ld a, d
+		adc a, $00
+		ld d, a
+		push hl
+		push bc
+		ld l, e
+		ld h, d
+		rst $08	; _LABEL_8_
+		pop bc
+		pop hl
+		ld a, (ix-6)
+		ld (ix-15), a
++:	
+		ld a, $01
+		sub l
+		jr nc, +
+		inc bc
++:	
+		dec l
+		jr -
 	
-	;.db $C9
-	ret
+++:	
+		ld (ix+6), c
+		ld (ix+7), b
+		ld (ix-2), l
+		ld (ix-1), h
+		ld b, (ix-11)
+-:	
+		ld a, b
+		or a
+		jp z, _LABEL_2001_
+		ld l, (ix-2)
+		ld h, (ix-1)
+		rst $18	; _LABEL_18_
+		dec (ix-15)
+		ld a, (ix-15)
+		or a
+		jr nz, +
+		ld hl, $0040
+		add hl, de
+		ld e, l
+		ld d, h
+		rst $08	; _LABEL_8_
+		ld a, (ix-6)
+		ld (ix-15), a
++:	
+		dec b
+		jr -
+	
+_LABEL_1F78_:	
+		ld a, (ix-7)
+		or a
+		jr z, ++
+		bit 2, (ix-14)
+		jr z, +
+		ld a, (ix-2)
+		ld (ix-13), a
+		ld a, (ix-1)
+		ld (ix-12), a
+		ld (ix-16), $01
++:	
+		ld c, (ix-14)
+		srl c
+		srl c
+		srl c
+		ld (ix-1), c
+		ld (ix-2), $00
+		jp _LABEL_1EA0_
+	
+++:	
+		ld l, (ix-8)
+		ld a, l
+		or a
+		jr z, _LABEL_201B_
+		ld a, (ix-1)
+		ld (ix-10), a
+		ld (ix-9), $00
+		ld c, (ix-4)
+		ld b, (ix-3)
+		ld (ix-11), l
+-:	
+		ld a, (ix-11)
+		or a
+		jr z, ++
+		ld a, (bc)
+		out (Port_VDPData), a
+		inc bc
+		nop
+		nop
+		nop
+		ld a, (ix-10)
+		out (Port_VDPData), a
+		dec (ix-15)
+		ld a, (ix-15)
+		or a
+		jr nz, +
+		ld hl, $0040
+		add hl, de
+		ex de, hl
+		push bc
+		ld l, e
+		ld h, d
+		rst $08	; _LABEL_8_
+		pop bc
+		ld a, (ix-6)
+		ld (ix-15), a
++:	
+		dec (ix-11)
+		jr -
+	
+_LABEL_1FF1_:	
+		ld (ix-2), c
+		ld (ix-1), b
+		jr _LABEL_2001_
+	
+	; Data from 1FF9 to 1FFA (2 bytes)
+	.db $18 $06
+	
+++:	
+		ld (ix+6), c
+		ld (ix+7), b
+_LABEL_2001_:	
+		bit 0, (ix-16)
+		jp z, _LABEL_1EA0_
+		ld a, (ix-13)
+		ld (ix-2), a
+		ld a, (ix-12)
+		ld (ix-1), a
+		ld (ix-16), $00
+		jp _LABEL_1EA0_
+	
+_LABEL_201B_:	
+		ld sp, ix
+		pop ix
+		ret
+	
 ___sdcc_call_hl:	
 		jp (hl)
 	
