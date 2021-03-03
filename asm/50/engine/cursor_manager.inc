@@ -316,11 +316,11 @@ _engine_cursor_manager_decX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
 		or a						; if( 0 == co->cursor_index_x )
-		jr nz, +
+		jr nz, A$cursor_manager$540
 		ld a, $03					; co->cursor_index_x = MAX_GRID_X - 1;
 		ld (bc), a
 		jp update_values
-+:
+A$cursor_manager$540:
 		add a, $FF					; co->cursor_index_x--;
 		ld (bc), a
 		jp update_values
@@ -329,11 +329,11 @@ _engine_cursor_manager_incX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
 		cp $03						; if( MAX_GRID_X - 1 == co->cursor_index_x )
-		jr nz, +
+		jr nz, A$cursor_manager$579
 		xor a						; co->cursor_index_x = 0;
 		ld (bc), a
 		jp update_values
-+:
+A$cursor_manager$579:
 		inc a						; co->cursor_index_x++;
 		ld (bc), a
 		jp update_values
@@ -342,11 +342,11 @@ _engine_cursor_manager_decY:
 		ld bc, cursor_index_y		; cursor_index_y = $C027
 		ld a, (bc)
 		or a						; if( 0 == co->cursor_index_y )
-		jr nz, +
+		jr nz, A$cursor_manager$618
 		ld a, $02					; co->cursor_index_y = MAX_GRID_Y - 1;
 		ld (bc), a
 		jp update_values
-+:
+A$cursor_manager$618:
 		add a, $FF					; co->cursor_index_y--;
 		ld (bc), a
 		jp update_values
@@ -355,11 +355,11 @@ _engine_cursor_manager_incY:
 		ld bc, cursor_index_y		; cursor_index_y = $C027
 		ld a, (bc)
 		cp $02						; if( MAX_GRID_Y - 1 == co->cursor_index_y )
-		jr nz, +
+		jr nz, A$cursor_manager$657
 		xor a						; co->cursor_index_y = 0;
 		ld (bc), a
 		jp update_values
-+:
+A$cursor_manager$657:
 		inc a						; co->cursor_index_y++;
 		ld (bc), a
 		jp update_values
