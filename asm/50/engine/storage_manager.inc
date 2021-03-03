@@ -12,23 +12,21 @@ _engine_storage_manager_availabl:
 		ld d, (hl)
 		ld a, c
 		sub a, $04		; MAGIC			0xACE0B004
-		jr nz, ++	;$13
+		jr nz, A$storage_manager$97
 		ld a, b
 		sub a, $B0		; MAGIC			0xACE0B004
-		jr nz, +++
+		jr nz, A$storage_manager$97
 		ld a, e
 		sub a, $E0		; MAGIC			0xACE0B004
-		jr nz, ++
+		jr nz, A$storage_manager$97
 		ld a, d
 		sub a, $AC		; MAGIC			0xACE0B004
-		jr nz, ++
-	+:
+		jr nz, A$storage_manager$97
 		ld a, $01
-		jr ++++
-	++:
-	+++:
+		jr A$storage_manager$99
+A$storage_manager$97:
 		xor a
-	++++:
+A$storage_manager$99:	
 		ld l, a
 		push hl
 		call _devkit_SMS_disableSRAM
@@ -41,7 +39,7 @@ _engine_storage_manager_read:
 		call _devkit_SMS_enableSRAM
 		pop iy
 		ld c, (iy + $04)
-		ld hl, $C02A		; ro->record_album_index
+		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 		ld (hl), c
 		jp _devkit_SMS_disableSRAM
 	
@@ -62,7 +60,7 @@ _engine_storage_manager_write:
 		ld hl, $0004
 		add hl, bc
 		ex de, hl
-		ld a, ($C02A)		; ro->record_album_index
+		ld a, (record_album_index)		; record_album_index = $C02A	; ro->record_album_index
 		ld (de), a
 		ld hl, $0005
 		add hl, bc

@@ -26,10 +26,10 @@ _engine_delay_manager_update:
 		ld c, a
 		ld b, a
 		or a
-		jr z, +
+		jr z, A$timer_manager$133
 		ld hl, $0000					; dObj->delay_timer = 0;
 		ld (delay_object_timer), hl		; delay_object_timer = $C04E
-+:
+A$timer_manager$133:
 		ld l, b
 		ret
 
@@ -59,10 +59,10 @@ _engine_reset_manager_update:
 		ld c, a
 		ld b, a
 		or a
-		jr z, +
+		jr z, A$timer_manager$215
 		ld hl, $0000				; ro->reset_timer = 0;
 		ld (reset_object_timer), hl	; reset_object_timer = $C052
-	+:
+A$timer_manager$215:
 		ld l, b
 		ret
 
