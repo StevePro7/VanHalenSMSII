@@ -17,7 +17,7 @@ _engine_input_manager_hold:
 		ld a, (iy + $01)
 		and b
 		or e
-		jr z, +
+		jr z, A$input_manager$109
 		ld a, c
 		ld iy, Finput_manager$prev_joypad1$0$0
 		and (iy + $00)
@@ -25,11 +25,11 @@ _engine_input_manager_hold:
 		ld a, b
 		and (iy + $01)
 		or c
-		jr z, ++
-+:
+		jr z, A$input_manager$112
+A$input_manager$109:
 		ld l, $00
 		ret
-++:
+A$input_manager$112:
 		ld l, $01
 		ret
 
