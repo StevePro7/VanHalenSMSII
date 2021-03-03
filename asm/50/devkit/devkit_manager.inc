@@ -112,7 +112,7 @@ _devkit_SMS_loadSTMcompressedTil:
 		ld a, (hl)
 		push af
 		inc sp
-		call $1E3F
+		call _SMS_loadSTMcompressedTileMapAre
 		pop af
 		pop af
 		inc sp
