@@ -8,13 +8,13 @@ _screen_scroll_screen_update:
 		dec sp
 		ld a, (scroll_screen_offset)	; scroll_screen_offset = $C056
 		sub a, $20						; TOP_SCROLL	32
-		jr nz, +
+		jr nz, A$scroll_screen$88
 		ld a, $01						; offset++
-		jr ++
-	+:
+		jr A$scroll_screen$90
+A$scroll_screen$88:
 		xor a
 
-	++:
+A$scroll_screen$90:	
 		inc sp
 		push af
 		inc sp
@@ -39,12 +39,13 @@ _screen_scroll_screen_update:
 		ld l, a
 		ld a, c
 		or a
-		jr nz, $0C
+		jr nz, A$scroll_screen$136
 		ld iy, $0000
 		add iy, sp
 		ld a, (iy + $00)
 		or a
-		jr z, $16
+		jr z, A$scroll_screen$160
+A$scroll_screen$136:
 		push hl
 		ld a, $04						; TOP_OFFSET	4
 		push af
@@ -59,7 +60,9 @@ _screen_scroll_screen_update:
 		pop hl
 		ld (hl), $04					; screen_type_select = 4
 		jr +
+A$scroll_screen$160:
 		ld (hl), $03					; screen_type_scroll = 3
 +:
+A$scroll_screen$162:
 		inc sp
 		ret
