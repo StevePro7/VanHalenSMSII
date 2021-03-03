@@ -18,7 +18,7 @@ _engine_cursor_manager_init:
 		ld a, l
 		pop bc
 		ld (bc), a
-		ld a, 03					; MAX_GRID_Y	3
+		ld a, $03					; MAX_GRID_Y	3
 		push af
 		inc sp
 		ld hl, $0003
@@ -42,6 +42,7 @@ _engine_cursor_manager_load:
 		push af
 		push af
 		ld (ix -3), $00
+A$cursor_manager$142:	
 		ld a, $4A
 		add a, (ix - 3)
 		ld (ix - 2), a
@@ -49,6 +50,7 @@ _engine_cursor_manager_load:
 		adc a, $00
 		ld (ix - 1), a
 		ld c, $00
+A$cursor_manager$153:
 		ld l, c
 		add hl, hl
 		add hl, bc
@@ -86,11 +88,11 @@ _engine_cursor_manager_load:
 		inc c
 		ld a, c
 		sub a, $04				; MAX_GRID_X	4
-		jr c, $C4
+		jr c, A$cursor_manager$153
 		inc (ix - 3)
 		ld a, (ix - 3)
 		sub a, $03				; MAX_GRID_Y	3
-		jr c, $A9
+		jr c, A$cursor_manager$142
 		ld sp, ix
 		pop ix
 		ret
