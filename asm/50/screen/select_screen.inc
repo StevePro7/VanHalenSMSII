@@ -56,18 +56,18 @@ _screen_select_screen_update:
 		jr nz, A$select_screen$250
 		ld a, (select_screen_flash)		; static unsigned char flash		; $C058
 		or a
-		jr z, +
+		jr z, A$select_screen$207
 		call _engine_cursor_manager_draw
-+:
+A$select_screen$207:
 		call _engine_delay_manager_update
 		ld a, l
 		or a
-		jr z, ++	;$07
-		ld hl, $C058		; static unsigned char flash
-		ld a, $01		; flash = 1;
+		jr z, A$select_screen$225
+		ld hl, select_screen_flash		; static unsigned char flash	; select_screen_flash = $C058
+		ld a, $01						; flash = 1;
 		sub a, (hl)
 		ld (hl), a
-++:
+A$select_screen$225:
 		call _engine_reset_manager_update
 		pop de
 		pop bc
@@ -75,10 +75,10 @@ _screen_select_screen_update:
 		push de
 		ld a, l
 		or a
-		jr z, +++	;$04
+		jr z, A$select_screen$239
 		ld a, $05		; screen_type_record	5
 		jr ++++	
-+++:
+A$select_screen$239:
 		ld a, $04		; screen_type_select	4
 ++++:
 		ld (bc), a
