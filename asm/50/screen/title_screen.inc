@@ -44,9 +44,9 @@ _screen_title_screen_load:
 		call _engine_storage_manager_availabl
 		ld a, l
 		or a
-		jr z, +
+		jr z, A$title_screen$174
 		call _engine_storage_manager_read
-+:
+A$title_screen$174:
 		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 		ld b, (hl)
 		push bc
