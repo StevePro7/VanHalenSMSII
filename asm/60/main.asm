@@ -7,12 +7,13 @@
 
 .BANK 0 SLOT 0	
 .ORG $0000	
-	
+
+.section "Boot" force	
 _LABEL_0_:
 		di
 		im 1
 		jp _LABEL_70_
-	
+.ends
 ; Data from 6 to 7 (2 bytes)	
 _SMS_crt0_RST08:
 	.db $00 $00
@@ -24,7 +25,7 @@ _LABEL_8_:
 		out (c), h
 		ei
 		ret
-	
+
 ; Data from 11 to 37 (39 bytes)
 _SMS_crt0_RST18:
 	;.db $00 $00 $00 $00 $00 $00 $00 $7D $D3 $BE $7C $D6 $00 $00 $D3 $BE
@@ -45,17 +46,20 @@ _SMS_crt0_RST18:
 .rept 22
 	nop
 .endr
-	
+
+.ORG $0038
+.section "!VDP interrupt" force
 _LABEL_38_:
 		jp _SMS_isr
-	
+.ends	
 ; Data from 3B to 65 (43 bytes)
 	.dsb 43, $00
-
-
+	
+.section "!Pause interrupt" force
 _LABEL_66_:
 		jp _SMS_nmi_isr
-	
+.ends
+
 ; Data from 69 to 6F (7 bytes)
 	.db $00 $00 $00 $00 $00 $00 $00
 	
