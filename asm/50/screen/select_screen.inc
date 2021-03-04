@@ -1,5 +1,5 @@
 _screen_select_screen_load:
-		ld a, ($C045)
+		ld a, (G$global_scroll_object$0$0)		; G$global_scroll_object$0$0 = $C045
 		or a
 		jr nz, A$select_screen$136
 		call _devkit_SMS_displayOff
@@ -22,7 +22,7 @@ _screen_select_screen_load:
 		pop af
 		call _devkit_SMS_displayOn
 A$select_screen$136:
-		ld hl, $C045		; so->scroll_value_offset
+		ld hl, G$global_scroll_object$0$0		; so->scroll_value_offset	; $C045
 		ld b, (hl)
 		push bc
 		inc sp
@@ -35,9 +35,9 @@ A$select_screen$136:
 		ex (sp), hl
 		call _engine_reset_manager_load
 		pop af
-		ld hl, $C057		; static unsigned char event_stage
+		ld hl, select_screen_event		; static unsigned char event_stage	; select_screen_event = $C057
 		ld (hl), $00
-		ld hl, $C058		; static unsigned char flash
+		ld hl, select_screen_flash		; static unsigned char flash	; select_screen_flash = $C058
 		ld (hl), $01
 		ret
 
@@ -77,10 +77,10 @@ A$select_screen$225:
 		or a
 		jr z, A$select_screen$239
 		ld a, $05		; screen_type_record	5
-		jr ++++	
+		jr A$select_screen$241
 A$select_screen$239:
 		ld a, $04		; screen_type_select	4
-++++:
+A$select_screen$241:
 		ld (bc), a
 		ret
 
@@ -93,7 +93,7 @@ A$select_screen$250:
 		inc sp
 		ld a, l
 		or a
-		jr z, +++++
+		jr z, A$select_screen$294
 		call _engine_cursor_manager_save
 		ld b, l
 		push bc
@@ -101,10 +101,10 @@ A$select_screen$250:
 		call _engine_record_manager_init
 		inc sp
 		call _engine_audio_manager_sfx_right
-		ld hl, $C057		; static unsigned char event_stage
+		ld hl, select_screen_event 		; static unsigned char event_stage	; select_screen_event = $C057
 		ld (hl), $01
 		ret
-+++++:
+A$select_screen$294:
 		ld a, $04		; input_type_left
 		push af
 		inc sp
@@ -112,9 +112,9 @@ A$select_screen$250:
 		inc sp
 		ld a, l
 		or a
-		jr z, ++++++
+		jr z, A$select_screen$313
 		call _engine_cursor_manager_decX
-++++++:
+A$select_screen$313:
 		ld a, $08		; input_type_right
 		push af
 		inc sp
@@ -122,9 +122,9 @@ A$select_screen$250:
 		inc sp
 		ld a, l
 		or a
-		jr z, +++++++
+		jr z, A$select_screen$332
 		call _engine_cursor_manager_incX
-+++++++:
+A$select_screen$332:
 		ld a, $01		; input_type_up
 		push af
 		inc sp
@@ -132,9 +132,9 @@ A$select_screen$250:
 		inc sp
 		ld a, l
 		or a
-		jr z, $03
-+++++++
+		jr z, A$select_screen$351
 		call _engine_cursor_manager_decY
+A$select_screen$351:
 		ld a, $02		; input_type_down
 		push af
 		inc sp
