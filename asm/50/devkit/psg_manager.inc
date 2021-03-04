@@ -24,12 +24,48 @@ _PSGStop:
 	
 
 _PSGResume:	
-; todo
-	.db $3A $01 $C0 $B7 $C0 $3A $0F $C0 $F6 $90 $D3 $7F $3A $10 $C0 $F6
-	.db $B0 $D3 $7F $3A $16 $C0 $B7 $20 $17 $3A $13 $C0 $E6 $0F $F6 $C0
-	.db $D3 $7F $3A $14 $C0 $E6 $3F $D3 $7F $3A $11 $C0 $F6 $D0 $D3 $7F
-	.db $3A $17 $C0 $B7 $20 $10 $3A $15 $C0 $E6 $0F $F6 $E0 $D3 $7F $3A
-	.db $12 $C0 $F6 $F0 $D3 $7F $21 $01 $C0 $36 $01 $C9
+	; .db $3A $01 $C0 $B7 $C0 $3A $0F $C0 $F6 $90 $D3 $7F $3A $10 $C0 $F6
+	; .db $B0 $D3 $7F $3A $16 $C0 $B7 $20 $17 $3A $13 $C0 $E6 $0F $F6 $C0
+	; .db $D3 $7F $3A $14 $C0 $E6 $3F $D3 $7F $3A $11 $C0 $F6 $D0 $D3 $7F
+	; .db $3A $17 $C0 $B7 $20 $10 $3A $15 $C0 $E6 $0F $F6 $E0 $D3 $7F $3A
+	; .db $12 $C0 $F6 $F0 $D3 $7F $21 $01 $C0 $36 $01 $C9
+		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
+		or a
+		ret nz
+		ld a, (PSGChan0Volume)	; PSGChan0Volume = $C00F
+		or $90
+		out (Port_PSG), a
+		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
+		or $B0
+		out (Port_PSG), a
+		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
+		or a
+		jr nz, +
+		ld a, (PSGChan2LowTone)	; PSGChan2LowTone = $C013
+		and $0F
+		or $C0
+		out (Port_PSG), a
+		ld a, (PSGChan2HighTone)	; PSGChan2HighTone = $C014
+		and $3F
+		out (Port_PSG), a
+		ld a, (PSGChan2Volume)	; PSGChan2Volume = $C011
+		or $D0
+		out (Port_PSG), a
++:	
+		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
+		or a
+		jr nz, +
+		ld a, (PSGChan3LowTone)	; PSGChan3LowTone = $C015
+		and $0F
+		or $E0
+		out (Port_PSG), a
+		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
+		or $F0
+		out (Port_PSG), a
++:	
+		ld hl, PSGMusicStatus	; PSGMusicStatus = $C001
+		ld (hl), $01
+		ret
 
 _PSGPlay:	
 	;.db $CD $81 $02 $21 $09 $C0 $36 $01 $D1 $C1 $C5 $D5 $ED $43 $02 $C0
