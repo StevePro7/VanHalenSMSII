@@ -8,7 +8,7 @@ _UNSAFE_SMS_copySpritestoSAT:
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
 		ld hl, SpriteTableXN	; SpriteTableXN = $C0A3
-		jp _OUTI128
+		jp _OUTI128				; $0099
 	
 _UNSAFE_SMS_VRAMmemcpy32:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
@@ -27,7 +27,7 @@ _UNSAFE_SMS_VRAMmemcpy32:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp _OUTI32
+		jp _OUTI32				; $0159
 	
 _UNSAFE_SMS_VRAMmemcpy64:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
@@ -46,7 +46,7 @@ _UNSAFE_SMS_VRAMmemcpy64:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp _OUTI64
+		jp _OUTI64				; $0119
 
 _UNSAFE_SMS_VRAMmemcpy128:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
@@ -65,7 +65,7 @@ _UNSAFE_SMS_VRAMmemcpy128:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp $0099
+		jp _OUTI128				; $0099
 	
 _SMS_init:	
 		ld hl, $0000
