@@ -13,10 +13,10 @@ _screen_record_screen_update:
 		inc sp
 		ld a, l
 		or a
-		jr z, +;
+		jr z, A$record_screen$121
 		call _engine_record_manager_decrement
 		call load_record
-+:
+A$record_screen$121:
 		ld a, $08			; input_type_right
 		push af
 		inc sp
@@ -24,10 +24,10 @@ _screen_record_screen_update:
 		inc sp
 		ld a, l
 		or a
-		jr z, ++
+		jr z, A$record_screen$144
 		call _engine_record_manager_increment
 		call load_record
-++:
+A$record_screen$144:
 		ld a, $10		; input_type_fire2
 		push af
 		inc sp
@@ -45,10 +45,10 @@ _screen_record_screen_update:
 		ld d, (ix + $05)
 		ld a, c
 		or a
-		jr nz, +++
+		jr nz, A$record_screen$177
 		or l
-		jr z, ++++
-+++:
+		jr z, A$record_screen$220
+A$record_screen$177:
 		push de
 		xor a
 		push af
@@ -56,7 +56,7 @@ _screen_record_screen_update:
 		call _devkit_SMS_setBGScrollY
 		inc sp
 		pop de
-		ld hl, $C02A		; ro->record_album_index
+		ld hl, record_album_index		; ro->record_album_index	; record_album_index = $C02A
 		ld b, (hl)
 		push de
 		push bc
@@ -64,7 +64,7 @@ _screen_record_screen_update:
 		call _engine_record_manager_init
 		inc sp
 		pop de
-		ld hl, $C02A		; ro->record_album_index
+		ld hl, record_album_index		; ro->record_album_index	; record_album_index = $C02A
 		ld b, (hl)
 		push de
 		push bc
@@ -75,11 +75,11 @@ _screen_record_screen_update:
 		pop de
 		ld a, $04
 		ld (de), a
-		jr +++++
-++++:
+		jr A$record_screen$223
+A$record_screen$220:
 		ld a, $05
 		ld (de), a
-+++++:
+A$record_screen$223:
 		pop ix
 		ret
 
