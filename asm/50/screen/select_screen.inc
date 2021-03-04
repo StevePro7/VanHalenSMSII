@@ -1,7 +1,7 @@
 _screen_select_screen_load:
 		ld a, ($C045)
 		or a
-		jr nz, $2B
+		jr nz, A$select_screen$136
 		call _devkit_SMS_displayOff
 		call _engine_asm_manager_clear_VRAM
 		call _engine_content_manager_load_til
@@ -21,6 +21,7 @@ _screen_select_screen_load:
 		pop af
 		pop af
 		call _devkit_SMS_displayOn
+A$select_screen$136:
 		ld hl, $C045		; so->scroll_value_offset
 		ld b, (hl)
 		push bc
@@ -50,10 +51,10 @@ select_covers_label:
 	.db $43 $4F $56 $45 $52 $53 $00
 	
 _screen_select_screen_update:
-		ld a, ($C057)		; static unsigned char event_stage
+		ld a, (select_screen_event)		; static unsigned char event_stage	; $C057
 		dec a
-		jr nz, $2A
-		ld a, ($C058)		; static unsigned char flash
+		jr nz, A$select_screen$250
+		ld a, (select_screen_flash)		; static unsigned char flash		; $C058
 		or a
 		jr z, +
 		call _engine_cursor_manager_draw
@@ -83,6 +84,7 @@ _screen_select_screen_update:
 		ld (bc), a
 		ret
 
+A$select_screen$250:
 		call _engine_cursor_manager_draw
 		ld a, $10		; input_type_fire1
 		push af
