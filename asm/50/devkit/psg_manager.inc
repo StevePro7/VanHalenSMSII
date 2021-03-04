@@ -257,22 +257,168 @@ _LABEL_3C7_:
 
 _PSGSetMusicVolumeAttenuation:	
 ; todo
-	.db $DD $E5 $DD $21 $00 $00 $DD $39 $F5 $DD $7E $04 $32 $0B $C0 $3A
-	.db $01 $C0 $B7 $CA $38 $05 $3A $0F $C0 $E6 $0F $4F $1E $00 $FD $21
-	.db $0B $C0 $FD $7E $00 $DD $77 $FE $AF $DD $77 $FF $79 $DD $86 $FE
-	.db $47 $7B $DD $8E $FF $5F $FD $4E $00 $3E $0F $B8 $3E $00 $9B $E2
-	.db $92 $04 $EE $80 $F2 $9A $04 $11 $0F $00 $18 $09 $3A $0F $C0 $E6
-	.db $0F $81 $5F $17 $9F $7B $F6 $90 $D3 $7F $3A $10 $C0 $E6 $0F $5F
-	.db $16 $00 $E1 $E5 $19 $3E $0F $BD $3E $00 $9C $E2 $BE $04 $EE $80
-	.db $F2 $C6 $04 $11 $0F $00 $18 $09 $3A $10 $C0 $E6 $0F $81 $5F $17
-	.db $9F $7B $F6 $B0 $D3 $7F $3A $16 $C0 $B7 $20 $2C $3A $11 $C0 $E6
-	.db $0F $6F $26 $00 $D1 $D5 $19 $3E $0F $BD $3E $00 $9C $E2 $F0 $04
-	.db $EE $80 $F2 $F8 $04 $11 $0F $00 $18 $09 $3A $11 $C0 $E6 $0F $81
-	.db $5F $17 $9F $7B $F6 $D0 $D3 $7F $3A $17 $C0 $B7 $20 $2C $3A $12
-	.db $C0 $E6 $0F $6F $26 $00 $D1 $D5 $19 $3E $0F $BD $3E $00 $9C $E2
-	.db $22 $05 $EE $80 $F2 $2A $05 $01 $0F $00 $18 $09 $3A $12 $C0 $E6
-	.db $0F $81 $4F $17 $9F $79 $F6 $F0 $D3 $7F $DD $F9 $DD $E1 $C9
+	; .db $DD $E5 $DD $21 $00 $00 $DD $39 $F5 $DD $7E $04 $32 $0B $C0 $3A
+	; .db $01 $C0 $B7 $CA $38 $05 $3A $0F $C0 $E6 $0F $4F $1E $00 $FD $21
+	; .db $0B $C0 $FD $7E $00 $DD $77 $FE $AF $DD $77 $FF $79 $DD $86 $FE
+	; .db $47 $7B $DD $8E $FF $5F $FD $4E $00 $3E $0F $B8 $3E $00 $9B $E2
+	; .db $92 $04 $EE $80 $F2 $9A $04 $11 $0F $00 $18 $09 $3A $0F $C0 $E6
+	; .db $0F $81 $5F $17 $9F $7B $F6 $90 $D3 $7F $3A $10 $C0 $E6 $0F $5F
+	; .db $16 $00 $E1 $E5 $19 $3E $0F $BD $3E $00 $9C $E2 $BE $04 $EE $80
+	; .db $F2 $C6 $04 $11 $0F $00 $18 $09 $3A $10 $C0 $E6 $0F $81 $5F $17
+	; .db $9F $7B $F6 $B0 $D3 $7F $3A $16 $C0 $B7 $20 $2C $3A $11 $C0 $E6
+	; .db $0F $6F $26 $00 $D1 $D5 $19 $3E $0F $BD $3E $00 $9C $E2 $F0 $04
+	; .db $EE $80 $F2 $F8 $04 $11 $0F $00 $18 $09 $3A $11 $C0 $E6 $0F $81
+	; .db $5F $17 $9F $7B $F6 $D0 $D3 $7F $3A $17 $C0 $B7 $20 $2C $3A $12
+	; .db $C0 $E6 $0F $6F $26 $00 $D1 $D5 $19 $3E $0F $BD $3E $00 $9C $E2
+	; .db $22 $05 $EE $80 $F2 $2A $05 $01 $0F $00 $18 $09 $3A $12 $C0 $E6
+	; .db $0F $81 $4F $17 $9F $79 $F6 $F0 $D3 $7F $DD $F9 $DD $E1 $C9
+		push ix
+		ld ix, $0000
+		add ix, sp
+		push af
+		ld a, (ix+4)
+		ld (PSGMusicVolumeAttenuation), a	; PSGMusicVolumeAttenuation = $C00B
+		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
+		or a
+		jp z, _LABEL_538_
+		ld a, (PSGChan0Volume)	; PSGChan0Volume = $C00F
+		and $0F
+		ld c, a
+		ld e, $00
+		ld iy, PSGMusicVolumeAttenuation	; PSGMusicVolumeAttenuation = $C00B
+		ld a, (iy+0)
+		ld (ix-2), a
+		xor a
+		ld (ix-1), a
+		ld a, c
+		add a, (ix-2)
+		ld b, a
+		ld a, e
+		adc a, (ix-1)
+		ld e, a
+		ld c, (iy+0)
+		ld a, $0F
+		cp b
+		ld a, $00
+		sbc a, e
+		jp po, +
+		xor $80
++:	
+		jp p, +
+		ld de, $000F
+		jr ++
 	
++:	
+		ld a, (PSGChan0Volume)	; PSGChan0Volume = $C00F
+		and $0F
+		add a, c
+		ld e, a
+		rla
+		sbc a, a
+++:	
+		ld a, e
+		or $90
+		out (Port_PSG), a
+		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
+		and $0F
+		ld e, a
+		ld d, $00
+		pop hl
+		push hl
+		add hl, de
+		ld a, $0F
+		cp l
+		ld a, $00
+		sbc a, h
+		jp po, +
+		xor $80
++:	
+		jp p, +
+		ld de, $000F
+		jr ++
+	
++:	
+		ld a, (PSGChan1Volume)	; PSGChan1Volume = $C010
+		and $0F
+		add a, c
+		ld e, a
+		rla
+		sbc a, a
+++:	
+		ld a, e
+		or $B0
+		out (Port_PSG), a
+		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
+		or a
+		jr nz, +++
+		ld a, (PSGChan2Volume)	; PSGChan2Volume = $C011
+		and $0F
+		ld l, a
+		ld h, $00
+		pop de
+		push de
+		add hl, de
+		ld a, $0F
+		cp l
+		ld a, $00
+		sbc a, h
+		jp po, +
+		xor $80
++:	
+		jp p, +
+		ld de, $000F
+		jr ++
+	
++:	
+		ld a, (PSGChan2Volume)	; PSGChan2Volume = $C011
+		and $0F
+		add a, c
+		ld e, a
+		rla
+		sbc a, a
+++:	
+		ld a, e
+		or $D0
+		out (Port_PSG), a
++++:	
+		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
+		or a
+		jr nz, _LABEL_538_
+		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
+		and $0F
+		ld l, a
+		ld h, $00
+		pop de
+		push de
+		add hl, de
+		ld a, $0F
+		cp l
+		ld a, $00
+		sbc a, h
+		jp po, +
+		xor $80
++:	
+		jp p, +
+		ld bc, $000F
+		jr ++
+	
++:	
+		ld a, (PSGChan3Volume)	; PSGChan3Volume = $C012
+		and $0F
+		add a, c
+		ld c, a
+		rla
+		sbc a, a
+++:	
+		ld a, c
+		or $F0
+		out (Port_PSG), a
+_LABEL_538_:	
+		ld sp, ix
+		pop ix
+		ret
+
+
 _PSGSFXStop:	
 		push ix
 		ld ix, $0000
