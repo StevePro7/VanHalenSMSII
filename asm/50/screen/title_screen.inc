@@ -93,12 +93,12 @@ _screen_title_screen_update:
 		ld (ix - 1), a
 		ld a, (title_screen_event)	; title_screen_event = $C054
 		dec a
-		jr nz, $36
+		jr nz, A$title_screen$299
 		call _engine_reset_manager_update
 		ld c, l
 		ld a, c
 		or a
-		jr z, $1B
+		jr z, A$title_screen$280
 		push bc
 		ld hl, $150A			; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
@@ -114,31 +114,32 @@ _screen_title_screen_update:
 		pop af
 		pop af
 		pop bc
+A$title_screen$280:
 		ld a, c
 		or a
-		jr z, ++
+		jr z, A$title_screen$286
 		ld c, $03				; screen_type_scroll = 3
-		jr +++
-++:
+		jr A$title_screen$288
+A$title_screen$286:
 		ld c, $02				; screen_type_title = 2
-+++:
+A$title_screen$288:	
 		ld l, (ix - 2)
 		ld h, (ix - 1)
 		ld (hl), c
-		jr $5C
-
+		jr A$title_screen$384
+A$title_screen$299:	
 		call _engine_delay_manager_update
 		ld (ix - 3), l
 		ld a, l
 		or a
-		jr z, $29
+		jr z, A$title_screen$346
 		ld hl, title_screen_flash	; title_screen_flash = $C055
 		ld a, $01
 		sub a, (hl)
 		ld (hl), a
 		ld a,(title_screen_flash)	; title_screen_flash = $C055
 		or a
-		jr z, ++++
+		jr z, A$title_screen$335
 		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
 		ld hl, blank_clear			; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
@@ -146,8 +147,8 @@ _screen_title_screen_update:
 		call _engine_font_manager_draw_text
 		pop af
 		pop af
-		jr +++++
-++++:
+		jr A$title_screen$346
+A$title_screen$335:
 		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
 		ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
@@ -155,7 +156,7 @@ _screen_title_screen_update:
 		call _engine_font_manager_draw_text
 		pop af
 		pop af
-+++++:
+A$title_screen$346:
 		ld a, $10		; input_type_fire1
 		push af
 		inc sp
@@ -177,6 +178,7 @@ _screen_title_screen_update:
 		ld l, (ix - 2)
 		ld h, (ix - 1)
 		ld (hl), $02
+A$title_screen$384:
 		ld sp, ix
 		pop ix
 		ret
