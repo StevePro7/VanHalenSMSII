@@ -27,7 +27,7 @@ _UNSAFE_SMS_VRAMmemcpy32:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp $0159
+		jp _OUTI32
 	
 _UNSAFE_SMS_VRAMmemcpy64:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
@@ -46,7 +46,7 @@ _UNSAFE_SMS_VRAMmemcpy64:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp $0119
+		jp _OUTI64
 
 _UNSAFE_SMS_VRAMmemcpy128:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
