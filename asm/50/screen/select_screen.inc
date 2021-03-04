@@ -142,9 +142,9 @@ A$select_screen$351:
 		inc sp
 		ld a, l
 		or a
-		jr z, ++++++++
+		jr z, A$select_screen$370
 		call _engine_cursor_manager_incY
-++++++++:
+A$select_screen$370:
 		pop bc
 		pop hl
 		push hl
