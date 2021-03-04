@@ -74,12 +74,11 @@ reset_object_timer dw                   ; reset_object_timer = $C052
 .enum $C054 export	
 title_screen_event db                 ; title_screen_event = $C054
 title_screen_flash db                 ; title_screen_flash = $C055
-.ende
-
-
-.enum $C056 export	
 scroll_screen_offset db                 ; scroll_screen_offset = $C056
+select_screen_event db                  ; select_screen_event = $C057
+select_screen_flash db                  ; select_screen_event = $C058
 .ende	
+
 
 	
 .enum $C05B export	
