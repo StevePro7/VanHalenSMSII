@@ -177,7 +177,7 @@ A$title_screen$346:
 		ld (hl), $01
 		ld l, (ix - 2)
 		ld h, (ix - 1)
-		ld (hl), $02
+		ld (hl), $02				; screen_type_title = 2
 A$title_screen$384:
 		ld sp, ix
 		pop ix

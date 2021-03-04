@@ -77,7 +77,7 @@ A$record_screen$177:
 		ld (de), a
 		jr A$record_screen$223
 A$record_screen$220:
-		ld a, $05
+		ld a, $05						; screen_type_record = 5
 		ld (de), a
 A$record_screen$223:
 		pop ix
