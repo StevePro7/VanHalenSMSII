@@ -59,10 +59,9 @@ A$scroll_screen$136:
 		inc sp
 		pop hl
 		ld (hl), $04					; screen_type_select = 4
-		jr +
+		jr A$scroll_screen$162
 A$scroll_screen$160:
 		ld (hl), $03					; screen_type_scroll = 3
-+:
 A$scroll_screen$162:
 		inc sp
 		ret
