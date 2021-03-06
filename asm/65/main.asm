@@ -42,7 +42,7 @@
 .include "screen/scroll_screen.inc"
 .include "screen/select_screen.inc"
 .include "screen/record_screen.inc"
-; .include "screen/detail_screen.inc"
+.include "screen/detail_screen.inc"
 .include "screen/test_screen.inc"
 .include "screen/func_screen.inc"
 
@@ -55,7 +55,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test31"
+.asc "Hello Test32"
 .db $ff
 .ends
 
