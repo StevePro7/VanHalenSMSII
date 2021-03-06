@@ -22,7 +22,7 @@
 .include "engine/audio_manager.inc"
 
 .include "engine/content_manager.inc"
-; .include "engine/cursor_manager.inc"
+;.include "engine/cursor_manager.inc"
 ; .include "engine/font_manager.inc"
 ; .include "engine/input_manager.inc"
 ; .include "engine/record_manager.inc"
@@ -30,6 +30,10 @@
 ; .include "engine/scroll_manager.inc"
 ; .include "engine/storage_manager.inc"
 ; .include "engine/timer_manager.inc"
+
+; object
+.include "object/cursor_object.inc"
+.include "object/record_object.inc"
 
 ;==============================================================
 ; Data
@@ -40,7 +44,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test42"
+.asc "Hello Test47"
 .db $ff
 .ends
 

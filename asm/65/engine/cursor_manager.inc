@@ -1,3 +1,4 @@
+.section "Cursor manager" free
 _engine_cursor_manager_init:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		xor a
@@ -13,7 +14,7 @@ _engine_cursor_manager_init:
 		ld a, (hl)
 		push af
 		inc sp
-		call __divuchar				; co->cursor_index_x = index / MAX_GRID_Y;
+		call divuchar				; co->cursor_index_x = index / MAX_GRID_Y;
 		pop af
 		ld a, l
 		pop bc
@@ -26,7 +27,7 @@ _engine_cursor_manager_init:
 		ld a, (hl)
 		push af
 		inc sp
-		call __moduchar				; co->cursor_index_y = index % MAX_GRID_Y;
+		call moduchar				; co->cursor_index_y = index % MAX_GRID_Y;
 		pop af
 		ld c, l
 		ld hl, cursor_index_y		; cursor_index_y = $C027
@@ -57,7 +58,7 @@ A$cursor_manager$153:
 		ld a, l
 		add a, (ix - 3)
 		ld e, a
-		ld hl, _cursor_gridX
+		ld hl, cursor_gridX
 		ld b, $00
 		add hl, bc
 		ld b, (hl)
@@ -366,7 +367,7 @@ A$cursor_manager$657:
 
 update_values:
 		; unsigned char grid_x = cursor_gridX[ co->cursor_index_x ];
-		ld bc, _cursor_gridX		; _cursor_gridX = $1146
+		ld bc, cursor_gridX		; cursor_gridX = $1146
 		ld hl, cursor_index_x		; cursor_index_x = $C026
 		ld l, (hl)
 		ld h, $00
@@ -404,3 +405,5 @@ update_values:
 		ld a, e
 		ld (bc), a
 		ret
+		
+.ends

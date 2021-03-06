@@ -582,7 +582,7 @@ SMS_nmi_isr:
 		pop af
 		retn
 
-_moduchar:
+moduchar:
 	;.db $21 $03 $00 $39 $5E $2B $6E $CD $AE $1A $EB $C9
 		ld hl, $0003
 		add hl, sp
@@ -593,7 +593,7 @@ _moduchar:
 		ex de, hl
 		ret
 
-_moduint:
+moduint:
 	;.db $F1 $E1 $D1 $D5 $E5 $F5 $CD $B1 $1A $EB $C9
 		pop af
 		pop hl
