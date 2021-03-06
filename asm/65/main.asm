@@ -3,16 +3,32 @@
 ;==============================================================
 .sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
 
-.include "devkit/memory_manager.inc"
-.include "devkit/enum_manager.inc"
-.include "devkit/define_manager.inc"
-
+; content
 .include "content/gfx.inc"
 .include "content/psg.inc"
 .include "content/out.inc"
-.include "devkit/sms_manager.inc"
-.include "devkit/psg_manager.inc"
+
+; devkit
+.include "devkit/define_manager.inc"
 .include "devkit/devkit_manager.inc"
+.include "devkit/enum_manager.inc"
+.include "devkit/memory_manager.inc"
+.include "devkit/psg_manager.inc"
+.include "devkit/sms_manager.inc"
+
+
+; engine
+.include "engine/asm_manager.inc"
+.include "engine/audio_manager.inc"
+; .include "engine/content_manager.inc"
+; .include "engine/cursor_manager.inc"
+; .include "engine/font_manager.inc"
+; .include "engine/input_manager.inc"
+; .include "engine/record_manager.inc"
+; .include "engine/screen_manager.inc"
+; .include "engine/scroll_manager.inc"
+; .include "engine/storage_manager.inc"
+; .include "engine/timer_manager.inc"
 
 ;==============================================================
 ; Data
@@ -23,7 +39,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test26"
+.asc "Hello Test39"
 .db $ff
 .ends
 
