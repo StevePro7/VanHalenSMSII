@@ -75,7 +75,7 @@ SMS_init:
 		pop af
 		ld c, $00
 -:	
-		ld hl, _VDPReg_init	; _VDPReg_init = $1BA3
+		ld hl, VDPReg_init	; VDPReg_init = $1BA3
 		ld b, $00
 		add hl, bc
 		ld b, (hl)
