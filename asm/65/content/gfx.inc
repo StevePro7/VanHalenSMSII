@@ -1,4 +1,4 @@
-;.section "GFX" free
+.section "GFX" free
 
 ; Data from 1647 to 1656 (16 bytes)	
 _cursor__palette__bin:	
@@ -79,4 +79,4 @@ _font__tiles__psgcompr:
 	.db $0C $3C $3C $00 $00 $00 $00 $AA $1F $00 $08 $14 $2A $00 $00 $00
 	.db $AA $FE $00 $7F $00 $00 $00
 	
-	;.ends
+.ends

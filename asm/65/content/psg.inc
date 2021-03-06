@@ -1,3 +1,5 @@
+.section "PSG" free
+
 ; Data from 1A39 to 1A5B (35 bytes)	
 _sfx_cheat_psg:	
 	.db $CE $4B $D0 $3B $D1 $38 $CF $47 $08 $02 $00 $C7 $49 $0A $02 $00
@@ -14,3 +16,5 @@ _sfx_wrong_psg:
 	.db $C5 $4D $D0 $3B $C0 $4A $3B $C7 $49 $3B $CE $48 $D5 $3B $C5 $4D
 	.db $3B $C0 $4A $3B $C7 $49 $DA $3B $CE $48 $3B $C0 $49 $3B $C0 $40
 	.db $DF $3B $00
+	
+.ends

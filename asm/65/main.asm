@@ -20,7 +20,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test21"
+.asc "Hello Test22"
 .db $ff
 .ends
 
@@ -76,7 +76,7 @@ _SMS_crt0_RST18:
 ; VDP interrupt handler
 ;==============================================================
 .section "VDP interrupt" force
-    jp SMS_isr         ; todo
+    jp SMS_isr
     ;reti
 .ends
 
@@ -88,8 +88,8 @@ _SMS_crt0_RST18:
 ; Pause button handler
 ;==============================================================
 .section "Pause interrupt" force
-    ;jp SMS_nmi_isr    ; todo
-    retn
+    jp SMS_nmi_isr
+    ;retn
 .ends
 
 ; Data from 69 to 6F (7 bytes)
