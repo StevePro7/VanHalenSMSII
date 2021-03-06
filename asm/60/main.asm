@@ -82,7 +82,7 @@ LABEL_70_:
 		call main
 		jp exit
 
-.include "content/out.inc"
+
 
 ; Data from 200 to 203 (4 bytes)
 clock:
@@ -335,6 +335,9 @@ SMS__SDSC_signature:
 ; "SDSC"
 	.db $53 $44 $53 $43 $01 $00 $27 $03 $21 $20 $D2 $7F $C8 $7F $8C $7F
 
+.include "content/out.inc"
+
+
 .BANK 1 SLOT 1
 .ORG $0000
 
@@ -342,6 +345,8 @@ SMS__SDSC_signature:
 G$__SMS__SEGA_signature$0$0:
 SMS__SEGA_signature:
 	.db $54 $4D $52 $20 $53 $45 $47 $41 $FF $FF $D5 $FF $99 $99 $00 $4C
+
+
 
 
 ; Banks.

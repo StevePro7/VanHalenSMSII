@@ -1,0 +1,35 @@
+Diary
+06/03/2021
+
+
+Today, I had asm 50 all complete prior so clone to 60 and redid with sections
+although I got the FIX_REFERENCE error which solved by ensure that NO labels
+start with underscore
+
+Only problem is wrapping code in .section cause the error with the INCLUDE_SECTTIONS
+which seemed to be OK for 60_bak i.e. assembled full code BUT does not work
+i.e.
+the timing is broken and loads graphics weird
+
+60_bak
+need to change 
+jp init
+jp init2
+
+So I compromised today with 60 which is a clone of 50 but with all the underscores
+removed from all the labels - this assembles OK and works fine but cannot debug
+step thru the code
+
+I noticed that some earlier versions could not debug step thru code
+
+
+
+The other thing that I did today was
+VanHalenIII
+asm
+
+the first cut debug steps thru ALOT of code but not all of it disassembles
+
+NB:
+you can always use ConTEXT as before but this is pure disassembly from Emulicious
+ideally the goal is to write ASM and debug step thru all the ASM perfectly
