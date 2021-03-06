@@ -10,7 +10,7 @@ engine_screen_manager_init:
 		ld (Fscreen_manager$load_method$0$0), hl		; Fscreen_manager$load_method$0$0 = $C02D
 		ld hl, screen_splash_screen_load				; screen_splash_screen_load = $119D
 		ld (Fscreen_manager$load_method$0$0 + 2), hl	; Fscreen_manager$load_method$0$0 + 2 = $C02F
-		ld hl, screen_title_screen_load				; screen_title_screen_load = $1220
+		ld hl, screen_title_screen_load					; screen_title_screen_load = $1220
 		ld (_RAM_C031_), hl
 		ld hl, screen_scroll_screen_load				; screen_scroll_screen_load = $1389
 		ld (_RAM_C033_), hl
@@ -34,13 +34,13 @@ engine_screen_manager_init:
 
 engine_screen_manager_update:
 		ld a, (Fscreen_manager$curr_screen_type)	; Fscreen_manager$curr_screen_type = $C02B
-		ld iy, Fscreen_manager$next_screen_type	; Fscreen_manager$next_screen_type = $C02C
+		ld iy, Fscreen_manager$next_screen_type		; Fscreen_manager$next_screen_type = $C02C
 		sub (iy+0)
 		jr z, A$screen_manager$193
 		ld a, (iy+0)
-		ld iy, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
+		ld iy, Fscreen_manager$curr_screen_type		; Fscreen_manager$curr_screen_type = $C02B
 		ld (iy+0), a
-		ld bc, Fscreen_manager$load_method$0$0	; Fscreen_manager$load_method$0$0 = $C02D
+		ld bc, Fscreen_manager$load_method$0$0		; Fscreen_manager$load_method$0$0 = $C02D
 		ld l, (iy+0)
 		ld h, $00
 		add hl, hl
@@ -51,8 +51,8 @@ engine_screen_manager_update:
 		ld l, c
 		call sdcc_call_hl
 A$screen_manager$193:
-		ld bc, Fscreen_manager$update_method$0$	; Fscreen_manager$update_method$0$ = $C039
-		ld iy, Fscreen_manager$curr_screen_type	; Fscreen_manager$curr_screen_type = $C02B
+		ld bc, Fscreen_manager$update_method$0$		; Fscreen_manager$update_method$0$ = $C039
+		ld iy, Fscreen_manager$curr_screen_type		; Fscreen_manager$curr_screen_type = $C02B
 		ld l, (iy+0)
 		ld h, $00
 		add hl, hl
@@ -60,7 +60,7 @@ A$screen_manager$193:
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
-		ld hl, Fscreen_manager$next_screen_type	; Fscreen_manager$next_screen_type = $C02C
+		ld hl, Fscreen_manager$next_screen_type		; Fscreen_manager$next_screen_type = $C02C
 		push hl
 		ld l, c
 		ld h, b
