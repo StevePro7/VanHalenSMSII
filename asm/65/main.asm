@@ -55,7 +55,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test34"
+.asc "Hello Test36"
 .db $ff
 .ends
 
@@ -70,7 +70,7 @@ Message:
 boot:
     di              ; disable interrupts
     im 1            ; Interrupt mode 1
-    jp main         ; jump to main program
+    jp init         ; jump to main program
 .ends
 
 ; Data from 6 to 7 (2 bytes)	
@@ -133,8 +133,8 @@ SMS_crt0_RST18:
 ;==============================================================
 ; Main program
 ;==============================================================
-.section "Main control structure" free
-main:
+.section "Init control structure" free
+init:
     ld sp, $dff0
     ld de, _RAM_FFFC_
 
@@ -264,6 +264,9 @@ VDPInitDataEnd:
 FontData:
 .incbin "font.bin" fsize FontDataSize
 .ends
+
+
+; NEW code
 
 
 .section "Math functions" free
