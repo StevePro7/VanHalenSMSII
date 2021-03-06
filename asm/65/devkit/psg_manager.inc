@@ -1,3 +1,4 @@
+.section "PSG Manager" free
 _PSGStop:	
 		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
 		or a
@@ -907,3 +908,5 @@ _LABEL_7AB_:
 		add hl, bc
 		jp _LABEL_7AB_
 		ret
+		
+.ends

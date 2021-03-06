@@ -7,6 +7,10 @@
 .include "devkit/enum_manager.inc"
 .include "devkit/define_manager.inc"
 
+.include "content/out.inc"
+.include "devkit/sms_manager.inc"
+
+
 ;==============================================================
 ; Data
 ;==============================================================
@@ -16,7 +20,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test14"
+.asc "Hello Test18"
 .db $ff
 .ends
 
@@ -72,8 +76,8 @@ _SMS_crt0_RST18:
 ; VDP interrupt handler
 ;==============================================================
 .section "VDP interrupt" force
-    ;jp _SMS_isr         ; todo
-    reti
+    jp SMS_isr         ; todo
+    ;reti
 .ends
 
 ; Data from 3B to 65 (43 bytes)
@@ -84,7 +88,7 @@ _SMS_crt0_RST18:
 ; Pause button handler
 ;==============================================================
 .section "Pause interrupt" force
-    ;jp _SMS_nmi_isr    ; todo
+    ;jp SMS_nmi_isr    ; todo
     retn
 .ends
 
@@ -224,4 +228,62 @@ VDPInitDataEnd:
 .section "Font include" free
 FontData:
 .incbin "font.bin" fsize FontDataSize
+.ends
+
+
+.section "Math functions" free
+; Data from 1AA7 to 1AAD (7 bytes)	
+divuchar:
+	;.db $21 $03 $00 $39 $5E $2B $6E
+	ld hl, $0003
+	add hl, sp
+	ld e, (hl)
+	dec hl
+	ld l, (hl)
+
+; Data from 1AAE to 1AB0 (3 bytes)	
+divu8:
+	;.db $26 $00 $54
+	ld h, $00
+	ld d, h
+
+; Data from 1AB1 to 1ADF (47 bytes)	
+divu16:
+	;.db $7B $E6 $80 $B2 $20 $10 $06 $10 $ED $6A $17 $93 $30 $01 $83 $3F
+	;.db $ED $6A $10 $F6 $5F $C9 $06 $09 $7D $6C $26 $00 $CB $1D $ED $6A
+	;.db $ED $52 $30 $01 $19 $3F $17 $10 $F5 $CB $10 $50 $5F $EB $C9
+	ld a, e
+	and $80
+	or d
+	jr nz, $10
+	ld b, $10
+	adc hl, hl
+	rla
+	sub a, e
+	jr nc, $01
+	add a, e
+	ccf
+
+	adc hl, hl
+	djnz $F6
+	ld e,a
+	ret
+	ld b, $09
+	ld a, l
+	ld l, h
+	ld h, $00
+	rr l
+	adc hl, hl
+
+	sbc hl, de
+	jr nc, $01
+	add hl, de
+	ccf
+	rla
+	djnz $F5
+	rl b
+	ld d, b
+	ld e, a
+	ex de, hl
+	ret
 .ends

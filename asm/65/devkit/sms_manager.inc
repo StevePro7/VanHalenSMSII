@@ -1,16 +1,17 @@
-_UNSAFE_SMS_copySpritestoSAT:	
+.section "SMS Manager" free
+UNSAFE_SMS_copySpritestoSAT:	
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
 		ld hl, SpriteTableY		; SpriteTableY = $C063
-		call _OUTI64
+		call OUTI64
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
 		ld hl, SpriteTableXN	; SpriteTableXN = $C0A3
-		jp _OUTI128				; $0099
+		jp OUTI128				; $0099
 	
-_UNSAFE_SMS_VRAMmemcpy32:	
+UNSAFE_SMS_VRAMmemcpy32:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01
 		ld iy, $0002
@@ -27,9 +28,9 @@ _UNSAFE_SMS_VRAMmemcpy32:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp _OUTI32				; $0159
+		jp OUTI32				; $0159
 	
-_UNSAFE_SMS_VRAMmemcpy64:	
+UNSAFE_SMS_VRAMmemcpy64:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01
 		ld iy, $0002
@@ -46,9 +47,9 @@ _UNSAFE_SMS_VRAMmemcpy64:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp _OUTI64				; $0119
+		jp OUTI64				; $0119
 
-_UNSAFE_SMS_VRAMmemcpy128:	
+UNSAFE_SMS_VRAMmemcpy128:	
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $99 $00
 		ld iy, $0002
@@ -65,12 +66,12 @@ _UNSAFE_SMS_VRAMmemcpy128:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp _OUTI128				; $0099
+		jp OUTI128				; $0099
 	
-_SMS_init:	
+SMS_init:	
 		ld hl, $0000
 		push hl
-		call _SMS_setSpritePaletteColor
+		call SMS_setSpritePaletteColor
 		pop af
 		ld c, $00
 -:	
@@ -121,16 +122,16 @@ _SMS_init:
 		ld (hl), $40
 		ret
 
-_VDPReg_init:	
+VDPReg_init:	
 	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF
 
-_SMS_VDPType:	
+SMS_VDPType:	
 	;.db $FD $21 $5E $C0 $FD $6E $00 $C9
 		ld iy, VDPType	; VDPType = $C05E
 		ld l, (iy + $00)
 		ret
 	
-_SMS_VDPturnOnFeature:	
+SMS_VDPturnOnFeature:	
 		ld c, l
 		ld e, h
 		ld d, $00
@@ -149,7 +150,7 @@ _SMS_VDPturnOnFeature:
 		ei
 		ret
 	
-_SMS_VDPturnOffFeature:	
+SMS_VDPturnOffFeature:	
 		ld a, l
 		ld e, h
 		cpl
@@ -170,7 +171,7 @@ _SMS_VDPturnOffFeature:
 		ei
 		ret
 
-_SMS_setBGScrollX:	
+SMS_setBGScrollX:	
 	;.db $F3 $7D $D3 $BF $3E $88 $D3 $BF $FB $C9
 		di
 		ld a, l
@@ -180,7 +181,7 @@ _SMS_setBGScrollX:
 		ei
 		ret
 	
-_SMS_setBGScrollY:	
+SMS_setBGScrollY:	
 		di
 		ld a, l
 		out (Port_VDPAddress), a
@@ -189,7 +190,7 @@ _SMS_setBGScrollY:
 		ei
 		ret
 
-_SMS_setBackdropColor:	
+SMS_setBackdropColor:	
 	;.db $F3 $7D $D3 $BF $3E $87 $D3 $BF $FB $C9
 		di
 		ld a, l
@@ -199,7 +200,7 @@ _SMS_setBackdropColor:
 		ei
 		ret
 	
-_SMS_useFirstHalfTilesforSprites:	
+SMS_useFirstHalfTilesforSprites:	
 		bit 0, l
 		jr z, +
 		ld c, $FB
@@ -216,7 +217,7 @@ _SMS_useFirstHalfTilesforSprites:
 		ei
 		ret
 	
-_SMS_setSpriteMode:	
+SMS_setSpriteMode:	
 		ld c, l
 		bit 0, c
 		jr z, +
@@ -253,7 +254,7 @@ _SMS_setSpriteMode:
 		ld (hl), $08
 		ret
 	
-_SMS_setBGPaletteColor:	
+SMS_setBGPaletteColor:	
 	;.db $21 $02 $00 $39 $4E $06 $00 $21 $00 $C0 $09 $CF $21 $03 $00 $39
 	;.db $7E $D3 $BE $C9
 		ld hl, $0002
@@ -269,7 +270,7 @@ _SMS_setBGPaletteColor:
 		out ($be), a
 		ret
 	
-_SMS_setSpritePaletteColor:	
+SMS_setSpritePaletteColor:	
 		ld hl, $0002
 		add hl, sp
 		ld c, (hl)
@@ -283,7 +284,7 @@ _SMS_setSpritePaletteColor:
 		out (Port_VDPData), a
 		ret
 	
-_SMS_loadBGPalette:	
+SMS_loadBGPalette:	
 		ld de, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
 		ld c, Port_VDPAddress
 		di
@@ -297,7 +298,7 @@ _SMS_loadBGPalette:
 		jr nz, -
 		ret
 	
-_SMS_loadSpritePalette:	
+SMS_loadSpritePalette:	
 		ld de, PSGChan1Volume	; PSGChan1Volume = $C010
 		ld c, Port_VDPAddress
 		di
@@ -311,13 +312,13 @@ _SMS_loadSpritePalette:
 		jr nz, -
 		ret
 
-_SMS_setColor:	
+SMS_setColor:	
 	;.db $7D $D3 $BE $C9
 		ld a, l
 		out ($be), a
 		ret
 	
-_SMS_initSprites:	
+SMS_initSprites:	
 		ld hl, SpriteNextFree	; SpriteNextFree = $C123
 		ld (hl), $00
 		ret
@@ -530,7 +531,7 @@ _SMS_getHCount:
 		ld l, a
 		ret
 
-_SMS_isr:	
+SMS_isr:	
 		push af
 		push hl
 		in a, (Port_VDPStatus)
@@ -566,7 +567,7 @@ _SMS_isr:
 		ei
 		reti
 	
-_SMS_nmi_isr:	
+SMS_nmi_isr:	
 		push af
 		push bc
 		push de
@@ -588,7 +589,7 @@ __moduchar:
 		ld e, (hl)
 		dec hl
 		ld l, (hl)
-		call __divu8			; __divu8 = $1AAE
+		call divu8			; divu8 = $1AAE
 		ex de, hl
 		ret
 
@@ -600,7 +601,7 @@ __moduint:
 		push de
 		push hl
 		push af
-		call __divu16			; __divu16 = $1AB1
+		call divu16			; divu16 = $1AB1
 		ex de, hl
 		ret
 
@@ -1028,3 +1029,5 @@ _LABEL_20B1_:
 		or c
 		jp nz, _LABEL_2045_
 		ret
+		
+.ends

@@ -1,3 +1,4 @@
+.section "devkit functions" free
 _devkit_SMS_init:	
 		jp _SMS_init
 
@@ -190,7 +191,7 @@ _devkit_SMS_setSpritePaletteColo:
 		ld a, (hl)
 		push af
 		inc sp
-		call _SMS_setSpritePaletteColor
+		call SMS_setSpritePaletteColor
 		pop af
 		ret
 
@@ -405,3 +406,5 @@ _devkit_SFX_CHANNEL3:
 _devkit_SFX_CHANNELS2AND3:	
 		ld l, $03
 		ret
+		
+.ends
