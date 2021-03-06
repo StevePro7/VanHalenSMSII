@@ -1,17 +1,19 @@
 ;==============================================================
 ; WLA-DX banking setup
 ;==============================================================
-.memorymap
-defaultslot 0
-slotsize $8000
-slot 0 $0000
-.endme
+.include "devkit/memory_manager.inc"
 
-.rombankmap
-bankstotal 1
-banksize $8000
-banks 1
-.endro
+; .memorymap
+; defaultslot 0
+; slotsize $8000
+; slot 0 $0000
+; .endme
+
+; .rombankmap
+; bankstotal 1
+; banksize $8000
+; banks 1
+; .endro
 
 ;==============================================================
 ; SMS defines
@@ -24,7 +26,7 @@ banks 1
 ;==============================================================
 ; SDSC tag and SMS rom header
 ;==============================================================
-.sdsctag 1.2,"Hello World!","SMS programming tutorial program - enhanced version","Maxim"
+.sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
 
 .bank 0 slot 0
 .org $0000
@@ -170,7 +172,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello World!"
+.asc "Hello Test2"
 .db $ff
 .ends
 
