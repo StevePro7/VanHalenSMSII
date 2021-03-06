@@ -42,7 +42,7 @@ boot:
 _SMS_crt0_RST08:
 	.db $00 $00
 
-_LABEL_8_:
+LABEL_8_:
 		ld c, Port_VDPAddress
 		di
 		out (c), l

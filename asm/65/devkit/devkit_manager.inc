@@ -1,14 +1,14 @@
 .section "devkit functions" free
 _devkit_SMS_init:	
-		jp _SMS_init
+		jp SMS_init
 
 _devkit_SMS_displayOn:	
 		ld hl, $0140
-		jp _SMS_VDPturnOnFeature
+		jp SMS_VDPturnOnFeature
 		
 _devkit_SMS_displayOff:	
 		ld hl, $0140
-		jp _SMS_VDPturnOffFeature
+		jp SMS_VDPturnOffFeature
 	
 _devkit_SMS_mapROMBank:	
 		ld hl, $0002
@@ -21,13 +21,13 @@ _devkit_SMS_setBGScrollX:
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy + $00)
-		jp _SMS_setBGScrollX
+		jp SMS_setBGScrollX
 	
 _devkit_SMS_setBGScrollY:	
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy+0)
-		jp _SMS_setBGScrollY
+		jp SMS_setBGScrollY
 	
 _devkit_SMS_enableSRAM:	
 		ld hl, $FFFC
@@ -58,22 +58,22 @@ _devkit_SMS_setSpriteMode:
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy+0)
-		jp _SMS_setSpriteMode
+		jp SMS_setSpriteMode
 
 _devkit_SMS_useFirstHalfTilesfor:	
 		ld l, $00
-		jp _SMS_useFirstHalfTilesforSprites
+		jp SMS_useFirstHalfTilesforSprites
 	
 _dewkit_SMS_useFirstHalfTilesfor:	
 		ld l, $01
-		jp _SMS_useFirstHalfTilesforSprites
+		jp SMS_useFirstHalfTilesforSprites
 
 _devkit_SMS_VDPturnOnFeature:	
 		pop bc
 		pop hl
 		push hl
 		push bc
-		jp _SMS_VDPturnOnFeature
+		jp SMS_VDPturnOnFeature
 
 _devkit_SMS_loadPSGaidencompress:
 		ld hl, _SMS_crt0_RST08 - 2	; _SMS_crt0_RST08 - 2 = $0004
@@ -124,14 +124,14 @@ _devkit_SMS_loadBGPalette:
 		pop hl
 		push hl
 		push bc
-		jp _SMS_loadBGPalette
+		jp SMS_loadBGPalette
 
 _devkit_SMS_loadSpritePalette:	
 		pop bc
 		pop hl
 		push hl
 		push bc
-		jp _SMS_loadSpritePalette
+		jp SMS_loadSpritePalette
 
 _devkit_SMS_setBGPaletteColor:	
 		ld hl, $0004
@@ -221,14 +221,14 @@ _devkit_SMS_setNextTileatXY:
 		or b
 		ld h, a
 		pop ix
-		jp _SMS_crt0_RST08	; $0006
+		jp SMS_crt0_RST08	; $0006
 
 _devkit_SMS_setTile:	
 		pop bc
 		pop hl
 		push hl
 		push bc
-		jp _SMS_crt0_RST18	; $0011
+		jp SMS_crt0_RST18	; $0011
 
 _devkit_SMS_setTilePriority:	
 		ld iy, $0002
@@ -237,7 +237,7 @@ _devkit_SMS_setTilePriority:
 		ld a, $00
 		or $18
 		ld h, a
-		jp _SMS_crt0_RST18	; $0011
+		jp SMS_crt0_RST18	; $0011
 	
 _devkit_SMS_addSprite:	
 		ld hl, $0004
@@ -261,13 +261,13 @@ _devkit_SMS_addSprite:
 		ret
 
 _devkit_SMS_initSprites:
-		jp _SMS_initSprites
+		jp SMS_initSprites
 
 _devkit_SMS_finalizeSprites:	
-		jp _SMS_finalizeSprites
+		jp SMS_finalizeSprites
 
 _devkit_SMS_waitForVBlank:	
-		jp _SMS_waitForVBlank
+		jp SMS_waitForVBlank
 
 _devkit_SMS_copySpritestoSAT:
 		jp _UNSAFE_SMS_copySpritestoSAT
@@ -276,10 +276,10 @@ _devkit_UNSAFE_SMS_copySpritesto:
 		jp _UNSAFE_SMS_copySpritestoSAT
 
 _devkit_SMS_queryPauseRequested:
-		jp _SMS_queryPauseRequested
+		jp SMS_queryPauseRequested
 
 _devkit_SMS_resetPauseRequest:
-		jp _SMS_resetPauseRequest
+		jp SMS_resetPauseRequest
 	
 _devkit_isCollisionDetected:	
 		ld a, ($C05C)
@@ -288,7 +288,7 @@ _devkit_isCollisionDetected:
 		ret
 
 _devkit_SMS_getKeysStatus:
-		jp _SMS_getKeysStatus
+		jp SMS_getKeysStatus
 
 _devkit_SPRITEMODE_NORMAL:	
 		ld l, $00
