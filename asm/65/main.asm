@@ -35,6 +35,17 @@
 .include "object/cursor_object.inc"
 .include "object/record_object.inc"
 
+; screen
+.include "screen/none_screen.inc"
+; .include "screen/splash_screen.inc"
+; .include "screen/title_screen.inc"
+; .include "screen/scroll_screen.inc"
+; .include "screen/select_screen.inc"
+; .include "screen/record_screen.inc"
+; .include "screen/detail_screen.inc"
+.include "screen/test_screen.inc"
+.include "screen/func_screen.inc"
+
 ;==============================================================
 ; Data
 ;==============================================================
@@ -44,7 +55,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test24"
+.asc "Hello Test26"
 .db $ff
 .ends
 
