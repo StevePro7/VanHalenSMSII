@@ -16,7 +16,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test12"
+.asc "Hello Test14"
 .db $ff
 .ends
 
@@ -68,7 +68,11 @@ _SMS_crt0_RST18:
 .endr
 
 .org $0038
+;==============================================================
+; VDP interrupt handler
+;==============================================================
 .section "VDP interrupt" force
+    ;jp _SMS_isr         ; todo
     reti
 .ends
 
@@ -76,7 +80,11 @@ _SMS_crt0_RST18:
 	.dsb 43, $00
     
 .org $0066
+;==============================================================
+; Pause button handler
+;==============================================================
 .section "Pause interrupt" force
+    ;jp _SMS_nmi_isr    ; todo
     retn
 .ends
 
