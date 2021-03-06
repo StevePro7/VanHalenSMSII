@@ -28,7 +28,7 @@
 .include "engine/record_manager.inc"
 ; .include "engine/screen_manager.inc"
 ; .include "engine/scroll_manager.inc"
-; .include "engine/storage_manager.inc"
+.include "engine/storage_manager.inc"
 .include "engine/timer_manager.inc"
 
 ; object
@@ -44,7 +44,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test20"
+.asc "Hello Test21"
 .db $ff
 .ends
 
