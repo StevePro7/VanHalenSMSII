@@ -16,7 +16,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test9"
+.asc "Hello Test12"
 .db $ff
 .ends
 
@@ -54,12 +54,31 @@ _SMS_crt0_RST18:
 	nop
 .endr
 
+	ld a, l
+	out ($be), a
+	ld a, h
+	sub a, $00
+	nop
+	out ($be), a
+	ret
+
+	;.dsb 22, $00
+.rept 22
+	nop
+.endr
+
+.org $0038
+.section "VDP interrupt" force
+    reti
+.ends
+
+; Data from 3B to 65 (43 bytes)
+	.dsb 43, $00
+    
 .org $0066
-;==============================================================
-; Pause button handler
-;==============================================================
-    ; Do nothing
+.section "Pause interrupt" force
     retn
+.ends
 
 ;==============================================================
 ; Main program
