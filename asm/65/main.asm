@@ -26,7 +26,7 @@
 .include "engine/font_manager.inc"
 .include "engine/input_manager.inc"
 .include "engine/record_manager.inc"
-; .include "engine/screen_manager.inc"      ; todo
+.include "engine/screen_manager.inc"
 .include "engine/scroll_manager.inc"
 .include "engine/storage_manager.inc"
 .include "engine/timer_manager.inc"
@@ -55,7 +55,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test32"
+.asc "Hello Test34"
 .db $ff
 .ends
 
