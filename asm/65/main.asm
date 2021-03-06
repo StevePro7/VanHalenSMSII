@@ -1,7 +1,18 @@
-;==============================================================
-; WLA-DX banking setup
-;==============================================================
+
 .include "devkit/memory_manager.inc"
+
+;==============================================================
+; Data
+;==============================================================
+.section "Text section" free
+.asciitable
+map " " to "~" = 0
+.enda
+
+Message:
+.asc "Hello Test4"
+.db $ff
+.ends
 
 ; .memorymap
 ; defaultslot 0
@@ -163,18 +174,7 @@ CopyToVDP:
     ret
 .ends
 
-;==============================================================
-; Data
-;==============================================================
-.section "Text section" free
-.asciitable
-map " " to "~" = 0
-.enda
 
-Message:
-.asc "Hello Test2"
-.db $ff
-.ends
 
 .section "Content section"
 PaletteData:
