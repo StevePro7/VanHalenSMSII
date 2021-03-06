@@ -3,12 +3,12 @@ engine_scroll_manager_reset:
 		xor a								; GAP_OFFSET	0
 		push af
 		inc sp
-		call _engine_scroll_manager_load
+		call engine_scroll_manager_load
 		inc sp
 		xor a
 		push af
 		inc sp
-		call _devkit_SMS_setBGScrollY
+		call devkit_SMS_setBGScrollY
 		inc sp
 		ret
 
