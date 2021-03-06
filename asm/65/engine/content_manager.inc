@@ -1,3 +1,4 @@
+.section "Content manager" free
 ; void engine_content_manager_load_tiles()
 engine_content_manager_load_til:
 		ld hl, $0000					; #define FONT_TILES		0
@@ -124,3 +125,5 @@ engine_content_manager_load_spr:
 		call devkit_SMS_loadSpritePalette
 		pop af
 		ret
+
+.ends

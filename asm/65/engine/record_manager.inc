@@ -1,3 +1,4 @@
+.section "Record manager" free
 engine_record_manager_init:
 		ld hl, record_album_index		; record_album_index = $C02A
 		ld iy, $0002
@@ -39,22 +40,22 @@ engine_record_manager_load:
 		push de
 		push hl
 		inc sp
-		call _devkit_SMS_mapROMBank
+		call devkit_SMS_mapROMBank
 		inc sp
 		pop de
 		ld hl, $0000					; RECORD_TILES	0
 		push hl
 		push de
-		call _devkit_SMS_loadPSGaidencompress
+		call devkit_SMS_loadPSGaidencompress
 		pop af
 		ld hl, $0000					; devkit_SMS_loadSTMcompressedTileMap( 0, 0
 		ex (sp), hl
-		call _devkit_SMS_loadSTMcompressedTil
+		call devkit_SMS_loadSTMcompressedTil
 		pop af
 		pop af
 		ld hl, (record_palette_data)	; record_palette_data = $C192
 		push hl
-		call _devkit_SMS_loadBGPalette
+		call devkit_SMS_loadBGPalette
 		pop af
 		inc sp
 		pop ix
@@ -85,3 +86,5 @@ A$record_manager$230:
 		inc a							; ro->record_album_index++;
 		ld (bc), a
 		ret
+
+.ends
