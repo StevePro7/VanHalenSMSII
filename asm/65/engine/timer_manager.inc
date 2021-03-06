@@ -1,3 +1,4 @@
+.section "Timer manager" free
 engine_delay_manager_load:
 		ld hl, delay_object_value		; delay_object_value = $C04C
 		ld iy, $0002
@@ -42,7 +43,7 @@ engine_reset_manager_load:
 		inc hl
 		ld a, (iy + $01)
 		ld (hl), a
-		jp _engine_reset_manager_reset
+		jp engine_reset_manager_reset
 
 engine_reset_manager_update:
 		ld bc, (reset_object_timer)		; reset_object_timer = $C052
@@ -70,3 +71,5 @@ engine_reset_manager_reset:
 		ld hl, $0000					; ro->reset_timer = 0;
 		ld (reset_object_timer), hl		; reset_object_timer = $C052
 		ret
+
+.ends

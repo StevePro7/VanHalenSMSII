@@ -1,3 +1,4 @@
+.section "Scroll manager" free
 engine_scroll_manager_reset:
 		xor a								; GAP_OFFSET	0
 		push af
@@ -18,3 +19,5 @@ engine_scroll_manager_load:
 		ld a, (iy+0)
 		ld (hl), a
 		ret
+
+.ends

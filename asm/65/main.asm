@@ -29,7 +29,7 @@
 ; .include "engine/screen_manager.inc"
 ; .include "engine/scroll_manager.inc"
 ; .include "engine/storage_manager.inc"
-; .include "engine/timer_manager.inc"
+.include "engine/timer_manager.inc"
 
 ; object
 .include "object/cursor_object.inc"
@@ -44,7 +44,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test18"
+.asc "Hello Test20"
 .db $ff
 .ends
 

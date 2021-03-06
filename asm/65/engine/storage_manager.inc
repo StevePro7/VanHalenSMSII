@@ -1,3 +1,4 @@
+.section "Storage manager" free
 engine_storage_manager_availabl:
 		call _devkit_SMS_SRAM
 		push hl
@@ -90,3 +91,5 @@ engine_storage_manager_erase:
 		add hl, bc
 		ld (hl), $FE		; FINAL		0xFE
 		jp _devkit_SMS_disableSRAM
+
+.ends

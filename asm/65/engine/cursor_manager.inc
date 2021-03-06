@@ -405,5 +405,5 @@ update_values:
 		ld a, e
 		ld (bc), a
 		ret
-		
+
 .ends

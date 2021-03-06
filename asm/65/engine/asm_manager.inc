@@ -13,5 +13,5 @@ A$asm_manager$65:
 		or c
 		jp nz, A$asm_manager$65
 		ret
-		
+
 .ends

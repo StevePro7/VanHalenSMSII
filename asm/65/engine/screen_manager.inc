@@ -1,3 +1,4 @@
+.section "Screen manager" free
 engine_screen_manager_init:
 		ld hl, $0002
 		add hl, sp
@@ -66,3 +67,5 @@ A$screen_manager$193:
 		call ___sdcc_call_hl
 		pop af
 		ret
+
+.ends
