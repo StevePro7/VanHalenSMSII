@@ -7,6 +7,8 @@
 .include "devkit/enum_manager.inc"
 .include "devkit/define_manager.inc"
 
+.include "content/gfx.inc"
+.include "content/psg.inc"
 .include "content/out.inc"
 .include "devkit/sms_manager.inc"
 .include "devkit/psg_manager.inc"
@@ -21,7 +23,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test25"
+.asc "Hello Test26"
 .db $ff
 .ends
 
