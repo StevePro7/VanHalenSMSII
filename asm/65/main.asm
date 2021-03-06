@@ -20,7 +20,8 @@
 ; engine
 .include "engine/asm_manager.inc"
 .include "engine/audio_manager.inc"
-; .include "engine/content_manager.inc"
+
+.include "engine/content_manager.inc"
 ; .include "engine/cursor_manager.inc"
 ; .include "engine/font_manager.inc"
 ; .include "engine/input_manager.inc"
@@ -39,7 +40,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test39"
+.asc "Hello Test42"
 .db $ff
 .ends
 
@@ -306,3 +307,6 @@ divu16:
 	ex de, hl
 	ret
 .ends
+
+; Banks.
+.include "engine/bank_manager.inc"

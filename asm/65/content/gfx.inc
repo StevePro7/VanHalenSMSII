@@ -1,11 +1,11 @@
 .section "GFX" free
 
-; Data from 1647 to 1656 (16 bytes)	
-_cursor__palette__bin:	
+; Data from 1647 to 1656 (16 bytes)
+cursor__palette__bin:
 	.db $00 $00 $15 $15 $2A $2A $15 $15 $2A $2A $2A $2A $3F $3F $3F $3F
-	
-; Data from 1657 to 1711 (187 bytes)	
-_cursor__tiles__psgcompr:	
+
+; Data from 1657 to 1711 (187 bytes)
+cursor__tiles__psgcompr:
 	.db $12 $00 $AA $CF $00 $7F $20 $0F $E0 $80 $C0 $DF $DF $1F $00 $7F
 	.db $7F $3F $0F $C0 $FF $FF $FF $E0 $AA $DF $00 $FF $20 $EF $FF $20
 	.db $3F $FF $FF $02 $AA $DF $00 $FF $20 $EF $FF $20 $3F $FF $FF $02
@@ -18,13 +18,13 @@ _cursor__tiles__psgcompr:
 	.db $00 $FF $FF $FF $88 $F7 $00 $FF $F8 $00 $FF $FF $FF $88 $F7 $00
 	.db $FF $F8 $00 $FF $FF $FF $AA $F0 $04 $F8 $02 $01 $00 $F8 $04 $00
 	.db $06 $07 $F8 $00 $FC $FE $FF $FC $03 $01 $00
-	
-; Data from 1712 to 1721 (16 bytes)	
-_font__palette__bin:	
+
+; Data from 1712 to 1721 (16 bytes)
+font__palette__bin:
 	.db $00 $02 $08 $0A $20 $22 $28 $2A $3F $03 $0C $0F $30 $33 $3C $3F
-	
-; Data from 1722 to 17A1 (128 bytes)	
-_font__tilemap__bin:	
+
+; Data from 1722 to 17A1 (128 bytes)
+font__tilemap__bin:
 	.db $00 $00 $01 $00 $02 $00 $03 $00 $04 $00 $05 $00 $06 $00 $07 $00
 	.db $08 $00 $09 $00 $0A $00 $0B $00 $0C $00 $0D $00 $0E $00 $0F $00
 	.db $10 $00 $11 $00 $12 $00 $13 $00 $14 $00 $15 $00 $16 $00 $17 $00
@@ -33,9 +33,9 @@ _font__tilemap__bin:
 	.db $28 $00 $29 $00 $2A $00 $2B $00 $2C $00 $2D $00 $2E $00 $2F $00
 	.db $30 $00 $31 $00 $32 $00 $33 $00 $34 $00 $35 $00 $36 $00 $37 $00
 	.db $38 $00 $39 $00 $3A $00 $3B $00 $3C $00 $3D $00 $3E $00 $3F $00
-	
-; Data from 17A2 to 1A38 (663 bytes)	
-_font__tiles__psgcompr:	
+
+; Data from 17A2 to 1A38 (663 bytes)
+font__tiles__psgcompr:
 	.db $40 $00 $00 $AA $1A $18 $1C $1C $1C $00 $00 $00 $00 $00 $AA $1F
 	.db $00 $36 $36 $24 $00 $00 $00 $AA $D6 $36 $7F $7F $00 $00 $00 $00
 	.db $AA $54 $3E $08 $68 $0B $08 $00 $00 $00 $00 $EA $21 $52 $24 $08
@@ -78,5 +78,5 @@ _font__tiles__psgcompr:
 	.db $00 $00 $EA $40 $20 $10 $08 $04 $02 $01 $00 $00 $00 $00 $AA $7C
 	.db $0C $3C $3C $00 $00 $00 $00 $AA $1F $00 $08 $14 $2A $00 $00 $00
 	.db $AA $FE $00 $7F $00 $00 $00
-	
+
 .ends

@@ -1,3 +1,4 @@
+;.section ""
 .BANK 2
 .ORG $0000
 
