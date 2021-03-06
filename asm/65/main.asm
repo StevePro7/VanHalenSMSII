@@ -1,7 +1,7 @@
 ;==============================================================
 ; SDSC tag and SMS rom header
 ;==============================================================
-.sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
+.sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","Steven Boland"
 
 ; content
 .include "content/gfx.inc"
@@ -23,7 +23,7 @@
 
 .include "engine/content_manager.inc"
 ;.include "engine/cursor_manager.inc"
-; .include "engine/font_manager.inc"
+.include "engine/font_manager.inc"
 ; .include "engine/input_manager.inc"
 ; .include "engine/record_manager.inc"
 ; .include "engine/screen_manager.inc"
@@ -44,7 +44,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test49"
+.asc "Hello Test63"
 .db $ff
 .ends
 
@@ -323,5 +323,15 @@ divu16:
 	ret
 .ends
 
+
+; .BANK 1 SLOT 1	
+; .ORG $0000	
+
+; ; Data from 7FF0 to 7FFF (16 bytes)	
+; G$__SMS__SEGA_signature$0$0:
+; ___SMS__SEGA_signature:
+; 	.db $54 $4D $52 $20 $53 $45 $47 $41 $FF $FF $D5 $FF $99 $99 $00 $4C
+	
+    
 ; Banks.
 .include "engine/bank_manager.inc"
