@@ -55,7 +55,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test36"
+.asc "Hello Test40"
 .db $ff
 .ends
 
@@ -249,7 +249,7 @@ CopyToVDP:
 
 
 
-.section "Content section"
+.section "Content section" free
 PaletteData:
 .db $00,$3f ; Black, white
 PaletteDataEnd:
@@ -266,8 +266,79 @@ FontData:
 .ends
 
 
+.section "Clock and exit section" free
 ; NEW code
+; Data from 200 to 203 (4 bytes)	
+clock:
+	;.db $3E $02 $CF $C9
+		ld a, $02
+		rst $08
+		ret
 
+exit:
+		ld a, $00
+		rst $08	; _LABEL_8_
+-:
+		halt
+		jr -
+.ends
+
+.section "Main section" free
+main:
+		call engine_asm_manager_clear_VRAM
+		call devkit_SMS_init
+		call devkit_SMS_displayOff
+		call devkit_SPRITEMODE_NORMAL
+		ld b, l
+		push bc
+		inc sp
+		call devkit_SMS_setSpriteMode
+		inc sp
+		call devkit_SMS_useFirstHalfTilesfor
+		call devkit_VDPFEATURE_HIDEFIRSTCOL
+		push hl
+		call devkit_SMS_VDPturnOnFeature
+		pop af
+		call engine_content_manager_load_til
+		call engine_content_manager_load_spr
+		call engine_scroll_manager_reset
+		ld a, $01			; screen_type_splash
+		push af
+		inc sp
+		call engine_screen_manager_init
+		inc sp
+		call devkit_SMS_displayOn
+infinite_loop:
+		call devkit_SMS_queryPauseRequested
+		ld a, l
+		or a
+		jr z, global_pause
+		call devkit_SMS_resetPauseRequest
+		ld iy, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
+		ld a, (iy+0)
+		xor $01
+		ld (iy+0), a
+		bit 0, (iy+0)
+		jr z, else_clause
+		call devkit_PSGSilenceChannels
+		jr global_pause
+
+else_clause:
+		call devkit_PSGRestoreVolumes
+global_pause:
+		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
+		bit 0, (hl)
+		jr nz, infinite_loop
+		call devkit_SMS_initSprites
+		call engine_input_manager_update
+		call engine_screen_manager_update
+		call devkit_SMS_finalizeSprites
+		call devkit_SMS_waitForVBlank
+		call devkit_SMS_copySpritestoSAT
+		call devkit_PSGFrame
+		call devkit_PSGSFXFrame
+		jr infinite_loop
+.ends
 
 .section "Math functions" free
 ; Data from 1A9F to 1AA6 (8 bytes)	
