@@ -1,4 +1,4 @@
-.section "Scroll manager" free
+.section "Scroll screen" free
 ; Data from 1389 to 138B (3 bytes)
 screen_scroll_screen_load:
 		ld hl, scroll_screen_offset		; scroll_screen_offset = $C056
@@ -24,12 +24,12 @@ A$scroll_screen$90:
 		inc (iy + $00)
 		push bc
 		inc sp
-		call _devkit_SMS_setBGScrollY
+		call devkit_SMS_setBGScrollY
 		inc sp
 		ld a, $10						; input_type_fire1	16
 		push af
 		inc sp
-		call _engine_input_manager_hold
+		call engine_input_manager_hold
 		inc sp
 		ld c, l
 		ld hl, $0003
@@ -51,12 +51,12 @@ A$scroll_screen$136:
 		ld a, $04						; TOP_OFFSET	4
 		push af
 		inc sp
-		call _engine_scroll_manager_load
+		call engine_scroll_manager_load
 		inc sp
 		ld a, $20						; TOP_SCROLL	32
 		push af
 		inc sp
-		call _devkit_SMS_setBGScrollY
+		call devkit_SMS_setBGScrollY
 		inc sp
 		pop hl
 		ld (hl), $04					; screen_type_select = 4
