@@ -20,7 +20,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test20"
+.asc "Hello Test21"
 .db $ff
 .ends
 
