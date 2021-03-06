@@ -1,6 +1,6 @@
 .section "Record screen" free
 screen_record_screen_load:
-		call _engine_scroll_manager_reset
+		call engine_scroll_manager_reset
 		jp load_record
 
 screen_record_screen_update:
@@ -10,36 +10,36 @@ screen_record_screen_update:
 		ld a, $04			; input_type_left
 		push af
 		inc sp
-		call _engine_input_manager_hold
+		call engine_input_manager_hold
 		inc sp
 		ld a, l
 		or a
 		jr z, A$record_screen$121
-		call _engine_record_manager_decrement
+		call engine_record_manager_decrement
 		call load_record
 A$record_screen$121:
 		ld a, $08			; input_type_right
 		push af
 		inc sp
-		call _engine_input_manager_hold
+		call engine_input_manager_hold
 		inc sp
 		ld a, l
 		or a
 		jr z, A$record_screen$144
-		call _engine_record_manager_increment
+		call engine_record_manager_increment
 		call load_record
 A$record_screen$144:
 		ld a, $10		; input_type_fire2
 		push af
 		inc sp
-		call _engine_input_manager_hold
+		call engine_input_manager_hold
 		inc sp
 		ld c, l
 		push bc
 		ld a, $20		; input_type_fire2
 		push af
 		inc sp
-		call _engine_input_manager_hold
+		call engine_input_manager_hold
 		inc sp
 		pop bc
 		ld e, (ix + $04)
@@ -54,7 +54,7 @@ A$record_screen$177:
 		xor a
 		push af
 		inc sp
-		call _devkit_SMS_setBGScrollY
+		call devkit_SMS_setBGScrollY
 		inc sp
 		pop de
 		ld hl, record_album_index		; ro->record_album_index	; record_album_index = $C02A
@@ -62,7 +62,7 @@ A$record_screen$177:
 		push de
 		push bc
 		inc sp
-		call _engine_record_manager_init
+		call engine_record_manager_init
 		inc sp
 		pop de
 		ld hl, record_album_index		; ro->record_album_index	; record_album_index = $C02A
@@ -70,9 +70,9 @@ A$record_screen$177:
 		push de
 		push bc
 		inc sp
-		call _engine_cursor_manager_init
+		call engine_cursor_manager_init
 		inc sp
-		call _engine_storage_manager_write
+		call engine_storage_manager_write
 		pop de
 		ld a, $04
 		ld (de), a
@@ -86,9 +86,9 @@ A$record_screen$223:
 
 ; static void load_record()
 load_record:
-		call _devkit_SMS_displayOff
-		call _engine_asm_manager_clear_VRAM
-		call _engine_record_manager_load
-		jp _devkit_SMS_displayOn
+		call devkit_SMS_displayOff
+		call engine_asm_manager_clear_VRAM
+		call engine_record_manager_load
+		jp devkit_SMS_displayOn
 
 .ends
