@@ -1,3 +1,4 @@
+.sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
 
 .include "devkit/memory_manager.inc"
 
@@ -10,21 +11,9 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test4"
+.asc "Hello Test5"
 .db $ff
 .ends
-
-; .memorymap
-; defaultslot 0
-; slotsize $8000
-; slot 0 $0000
-; .endme
-
-; .rombankmap
-; bankstotal 1
-; banksize $8000
-; banks 1
-; .endro
 
 ;==============================================================
 ; SMS defines
@@ -37,7 +26,7 @@ Message:
 ;==============================================================
 ; SDSC tag and SMS rom header
 ;==============================================================
-.sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
+
 
 .bank 0 slot 0
 .org $0000
