@@ -44,7 +44,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test23"
+.asc "Hello Test24"
 .db $ff
 .ends
 
