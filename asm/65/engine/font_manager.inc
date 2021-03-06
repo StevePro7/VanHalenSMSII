@@ -1,4 +1,4 @@
-_engine_font_manager_draw_char:
+engine_font_manager_draw_char:
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -23,7 +23,7 @@ _engine_font_manager_draw_char:
 		pop ix
 		ret
 
-_engine_font_manager_draw_text:
+engine_font_manager_draw_text:
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -70,12 +70,12 @@ _engine_font_manager_draw_text:
 		pop bc
 		inc (ix - 1)
 		jr A$font_manager$117
-A$font_manager$169:	
+A$font_manager$169:
 		inc sp
 		pop ix
 		ret
 
-_engine_font_manager_draw_data:
+engine_font_manager_draw_data:
 		push ix
 		ld ix, $0000
 		add ix, sp

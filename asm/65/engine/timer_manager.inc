@@ -1,4 +1,4 @@
-_engine_delay_manager_load:
+engine_delay_manager_load:
 		ld hl, delay_object_value		; delay_object_value = $C04C
 		ld iy, $0002
 		add iy, sp
@@ -11,7 +11,7 @@ _engine_delay_manager_load:
 		ld (delay_object_timer), hl		; delay_object_timer = $C04E
 		ret
 
-_engine_delay_manager_update:
+engine_delay_manager_update:
 		ld bc, (delay_object_timer)		; delay_object_timer = $C04E
 		inc bc
 		ld (delay_object_timer), bc		; delay_object_timer = $C04E
@@ -33,7 +33,7 @@ A$timer_manager$133:
 		ld l, b
 		ret
 
-_engine_reset_manager_load:
+engine_reset_manager_load:
 		ld hl, reset_object_value		; reset_object_value = $C050
 		ld iy, $0002
 		add iy, sp
@@ -44,7 +44,7 @@ _engine_reset_manager_load:
 		ld (hl), a
 		jp _engine_reset_manager_reset
 
-_engine_reset_manager_update:
+engine_reset_manager_update:
 		ld bc, (reset_object_timer)		; reset_object_timer = $C052
 		inc bc
 		ld (reset_object_timer), bc		; reset_object_timer = $C052
@@ -66,7 +66,7 @@ A$timer_manager$215:
 		ld l, b
 		ret
 
-_engine_reset_manager_reset:
+engine_reset_manager_reset:
 		ld hl, $0000					; ro->reset_timer = 0;
 		ld (reset_object_timer), hl		; reset_object_timer = $C052
 		ret

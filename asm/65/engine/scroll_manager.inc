@@ -1,4 +1,4 @@
-_engine_scroll_manager_reset:
+engine_scroll_manager_reset:
 		xor a								; GAP_OFFSET	0
 		push af
 		inc sp
@@ -11,7 +11,7 @@ _engine_scroll_manager_reset:
 		inc sp
 		ret
 
-_engine_scroll_manager_load:
+engine_scroll_manager_load:
 		ld hl, G$global_scroll_object$0$0	; G$global_scroll_object$0$0 = $C045
 		ld iy, $0002
 		add iy, sp

@@ -1,4 +1,4 @@
-_engine_record_manager_init:
+engine_record_manager_init:
 		ld hl, record_album_index		; record_album_index = $C02A
 		ld iy, $0002
 		add iy, sp
@@ -6,7 +6,7 @@ _engine_record_manager_init:
 		ld (hl), a
 		ret
 
-_engine_record_manager_load:
+engine_record_manager_load:
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -60,7 +60,7 @@ _engine_record_manager_load:
 		pop ix
 		ret
 
-_engine_record_manager_decrement:
+engine_record_manager_decrement:
 		ld bc, record_album_index			; ro->record_album_index
 		ld a, (bc)
 		or a								; if( 0 == ro->record_album_index )
@@ -73,7 +73,7 @@ A$record_manager$194:
 		ld (bc), a							; ro->record_album_index--;
 		ret
 
-_engine_record_manager_increment:
+engine_record_manager_increment:
 		ld bc, record_album_index		; ro->record_album_index
 		ld a, (bc)
 		cp $0B							; if( ( MAX_RECORDS - 1 ) == ro->record_album_index )

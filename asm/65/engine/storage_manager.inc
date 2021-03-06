@@ -1,4 +1,4 @@
-_engine_storage_manager_availabl:
+engine_storage_manager_availabl:
 		call _devkit_SMS_SRAM
 		push hl
 		call _devkit_SMS_enableSRAM
@@ -26,14 +26,14 @@ _engine_storage_manager_availabl:
 		jr A$storage_manager$99
 A$storage_manager$97:
 		xor a
-A$storage_manager$99:	
+A$storage_manager$99:
 		ld l, a
 		push hl
 		call _devkit_SMS_disableSRAM
 		pop hl
 		ret
 
-_engine_storage_manager_read:
+engine_storage_manager_read:
 		call _devkit_SMS_SRAM
 		push hl
 		call _devkit_SMS_enableSRAM
@@ -42,8 +42,8 @@ _engine_storage_manager_read:
 		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 		ld (hl), c
 		jp _devkit_SMS_disableSRAM
-	
-_engine_storage_manager_write:
+
+engine_storage_manager_write:
 		call _devkit_SMS_SRAM
 		push hl
 		call _devkit_SMS_enableSRAM
@@ -67,7 +67,7 @@ _engine_storage_manager_write:
 		ld (hl), $FE		; savegame->terminal = FINAL;
 		jp _devkit_SMS_disableSRAM
 
-_engine_storage_manager_erase:
+engine_storage_manager_erase:
 		call _devkit_SMS_SRAM
 		push hl
 		call _devkit_SMS_enableSRAM

@@ -1,4 +1,4 @@
-_engine_screen_manager_init:
+engine_screen_manager_init:
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
@@ -31,7 +31,7 @@ _engine_screen_manager_init:
 		ld (_RAM_C043_), hl
 		ret
 
-_engine_screen_manager_update:
+engine_screen_manager_update:
 		ld a, (Fscreen_manager$curr_screen_type)	; Fscreen_manager$curr_screen_type = $C02B
 		ld iy, Fscreen_manager$next_screen_type	; Fscreen_manager$next_screen_type = $C02C
 		sub (iy+0)
