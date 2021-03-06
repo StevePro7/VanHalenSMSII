@@ -71,7 +71,7 @@ LABEL_70_:
 		inc a
 		djnz -
 		xor a
-		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
+		ld hl, pause_status		; Lmain.main$global_pause$1$55 = $C000
 		ld (hl), a
 		ld de, PSGMusicStatus	; PSGMusicStatus = $C001
 		ld bc, $1FF0
@@ -129,7 +129,7 @@ infinite_loop:
 		or a
 		jr z, global_pause
 		call devkit_SMS_resetPauseRequest
-		ld iy, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
+		ld iy, pause_status		; Lmain.main$global_pause$1$55 = $C000
 		ld a, (iy+0)
 		xor $01
 		ld (iy+0), a
@@ -141,7 +141,7 @@ infinite_loop:
 else_clause:
 		call devkit_PSGRestoreVolumes
 global_pause:
-		ld hl, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
+		ld hl, pause_status		; Lmain.main$global_pause$1$55 = $C000
 		bit 0, (hl)
 		jr nz, infinite_loop
 		call devkit_SMS_initSprites

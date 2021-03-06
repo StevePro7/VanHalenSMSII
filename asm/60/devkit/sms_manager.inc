@@ -261,7 +261,7 @@ SMS_setBGPaletteColor:
 		add hl, sp
 		ld c, (hl)
 		ld b, $00
-		ld hl, Lmain.main$global_pause$1$55		; Lmain.main$global_pause$1$55 = $c000
+		ld hl, pause_status			; Lmain.main$global_pause$1$55 = $c000
 		add hl, bc
 		rst $08
 		ld hl, $0003
@@ -285,7 +285,7 @@ SMS_setSpritePaletteColor:
 		ret
 
 SMS_loadBGPalette:
-		ld de, Lmain.main$global_pause$1$55	; Lmain.main$global_pause$1$55 = $C000
+		ld de, pause_status		; Lmain.main$global_pause$1$55 = $C000
 		ld c, Port_VDPAddress
 		di
 		out (c), e

@@ -1,5 +1,5 @@
 .enum $C000 export	
-Lmain.main$global_pause$1$55 db		; Lmain.main$global_pause$1$55 = $C000
+pause_status db		; Lmain.main$global_pause$1$55 = $C000
 PSGMusicStatus db                   ; PSGMusicStatus = $C001
 PSGMusicStart dw                    ; PSGMusicStart = $C002
 PSGMusicPointer dw		            ; PSGMusicPointer = $C004
