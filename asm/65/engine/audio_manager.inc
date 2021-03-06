@@ -1,19 +1,19 @@
 .section "Audio manager" free
-engine_audio_managersfx_right:
+engine_audio_manager_sfx_right:
 		ld hl, sfx_right_psg
 		push hl
 		call play_sfx
 		pop af
 		ret
 
-engine_audio_managersfx_wrong:
+engine_audio_manager_sfx_wrong:
 		ld hl, sfx_wrong_psg
 		push hl
 		call play_sfx
 		pop af
 		ret
 
-engine_audio_managersfx_cheat:
+engine_audio_manager_sfx_cheat:
 		ld hl, sfx_cheat_psg
 		push hl
 		call play_sfx

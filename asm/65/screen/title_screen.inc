@@ -1,64 +1,64 @@
 .section "Title screen" free
 screen_title_screen_load:
-		call _devkit_SMS_displayOff
-		call _engine_content_manager_load_til
-		call _engine_content_manager_load_spr
-		call _engine_content_manager_load_tit
+		call devkit_SMS_displayOff
+		call engine_content_manager_load_til
+		call engine_content_manager_load_spr
+		call engine_content_manager_load_tit
 		ld hl, $150A					; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
 		ld hl, press_start				; engine_font_manager_draw_text( LOCALE_PRESS_START
 		push hl
-		call _engine_font_manager_draw_text
+		call engine_font_manager_draw_text
 		pop af
 		ld hl, $0C06					; engine_font_manager_draw_text( ..., 6, 12 );
 		ex (sp), hl
 		ld hl, title_record_label		; engine_font_manager_draw_text( LOCALE_RECORD_TEXT
 		push hl
-		call _engine_font_manager_draw_text
+		call engine_font_manager_draw_text
 		pop af
 		ld hl, $0C14					; engine_font_manager_draw_text( ..., 20, 12 );
 		ex (sp), hl
 		ld hl, title_covers_label		; engine_font_manager_draw_text( LOCALE_COVERS_TEXT
 		push hl
-		call _engine_font_manager_draw_text
+		call engine_font_manager_draw_text
 		pop af
 		ld hl, $171C					; engine_font_manager_draw_text( ..., 28, 23 );
 		ex (sp), hl
 		ld hl, title_build_label		; engine_font_manager_draw_text( LOCALE_BUILD_VALUE
 		push hl
-		call _engine_font_manager_draw_text
+		call engine_font_manager_draw_text
 		pop af
 		pop af
-		call _devkit_SMS_displayOn
+		call devkit_SMS_displayOn
 		ld hl, $0032		; TITLE_FLASH_DELAY	50
 		push hl
-		call _engine_delay_manager_load
+		call engine_delay_manager_load
 		ld hl, $004B		; TITLE_VALUE_RESET	75
 		ex (sp), hl
-		call _engine_reset_manager_load
+		call engine_reset_manager_load
 		pop af
 		xor a
 		push af
 		inc sp
-		call _engine_record_manager_init
+		call engine_record_manager_init
 		inc sp
-		call _engine_storage_manager_availabl
+		call engine_storage_manager_availabl
 		ld a, l
 		or a
 		jr z, A$title_screen$174
-		call _engine_storage_manager_read
+		call engine_storage_manager_read
 A$title_screen$174:
 		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 		ld b, (hl)
 		push bc
 		inc sp
-		call _engine_record_manager_init
+		call engine_record_manager_init
 		inc sp
 		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 		ld b, (hl)
 		push bc
 		inc sp
-		call _engine_cursor_manager_init
+		call engine_cursor_manager_init
 		inc sp
 		ld hl, title_screen_event		; title_screen_event = $C054
 		ld (hl), $00					; event_stage_start = 0
@@ -95,7 +95,7 @@ screen_title_screen_update:
 		ld a, (title_screen_event)	; title_screen_event = $C054
 		dec a
 		jr nz, A$title_screen$299
-		call _engine_reset_manager_update
+		call engine_reset_manager_update
 		ld c, l
 		ld a, c
 		or a
@@ -105,13 +105,13 @@ screen_title_screen_update:
 		push hl
 		ld hl, blank_clear		; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
 		push hl
-		call _engine_font_manager_draw_text
+		call engine_font_manager_draw_text
 		pop af
 		ld hl, $1715			; engine_font_manager_draw_text( ..., 21, 23 );
 		ex (sp), hl
 		ld hl, blank_clear		; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
 		push hl
-		call _engine_font_manager_draw_text
+		call engine_font_manager_draw_text
 		pop af
 		pop af
 		pop bc
@@ -129,7 +129,7 @@ A$title_screen$288:
 		ld (hl), c
 		jr A$title_screen$384
 A$title_screen$299:
-		call _engine_delay_manager_update
+		call engine_delay_manager_update
 		ld (ix - 3), l
 		ld a, l
 		or a
@@ -145,7 +145,7 @@ A$title_screen$299:
 		push hl
 		ld hl, blank_clear			; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
 		push hl
-		call _engine_font_manager_draw_text
+		call engine_font_manager_draw_text
 		pop af
 		pop af
 		jr A$title_screen$346
@@ -154,14 +154,14 @@ A$title_screen$335:
 		push hl
 		ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
 		push hl
-		call _engine_font_manager_draw_text
+		call engine_font_manager_draw_text
 		pop af
 		pop af
 A$title_screen$346:
 		ld a, $10		; input_type_fire1
 		push af
 		inc sp
-		call _engine_input_manager_hold
+		call engine_input_manager_hold
 		inc sp
 		ld a, l
 		or a
@@ -170,10 +170,10 @@ A$title_screen$346:
 		push hl
 		ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
 		push hl
-		call _engine_font_manager_draw_text
+		call engine_font_manager_draw_text
 		pop af
 		pop af
-		call _engine_audio_manager_sfx_right
+		call engine_audio_manager_sfx_right
 		ld hl, title_screen_event	; title_screen_event = $C054
 		ld (hl), $01
 		ld l, (ix - 2)
