@@ -22,9 +22,9 @@
 .include "engine/audio_manager.inc"
 
 .include "engine/content_manager.inc"
-;.include "engine/cursor_manager.inc"
+.include "engine/cursor_manager.inc"
 .include "engine/font_manager.inc"
-; .include "engine/input_manager.inc"
+.include "engine/input_manager.inc"
 ; .include "engine/record_manager.inc"
 ; .include "engine/screen_manager.inc"
 ; .include "engine/scroll_manager.inc"
@@ -44,7 +44,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test63"
+.asc "Hello Test66"
 .db $ff
 .ends
 

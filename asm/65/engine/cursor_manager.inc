@@ -129,7 +129,7 @@ engine_cursor_manager_draw:
 		ld hl, $0120
 		push hl
 		push bc
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop bc
@@ -145,7 +145,7 @@ engine_cursor_manager_draw:
 		ld a, e
 		push af
 		inc sp
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -159,7 +159,7 @@ engine_cursor_manager_draw:
 		push hl
 		ld e, c
 		push de
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -167,7 +167,7 @@ engine_cursor_manager_draw:
 		ld hl, $0131				; tile + 17
 		push hl
 		push de
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -184,7 +184,7 @@ engine_cursor_manager_draw:
 		ld a, (ix - 4)
 		push af
 		inc sp
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -201,7 +201,7 @@ engine_cursor_manager_draw:
 		ld a, (ix - 1)
 		push af
 		inc sp
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -218,7 +218,7 @@ engine_cursor_manager_draw:
 		ld a, (ix - 2)
 		push af
 		inc sp
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -235,7 +235,7 @@ engine_cursor_manager_draw:
 		ld a, (ix - 3)
 		push af
 		inc sp
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -248,7 +248,7 @@ engine_cursor_manager_draw:
 		ld hl, $0126				; tile + 6
 		push hl
 		push bc
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -261,7 +261,7 @@ engine_cursor_manager_draw:
 		ld a, e
 		push af
 		inc sp
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -273,7 +273,7 @@ engine_cursor_manager_draw:
 		ld a, (ix - 4)
 		push af
 		inc sp
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -285,7 +285,7 @@ engine_cursor_manager_draw:
 		ld a, (ix - 1)
 		push af
 		inc sp
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -297,7 +297,7 @@ engine_cursor_manager_draw:
 		ld a, (ix - 2)
 		push af
 		inc sp
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		pop af
 		pop af
 		pop de
@@ -308,7 +308,7 @@ engine_cursor_manager_draw:
 		ld a, (ix - 3)
 		push af
 		inc sp
-		call _devkit_SMS_addSprite
+		call devkit_SMS_addSprite
 		ld sp, ix
 		pop ix
 		ret
@@ -374,7 +374,7 @@ update_values:
 		add hl, bc
 		ld c, (hl)
 		; unsigned char grid_y = cursor_gridY[ co->cursor_index_y ];
-		ld de, _cursor_gridY		; _cursor_gridY = $114A 
+		ld de, cursor_gridY		; cursor_gridY = $114A 
 		ld hl, cursor_index_x		; cursor_index_x = $C026
 		inc hl
 		ld l, (hl)

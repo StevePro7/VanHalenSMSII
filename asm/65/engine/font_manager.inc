@@ -1,5 +1,5 @@
 .section "Font manager" free
-enginefont_manager_draw_char:
+engine_font_manager_draw_char:
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -24,7 +24,7 @@ enginefont_manager_draw_char:
 		pop ix
 		ret
 
-enginefont_manager_draw_text:
+engine_font_manager_draw_text:
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -76,7 +76,7 @@ A$font_manager$169:
 		pop ix
 		ret
 
-enginefont_manager_draw_data:
+engine_font_manager_draw_data:
 		push ix
 		ld ix, $0000
 		add ix, sp
