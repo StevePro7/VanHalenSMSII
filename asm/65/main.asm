@@ -88,12 +88,16 @@ _SMS_crt0_RST18:
     retn
 .ends
 
+; Data from 69 to 6F (7 bytes)
+	.db $00 $00 $00 $00 $00 $00 $00
+    
 ;==============================================================
 ; Main program
 ;==============================================================
 .section "Main control structure" free
 main:
     ld sp, $dff0
+    ld de, _RAM_FFFC_
 
     ;==============================================================
     ; Set up VDP registers
