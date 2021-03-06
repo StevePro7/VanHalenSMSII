@@ -44,7 +44,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test47"
+.asc "Hello Test49"
 .db $ff
 .ends
 
@@ -256,6 +256,17 @@ FontData:
 
 
 .section "Math functions" free
+; Data from 1A9F to 1AA6 (8 bytes)	
+divuint:
+	;.db $F1 $E1 $D1 $D5 $E5 $F5 $18 $0A
+	pop af
+	pop hl
+	pop de
+	push de
+	push hl
+	push af
+	jr $0A
+    
 ; Data from 1AA7 to 1AAD (7 bytes)	
 divuchar:
 	;.db $21 $03 $00 $39 $5E $2B $6E
