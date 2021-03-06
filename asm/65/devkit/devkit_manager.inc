@@ -76,19 +76,19 @@ devkit_SMS_VDPturnOnFeature:
 		jp SMS_VDPturnOnFeature
 
 devkit_SMS_loadPSGaidencompress:
-		ld hl, _SMS_crt0_RST08 - 2	; _SMS_crt0_RST08 - 2 = $0004
+		ld hl, SMS_crt0_RST08 - 2	; SMS_crt0_RST08 - 2 = $0004
 		add hl, sp
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
 		push bc
-		ld hl, _SMS_crt0_RST08 - 2	; _SMS_crt0_RST08 - 2 = $0004
+		ld hl, SMS_crt0_RST08 - 2	; SMS_crt0_RST08 - 2 = $0004
 		add hl, sp
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
 		push bc
-		call _SMS_loadPSGaidencompressedTiles
+		call SMS_loadPSGaidencompressedTiles
 		pop af
 		pop af
 		ret
@@ -113,7 +113,7 @@ devkit_SMS_loadSTMcompressedTil:
 		ld a, (hl)
 		push af
 		inc sp
-		call _SMS_loadSTMcompressedTileMapAre
+		call SMS_loadSTMcompressedTileMapAre
 		pop af
 		pop af
 		inc sp
@@ -160,7 +160,7 @@ devkit_SMS_setBGPaletteColor:
 		ld a, (hl)
 		push af
 		inc sp
-		call _SMS_setBGPaletteColor
+		call SMS_setBGPaletteColor
 		pop af
 		ret
 
@@ -255,7 +255,7 @@ devkit_SMS_addSprite:
 		ld a, (hl)
 		push af
 		inc sp
-		call _SMS_addSprite
+		call SMS_addSprite
 		pop af
 		inc sp
 		ret
@@ -270,10 +270,10 @@ devkit_SMS_waitForVBlank:
 		jp SMS_waitForVBlank
 
 devkit_SMS_copySpritestoSAT:
-		jp _UNSAFE_SMS_copySpritestoSAT
+		jp UNSAFE_SMS_copySpritestoSAT
 
 devkit_UNSAFE_SMS_copySpritesto:
-		jp _UNSAFE_SMS_copySpritestoSAT
+		jp UNSAFE_SMS_copySpritestoSAT
 
 devkit_SMS_queryPauseRequested:
 		jp SMS_queryPauseRequested
@@ -327,7 +327,7 @@ devkit_PSGPlay:
 		push hl
 		push bc
 		push hl
-		call _PSGPlay
+		call PSGPlay
 		pop af
 		ret
 
@@ -337,18 +337,18 @@ devkit_PSGPlayNoRepeat:
 		push hl
 		push bc
 		push hl
-		call _PSGPlayNoRepeat
+		call PSGPlayNoRepeat
 		pop af
 		ret
 
-devkit_PSGStop:
-		jp _PSGStop
+devkitPSGStop:
+		jp PSGStop
 
 devkit_PSGResume:
-		jp _PSGResume
+		jp PSGResume
 
 devkit_PSGGetStatus:
-		jp _PSGGetStatus
+		jp PSGGetStatus
 
 devkit_PSGSetMusicVolumeAttenua:
 		ld hl, $0002
@@ -356,7 +356,7 @@ devkit_PSGSetMusicVolumeAttenua:
 		ld a, (hl)
 		push af
 		inc sp
-		call _PSGSetMusicVolumeAttenuation
+		call PSGSetMusicVolumeAttenuation
 		inc sp
 		ret
 
@@ -372,28 +372,28 @@ devkit_PSGSFXPlay:
 		inc hl
 		ld b, (hl)
 		push bc
-		call _PSGSFXPlay
+		call PSGSFXPlay
 		pop af
 		inc sp
 		ret
 
-devkit_PSGSFXStop:
-		jp _PSGSFXStop
+devkitPSGSFXStop:
+		jp PSGSFXStop
 
 devkit_PSGSFXGetStatus:
-		jp _PSGSFXGetStatus
+		jp PSGSFXGetStatus
 
 devkit_PSGSilenceChannels:
-		jp _PSGSilenceChannels
+		jp PSGSilenceChannels
 
 devkit_PSGRestoreVolumes:
-		jp _PSGRestoreVolumes
+		jp PSGRestoreVolumes
 
 devkit_PSGFrame:
-		jp _PSGFrame
+		jp PSGFrame
 
 devkit_PSGSFXFrame:
-		jp _PSGSFXFrame
+		jp PSGSFXFrame
 
 devkit_SFX_CHANNEL2:
 		ld l, $01

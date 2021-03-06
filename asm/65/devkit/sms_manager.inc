@@ -278,7 +278,7 @@ SMS_setSpritePaletteColor:
 		ld hl, PSGChan1Volume	; PSGChan1Volume = $C010
 		add hl, bc
 		rst $08	; _LABEL_8_
-		ld hl, _SMS_crt0_RST08 - 3	; _SMS_crt0_RST08 - 3 = $0003
+		ld hl, SMS_crt0_RST08 - 3	; SMS_crt0_RST08 - 3 = $0003
 		add hl, sp
 		ld a, (hl)
 		out (Port_VDPData), a
@@ -882,7 +882,7 @@ sdcc_call_hl:
 		jp (hl)
 
 SMS_loadPSGaidencompressedTiles:
-		ld iy, _SMS_crt0_RST08 - 2	; _SMS_crt0_RST08 - 2 = $0004
+		ld iy, SMS_crt0_RST08 - 2	; SMS_crt0_RST08 - 2 = $0004
 		add iy, sp
 		ld l, (iy+0)
 		ld h, (iy+1)
@@ -1008,7 +1008,7 @@ LABEL_20B1_:
 ++++++++:
 		dec b
 		jp nz, LABEL_2050_
-		ld de, _SMS_crt0_RST08 + 2	; _SMS_crt0_RST08 + 2 = $0008
+		ld de, SMS_crt0_RST08 + 2	; SMS_crt0_RST08 + 2 = $0008
 		ld c, e
 		ld hl, decompBuffer	; decompBuffer = $C126
 --:

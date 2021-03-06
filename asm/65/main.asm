@@ -9,7 +9,8 @@
 
 .include "content/out.inc"
 .include "devkit/sms_manager.inc"
-
+.include "devkit/psg_manager.inc"
+.include "devkit/devkit_manager.inc"
 
 ;==============================================================
 ; Data
@@ -20,7 +21,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test23"
+.asc "Hello Test25"
 .db $ff
 .ends
 
@@ -39,7 +40,7 @@ boot:
 .ends
 
 ; Data from 6 to 7 (2 bytes)	
-_SMS_crt0_RST08:
+SMS_crt0_RST08:
 	.db $00 $00
 
 LABEL_8_:
@@ -51,7 +52,7 @@ LABEL_8_:
 		ret
 
 ; Data from 11 to 37 (39 bytes)
-_SMS_crt0_RST18:
+SMS_crt0_RST18:
 	;.db $00 $00 $00 $00 $00 $00 $00 $7D $D3 $BE $7C $D6 $00 $00 $D3 $BE
 	;.db $C9
 .rept 7
