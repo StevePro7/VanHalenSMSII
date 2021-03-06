@@ -1,4 +1,5 @@
-engine_font_manager_draw_char:
+.section "Font manager" free
+enginefont_manager_draw_char:
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -9,21 +10,21 @@ engine_font_manager_draw_char:
 		ld h, (ix + $06)
 		ld l, (ix + $05)				; TEXT_ROOT	5
 		push hl
-		call _devkit_SMS_setNextTileatXY
+		call devkit_SMS_setNextTileatXY
 		pop af
 		pop bc
-		ld hl, _font__tilemap__bin
+		ld hl, font__tilemap__bin
 		ld l, (hl)
 		ld h, $00
 		ld b, $00
 		add hl, bc
 		push hl
-		call _devkit_SMS_setTile
+		call devkit_SMS_setTile
 		pop af
 		pop ix
 		ret
 
-engine_font_manager_draw_text:
+enginefont_manager_draw_text:
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -51,10 +52,10 @@ engine_font_manager_draw_text:
 		inc sp
 		push de
 		inc sp
-		call _devkit_SMS_setNextTileatXY
+		call devkit_SMS_setNextTileatXY
 		pop af
 		pop bc
-		ld hl, _font__tilemap__bin
+		ld hl, font__tilemap__bin
 		ld e, (hl)
 		ld d, $00
 		ld a, b
@@ -65,7 +66,7 @@ engine_font_manager_draw_text:
 		add hl, de
 		push bc
 		push hl
-		call _devkit_SMS_setTile
+		call devkit_SMS_setTile
 		pop af
 		pop bc
 		inc (ix - 1)
@@ -75,7 +76,7 @@ A$font_manager$169:
 		pop ix
 		ret
 
-engine_font_manager_draw_data:
+enginefont_manager_draw_data:
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -89,7 +90,7 @@ A$font_manager$202:
 		ld l, (ix + $04)
 		ld h, (ix + $05)
 		push hl
-		call __divuint						; quotient = data / UNIT_ROOT;
+		call divuint						; quotient = data / UNIT_ROOT;
 		pop af
 		pop af
 		ld e, l
@@ -101,7 +102,7 @@ A$font_manager$202:
 		ld c, (ix + $04)
 		ld b, (ix + $05)
 		push bc
-		call __moduint						; remainder = data % UNIT_ROOT;
+		call moduint						; remainder = data % UNIT_ROOT;
 		pop af
 		pop af
 		ld b, l
@@ -132,10 +133,10 @@ A$font_manager$258:
 		inc sp
 		push bc
 		inc sp
-		call _devkit_SMS_setNextTileatXY
+		call devkit_SMS_setNextTileatXY
 		pop af
 		pop bc
-		ld hl, _font__tilemap__bin
+		ld hl, font__tilemap__bin
 		ld l, (hl)
 		ld h, $00
 		ld a, c
@@ -144,7 +145,7 @@ A$font_manager$258:
 		ld b, a
 		add hl, bc
 		push hl
-		call _devkit_SMS_setTile
+		call devkit_SMS_setTile
 		pop af
 		inc (ix - 2)
 		ld a, (ix - 2)
@@ -153,3 +154,5 @@ A$font_manager$258:
 		ld sp, ix
 		pop ix
 		ret
+
+.ends

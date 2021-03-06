@@ -1,5 +1,5 @@
 .section "Cursor manager" free
-_engine_cursor_manager_init:
+engine_cursor_manager_init:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		xor a
 		ld (bc),a
@@ -34,7 +34,7 @@ _engine_cursor_manager_init:
 		ld (hl), c
 		jp update_values
 
-_engine_cursor_manager_load:
+engine_cursor_manager_load:
 		; MAX_GRID_X	4
 		; MAX_GRID_Y	3
 		push ix
@@ -82,7 +82,7 @@ A$cursor_manager$153:
 		push bc
 		inc sp
 		push de
-		call _engine_font_manager_draw_text
+		call engine_font_manager_draw_text
 		pop af
 		pop af
 		pop bc
@@ -98,7 +98,7 @@ A$cursor_manager$153:
 		pop ix
 		ret
 
-_engine_cursor_manager_save:
+engine_cursor_manager_save:
 		ld a, (cursor_index_x)		; cursor_index_x = $C026
 		ld c, a
 		add a, a
@@ -110,7 +110,7 @@ _engine_cursor_manager_save:
 		add hl, bc
 		ret
 
-_engine_cursor_manager_draw:
+engine_cursor_manager_draw:
 		push ix
 		ld ix, $0000				; tile + 0 
 		add ix, sp
@@ -313,7 +313,7 @@ _engine_cursor_manager_draw:
 		pop ix
 		ret
 
-_engine_cursor_manager_decX:
+engine_cursor_manager_decX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
 		or a						; if( 0 == co->cursor_index_x )
@@ -326,7 +326,7 @@ A$cursor_manager$540:
 		ld (bc), a
 		jp update_values
 
-_engine_cursor_manager_incX:
+engine_cursor_manager_incX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
 		cp $03						; if( MAX_GRID_X - 1 == co->cursor_index_x )
@@ -339,7 +339,7 @@ A$cursor_manager$579:
 		ld (bc), a
 		jp update_values
 
-_engine_cursor_manager_decY:
+engine_cursor_manager_decY:
 		ld bc, cursor_index_y		; cursor_index_y = $C027
 		ld a, (bc)
 		or a						; if( 0 == co->cursor_index_y )
@@ -352,7 +352,7 @@ A$cursor_manager$618:
 		ld (bc), a
 		jp update_values
 
-_engine_cursor_manager_incY:
+engine_cursor_manager_incY:
 		ld bc, cursor_index_y		; cursor_index_y = $C027
 		ld a, (bc)
 		cp $02						; if( MAX_GRID_Y - 1 == co->cursor_index_y )
