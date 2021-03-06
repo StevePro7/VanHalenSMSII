@@ -20,7 +20,7 @@
 ; engine
 .include "engine/asm_manager.inc"
 .include "engine/audio_manager.inc"
-
+;.include "engine/bank_manager.inc"         ; must go last!
 .include "engine/content_manager.inc"
 .include "engine/cursor_manager.inc"
 .include "engine/font_manager.inc"
@@ -44,7 +44,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test22"
+.asc "Hello Test23"
 .db $ff
 .ends
 
