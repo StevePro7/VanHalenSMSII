@@ -16,12 +16,9 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test7"
+.asc "Hello Test9"
 .db $ff
 .ends
-
-
-
 
 
 
@@ -36,6 +33,26 @@ boot:
     im 1            ; Interrupt mode 1
     jp main         ; jump to main program
 .ends
+
+; Data from 6 to 7 (2 bytes)	
+_SMS_crt0_RST08:
+	.db $00 $00
+
+_LABEL_8_:
+		ld c, Port_VDPAddress
+		di
+		out (c), l
+		out (c), h
+		ei
+		ret
+
+; Data from 11 to 37 (39 bytes)
+_SMS_crt0_RST18:
+	;.db $00 $00 $00 $00 $00 $00 $00 $7D $D3 $BE $7C $D6 $00 $00 $D3 $BE
+	;.db $C9
+.rept 7
+	nop
+.endr
 
 .org $0066
 ;==============================================================
