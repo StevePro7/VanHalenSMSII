@@ -1,6 +1,11 @@
+;==============================================================
+; SDSC tag and SMS rom header
+;==============================================================
 .sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
 
 .include "devkit/memory_manager.inc"
+.include "devkit/enum_manager.inc"
+.include "devkit/define_manager.inc"
 
 ;==============================================================
 ; Data
@@ -11,21 +16,13 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test5"
+.asc "Hello Test7"
 .db $ff
 .ends
 
-;==============================================================
-; SMS defines
-;==============================================================
-.define VDPControl $bf
-.define VDPData $be
-.define VRAMWrite $4000
-.define CRAMWrite $c000
 
-;==============================================================
-; SDSC tag and SMS rom header
-;==============================================================
+
+
 
 
 .bank 0 slot 0

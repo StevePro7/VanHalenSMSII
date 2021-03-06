@@ -1,3 +1,11 @@
+;==============================================================
+; SMS defines
+;==============================================================
+.define VDPControl $bf
+.define VDPData $be
+.define VRAMWrite $4000
+.define CRAMWrite $c000
+
 ; Ports	
 .define Port_PSG $7F	
 .define Port_VDPData $BE	
