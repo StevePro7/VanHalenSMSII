@@ -37,7 +37,7 @@
 
 ; screen
 .include "screen/none_screen.inc"
-; .include "screen/splash_screen.inc"
+.include "screen/splash_screen.inc"
 ; .include "screen/title_screen.inc"
 ; .include "screen/scroll_screen.inc"
 ; .include "screen/select_screen.inc"
@@ -55,7 +55,7 @@ map " " to "~" = 0
 .enda
 
 Message:
-.asc "Hello Test26"
+.asc "Hello Test27"
 .db $ff
 .ends
 
