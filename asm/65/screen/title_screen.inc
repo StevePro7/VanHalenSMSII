@@ -1,5 +1,5 @@
 .section "Title screen" free
-_screen_title_screen_load:
+screen_title_screen_load:
 		call _devkit_SMS_displayOff
 		call _engine_content_manager_load_til
 		call _engine_content_manager_load_spr
@@ -82,7 +82,7 @@ title_build_label:
 	; "V1.0"
 	.db $56 $31 $2E $30 $00
 
-_screen_title_screen_update:
+screen_title_screen_update:
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -123,12 +123,12 @@ A$title_screen$280:
 		jr A$title_screen$288
 A$title_screen$286:
 		ld c, $02				; screen_type_title = 2
-A$title_screen$288:	
+A$title_screen$288:
 		ld l, (ix - 2)
 		ld h, (ix - 1)
 		ld (hl), c
 		jr A$title_screen$384
-A$title_screen$299:	
+A$title_screen$299:
 		call _engine_delay_manager_update
 		ld (ix - 3), l
 		ld a, l

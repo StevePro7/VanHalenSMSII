@@ -1,6 +1,6 @@
 .section "Func screen" free
 ; Data from 15BF to 15C1 (3 bytes)
-_screen_func_screen_load:
+screen_func_screen_load:
 	.db $CD $2B $08
 
 ; Data from 15C2 to 15C4 (3 bytes)
@@ -172,7 +172,7 @@ _screen_func_screen_load:
 	.db $31 $39 $38 $38 $00
 
 ; Data from 1640 to 1640 (1 bytes)
-_screen_func_screen_update:
+screen_func_screen_update:
 	.db $C1
 
 ; Data from 1641 to 1641 (1 bytes)

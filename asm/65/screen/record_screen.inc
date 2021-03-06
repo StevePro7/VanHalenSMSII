@@ -1,9 +1,9 @@
 .section "Record screen" free
-_screen_record_screen_load:
+screen_record_screen_load:
 		call _engine_scroll_manager_reset
 		jp load_record
 
-_screen_record_screen_update:
+screen_record_screen_update:
 		push ix
 		ld ix, $0000
 		add ix, sp

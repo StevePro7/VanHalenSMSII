@@ -1,11 +1,11 @@
 .section "Scroll manager" free
 ; Data from 1389 to 138B (3 bytes)
-_screen_scroll_screen_load:
+screen_scroll_screen_load:
 		ld hl, scroll_screen_offset		; scroll_screen_offset = $C056
 		ld (hl), $00					; offset = 0;
 		ret
-	
-_screen_scroll_screen_update:
+
+screen_scroll_screen_update:
 		dec sp
 		ld a, (scroll_screen_offset)	; scroll_screen_offset = $C056
 		sub a, $20						; TOP_SCROLL	32
@@ -15,7 +15,7 @@ _screen_scroll_screen_update:
 A$scroll_screen$88:
 		xor a
 
-A$scroll_screen$90:	
+A$scroll_screen$90:
 		inc sp
 		push af
 		inc sp

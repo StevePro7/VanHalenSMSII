@@ -1,5 +1,5 @@
 .section "Select screen" free
-_screen_select_screen_load:
+screen_select_screen_load:
 		ld a, (G$global_scroll_object$0$0)		; G$global_scroll_object$0$0 = $C045
 		or a
 		jr nz, A$select_screen$136
@@ -50,8 +50,8 @@ select_covers_label:
 ; Data from 14DC to 14E2 (7 bytes)
 	; "COVERS"
 	.db $43 $4F $56 $45 $52 $53 $00
-	
-_screen_select_screen_update:
+
+screen_select_screen_update:
 		ld a, (select_screen_event)		; static unsigned char event_stage	; $C057
 		dec a
 		jr nz, A$select_screen$250

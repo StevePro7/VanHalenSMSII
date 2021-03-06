@@ -1,5 +1,5 @@
 .section "Splash screen" free
-_screen_splash_screen_load:
+screen_splash_screen_load:
 		call _devkit_SMS_displayOff				;$082B
 		call _engine_content_manager_load_til	;$0AA2
 		call _engine_content_manager_load_spl	;$0AB8
@@ -13,7 +13,7 @@ _screen_splash_screen_load:
 		pop af
 		ret
 
-_screen_splash_screen_update:
+screen_splash_screen_update:
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -42,7 +42,7 @@ _screen_splash_screen_update:
 		call _engine_reset_manager_reset		; $113F
 		ld hl, $171C							; ; 17 = 23	1C = 28
 		push hl
-		ld hl, fiftyonefifty					; $121B							
+		ld hl, fiftyonefifty					; $121B
 		push hl
 		call _engine_font_manager_draw_text		; $0DE9
 		pop af
@@ -62,7 +62,7 @@ A$splash_screen$179:
 A$splash_screen$194:
 		ld (hl), $02						; screen_type
 		jr A$splash_screen$205
-A$splash_screen$203:	
+A$splash_screen$203:
 		ld (hl), $01						; screen_type_splash
 A$splash_screen$205:
 		ld sp, ix

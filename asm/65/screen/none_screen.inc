@@ -1,8 +1,8 @@
 .section "None screen" free
-_screen_none_screen_load:
+screen_none_screen_load:
 		ret
-	
-_screen_none_screen_update:
+
+screen_none_screen_update:
 		pop de
 		pop bc
 		push bc

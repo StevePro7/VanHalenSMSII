@@ -1,6 +1,6 @@
 .section "Test screen" free
 ; Data from 1577 to 1579 (3 bytes)
-_screen_test_screen_load:
+screen_test_screen_load:
 	.db $CD $2B $08
 
 ; Data from 157A to 157C (3 bytes)
@@ -43,7 +43,7 @@ _screen_test_screen_load:
 	.db $50 $52 $45 $53 $53 $20 $53 $54 $41 $52 $54 $00
 
 ; Data from 159F to 15A0 (2 bytes)
-_screen_test_screen_update:
+screen_test_screen_update:
 	.db $3E $02
 
 ; Data from 15A1 to 15A1 (1 bytes)
