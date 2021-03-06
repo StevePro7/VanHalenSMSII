@@ -1,19 +1,19 @@
-.section "OUT128 section" free
+;.section "OUT128 section" free
 
 OUTI128:	
 .rept 64
 		outi
 .endr
-.ends
+;.ends
 
-.section "OUT64 section" free
+;.section "OUT64 section" free
 OUTI64:	
 		.rept 32
 		outi
 .endr
-.ends
+;.ends
 
-.section "OUT32 section" free
+;.section "OUT32 section" free
 OUTI32:	
 		.rept 32
 		outi
@@ -26,4 +26,4 @@ OUTI32:
 	nop
 .endr	
 
-.ends
+;.ends

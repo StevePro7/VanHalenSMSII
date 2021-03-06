@@ -1,90 +1,30 @@
-;==============================================================
-; SDSC tag and SMS rom header
-;==============================================================
-.sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","Steven Boland"
+; .sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
 
-; content
-.include "content/gfx.inc"
-.include "content/psg.inc"
-.include "content/out.inc"
-
-; devkit
-.include "devkit/define_manager.inc"
-.include "devkit/devkit_manager.inc"
-.include "devkit/enum_manager.inc"
 .include "devkit/memory_manager.inc"
-.include "devkit/psg_manager.inc"
-.include "devkit/sms_manager.inc"
+.include "devkit/enum_manager.inc"
+.include "devkit/define_manager.inc"
 
 
-; engine
-.include "engine/asm_manager.inc"
-.include "engine/audio_manager.inc"
-;.include "engine/bank_manager.inc"         ; must go last!
-.include "engine/content_manager.inc"
-.include "engine/cursor_manager.inc"
-.include "engine/font_manager.inc"
-.include "engine/input_manager.inc"
-.include "engine/record_manager.inc"
-.include "engine/screen_manager.inc"
-.include "engine/scroll_manager.inc"
-.include "engine/storage_manager.inc"
-.include "engine/timer_manager.inc"
-
-; object
-.include "object/cursor_object.inc"
-.include "object/record_object.inc"
-
-; screen
-.include "screen/none_screen.inc"
-.include "screen/splash_screen.inc"
-.include "screen/title_screen.inc"
-.include "screen/scroll_screen.inc"
-.include "screen/select_screen.inc"
-.include "screen/record_screen.inc"
-.include "screen/detail_screen.inc"
-.include "screen/test_screen.inc"
-.include "screen/func_screen.inc"
-
-;==============================================================
-; Data
-;==============================================================
-.section "Text section" free
-.asciitable
-map " " to "~" = 0
-.enda
-
-Message:
-.asc "Hello Test42"
-.db $ff
-.ends
-
-
-
-.bank 0 slot 0
-.org $0000
-;==============================================================
-; Boot section
-;==============================================================
-.section "Boot" force
-boot:
-    di              ; disable interrupts
-    im 1            ; Interrupt mode 1
-    jp init         ; jump to main program
-.ends
-
+.BANK 0 SLOT 0	
+.ORG $0000	
+	
+_LABEL_0_:
+		di
+		im 1
+		jp _LABEL_70_
+	
 ; Data from 6 to 7 (2 bytes)	
 SMS_crt0_RST08:
 	.db $00 $00
-
-LABEL_8_:
+	
+_LABEL_8_:
 		ld c, Port_VDPAddress
 		di
 		out (c), l
 		out (c), h
 		ei
 		ret
-
+	
 ; Data from 11 to 37 (39 bytes)
 SMS_crt0_RST18:
 	;.db $00 $00 $00 $00 $00 $00 $00 $7D $D3 $BE $7C $D6 $00 $00 $D3 $BE
@@ -105,168 +45,21 @@ SMS_crt0_RST18:
 .rept 22
 	nop
 .endr
-
-.org $0038
-;==============================================================
-; VDP interrupt handler
-;==============================================================
-.section "VDP interrupt" force
-    jp SMS_isr
-    ;reti
-.ends
-
+	
+_LABEL_38_:
+		jp SMS_isr
+	
 ; Data from 3B to 65 (43 bytes)
 	.dsb 43, $00
-    
-.org $0066
-;==============================================================
-; Pause button handler
-;==============================================================
-.section "Pause interrupt" force
-    jp SMS_nmi_isr
-    ;retn
-.ends
 
+
+_LABEL_66_:
+		jp SMS_nmi_isr
+	
 ; Data from 69 to 6F (7 bytes)
 	.db $00 $00 $00 $00 $00 $00 $00
-    
-;==============================================================
-; Main program
-;==============================================================
-.section "Init control structure" free
-init:
-    ld sp, $dff0
-    ld de, _RAM_FFFC_
-
-    ;==============================================================
-    ; Set up VDP registers
-    ;==============================================================
-    ld hl,VDPInitData
-    ld b,VDPInitDataEnd-VDPInitData
-    ld c,VDPControl
-    otir
-
-    ;==============================================================
-    ; Clear VRAM
-    ;==============================================================
-    ; 1. Set VRAM write address to $0000
-    ld hl,$0000 | VRAMWrite
-    call SetVDPAddress
-    ; 2. Output 16KB of zeroes
-    ld bc,$4000     ; Counter for 16KB of VRAM
--:  xor a
-    out (VDPData),a ; Output to VRAM address, which is auto-incremented after each write
-    dec bc
-    ld a,b
-    or c
-    jr nz,-
-
-    ;==============================================================
-    ; Load palette
-    ;==============================================================
-    ; 1. Set VRAM write address to CRAM (palette) address 0
-    ld hl,$0000 | CRAMWrite
-    call SetVDPAddress
-    ; 2. Output colour data
-    ld hl,PaletteData
-    ld bc,PaletteDataEnd-PaletteData
-    call CopyToVDP
-
-    ;==============================================================
-    ; Load tiles (font)
-    ;==============================================================
-    ; 1. Set VRAM write address to tile index 0
-    ld hl,$0000 | VRAMWrite
-    call SetVDPAddress
-    ; 2. Output tile data
-    ld hl,FontData              ; Location of tile data
-    ld bc,FontDataSize          ; Counter for number of bytes to write
-    call CopyToVDP
-
-    ;==============================================================
-    ; Write text to name table
-    ;==============================================================
-    ; 1. Set VRAM write address to tilemap index 0
-    ld hl,$3800 | VRAMWrite
-    call SetVDPAddress
-    ; 2. Output tilemap data
-    ld hl,Message
--:  ld a,(hl)
-    cp $ff
-    jr z,+
-    out (VDPData),a
-    xor a
-    out (VDPData),a
-    inc hl
-    jr -
-+:
-
-    ; Turn screen on
-    ld a,%01000000
-;          ||||||`- Zoomed sprites -> 16x16 pixels
-;          |||||`-- Doubled sprites -> 2 tiles per sprite, 8x16
-;          ||||`--- Mega Drive mode 5 enable
-;          |||`---- 30 row/240 line mode
-;          ||`----- 28 row/224 line mode
-;          |`------ VBlank interrupts
-;          `------- Enable display
-    out (VDPControl),a
-    ld a,$81
-    out (VDPControl),a
-
-    ; Infinite loop to stop program
--:  jr -
-.ends
-
-;==============================================================
-; Helper functions
-;==============================================================
-.section "Helper functions" free
-SetVDPAddress:
-; Sets the VDP address
-; Parameters: hl = address
-    push af
-        ld a,l
-        out (VDPControl),a
-        ld a,h
-        out (VDPControl),a
-    pop af
-    ret
-
-CopyToVDP:
-; Copies data to the VDP
-; Parameters: hl = data address, bc = data length
-; Affects: a, hl, bc
--:  ld a,(hl)    ; Get data byte
-    out (VDPData),a
-    inc hl       ; Point to next letter
-    dec bc
-    ld a,b
-    or c
-    jr nz,-
-    ret
-.ends
-
-
-
-.section "Content section" free
-PaletteData:
-.db $00,$3f ; Black, white
-PaletteDataEnd:
-
-; VDP initialisation data
-VDPInitData:
-.db $04,$80,$00,$81,$ff,$82,$ff,$85,$ff,$86,$ff,$87,$00,$88,$00,$89,$ff,$8a
-VDPInitDataEnd:
-.ends
-
-.section "Font include" free
-FontData:
-.incbin "font.bin" fsize FontDataSize
-.ends
-
-.section "Initialize section" free
-init2:
+	
+_LABEL_70_:
 		ld sp, $DFF0
 		ld de, _RAM_FFFC_
 		xor a
@@ -287,27 +80,24 @@ init2:
 		call SMS_init
 		ei
 		call main
-		jp exit
-.ends
+		jp _exit
 
-.section "Clock and exit section" free
-; NEW code
+.include "content/out.inc"
+
 ; Data from 200 to 203 (4 bytes)	
-clock:
+__clock:
 	;.db $3E $02 $CF $C9
 		ld a, $02
 		rst $08
 		ret
 
-exit:
+_exit:
 		ld a, $00
 		rst $08	; _LABEL_8_
 -:
 		halt
 		jr -
-.ends
-
-.section "Main section" free
+	
 main:
 		call engine_asm_manager_clear_VRAM
 		call devkit_SMS_init
@@ -362,9 +152,48 @@ global_pause:
 		call devkit_PSGFrame
 		call devkit_PSGSFXFrame
 		jr infinite_loop
-.ends
+	
+; devkit
+.include "devkit/psg_manager.inc"
+.include "devkit/devkit_manager.inc"
 
-.section "Math functions" free
+
+; engine
+.include "engine/asm_manager.inc"
+.include "engine/audio_manager.inc"
+.include "engine/content_manager.inc"
+.include "engine/cursor_manager.inc"
+.include "engine/font_manager.inc"
+.include "engine/input_manager.inc"
+.include "engine/record_manager.inc"
+.include "engine/screen_manager.inc"
+.include "engine/scroll_manager.inc"
+.include "engine/storage_manager.inc"
+.include "engine/timer_manager.inc"
+
+
+; object
+.include "object/cursor_object.inc"
+.include "object/record_object.inc"
+
+
+; screen
+.include "screen/none_screen.inc"
+.include "screen/splash_screen.inc"
+.include "screen/title_screen.inc"
+.include "screen/scroll_screen.inc"
+.include "screen/select_screen.inc"
+.include "screen/record_screen.inc"
+.include "screen/detail_screen.inc"
+.include "screen/test_screen.inc"
+.include "screen/func_screen.inc"
+
+
+; content
+.include "content/gfx.inc"
+.include "content/psg.inc"
+
+
 ; Data from 1A9F to 1AA6 (8 bytes)	
 divuint:
 	;.db $F1 $E1 $D1 $D5 $E5 $F5 $18 $0A
@@ -375,7 +204,7 @@ divuint:
 	push hl
 	push af
 	jr $0A
-    
+
 ; Data from 1AA7 to 1AAD (7 bytes)	
 divuchar:
 	;.db $21 $03 $00 $39 $5E $2B $6E
@@ -430,10 +259,10 @@ divu16:
 	ld e, a
 	ex de, hl
 	ret
-.ends
+
+.include "devkit/sms_manager.inc"
 
 
-.section "Object variables" free
 ; Data from 2103 to 2104 (2 bytes)	
 Finput_manager$__xinit_curr_joyp:
 ; static unsigned int curr_joypad1 = 0;
@@ -468,9 +297,7 @@ Frecord_object$__xinit_record_pa:
 ; const unsigned char *record_palette_data[]
 	.db $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80
 	.db $00 $80 $00 $80 $00 $80 $00 $80 $04 $20 $08 $08
-.ends
-
-.section "Additional functions" free
+	
 gsinit:
 		ld bc, $0068
 		ld a, b
@@ -481,16 +308,41 @@ gsinit:
 		ldir
 +:
 		ret
-.ends
-
-; .BANK 1 SLOT 1	
-; .ORG $0000	
-
-; ; Data from 7FF0 to 7FFF (16 bytes)	
-; G$__SMS__SEGA_signature$0$0:
-; ___SMS__SEGA_signature:
-; 	.db $54 $4D $52 $20 $53 $45 $47 $41 $FF $FF $D5 $FF $99 $99 $00 $4C
 	
-    
+	; Data from 217B to 7F8B (24081 bytes)
+	.dsb 24081, $00
+	
+; Data from 7F8C to 7FC7 (60 bytes)	
+___SMS__SDSC_descr:
+; "Van Halen Record Covers for the SMS Power! 2021 Competition"
+	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
+	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
+	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
+	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
+	
+; Data from 7FC8 to 7FD1 (10 bytes)	
+___SMS__SDSC_name:
+; "Van Halen"
+	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
+	
+; Data from 7FD2 to 7FDF (14 bytes)	
+___SMS__SDSC_author:
+; "Steven Boland"
+	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
+	
+; Data from 7FE0 to 7FEF (16 bytes)	
+___SMS__SDSC_signature:
+; "SDSC"
+	.db $53 $44 $53 $43 $01 $00 $27 $03 $21 $20 $D2 $7F $C8 $7F $8C $7F
+	
+.BANK 1 SLOT 1	
+.ORG $0000	
+	
+; Data from 7FF0 to 7FFF (16 bytes)	
+G$__SMS__SEGA_signature$0$0:
+___SMS__SEGA_signature:
+	.db $54 $4D $52 $20 $53 $45 $47 $41 $FF $FF $D5 $FF $99 $99 $00 $4C
+	
+
 ; Banks.
 .include "engine/bank_manager.inc"

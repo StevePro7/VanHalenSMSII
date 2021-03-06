@@ -1,4 +1,4 @@
-.section "SMS Manager" free
+;.section "SMS Manager" free
 UNSAFE_SMS_copySpritestoSAT:
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
@@ -1030,4 +1030,4 @@ LABEL_20B1_:
 		jp nz, LABEL_2045_
 		ret
 
-.ends
+;.ends

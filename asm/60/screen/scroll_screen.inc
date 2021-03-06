@@ -1,4 +1,4 @@
-.section "Scroll screen" free
+;.section "Scroll screen" free
 ; Data from 1389 to 138B (3 bytes)
 screen_scroll_screen_load:
 		ld hl, scroll_screen_offset		; scroll_screen_offset = $C056
@@ -67,4 +67,4 @@ A$scroll_screen$162:
 		inc sp
 		ret
 
-.ends
+;.ends

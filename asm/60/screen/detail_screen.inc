@@ -1,4 +1,4 @@
-.section "Detail screen" free
+;.section "Detail screen" free
 screen_detail_screen_load:
 	ret
 
@@ -10,4 +10,4 @@ screen_detail_screen_update:
 	ld (hl), $06		; screen_type_detail
 	ret
 
-.ends
+;.ends

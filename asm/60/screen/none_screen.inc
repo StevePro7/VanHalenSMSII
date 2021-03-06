@@ -1,4 +1,4 @@
-.section "None screen" free
+;.section "None screen" free
 screen_none_screen_load:
 		ret
 
@@ -11,4 +11,4 @@ screen_none_screen_update:
 		ld (bc), a
 		ret
 
-.ends
+;.ends

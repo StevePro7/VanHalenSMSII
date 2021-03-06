@@ -1,4 +1,4 @@
-.section "Font manager" free
+;.section "Font manager" free
 engine_font_manager_draw_char:
 		push ix
 		ld ix, $0000
@@ -155,4 +155,4 @@ A$font_manager$258:
 		pop ix
 		ret
 
-.ends
+;.ends

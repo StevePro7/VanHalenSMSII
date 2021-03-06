@@ -1,4 +1,4 @@
-.section "Splash screen" free
+;.section "Splash screen" free
 screen_splash_screen_load:
 		call devkit_SMS_displayOff				;$082B
 		call engine_content_manager_load_til	;$0AA2
@@ -73,4 +73,4 @@ A$splash_screen$205:
 fiftyonefifty:
 	.db $35 $31 $35 $30 $00
 
-.ends
+;.ends

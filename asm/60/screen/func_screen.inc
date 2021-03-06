@@ -1,4 +1,4 @@
-.section "Func screen" free
+;.section "Func screen" free
 ; Data from 15BF to 15C1 (3 bytes)
 screen_func_screen_load:
 	.db $CD $2B $08
@@ -190,4 +190,4 @@ screen_func_screen_update:
 ; Data from 1646 to 1646 (1 bytes)
 	.db $C9
 
-.ends
+;.ends

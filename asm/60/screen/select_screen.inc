@@ -1,4 +1,4 @@
-.section "Select screen" free
+;.section "Select screen" free
 screen_select_screen_load:
 		ld a, (G$global_scroll_object$0$0)		; G$global_scroll_object$0$0 = $C045
 		or a
@@ -153,4 +153,4 @@ A$select_screen$370:
 		ld (hl), $04		; screen_type_select	4
 		ret
 
-.ends
+;.ends

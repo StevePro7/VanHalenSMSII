@@ -1,4 +1,4 @@
-.section "ASM manager" free
+;.section "ASM manager" free
 engine_asm_manager_clear_VRAM:	
 		ld a, $00
 		out (Port_VDPAddress), a
@@ -14,4 +14,4 @@ A$asm_manager$65:
 		jp nz, A$asm_manager$65
 		ret
 
-.ends
+;.ends
