@@ -7,9 +7,9 @@ engine_screen_manager_init:
 		ld hl, $C02B			; Fscreen_manager$curr_screen_type = $C02B
 		ld (hl), $00
 		ld hl, screen_none_screen_load					; screen_none_screen_load = $1195
-		ld (Fscreen_manager$load_method$0$0), hl		; Fscreen_manager$load_method$0$0 = $C02D
+		ld (load_method_type), hl		; load_method_type = $C02D
 		ld hl, screen_splash_screen_load				; screen_splash_screen_load = $119D
-		ld (Fscreen_manager$load_method$0$0 + 2), hl	; Fscreen_manager$load_method$0$0 + 2 = $C02F
+		ld (load_method_type + 2), hl	; load_method_type + 2 = $C02F
 		ld hl, screen_title_screen_load					; screen_title_screen_load = $1220
 		ld (_RAM_C031_), hl
 		ld hl, screen_scroll_screen_load				; screen_scroll_screen_load = $1389
@@ -40,7 +40,7 @@ engine_screen_manager_update:
 		ld a, (iy+0)
 		ld iy, $C02B		; $C02B = $C02B
 		ld (iy+0), a
-		ld bc, Fscreen_manager$load_method$0$0		; Fscreen_manager$load_method$0$0 = $C02D
+		ld bc, load_method_type		; load_method_type = $C02D
 		ld l, (iy+0)
 		ld h, $00
 		add hl, hl
