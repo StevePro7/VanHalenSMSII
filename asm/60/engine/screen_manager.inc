@@ -19,9 +19,9 @@ engine_screen_manager_init:
 		ld hl, screen_record_screen_load				; screen_record_screen_load = $14E2
 		ld (_RAM_C037_), hl
 		ld hl, screen_none_screen_update				; screen_none_screen_update = $1196
-		ld (Fscreen_manager$update_method$0$), hl		; Fscreen_manager$update_method$0$ = $C039
+		ld (update_method_type), hl		; update_method_type = $C039
 		ld hl, screen_splash_screen_update				; screen_splash_screen_update = $11B9
-		ld (Fscreen_manager$update_method$0$ + 2), hl	; Fscreen_manager$update_method$0$ + 2 = $C03B
+		ld (update_method_type + 2), hl	; update_method_type + 2 = $C03B
 		ld hl, screen_title_screen_update				; screen_title_screen_update = $12BE
 		ld (_RAM_C03D_), hl
 		ld hl, screen_scroll_screen_update				; screen_scroll_screen_update = $138F
@@ -51,7 +51,7 @@ engine_screen_manager_update:
 		ld l, c
 		call sdcc_call_hl
 A$screen_manager$193:
-		ld bc, Fscreen_manager$update_method$0$		; Fscreen_manager$update_method$0$ = $C039
+		ld bc, update_method_type		; update_method_type = $C039
 		ld iy, $C02B		; $C02B = $C02B
 		ld l, (iy+0)
 		ld h, $00
