@@ -4,7 +4,7 @@ engine_screen_manager_init:
 		add hl, sp
 		ld a, (hl)
 		ld (Fscreen_manager$next_screen_type), a		; Fscreen_manager$next_screen_type = $C02C
-		ld hl, Fscreen_manager$curr_screen_type			; Fscreen_manager$curr_screen_type = $C02B
+		ld hl, $C02B			; Fscreen_manager$curr_screen_type = $C02B
 		ld (hl), $00
 		ld hl, screen_none_screen_load					; screen_none_screen_load = $1195
 		ld (Fscreen_manager$load_method$0$0), hl		; Fscreen_manager$load_method$0$0 = $C02D
@@ -33,12 +33,12 @@ engine_screen_manager_init:
 		ret
 
 engine_screen_manager_update:
-		ld a, (Fscreen_manager$curr_screen_type)	; Fscreen_manager$curr_screen_type = $C02B
+		ld a, ($C02B)	; $C02B = $C02B
 		ld iy, Fscreen_manager$next_screen_type		; Fscreen_manager$next_screen_type = $C02C
 		sub (iy+0)
 		jr z, A$screen_manager$193
 		ld a, (iy+0)
-		ld iy, Fscreen_manager$curr_screen_type		; Fscreen_manager$curr_screen_type = $C02B
+		ld iy, $C02B		; $C02B = $C02B
 		ld (iy+0), a
 		ld bc, Fscreen_manager$load_method$0$0		; Fscreen_manager$load_method$0$0 = $C02D
 		ld l, (iy+0)
@@ -52,7 +52,7 @@ engine_screen_manager_update:
 		call sdcc_call_hl
 A$screen_manager$193:
 		ld bc, Fscreen_manager$update_method$0$		; Fscreen_manager$update_method$0$ = $C039
-		ld iy, Fscreen_manager$curr_screen_type		; Fscreen_manager$curr_screen_type = $C02B
+		ld iy, $C02B		; $C02B = $C02B
 		ld l, (iy+0)
 		ld h, $00
 		add hl, hl
