@@ -48,17 +48,17 @@ record_album_index db	            ; ro->record_album_index = $C02A
 curr_screen_type db	    ; Fscreen_manager$curr_screen_type = $C02B      ; TODO update
 next_screen_type db	    ; Fscreen_manager$next_screen_type = $C02C
 load_type_none dw	    ; _RAM_C02D_ = $C02D
-load_type_splash dw	; _RAM_C02F_ = $C02F
-load_type_title dw	; _RAM_C031_ = $C031
-load_type_scroll dw	; _RAM_C033_ = $C033
-load_type_select dw	; _RAM_C035_ = $C035
-load_type_record dw	; _RAM_C037_ = $C037
-update_method_type dw	    ; Fscreen_manager$update_method$0$ = $C039
-_RAM_C03B_ dw	
-_RAM_C03D_ dw	
-_RAM_C03F_ dw	
-_RAM_C041_ dw	
-_RAM_C043_ dw	
+load_type_splash dw	    ; _RAM_C02F_ = $C02F
+load_type_title dw	    ; _RAM_C031_ = $C031
+load_type_scroll dw	    ; _RAM_C033_ = $C033
+load_type_select dw	    ; _RAM_C035_ = $C035
+load_type_record dw	    ; _RAM_C037_ = $C037
+update_type_none dw	    ; _RAM_C039_ = $C039
+update_type_splash dw   ; _RAM_C03B_ = $C03B
+update_type_title dw	; _RAM_C03D_ = $C03D
+update_type_scroll dw	; _RAM_C03F_ = $C03F
+update_type_select dw   ; _RAM_C041_ = $C041
+update_type_record dw	; _RAM_C043_ = $C043
 ;G$global_scroll_object$0$0 db	        ; G$global_scroll_object$0$0 = $C045
 scroll_object db	        ; G$global_scroll_object$0$0 = $C045
 .ende	
