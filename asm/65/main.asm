@@ -1,4 +1,4 @@
-; .sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
+ .sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
 
 .include "devkit/memory_manager.inc"
 .include "devkit/enum_manager.inc"
@@ -92,7 +92,7 @@ LABEL_70_:
 		jp exit
 .ends
 
-.include "content/out.inc"
+;.include "content/out.inc"
 
 
 .section "Helper functions" free
@@ -168,45 +168,45 @@ global_pause:
 		jr infinite_loop
 .ends
 
-; devkit
-.include "devkit/psg_manager.inc"
-.include "devkit/devkit_manager.inc"
+; ; devkit
+; .include "devkit/psg_manager.inc"
+; .include "devkit/devkit_manager.inc"
 
 
-; engine
-.include "engine/asm_manager.inc"
-.include "engine/audio_manager.inc"
-.include "engine/content_manager.inc"
-.include "engine/cursor_manager.inc"
-.include "engine/font_manager.inc"
-.include "engine/input_manager.inc"
-.include "engine/record_manager.inc"
-.include "engine/screen_manager.inc"
-.include "engine/scroll_manager.inc"
-.include "engine/storage_manager.inc"
-.include "engine/timer_manager.inc"
+; ; engine
+; .include "engine/asm_manager.inc"
+; .include "engine/audio_manager.inc"
+; .include "engine/content_manager.inc"
+; .include "engine/cursor_manager.inc"
+; .include "engine/font_manager.inc"
+; .include "engine/input_manager.inc"
+; .include "engine/record_manager.inc"
+; .include "engine/screen_manager.inc"
+; .include "engine/scroll_manager.inc"
+; .include "engine/storage_manager.inc"
+; .include "engine/timer_manager.inc"
 
 
-; object
-.include "object/cursor_object.inc"
-.include "object/record_object.inc"
+; ; object
+; .include "object/cursor_object.inc"
+; .include "object/record_object.inc"
 
 
-; screen
-.include "screen/none_screen.inc"
-.include "screen/splash_screen.inc"
-.include "screen/title_screen.inc"
-.include "screen/scroll_screen.inc"
-.include "screen/select_screen.inc"
-.include "screen/record_screen.inc"
-.include "screen/detail_screen.inc"
-.include "screen/test_screen.inc"
-.include "screen/func_screen.inc"
+; ; screen
+; .include "screen/none_screen.inc"
+; .include "screen/splash_screen.inc"
+; .include "screen/title_screen.inc"
+; .include "screen/scroll_screen.inc"
+; .include "screen/select_screen.inc"
+; .include "screen/record_screen.inc"
+; .include "screen/detail_screen.inc"
+; .include "screen/test_screen.inc"
+; .include "screen/func_screen.inc"
 
 
-; content
-.include "content/gfx.inc"
-.include "content/psg.inc"
+; ; content
+; .include "content/gfx.inc"
+; .include "content/psg.inc"
 
 
 .section "More helper functions" free
@@ -277,7 +277,7 @@ divu16:
 	ret
 .ends
 
-.include "devkit/sms_manager.inc"
+;.include "devkit/sms_manager.inc"
 
 
 .section "Additional global variables" free
@@ -328,39 +328,84 @@ gsinit:
 +:
 		ret
 
+
+; content
+.include "content/gfx.inc"
+.include "content/out.inc"
+.include "content/psg.inc"
+
+; devkit
+.include "devkit/psg_manager.inc"
+.include "devkit/sms_manager.inc"
+.include "devkit/devkit_manager.inc"
+
+
+; engine
+.include "engine/asm_manager.inc"
+.include "engine/audio_manager.inc"
+.include "engine/content_manager.inc"
+.include "engine/cursor_manager.inc"
+.include "engine/font_manager.inc"
+.include "engine/input_manager.inc"
+.include "engine/record_manager.inc"
+.include "engine/screen_manager.inc"
+.include "engine/scroll_manager.inc"
+.include "engine/storage_manager.inc"
+.include "engine/timer_manager.inc"
+
+
+; object
+.include "object/cursor_object.inc"
+.include "object/record_object.inc"
+
+
+; screen
+.include "screen/none_screen.inc"
+.include "screen/splash_screen.inc"
+.include "screen/title_screen.inc"
+.include "screen/scroll_screen.inc"
+.include "screen/select_screen.inc"
+.include "screen/record_screen.inc"
+.include "screen/detail_screen.inc"
+.include "screen/test_screen.inc"
+.include "screen/func_screen.inc"
+
+
+
+
 	; Data from 217B to 7F8B (24081 bytes)
-	.dsb 24081, $00
+	;.dsb 24081, $00
 
 ; Data from 7F8C to 7FC7 (60 bytes)
-SMS__SDSC_descr:
-; "Van Halen Record Covers for the SMS Power! 2021 Competition"
-	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
-	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
-	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
-	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
+; SMS__SDSC_descr:
+; ; "Van Halen Record Covers for the SMS Power! 2021 Competition"
+; 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
+; 	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
+; 	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
+; 	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
 
-; Data from 7FC8 to 7FD1 (10 bytes)
-SMS__SDSC_name:
-; "Van Halen"
-	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
+; ; Data from 7FC8 to 7FD1 (10 bytes)
+; SMS__SDSC_name:
+; ; "Van Halen"
+; 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
 
-; Data from 7FD2 to 7FDF (14 bytes)
-SMS__SDSC_author:
-; "Steven Boland"
-	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
+; ; Data from 7FD2 to 7FDF (14 bytes)
+; SMS__SDSC_author:
+; ; "Steven Boland"
+; 	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
 
-; Data from 7FE0 to 7FEF (16 bytes)
-SMS__SDSC_signature:
-; "SDSC"
-	.db $53 $44 $53 $43 $01 $00 $27 $03 $21 $20 $D2 $7F $C8 $7F $8C $7F
+; ; Data from 7FE0 to 7FEF (16 bytes)
+; SMS__SDSC_signature:
+; ; "SDSC"
+; 	.db $53 $44 $53 $43 $01 $00 $27 $03 $21 $20 $D2 $7F $C8 $7F $8C $7F
 
 
-.BANK 1 SLOT 1
-.ORG $0000
+; .BANK 1 SLOT 1
+; .ORG $0000
 
-; Data from 7FF0 to 7FFF (16 bytes)
-SMS__SEGA_signature:
-	.db $54 $4D $52 $20 $53 $45 $47 $41 $FF $FF $D5 $FF $99 $99 $00 $4C
+; ; Data from 7FF0 to 7FFF (16 bytes)
+; SMS__SEGA_signature:
+; 	.db $54 $4D $52 $20 $53 $45 $47 $41 $FF $FF $D5 $FF $99 $99 $00 $4C
 
 
 ; Banks.
