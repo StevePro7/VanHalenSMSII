@@ -4,7 +4,7 @@ engine_screen_manager_init:
 		add hl, sp
 		ld a, (hl)
 		ld (next_screen_type), a		; next_screen_type = $C02C
-		ld hl, $C02B			; Fscreen_manager$curr_screen_type = $C02B
+		ld hl, curr_screen_type			; Fscreen_manager$curr_screen_type = curr_screen_type
 		ld (hl), $00
 		ld hl, screen_none_screen_load					; screen_none_screen_load = $1195
 		ld (load_method_type), hl		; load_method_type = $C02D
@@ -33,12 +33,12 @@ engine_screen_manager_init:
 		ret
 
 engine_screen_manager_update:
-		ld a, ($C02B)	; $C02B = $C02B
+		ld a, (curr_screen_type)	; curr_screen_type = curr_screen_type
 		ld iy, next_screen_type		; next_screen_type = $C02C
 		sub (iy+0)
 		jr z, update_code
 		ld a, (iy+0)
-		ld iy, $C02B		; $C02B = $C02B
+		ld iy, curr_screen_type		; curr_screen_type = curr_screen_type
 		ld (iy+0), a
 		ld bc, load_method_type		; load_method_type = $C02D
 		ld l, (iy+0)
@@ -52,7 +52,7 @@ engine_screen_manager_update:
 		call sdcc_call_hl
 update_code:
 		ld bc, update_method_type		; update_method_type = $C039
-		ld iy, $C02B		; $C02B = $C02B
+		ld iy, curr_screen_type		; curr_screen_type = curr_screen_type
 		ld l, (iy+0)
 		ld h, $00
 		add hl, hl

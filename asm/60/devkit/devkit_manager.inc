@@ -282,7 +282,7 @@ devkit_SMS_resetPauseRequest:
 		jp SMS_resetPauseRequest
 
 devkit_isCollisionDetected:
-		ld a, ($C05C)
+		ld a, (SMS_VDPFlags)
 		and $20
 		ld l, a
 		ret
