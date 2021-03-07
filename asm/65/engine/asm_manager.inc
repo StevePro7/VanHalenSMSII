@@ -1,4 +1,3 @@
-;.section "ASM manager" free
 .section "engine_asm_manager_clear_VRAM:" free
 engine_asm_manager_clear_VRAM:	
 		ld a, $00
@@ -18,5 +17,4 @@ asm_loop:
 		jp nz, asm_loop
 		ret
 
-;.ends
 .ends

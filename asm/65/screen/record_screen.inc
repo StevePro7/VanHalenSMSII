@@ -1,4 +1,3 @@
-;.section "Record screen" free
 .section "screen_record_screen_load" free
 screen_record_screen_load:
 		call engine_scroll_manager_reset
@@ -107,6 +106,4 @@ load_record:
 		call engine_asm_manager_clear_VRAM
 		call engine_record_manager_load
 		jp devkit_SMS_displayOn
-
-;.ends
 .ends

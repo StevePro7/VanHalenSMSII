@@ -1,4 +1,3 @@
-;.section "Font manager" free
 .section "engine_font_manager_draw_char" free
 engine_font_manager_draw_char:
 		push ix
@@ -36,7 +35,6 @@ engine_font_manager_draw_text:
 		ld c, (ix + $06)
 		ld (ix -1), $00
 ;.ends
-
 ;.section " font_goto_01" free
  font_goto_01:
 		ld a, (ix + $04)
@@ -79,7 +77,6 @@ engine_font_manager_draw_text:
 		inc (ix - 1)
 		jr font_goto_01
 ;.ends
-
 ;.section "font_goto_02" free
 font_goto_02:
 		inc sp
@@ -98,7 +95,6 @@ engine_font_manager_draw_data:
 		ld (ix - 1), a
 		ld (ix - 2), $00
 ;.ends
-
 ;.section "font_goto_03" free
 font_goto_03:
 		ld hl, $000A						; UNIT_ROOT	10 is decimal
@@ -139,7 +135,6 @@ font_goto_03:
 		jr z, font_goto_04
 		ld c, $00
 ;.ends
-
 ;.section "font_goto_04" free
 font_goto_04:
 		ld b, (ix - 1)
@@ -174,5 +169,4 @@ font_goto_04:
 		pop ix
 		ret
 
-;.ends
 .ends

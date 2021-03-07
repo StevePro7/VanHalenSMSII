@@ -1,4 +1,3 @@
-;.section "Screen manager" free
 .section "engine_screen_manager_init" free
 engine_screen_manager_init:
 		ld hl, $0002
@@ -55,7 +54,6 @@ engine_screen_manager_update:
 		ld l, c
 		call sdcc_call_hl
 ;.ends
-
 ;.section "update_code" free
 update_code:
 		ld bc, update_type_none		; update_type_none = $C039
@@ -74,6 +72,4 @@ update_code:
 		call sdcc_call_hl
 		pop af
 		ret
-
-;.ends
 .ends

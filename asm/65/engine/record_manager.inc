@@ -1,4 +1,3 @@
-;.section "Record manager" free
 .section "engine_record_manager_init" free
 engine_record_manager_init:
 		ld hl, record_album_index		; record_album_index = $C02A
@@ -77,7 +76,6 @@ engine_record_manager_decrement:
 		ld (bc), a							; ro->record_album_index = MAX_RECORDS - 1;
 		ret
 ;.ends
-
 ;.section "record_goto_01" free
 record_goto_01:
 		add a, $FF
@@ -96,12 +94,10 @@ engine_record_manager_increment:
 		ld (bc), a
 		ret
 ;.ends
-
 ;.section "record_goto_02" free
 record_goto_02:
 		inc a							; ro->record_album_index++;
 		ld (bc), a
 		ret
 
-;.ends
 .ends

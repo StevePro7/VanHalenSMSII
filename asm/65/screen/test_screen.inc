@@ -1,4 +1,3 @@
-;.section "Test screen" free
 ; Data from 1577 to 1579 (3 bytes)
 .section "screen_test_screen_load" free
 screen_test_screen_load:
@@ -109,6 +108,4 @@ screen_test_screen_update:
 
 ; Data from 15BE to 15BE (1 bytes)
 	.db $C9
-
-;.ends
 .ends

@@ -1,4 +1,3 @@
-;.section "Scroll screen" free
 ; Data from 1389 to 138B (3 bytes)
 .section "screen_scroll_screen_load" free
 screen_scroll_screen_load:
@@ -80,6 +79,4 @@ scroll_screen_goto_04:
 scroll_screen_goto_05:
 		inc sp
 		ret
-
-;.ends
 .ends

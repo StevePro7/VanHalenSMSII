@@ -1,4 +1,3 @@
-;.section "PSG Manager" free
 .section "PSGStop" free
 PSGStop:
 		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
@@ -226,7 +225,6 @@ PSGRestoreVolumes:
 		or $B0
 		out (Port_PSG), a
 ;.ends
-
 ;.section "LABEL_3C7_" free
 LABEL_3C7_:
 		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
@@ -478,7 +476,6 @@ PSGSetMusicVolumeAttenuation:
 		or $F0
 		out (Port_PSG), a
 ;.ends
-
 ;.section "LABEL_538_" free
 LABEL_538_:
 		ld sp, ix
@@ -548,7 +545,6 @@ PSGSFXStop:
 		jr +
 
 ;.ends
-
 ;.section "LABEL_5A8_" free
 LABEL_5A8_:
 		ld a, $DF
@@ -557,7 +553,6 @@ LABEL_5A8_:
 		ld hl, PSGChannel2SFX	; PSGChannel2SFX = $C016
 		ld (hl), $00
 ;.ends
-
 ;.section "LABEL_5B1_" free
 LABEL_5B1_:
 		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
@@ -608,13 +603,11 @@ LABEL_5B1_:
 		ld hl, PSGChannel3SFX	; PSGChannel3SFX = $C017
 		ld (hl), $00
 ;.ends
-
 ;.section "LABEL_5FD_" free
 LABEL_5FD_:
 		ld hl, PSGSFXStatus	; PSGSFXStatus = $C01A
 		ld (hl), $00
 ;.ends
-
 ;.section "LABEL_602_" free
 LABEL_602_:
 		ld sp, ix
@@ -723,7 +716,6 @@ PSGFrame:
 		jp nz, LABEL_717_			; stevepro
 		ld hl, (PSGMusicPointer)	; PSGMusicPointer = $C004
 ;.ends
-
 ;.section "LABEL_692_" free
 LABEL_692_:
 		ld b, (hl)
@@ -798,7 +790,6 @@ LABEL_692_:
 		jp LABEL_692_
 
 ;.ends
-
 ;.section "LABEL_717_" free
 LABEL_717_:
 		dec a
@@ -806,7 +797,6 @@ LABEL_717_:
 		ret
 
 ;.ends
-
 ;.section "LABEL_71C_" free
 LABEL_71C_:
 		cp $40
@@ -834,24 +824,20 @@ LABEL_71C_:
 		ret
 
 ;.ends
-
 ;.section "LABEL_742_" free
 LABEL_742_:
 		ld a, b
 ;.ends
-
 ;.section "LABEL_743_" free
 LABEL_743_:
 		out (Port_PSG), a
 		jp LABEL_692_
 
 ;.ends
-
 ;.section "LABEL_748_" free
 LABEL_748_:
 		ld a, b
 ;.ends
-
 ;.section "LABEL_749_" free
 LABEL_749_:
 		ld c, a
@@ -887,7 +873,6 @@ LABEL_749_:
 		jp LABEL_692_
 
 ;.ends
-
 ;.section "LABEL_77B_" free
 LABEL_77B_:
 		sub $04
@@ -922,7 +907,6 @@ PSGSFXFrame:
 		jp nz, +++
 		ld hl, (PSGSFXPointer)	; PSGSFXPointer = $C01D
 ;.ends
-
 ;.section "LABEL_7AB_" free
 LABEL_7AB_:
 		ld b, (hl)
@@ -1000,5 +984,4 @@ LABEL_7AB_:
 		jp LABEL_7AB_
 		ret
 
-;.ends
 .ends

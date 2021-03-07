@@ -1,4 +1,3 @@
-;.section "SMS Manager" free
 .section "UNSAFE_SMS_copySpritestoSAT" free
 UNSAFE_SMS_copySpritestoSAT:
 		ld hl, $7F00
@@ -974,7 +973,6 @@ LABEL_1F78_:
 		jr -
 
 ;.ends
-
 ;.section "LABEL_1FF1_" free
 LABEL_1FF1_:
 		ld (ix-2), c
@@ -988,7 +986,6 @@ LABEL_1FF1_:
 		ld (ix+6), c
 		ld (ix+7), b
 ;.ends
-
 ;.section "LABEL_2001_" free
 LABEL_2001_:
 		bit 0, (ix-16)
@@ -1001,7 +998,6 @@ LABEL_2001_:
 		jp LABEL_1EA0_
 
 ;.ends
-
 ;.section "LABEL_201B_" free
 LABEL_201B_:
 		ld sp, ix
@@ -1093,7 +1089,6 @@ LABEL_2050_:
 		jr +++
 
 ;.ends
-
 ;.section "LABEL_2097_" free
 LABEL_2097_:
 		rlc c
@@ -1117,7 +1112,6 @@ LABEL_2097_:
 		jr ++++++++
 
 ;.ends
-
 ;.section "LABEL_20B1_" free
 LABEL_20B1_:
 		ld hl, $FF00
@@ -1178,5 +1172,4 @@ LABEL_20B1_:
 		jp nz, LABEL_2045_
 		ret
 
-;.ends
 .ends

@@ -1,4 +1,3 @@
-;.section "Splash screen" free
 .section "screen_splash_screen_load" free
 screen_splash_screen_load:
 		call devkit_SMS_displayOff				;$082B
@@ -89,6 +88,4 @@ splash_screen_goto_05:
 .section "fiftyonefifty" free
 fiftyonefifty:
 	.db $35 $31 $35 $30 $00
-
-;.ends
 .ends

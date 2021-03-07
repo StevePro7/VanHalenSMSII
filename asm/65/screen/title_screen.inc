@@ -1,4 +1,3 @@
-;.section "Title screen" free
 .section "screen_title_screen_load" free
 screen_title_screen_load:
 		call devkit_SMS_displayOff
@@ -232,6 +231,4 @@ blank_clear:
 press_start2:
 	; "PRESS START"
 	.db $50 $52 $45 $53 $53 $20 $53 $54 $41 $52 $54 $00
-
-;.ends
 .ends

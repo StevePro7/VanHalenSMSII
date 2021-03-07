@@ -1,4 +1,3 @@
-;.section "Cursor manager" free
 .section "engine_cursor_manager_init" free
 engine_cursor_manager_init:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
@@ -48,7 +47,6 @@ engine_cursor_manager_load:
 		push af
 		ld (ix -3), $00
 ;.ends
-
 ;.section "cursor_goto_01" free
 cursor_goto_01:
 		ld a, $4A
@@ -59,7 +57,6 @@ cursor_goto_01:
 		ld (ix - 1), a
 		ld c, $00
 ;.ends
-
 ;.section "cursor_goto_02" free
 cursor_goto_02:
 		ld l, c
@@ -341,7 +338,6 @@ engine_cursor_manager_decX:
 		ld (bc), a
 		jp update_values
 ;.ends
-
 ;.section "decX_goto" free
 decX_goto:
 		add a, $FF					; co->cursor_index_x--;
@@ -360,7 +356,6 @@ engine_cursor_manager_incX:
 		ld (bc), a
 		jp update_values
 ;.ends
-
 ;.section "incX_goto" free
 incX_goto:
 		inc a						; co->cursor_index_x++;
@@ -379,7 +374,6 @@ engine_cursor_manager_decY:
 		ld (bc), a
 		jp update_values
 ;.ends
-
 ;.section "decY_goto" free
 decY_goto:
 		add a, $FF					; co->cursor_index_y--;
@@ -398,7 +392,6 @@ engine_cursor_manager_incY:
 		ld (bc), a
 		jp update_values
 ;.ends
-
 ;.section "incY_goto" free
 incY_goto:
 		inc a						; co->cursor_index_y++;
@@ -449,5 +442,4 @@ update_values:
 		ld (bc), a
 		ret
 
-;.ends
 .ends

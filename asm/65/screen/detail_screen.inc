@@ -1,4 +1,3 @@
-;.section "Detail screen" free
 .section "screen_detail_screen_load" free
 screen_detail_screen_load:
 	ret
@@ -13,6 +12,4 @@ screen_detail_screen_update:
 	push bc
 	ld (hl), $06		; screen_type_detail
 	ret
-
-;.ends
 .ends

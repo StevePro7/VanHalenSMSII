@@ -1,4 +1,3 @@
-;.section "Input manager" free
 .section "engine_input_manager_update" free
 engine_input_manager_update:
 		ld hl, (curr_joypad1)	; Finput_manager$curr_joypad1$0$0 = curr_joypad1
@@ -32,13 +31,11 @@ engine_input_manager_hold:
 		or c
 		jr z, input_goto_02
 ;.ends
-
 ;.section "input_goto_01" free
 input_goto_01:
 		ld l, $00
 		ret
 ;.ends
-
 ;.section "input_goto_02" free
 input_goto_02:
 		ld l, $01
@@ -55,6 +52,4 @@ engine_input_manager_move:
 		and c
 		ld l, a
 		ret
-
-;.ends
 .ends

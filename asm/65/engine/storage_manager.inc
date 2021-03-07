@@ -1,4 +1,3 @@
-;.section "Storage manager" free
 .section "engine_storage_manager_availabl" free
 engine_storage_manager_availabl:
 		call devkit_SMS_SRAM
@@ -27,12 +26,10 @@ engine_storage_manager_availabl:
 		ld a, $01
 		jr storage_goto_02
 ;.ends
-
 ;.section "storage_goto_01" free
 storage_goto_01:
 		xor a
 ;.ends
-
 ;.section "storage_goto_02" free
 storage_goto_02:
 		ld l, a
@@ -107,6 +104,4 @@ engine_storage_manager_erase:
 		add hl, bc
 		ld (hl), $FE		; FINAL		0xFE
 		jp devkit_SMS_disableSRAM
-
-;.ends
 .ends
