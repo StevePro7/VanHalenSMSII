@@ -265,7 +265,7 @@ divu16:
 
 
 ; Data from 2103 to 2104 (2 bytes)
-Finput_manager$__xinit_curr_joyp:
+init_curr_joyp:
 ; static unsigned int curr_joypad1 = 0;
 	.db $00 $00
 
@@ -304,8 +304,8 @@ gsinit:
 		ld a, b
 		or c
 		jr z, +
-		ld de, Finput_manager$curr_joypad1$0$0	; Finput_manager$curr_joypad1$0$0 = $C146
-		ld hl, Finput_manager$__xinit_curr_joyp	; Finput_manager$__xinit_curr_joyp = $2103
+		ld de, curr_joypad1	; Finput_manager$curr_joypad1$0$0 = $C146
+		ld hl, init_curr_joyp	; Finput_manager$__xinit_curr_joyp = $2103
 		ldir
 +:
 		ret

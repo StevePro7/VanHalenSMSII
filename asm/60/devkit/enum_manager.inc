@@ -45,7 +45,7 @@ record_album_index db	            ; ro->record_album_index = $C02A
 .ende	
 
 .enum $C02B export	
-Fscreen_manager$curr_screen_type db	    ; Fscreen_manager$curr_screen_type = $C02B
+curr_screen_type db	    ; Fscreen_manager$curr_screen_type = $C02B      ; TODO update
 Fscreen_manager$next_screen_type db	    ; Fscreen_manager$next_screen_type = $C02C
 Fscreen_manager$load_method$0$0 dw	    ; Fscreen_manager$load_method$0$0 = $C02D
 _RAM_C02F_ dw	
@@ -108,8 +108,8 @@ cursor_album db                         ; cursor_album = $C14A
 .ende	
 	
 .enum $C146 export	
-Finput_manager$curr_joypad1$0$0 dw		; Finput_manager$curr_joypad1$0$0 = $C146
-Finput_manager$prev_joypad1$0$0 dw		; Finput_manager$prev_joypad1$0$0 = $C148
+curr_joypad1 dw		; Finput_manager$curr_joypad1$0$0 = $C146       ; todo update
+prev_joypad1 dw		; Finput_manager$prev_joypad1$0$0 = $C148       ; todo update
 .ende	
 
 .enum $C162 export	
