@@ -36,7 +36,7 @@ engine_screen_manager_update:
 		ld a, ($C02B)	; $C02B = $C02B
 		ld iy, next_screen_type		; next_screen_type = $C02C
 		sub (iy+0)
-		jr z, A$screen_manager$193
+		jr z, update_code
 		ld a, (iy+0)
 		ld iy, $C02B		; $C02B = $C02B
 		ld (iy+0), a
@@ -50,7 +50,7 @@ engine_screen_manager_update:
 		ld h, (hl)
 		ld l, c
 		call sdcc_call_hl
-A$screen_manager$193:
+update_code:
 		ld bc, update_method_type		; update_method_type = $C039
 		ld iy, $C02B		; $C02B = $C02B
 		ld l, (iy+0)
