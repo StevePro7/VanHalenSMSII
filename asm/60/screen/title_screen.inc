@@ -45,9 +45,9 @@ screen_title_screen_load:
 		call engine_storage_manager_availabl
 		ld a, l
 		or a
-		jr z, A$title_screen$174
+		jr z, title_screen_goto_01
 		call engine_storage_manager_read
-A$title_screen$174:
+title_screen_goto_01:
 		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 		ld b, (hl)
 		push bc
@@ -94,12 +94,12 @@ screen_title_screen_update:
 		ld (ix - 1), a
 		ld a, (title_screen_event)	; title_screen_event = $C054
 		dec a
-		jr nz, A$title_screen$299
+		jr nz, title_screen_goto_05
 		call engine_reset_manager_update
 		ld c, l
 		ld a, c
 		or a
-		jr z, A$title_screen$280
+		jr z, title_screen_goto_02
 		push bc
 		ld hl, $150A			; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
@@ -115,32 +115,32 @@ screen_title_screen_update:
 		pop af
 		pop af
 		pop bc
-A$title_screen$280:
+title_screen_goto_02:
 		ld a, c
 		or a
-		jr z, A$title_screen$286
+		jr z, title_screen_goto_03
 		ld c, $03				; screen_type_scroll = 3
-		jr A$title_screen$288
-A$title_screen$286:
+		jr title_screen_goto_04
+title_screen_goto_03:
 		ld c, $02				; screen_type_title = 2
-A$title_screen$288:
+title_screen_goto_04:
 		ld l, (ix - 2)
 		ld h, (ix - 1)
 		ld (hl), c
-		jr A$title_screen$384
-A$title_screen$299:
+		jr title_screen_goto_08
+title_screen_goto_05:
 		call engine_delay_manager_update
 		ld (ix - 3), l
 		ld a, l
 		or a
-		jr z, A$title_screen$346
+		jr z, title_screen_goto_07
 		ld hl, title_screen_flash	; title_screen_flash = $C055
 		ld a, $01
 		sub a, (hl)
 		ld (hl), a
 		ld a,(title_screen_flash)	; title_screen_flash = $C055
 		or a
-		jr z, A$title_screen$335
+		jr z, title_screen_goto_06
 		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
 		ld hl, blank_clear			; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
@@ -148,8 +148,8 @@ A$title_screen$299:
 		call engine_font_manager_draw_text
 		pop af
 		pop af
-		jr A$title_screen$346
-A$title_screen$335:
+		jr title_screen_goto_07
+title_screen_goto_06:
 		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
 		ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
@@ -157,7 +157,7 @@ A$title_screen$335:
 		call engine_font_manager_draw_text
 		pop af
 		pop af
-A$title_screen$346:
+title_screen_goto_07:
 		ld a, $10		; input_type_fire1
 		push af
 		inc sp
@@ -179,7 +179,7 @@ A$title_screen$346:
 		ld l, (ix - 2)
 		ld h, (ix - 1)
 		ld (hl), $02				; screen_type_title = 2
-A$title_screen$384:
+title_screen_goto_08:
 		ld sp, ix
 		pop ix
 		ret

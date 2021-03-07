@@ -33,11 +33,11 @@ screen_splash_screen_update:
 		inc sp
 		ld a, l
 		or a
-		jr z, A$splash_screen$174
+		jr z, splash_screen_goto_01
 		call engine_reset_manager_update		; $111D
 		ld a, l
 		or a
-		jr z, A$splash_screen$179
+		jr z, splash_screen_goto_02
 		call engine_storage_manager_erase		; $10AB
 		call engine_reset_manager_reset		; $113F
 		ld hl, $171C							; ; 17 = 23	1C = 28
@@ -47,24 +47,24 @@ screen_splash_screen_update:
 		call engine_font_manager_draw_text		; $0DE9
 		pop af
 		pop af
-		jr A$splash_screen$179
-A$splash_screen$174:
+		jr splash_screen_goto_02
+splash_screen_goto_01:
 		call engine_reset_manager_reset		; $113F
-A$splash_screen$179:
+splash_screen_goto_02:
 		ld l, (ix + $04)
 		ld h, (ix + $05)
 		ld a, (ix - 2)
 		or a
-		jr nz, A$splash_screen$194
+		jr nz, splash_screen_goto_03
 		ld a, (ix - 1)
 		or a
-		jr z, A$splash_screen$203
-A$splash_screen$194:
+		jr z, splash_screen_goto_04
+splash_screen_goto_03:
 		ld (hl), $02						; screen_type
-		jr A$splash_screen$205
-A$splash_screen$203:
+		jr splash_screen_goto_05
+splash_screen_goto_04:
 		ld (hl), $01						; screen_type_splash
-A$splash_screen$205:
+splash_screen_goto_05:
 		ld sp, ix
 		pop ix
 		ret
