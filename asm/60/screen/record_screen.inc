@@ -14,10 +14,10 @@ screen_record_screen_update:
 		inc sp
 		ld a, l
 		or a
-		jr z, A$record_screen$121
+		jr z, record_screen_goto_01
 		call engine_record_manager_decrement
 		call load_record
-A$record_screen$121:
+record_screen_goto_01:
 		ld a, $08			; input_type_right
 		push af
 		inc sp
@@ -25,10 +25,10 @@ A$record_screen$121:
 		inc sp
 		ld a, l
 		or a
-		jr z, A$record_screen$144
+		jr z, record_screen_goto_02
 		call engine_record_manager_increment
 		call load_record
-A$record_screen$144:
+record_screen_goto_02:
 		ld a, $10		; input_type_fire2
 		push af
 		inc sp
@@ -46,10 +46,10 @@ A$record_screen$144:
 		ld d, (ix + $05)
 		ld a, c
 		or a
-		jr nz, A$record_screen$177
+		jr nz, record_screen_goto_03
 		or l
-		jr z, A$record_screen$220
-A$record_screen$177:
+		jr z, record_screen_goto_04
+record_screen_goto_03:
 		push de
 		xor a
 		push af
@@ -76,11 +76,11 @@ A$record_screen$177:
 		pop de
 		ld a, $04
 		ld (de), a
-		jr A$record_screen$223
-A$record_screen$220:
+		jr record_screen_goto_05
+record_screen_goto_04:
 		ld a, $05						; screen_type_record = 5
 		ld (de), a
-A$record_screen$223:
+record_screen_goto_05:
 		pop ix
 		ret
 
