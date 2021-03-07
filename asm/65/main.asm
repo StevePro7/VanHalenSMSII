@@ -92,7 +92,7 @@ LABEL_70_:
 		jp exit
 .ends
 
-;.include "content/out.inc"
+.include "content/out.inc"
 
 
 .section "Helper functions" free
@@ -168,45 +168,45 @@ global_pause:
 		jr infinite_loop
 .ends
 
-; ; devkit
-; .include "devkit/psg_manager.inc"
-; .include "devkit/devkit_manager.inc"
+; devkit
+.include "devkit/psg_manager.inc"
+.include "devkit/devkit_manager.inc"
 
 
-; ; engine
-; .include "engine/asm_manager.inc"
-; .include "engine/audio_manager.inc"
-; .include "engine/content_manager.inc"
-; .include "engine/cursor_manager.inc"
-; .include "engine/font_manager.inc"
-; .include "engine/input_manager.inc"
-; .include "engine/record_manager.inc"
-; .include "engine/screen_manager.inc"
-; .include "engine/scroll_manager.inc"
-; .include "engine/storage_manager.inc"
-; .include "engine/timer_manager.inc"
+; engine
+.include "engine/asm_manager.inc"
+.include "engine/audio_manager.inc"
+.include "engine/content_manager.inc"
+.include "engine/cursor_manager.inc"
+.include "engine/font_manager.inc"
+.include "engine/input_manager.inc"
+.include "engine/record_manager.inc"
+.include "engine/screen_manager.inc"
+.include "engine/scroll_manager.inc"
+.include "engine/storage_manager.inc"
+.include "engine/timer_manager.inc"
 
 
-; ; object
-; .include "object/cursor_object.inc"
-; .include "object/record_object.inc"
+; object
+.include "object/cursor_object.inc"
+.include "object/record_object.inc"
 
 
-; ; screen
-; .include "screen/none_screen.inc"
-; .include "screen/splash_screen.inc"
-; .include "screen/title_screen.inc"
-; .include "screen/scroll_screen.inc"
-; .include "screen/select_screen.inc"
-; .include "screen/record_screen.inc"
-; .include "screen/detail_screen.inc"
-; .include "screen/test_screen.inc"
-; .include "screen/func_screen.inc"
+; screen
+.include "screen/none_screen.inc"
+.include "screen/splash_screen.inc"
+.include "screen/title_screen.inc"
+.include "screen/scroll_screen.inc"
+.include "screen/select_screen.inc"
+.include "screen/record_screen.inc"
+.include "screen/detail_screen.inc"
+.include "screen/test_screen.inc"
+.include "screen/func_screen.inc"
 
 
-; ; content
-; .include "content/gfx.inc"
-; .include "content/psg.inc"
+; content
+.include "content/gfx.inc"
+.include "content/psg.inc"
 
 
 .section "More helper functions" free
@@ -277,7 +277,7 @@ divu16:
 	ret
 .ends
 
-;.include "devkit/sms_manager.inc"
+.include "devkit/sms_manager.inc"
 
 
 .section "Additional global variables" free
@@ -329,46 +329,46 @@ gsinit:
 		ret
 
 
-; content
-.include "content/gfx.inc"
-.include "content/out.inc"
-.include "content/psg.inc"
+; ; content
+; .include "content/gfx.inc"
+; .include "content/out.inc"
+; .include "content/psg.inc"
 
-; devkit
-.include "devkit/psg_manager.inc"
-.include "devkit/sms_manager.inc"
-.include "devkit/devkit_manager.inc"
-
-
-; engine
-.include "engine/asm_manager.inc"
-.include "engine/audio_manager.inc"
-.include "engine/content_manager.inc"
-.include "engine/cursor_manager.inc"
-.include "engine/font_manager.inc"
-.include "engine/input_manager.inc"
-.include "engine/record_manager.inc"
-.include "engine/screen_manager.inc"
-.include "engine/scroll_manager.inc"
-.include "engine/storage_manager.inc"
-.include "engine/timer_manager.inc"
+; ; devkit
+; .include "devkit/psg_manager.inc"
+; .include "devkit/sms_manager.inc"
+; .include "devkit/devkit_manager.inc"
 
 
-; object
-.include "object/cursor_object.inc"
-.include "object/record_object.inc"
+; ; engine
+; .include "engine/asm_manager.inc"
+; .include "engine/audio_manager.inc"
+; .include "engine/content_manager.inc"
+; .include "engine/cursor_manager.inc"
+; .include "engine/font_manager.inc"
+; .include "engine/input_manager.inc"
+; .include "engine/record_manager.inc"
+; .include "engine/screen_manager.inc"
+; .include "engine/scroll_manager.inc"
+; .include "engine/storage_manager.inc"
+; .include "engine/timer_manager.inc"
 
 
-; screen
-.include "screen/none_screen.inc"
-.include "screen/splash_screen.inc"
-.include "screen/title_screen.inc"
-.include "screen/scroll_screen.inc"
-.include "screen/select_screen.inc"
-.include "screen/record_screen.inc"
-.include "screen/detail_screen.inc"
-.include "screen/test_screen.inc"
-.include "screen/func_screen.inc"
+; ; object
+; .include "object/cursor_object.inc"
+; .include "object/record_object.inc"
+
+
+; ; screen
+; .include "screen/none_screen.inc"
+; .include "screen/splash_screen.inc"
+; .include "screen/title_screen.inc"
+; .include "screen/scroll_screen.inc"
+; .include "screen/select_screen.inc"
+; .include "screen/record_screen.inc"
+; .include "screen/detail_screen.inc"
+; .include "screen/test_screen.inc"
+; .include "screen/func_screen.inc"
 
 
 
