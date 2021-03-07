@@ -67,7 +67,7 @@ LABEL_66_:
 ; Data from 69 to 6F (7 bytes)
 	.db $00 $00 $00 $00 $00 $00 $00
 
-.section "Init section" free
+.section "Init section" free	;semisubfree
 LABEL_70_:
 		ld sp, $DFF0
 		ld de, _RAM_FFFC_
