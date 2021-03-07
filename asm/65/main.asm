@@ -8,6 +8,7 @@
 .BANK 0 SLOT 0
 .ORG $0000
 
+.section "Boot" force	
 LABEL_0_:
 		di
 		im 1
@@ -45,20 +46,28 @@ SMS_crt0_RST18:
 .rept 22
 	nop
 .endr
+.ends
 
+
+.ORG $0038
+.section "VDP interrupt" force
 LABEL_38_:
 		jp SMS_isr
+.ends
 
 ; Data from 3B to 65 (43 bytes)
 	.dsb 43, $00
 
-
+.ORG $0066
+.section "Pause interrupt" force
 LABEL_66_:
 		jp SMS_nmi_isr
+.ends
 
 ; Data from 69 to 6F (7 bytes)
 	.db $00 $00 $00 $00 $00 $00 $00
 
+.section "Init section" free
 LABEL_70_:
 		ld sp, $DFF0
 		ld de, _RAM_FFFC_
@@ -81,10 +90,12 @@ LABEL_70_:
 		ei
 		call main
 		jp exit
+.ends
 
 .include "content/out.inc"
 
 
+.section "Helper functions" free
 ; Data from 200 to 203 (4 bytes)
 clock:
 	;.db $3E $02 $CF $C9
@@ -98,7 +109,9 @@ exit:
 -:
 		halt
 		jr -
+.ends
 
+.section "Main section" free
 main:
 		call engine_asm_manager_clear_VRAM
 		call devkit_SMS_init
@@ -153,6 +166,7 @@ global_pause:
 		call devkit_PSGFrame
 		call devkit_PSGSFXFrame
 		jr infinite_loop
+.ends
 
 ; devkit
 .include "devkit/psg_manager.inc"
@@ -195,6 +209,7 @@ global_pause:
 .include "content/psg.inc"
 
 
+.section "More helper functions" free
 ; Data from 1A9F to 1AA6 (8 bytes)
 divuint:
 	;.db $F1 $E1 $D1 $D5 $E5 $F5 $18 $0A
@@ -260,10 +275,12 @@ divu16:
 	ld e, a
 	ex de, hl
 	ret
+.ends
 
 .include "devkit/sms_manager.inc"
 
 
+.section "Additional global variables" free
 ; Data from 2103 to 2104 (2 bytes)
 init_curr_joyp:
 ; static unsigned int curr_joypad1 = 0;
@@ -298,6 +315,7 @@ init_record_pa:
 ; const unsigned char *record_palette_data[]
 	.db $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80
 	.db $00 $80 $00 $80 $00 $80 $00 $80 $04 $20 $08 $08
+.ends
 
 gsinit:
 		ld bc, $0068
