@@ -46,7 +46,7 @@ record_album_index db	            ; ro->record_album_index = $C02A
 
 .enum $C02B export	
 curr_screen_type db	    ; Fscreen_manager$curr_screen_type = $C02B      ; TODO update
-Fscreen_manager$next_screen_type db	    ; Fscreen_manager$next_screen_type = $C02C
+next_screen_type db	    ; Fscreen_manager$next_screen_type = $C02C
 Fscreen_manager$load_method$0$0 dw	    ; Fscreen_manager$load_method$0$0 = $C02D
 _RAM_C02F_ dw	
 _RAM_C031_ dw	

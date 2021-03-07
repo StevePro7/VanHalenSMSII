@@ -3,7 +3,7 @@ engine_screen_manager_init:
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
-		ld (Fscreen_manager$next_screen_type), a		; Fscreen_manager$next_screen_type = $C02C
+		ld (next_screen_type), a		; next_screen_type = $C02C
 		ld hl, $C02B			; Fscreen_manager$curr_screen_type = $C02B
 		ld (hl), $00
 		ld hl, screen_none_screen_load					; screen_none_screen_load = $1195
@@ -34,7 +34,7 @@ engine_screen_manager_init:
 
 engine_screen_manager_update:
 		ld a, ($C02B)	; $C02B = $C02B
-		ld iy, Fscreen_manager$next_screen_type		; Fscreen_manager$next_screen_type = $C02C
+		ld iy, next_screen_type		; next_screen_type = $C02C
 		sub (iy+0)
 		jr z, A$screen_manager$193
 		ld a, (iy+0)
@@ -60,7 +60,7 @@ A$screen_manager$193:
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
-		ld hl, Fscreen_manager$next_screen_type		; Fscreen_manager$next_screen_type = $C02C
+		ld hl, next_screen_type		; next_screen_type = $C02C
 		push hl
 		ld l, c
 		ld h, b
