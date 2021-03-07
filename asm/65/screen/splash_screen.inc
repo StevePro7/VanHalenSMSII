@@ -52,14 +52,12 @@ screen_splash_screen_update:
 		pop af
 		pop af
 		jr splash_screen_goto_02
-.ends
-
-.section "splash_screen_goto_01" free
+;.ends
+;.section "splash_screen_goto_01" free
 splash_screen_goto_01:
 		call engine_reset_manager_reset		; $113F
-.ends
-
-.section "splash_screen_goto_02" free
+;.ends
+;.section "splash_screen_goto_02" free
 splash_screen_goto_02:
 		ld l, (ix + $04)
 		ld h, (ix + $05)
@@ -69,28 +67,25 @@ splash_screen_goto_02:
 		ld a, (ix - 1)
 		or a
 		jr z, splash_screen_goto_04
-.ends
-
-.section "splash_screen_goto_03" free
+;.ends
+;.section "splash_screen_goto_03" free
 splash_screen_goto_03:
 		ld (hl), $02						; screen_type
 		jr splash_screen_goto_05
-.ends
-
-.section "splash_screen_goto_04" free
+;.ends
+;.section "splash_screen_goto_04" free
 splash_screen_goto_04:
 		ld (hl), $01						; screen_type_splash
-.ends
-
-.section "splash_screen_goto_05" free
+;.ends
+;.section "splash_screen_goto_05" free
 splash_screen_goto_05:
 		ld sp, ix
 		pop ix
 		ret
 
-; "5150"
 .ends
 
+; "5150"
 .section "fiftyonefifty" free
 fiftyonefifty:
 	.db $35 $31 $35 $30 $00

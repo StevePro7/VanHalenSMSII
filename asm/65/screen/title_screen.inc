@@ -48,9 +48,8 @@ screen_title_screen_load:
 		or a
 		jr z, title_screen_goto_01
 		call engine_storage_manager_read
-.ends
-
-.section "title_screen_goto_01" free
+;.ends
+;.section "title_screen_goto_01" free
 title_screen_goto_01:
 		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 		ld b, (hl)
@@ -134,31 +133,27 @@ screen_title_screen_update:
 		pop af
 		pop af
 		pop bc
-.ends
-
-.section "title_screen_goto_02" free
+;.ends
+;.section "title_screen_goto_02" free
 title_screen_goto_02:
 		ld a, c
 		or a
 		jr z, title_screen_goto_03
 		ld c, $03				; screen_type_scroll = 3
 		jr title_screen_goto_04
-.ends
-
-.section "title_screen_goto_03" free
+;.ends
+;.section "title_screen_goto_03" free
 title_screen_goto_03:
 		ld c, $02				; screen_type_title = 2
-.ends
-
-.section "title_screen_goto_04" free
+;.ends
+;.section "title_screen_goto_04" free
 title_screen_goto_04:
 		ld l, (ix - 2)
 		ld h, (ix - 1)
 		ld (hl), c
 		jr title_screen_goto_08
-.ends
-
-.section "title_screen_goto_05" free
+;.ends
+;.section "title_screen_goto_05" free
 title_screen_goto_05:
 		call engine_delay_manager_update
 		ld (ix - 3), l
@@ -180,9 +175,8 @@ title_screen_goto_05:
 		pop af
 		pop af
 		jr title_screen_goto_07
-.ends
-
-.section "title_screen_goto_06" free
+;.ends
+;.section "title_screen_goto_06" free
 title_screen_goto_06:
 		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
@@ -191,9 +185,8 @@ title_screen_goto_06:
 		call engine_font_manager_draw_text
 		pop af
 		pop af
-.ends
-
-.section "title_screen_goto_07" free
+;.ends
+;.section "title_screen_goto_07" free
 title_screen_goto_07:
 		ld a, $10		; input_type_fire1
 		push af
@@ -216,9 +209,8 @@ title_screen_goto_07:
 		ld l, (ix - 2)
 		ld h, (ix - 1)
 		ld (hl), $02				; screen_type_title = 2
-.ends
-
-.section "title_screen_goto_08" free
+;.ends
+;.section "title_screen_goto_08" free
 title_screen_goto_08:
 		ld sp, ix
 		pop ix

@@ -16,15 +16,13 @@ screen_scroll_screen_update:
 		jr nz, scroll_screen_goto_01
 		ld a, $01						; offset++
 		jr scroll_screen_goto_02
-.ends
-
-.section "scroll_screen_goto_01" free
+;.ends
+;.section "scroll_screen_goto_01" free
 scroll_screen_goto_01:
 		xor a
 
-.ends
-
-.section "scroll_screen_goto_02" free
+;.ends
+;.section "scroll_screen_goto_02" free
 scroll_screen_goto_02:
 		inc sp
 		push af
@@ -56,9 +54,8 @@ scroll_screen_goto_02:
 		ld a, (iy + $00)
 		or a
 		jr z, scroll_screen_goto_04
-.ends
-
-.section "scroll_screen_goto_03" free
+;.ends
+;.section "scroll_screen_goto_03" free
 scroll_screen_goto_03:
 		push hl
 		ld a, $04						; TOP_OFFSET	4
@@ -74,14 +71,12 @@ scroll_screen_goto_03:
 		pop hl
 		ld (hl), $04					; screen_type_select = 4
 		jr scroll_screen_goto_05
-.ends
-
-.section "scroll_screen_goto_04" free
+;.ends
+;.section "scroll_screen_goto_04" free
 scroll_screen_goto_04:
 		ld (hl), $03					; screen_type_scroll = 3
-.ends
-
-.section "scroll_screen_goto_05" free
+;.ends
+;.section "scroll_screen_goto_05" free
 scroll_screen_goto_05:
 		inc sp
 		ret

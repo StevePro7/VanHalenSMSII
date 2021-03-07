@@ -21,9 +21,8 @@ screen_record_screen_update:
 		jr z, record_screen_goto_01
 		call engine_record_manager_decrement
 		call load_record
-.ends
-
-.section "record_screen_goto_01" free
+;.ends
+;.section "record_screen_goto_01" free
 record_screen_goto_01:
 		ld a, $08			; input_type_right
 		push af
@@ -35,9 +34,8 @@ record_screen_goto_01:
 		jr z, record_screen_goto_02
 		call engine_record_manager_increment
 		call load_record
-.ends
-
-.section "record_screen_goto_02" free
+;.ends
+;.section "record_screen_goto_02" free
 record_screen_goto_02:
 		ld a, $10		; input_type_fire2
 		push af
@@ -59,9 +57,8 @@ record_screen_goto_02:
 		jr nz, record_screen_goto_03
 		or l
 		jr z, record_screen_goto_04
-.ends
-
-.section "record_screen_goto_03" free
+;.ends
+;.section "record_screen_goto_03" free
 record_screen_goto_03:
 		push de
 		xor a
@@ -90,15 +87,13 @@ record_screen_goto_03:
 		ld a, $04
 		ld (de), a
 		jr record_screen_goto_05
-.ends
-
-.section "record_screen_goto_04" free
+;.ends
+;.section "record_screen_goto_04" free
 record_screen_goto_04:
 		ld a, $05						; screen_type_record = 5
 		ld (de), a
-.ends
-
-.section "record_screen_goto_05" free
+;.ends
+;.section "record_screen_goto_05" free
 record_screen_goto_05:
 		pop ix
 		ret
