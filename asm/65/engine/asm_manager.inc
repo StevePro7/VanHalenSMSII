@@ -15,3 +15,4 @@ asm_loop:
 		ret
 
 ;.ends
+.ends

@@ -1,4 +1,5 @@
 ;.section "Select screen" free
+.section "screen_select_screen_load" free
 screen_select_screen_load:
 		ld a, ($C045)		; G$global_scroll_object$0$0 = $C045
 		or a
@@ -22,6 +23,9 @@ screen_select_screen_load:
 		pop af
 		pop af
 		call devkit_SMS_displayOn
+.ends
+
+.section "select_screen_goto_01" free
 select_screen_goto_01:
 		ld hl, $C045		; so->scroll_value_offset	; $C045
 		ld b, (hl)
@@ -42,15 +46,24 @@ select_screen_goto_01:
 		ld (hl), $01
 		ret
 
+.ends
+
+.section "select_record_label" free
 select_record_label:
 	; "RECORD"
 	.db $52 $45 $43 $4F $52 $44 $00
 
+.ends
+
+.section "select_covers_label" free
 select_covers_label:
 ; Data from 14DC to 14E2 (7 bytes)
 	; "COVERS"
 	.db $43 $4F $56 $45 $52 $53 $00
 
+.ends
+
+.section "screen_select_screen_update" free
 screen_select_screen_update:
 		ld a, (select_screen_event)		; static unsigned char event_stage	; $C057
 		dec a
@@ -59,6 +72,9 @@ screen_select_screen_update:
 		or a
 		jr z, select_screen_goto_02
 		call engine_cursor_manager_draw
+.ends
+
+.section "select_screen_goto_02" free
 select_screen_goto_02:
 		call engine_delay_manager_update
 		ld a, l
@@ -68,6 +84,9 @@ select_screen_goto_02:
 		ld a, $01						; flash = 1;
 		sub a, (hl)
 		ld (hl), a
+.ends
+
+.section "select_screen_goto_03" free
 select_screen_goto_03:
 		call engine_reset_manager_update
 		pop de
@@ -79,12 +98,21 @@ select_screen_goto_03:
 		jr z, select_screen_goto_04
 		ld a, $05		; screen_type_record	5
 		jr select_screen_goto_05
+.ends
+
+.section "select_screen_goto_04" free
 select_screen_goto_04:
 		ld a, $04		; screen_type_select	4
+.ends
+
+.section "select_screen_goto_05" free
 select_screen_goto_05:
 		ld (bc), a
 		ret
 
+.ends
+
+.section "select_screen_goto_06" free
 select_screen_goto_06:
 		call engine_cursor_manager_draw
 		ld a, $10		; input_type_fire1
@@ -105,6 +133,9 @@ select_screen_goto_06:
 		ld hl, select_screen_event 		; static unsigned char event_stage	; select_screen_event = $C057
 		ld (hl), $01
 		ret
+.ends
+
+.section "select_screen_goto_07" free
 select_screen_goto_07:
 		ld a, $04		; input_type_left
 		push af
@@ -115,6 +146,9 @@ select_screen_goto_07:
 		or a
 		jr z, select_screen_goto_08
 		call engine_cursor_manager_decX
+.ends
+
+.section "select_screen_goto_08" free
 select_screen_goto_08:
 		ld a, $08		; input_type_right
 		push af
@@ -125,6 +159,9 @@ select_screen_goto_08:
 		or a
 		jr z, select_screen_goto_09
 		call engine_cursor_manager_incX
+.ends
+
+.section "select_screen_goto_09" free
 select_screen_goto_09:
 		ld a, $01		; input_type_up
 		push af
@@ -135,6 +172,9 @@ select_screen_goto_09:
 		or a
 		jr z, select_screen_goto_10
 		call engine_cursor_manager_decY
+.ends
+
+.section "select_screen_goto_10" free
 select_screen_goto_10:
 		ld a, $02		; input_type_down
 		push af
@@ -145,6 +185,9 @@ select_screen_goto_10:
 		or a
 		jr z, select_screen_goto_11
 		call engine_cursor_manager_incY
+.ends
+
+.section "select_screen_goto_11" free
 select_screen_goto_11:
 		pop bc
 		pop hl
@@ -154,3 +197,4 @@ select_screen_goto_11:
 		ret
 
 ;.ends
+.ends

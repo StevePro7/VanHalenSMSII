@@ -1,4 +1,5 @@
 ;.section "Screen manager" free
+.section "engine_screen_manager_init" free
 engine_screen_manager_init:
 		ld hl, $0002
 		add hl, sp
@@ -32,6 +33,9 @@ engine_screen_manager_init:
 		ld (update_type_record), hl
 		ret
 
+.ends
+
+.section "engine_screen_manager_update" free
 engine_screen_manager_update:
 		ld a, (curr_screen_type)	; curr_screen_type = curr_screen_type
 		ld iy, next_screen_type		; next_screen_type = $C02C
@@ -50,6 +54,9 @@ engine_screen_manager_update:
 		ld h, (hl)
 		ld l, c
 		call sdcc_call_hl
+.ends
+
+.section "update_code" free
 update_code:
 		ld bc, update_type_none		; update_type_none = $C039
 		ld iy, curr_screen_type		; curr_screen_type = curr_screen_type
@@ -69,3 +76,4 @@ update_code:
 		ret
 
 ;.ends
+.ends

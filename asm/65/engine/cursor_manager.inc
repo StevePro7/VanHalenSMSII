@@ -1,4 +1,5 @@
 ;.section "Cursor manager" free
+.section "engine_cursor_manager_init" free
 engine_cursor_manager_init:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		xor a
@@ -34,6 +35,9 @@ engine_cursor_manager_init:
 		ld (hl), c
 		jp update_values
 
+.ends
+
+.section "engine_cursor_manager_load" free
 engine_cursor_manager_load:
 		; MAX_GRID_X	4
 		; MAX_GRID_Y	3
@@ -43,6 +47,9 @@ engine_cursor_manager_load:
 		push af
 		push af
 		ld (ix -3), $00
+.ends
+
+.section "cursor_goto_01" free
 cursor_goto_01:
 		ld a, $4A
 		add a, (ix - 3)
@@ -51,6 +58,9 @@ cursor_goto_01:
 		adc a, $00
 		ld (ix - 1), a
 		ld c, $00
+.ends
+
+.section "cursor_goto_02" free
 cursor_goto_02:
 		ld l, c
 		add hl, hl
@@ -98,6 +108,9 @@ cursor_goto_02:
 		pop ix
 		ret
 
+.ends
+
+.section "engine_cursor_manager_save" free
 engine_cursor_manager_save:
 		ld a, (cursor_index_x)		; cursor_index_x = $C026
 		ld c, a
@@ -110,6 +123,9 @@ engine_cursor_manager_save:
 		add hl, bc
 		ret
 
+.ends
+
+.section "engine_cursor_manager_draw" free
 engine_cursor_manager_draw:
 		push ix
 		ld ix, $0000				; tile + 0 
@@ -313,6 +329,9 @@ engine_cursor_manager_draw:
 		pop ix
 		ret
 
+.ends
+
+.section "engine_cursor_manager_decX" free
 engine_cursor_manager_decX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
@@ -321,11 +340,17 @@ engine_cursor_manager_decX:
 		ld a, $03					; co->cursor_index_x = MAX_GRID_X - 1;
 		ld (bc), a
 		jp update_values
+.ends
+
+.section "decX_goto" free
 decX_goto:
 		add a, $FF					; co->cursor_index_x--;
 		ld (bc), a
 		jp update_values
 
+.ends
+
+.section "engine_cursor_manager_incX" free
 engine_cursor_manager_incX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
@@ -334,11 +359,17 @@ engine_cursor_manager_incX:
 		xor a						; co->cursor_index_x = 0;
 		ld (bc), a
 		jp update_values
+.ends
+
+.section "incX_goto" free
 incX_goto:
 		inc a						; co->cursor_index_x++;
 		ld (bc), a
 		jp update_values
 
+.ends
+
+.section "engine_cursor_manager_decY" free
 engine_cursor_manager_decY:
 		ld bc, cursor_index_y		; cursor_index_y = $C027
 		ld a, (bc)
@@ -347,11 +378,17 @@ engine_cursor_manager_decY:
 		ld a, $02					; co->cursor_index_y = MAX_GRID_Y - 1;
 		ld (bc), a
 		jp update_values
+.ends
+
+.section "decY_goto" free
 decY_goto:
 		add a, $FF					; co->cursor_index_y--;
 		ld (bc), a
 		jp update_values
 
+.ends
+
+.section "engine_cursor_manager_incY" free
 engine_cursor_manager_incY:
 		ld bc, cursor_index_y		; cursor_index_y = $C027
 		ld a, (bc)
@@ -360,11 +397,17 @@ engine_cursor_manager_incY:
 		xor a						; co->cursor_index_y = 0;
 		ld (bc), a
 		jp update_values
+.ends
+
+.section "incY_goto" free
 incY_goto:
 		inc a						; co->cursor_index_y++;
 		ld (bc), a
 		jp update_values
 
+.ends
+
+.section "update_values" free
 update_values:
 		; unsigned char grid_x = cursor_gridX[ co->cursor_index_x ];
 		ld bc, cursor_gridX		; cursor_gridX = $1146
@@ -407,3 +450,4 @@ update_values:
 		ret
 
 ;.ends
+.ends
