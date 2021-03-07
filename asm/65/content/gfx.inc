@@ -1,18 +1,10 @@
 ;.section "GFX" free
 
 ; Data from 1647 to 1656 (16 bytes)
-.section "cursor__palette__bin" free
-.section "cursor__palette__bin" free
 cursor__palette__bin:
 	.db $00 $00 $15 $15 $2A $2A $15 $15 $2A $2A $2A $2A $3F $3F $3F $3F
 
 ; Data from 1657 to 1711 (187 bytes)
-.ends
-
-.section "cursor__tiles__psgcompr" free
-.ends
-
-.section "cursor__tiles__psgcompr" free
 cursor__tiles__psgcompr:
 	.db $12 $00 $AA $CF $00 $7F $20 $0F $E0 $80 $C0 $DF $DF $1F $00 $7F
 	.db $7F $3F $0F $C0 $FF $FF $FF $E0 $AA $DF $00 $FF $20 $EF $FF $20
@@ -28,22 +20,10 @@ cursor__tiles__psgcompr:
 	.db $06 $07 $F8 $00 $FC $FE $FF $FC $03 $01 $00
 
 ; Data from 1712 to 1721 (16 bytes)
-.ends
-
-.section "font__palette__bin" free
-.ends
-
-.section "font__palette__bin" free
 font__palette__bin:
 	.db $00 $02 $08 $0A $20 $22 $28 $2A $3F $03 $0C $0F $30 $33 $3C $3F
 
 ; Data from 1722 to 17A1 (128 bytes)
-.ends
-
-.section "font__tilemap__bin" free
-.ends
-
-.section "font__tilemap__bin" free
 font__tilemap__bin:
 	.db $00 $00 $01 $00 $02 $00 $03 $00 $04 $00 $05 $00 $06 $00 $07 $00
 	.db $08 $00 $09 $00 $0A $00 $0B $00 $0C $00 $0D $00 $0E $00 $0F $00
@@ -55,12 +35,6 @@ font__tilemap__bin:
 	.db $38 $00 $39 $00 $3A $00 $3B $00 $3C $00 $3D $00 $3E $00 $3F $00
 
 ; Data from 17A2 to 1A38 (663 bytes)
-.ends
-
-.section "font__tiles__psgcompr" free
-.ends
-
-.section "font__tiles__psgcompr" free
 font__tiles__psgcompr:
 	.db $40 $00 $00 $AA $1A $18 $1C $1C $1C $00 $00 $00 $00 $00 $AA $1F
 	.db $00 $36 $36 $24 $00 $00 $00 $AA $D6 $36 $7F $7F $00 $00 $00 $00
@@ -106,5 +80,3 @@ font__tiles__psgcompr:
 	.db $AA $FE $00 $7F $00 $00 $00
 
 ;.ends
-.ends
-.ends

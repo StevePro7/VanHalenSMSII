@@ -1,6 +1,4 @@
 ;.section "SMS Manager" free
-.section "UNSAFE_SMS_copySpritestoSAT" free
-.section "UNSAFE_SMS_copySpritestoSAT" free
 UNSAFE_SMS_copySpritestoSAT:
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
@@ -13,12 +11,6 @@ UNSAFE_SMS_copySpritestoSAT:
 		ld hl, SpriteTableXN	; SpriteTableXN = $C0A3
 		jp OUTI128				; $0099
 
-.ends
-
-.section "UNSAFE_SMS_VRAMmemcpy32" free
-.ends
-
-.section "UNSAFE_SMS_VRAMmemcpy32" free
 UNSAFE_SMS_VRAMmemcpy32:
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01
@@ -38,12 +30,6 @@ UNSAFE_SMS_VRAMmemcpy32:
 		ld l, a
 		jp OUTI32				; $0159
 
-.ends
-
-.section "UNSAFE_SMS_VRAMmemcpy64" free
-.ends
-
-.section "UNSAFE_SMS_VRAMmemcpy64" free
 UNSAFE_SMS_VRAMmemcpy64:
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01
@@ -63,12 +49,6 @@ UNSAFE_SMS_VRAMmemcpy64:
 		ld l, a
 		jp OUTI64				; $0119
 
-.ends
-
-.section "UNSAFE_SMS_VRAMmemcpy128" free
-.ends
-
-.section "UNSAFE_SMS_VRAMmemcpy128" free
 UNSAFE_SMS_VRAMmemcpy128:
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $99 $00
@@ -88,12 +68,6 @@ UNSAFE_SMS_VRAMmemcpy128:
 		ld l, a
 		jp OUTI128				; $0099
 
-.ends
-
-.section "SMS_init" free
-.ends
-
-.section "SMS_init" free
 SMS_init:
 		ld hl, $0000
 		push hl
@@ -148,33 +122,15 @@ SMS_init:
 		ld (hl), $40
 		ret
 
-.ends
-
-.section "VDPReg_init" free
-.ends
-
-.section "VDPReg_init" free
 VDPReg_init:
 	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF
 
-.ends
-
-.section "SMS_VDPType" free
-.ends
-
-.section "SMS_VDPType" free
 SMS_VDPType:
 	;.db $FD $21 $5E $C0 $FD $6E $00 $C9
 		ld iy, VDPType	; VDPType = $C05E
 		ld l, (iy + $00)
 		ret
 
-.ends
-
-.section "SMS_VDPturnOnFeature" free
-.ends
-
-.section "SMS_VDPturnOnFeature" free
 SMS_VDPturnOnFeature:
 		ld c, l
 		ld e, h
@@ -194,12 +150,6 @@ SMS_VDPturnOnFeature:
 		ei
 		ret
 
-.ends
-
-.section "SMS_VDPturnOffFeature" free
-.ends
-
-.section "SMS_VDPturnOffFeature" free
 SMS_VDPturnOffFeature:
 		ld a, l
 		ld e, h
@@ -221,12 +171,6 @@ SMS_VDPturnOffFeature:
 		ei
 		ret
 
-.ends
-
-.section "SMS_setBGScrollX" free
-.ends
-
-.section "SMS_setBGScrollX" free
 SMS_setBGScrollX:
 	;.db $F3 $7D $D3 $BF $3E $88 $D3 $BF $FB $C9
 		di
@@ -237,12 +181,6 @@ SMS_setBGScrollX:
 		ei
 		ret
 
-.ends
-
-.section "SMS_setBGScrollY" free
-.ends
-
-.section "SMS_setBGScrollY" free
 SMS_setBGScrollY:
 		di
 		ld a, l
@@ -252,12 +190,6 @@ SMS_setBGScrollY:
 		ei
 		ret
 
-.ends
-
-.section "SMS_setBackdropColor" free
-.ends
-
-.section "SMS_setBackdropColor" free
 SMS_setBackdropColor:
 	;.db $F3 $7D $D3 $BF $3E $87 $D3 $BF $FB $C9
 		di
@@ -268,12 +200,6 @@ SMS_setBackdropColor:
 		ei
 		ret
 
-.ends
-
-.section "SMS_useFirstHalfTilesforSprites" free
-.ends
-
-.section "SMS_useFirstHalfTilesforSprites" free
 SMS_useFirstHalfTilesforSprites:
 		bit 0, l
 		jr z, +
@@ -291,12 +217,6 @@ SMS_useFirstHalfTilesforSprites:
 		ei
 		ret
 
-.ends
-
-.section "SMS_setSpriteMode" free
-.ends
-
-.section "SMS_setSpriteMode" free
 SMS_setSpriteMode:
 		ld c, l
 		bit 0, c
@@ -334,12 +254,6 @@ SMS_setSpriteMode:
 		ld (hl), $08
 		ret
 
-.ends
-
-.section "SMS_setBGPaletteColor" free
-.ends
-
-.section "SMS_setBGPaletteColor" free
 SMS_setBGPaletteColor:
 	;.db $21 $02 $00 $39 $4E $06 $00 $21 $00 $C0 $09 $CF $21 $03 $00 $39
 	;.db $7E $D3 $BE $C9
@@ -356,12 +270,6 @@ SMS_setBGPaletteColor:
 		out ($be), a
 		ret
 
-.ends
-
-.section "SMS_setSpritePaletteColor" free
-.ends
-
-.section "SMS_setSpritePaletteColor" free
 SMS_setSpritePaletteColor:
 		ld hl, $0002
 		add hl, sp
@@ -376,12 +284,6 @@ SMS_setSpritePaletteColor:
 		out (Port_VDPData), a
 		ret
 
-.ends
-
-.section "SMS_loadBGPalette" free
-.ends
-
-.section "SMS_loadBGPalette" free
 SMS_loadBGPalette:
 		ld de, pause_status		; Lmain.main$global_pause$1$55 = $C000
 		ld c, Port_VDPAddress
@@ -396,12 +298,6 @@ SMS_loadBGPalette:
 		jr nz, -
 		ret
 
-.ends
-
-.section "SMS_loadSpritePalette" free
-.ends
-
-.section "SMS_loadSpritePalette" free
 SMS_loadSpritePalette:
 		ld de, PSGChan1Volume	; PSGChan1Volume = $C010
 		ld c, Port_VDPAddress
@@ -416,35 +312,17 @@ SMS_loadSpritePalette:
 		jr nz, -
 		ret
 
-.ends
-
-.section "SMS_setColor" free
-.ends
-
-.section "SMS_setColor" free
 SMS_setColor:
 	;.db $7D $D3 $BE $C9
 		ld a, l
 		out ($be), a
 		ret
 
-.ends
-
-.section "SMS_initSprites" free
-.ends
-
-.section "SMS_initSprites" free
 SMS_initSprites:
 		ld hl, SpriteNextFree	; SpriteNextFree = $C123
 		ld (hl), $00
 		ret
 
-.ends
-
-.section "SMS_addSprite" free
-.ends
-
-.section "SMS_addSprite" free
 SMS_addSprite:
 	;.db $3A $23 $C1 $D6 $40 $30 $4B $FD $21 $03 $00 $FD $39 $FD $7E $00
 	;.db $D6 $D1 $28 $3E $3E $63 $21 $23 $C1 $86 $4F $3E $C0 $CE $00 $47
@@ -499,12 +377,6 @@ SMS_addSprite:
 		ld l, $FF
 		ret
 
-.ends
-
-.section "SMS_finalizeSprites" free
-.ends
-
-.section "SMS_finalizeSprites" free
 SMS_finalizeSprites:
 		ld a, (SpriteNextFree)	; SpriteNextFree = $C123
 		sub $40
@@ -516,12 +388,6 @@ SMS_finalizeSprites:
 		ld (hl), $D0
 		ret
 
-.ends
-
-.section "SMS_copySpritestoSAT" free
-.ends
-
-.section "SMS_copySpritestoSAT" free
 SMS_copySpritestoSAT:
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
@@ -553,12 +419,6 @@ SMS_copySpritestoSAT:
 		jr nz, -
 		ret
 
-.ends
-
-.section "SMS_waitForVBlank" free
-.ends
-
-.section "SMS_waitForVBlank" free
 SMS_waitForVBlank:
 		ld hl, VDPBlank	; VDPBlank = $C05B
 		ld (hl), $00
@@ -568,22 +428,10 @@ SMS_waitForVBlank:
 		jr z, -
 		ret
 
-.ends
-
-.section "SMS_getKeysStatus" free
-.ends
-
-.section "SMS_getKeysStatus" free
 SMS_getKeysStatus:
 		ld hl, (KeysStatus)	; KeysStatus = $C05F
 		ret
 
-.ends
-
-.section "SMS_getKeysPressed" free
-.ends
-
-.section "SMS_getKeysPressed" free
 SMS_getKeysPressed:
 	;.db $FD $21 $61 $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $FD $21
 	;.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9
@@ -603,12 +451,6 @@ SMS_getKeysPressed:
 		ld h, a
 		ret
 
-.ends
-
-.section "SMS_getKeysHeld" free
-.ends
-
-.section "SMS_getKeysHeld" free
 SMS_getKeysHeld:
 	;.db $3A $5F $C0 $FD $21 $61 $C0 $FD $A6 $00 $6F $3A $60 $C0 $FD $21
 	;.db $61 $C0 $FD $A6 $01 $67 $C9
@@ -622,12 +464,6 @@ SMS_getKeysHeld:
 		ld h, a
 		ret
 
-.ends
-
-.section "SMS_getKeysReleased" free
-.ends
-
-.section "SMS_getKeysReleased" free
 SMS_getKeysReleased:
 	;.db $FD $21 $5F $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $79 $FD
 	;.db $21 $61 $C0 $FD $A6 $00 $6F $78 $FD $A6 $01 $67 $C9
@@ -647,34 +483,16 @@ SMS_getKeysReleased:
 		ld h, a
 		ret
 
-.ends
-
-.section "SMS_queryPauseRequested" free
-.ends
-
-.section "SMS_queryPauseRequested" free
 SMS_queryPauseRequested:
 		ld iy, PauseRequested	; PauseRequested = $C05D
 		ld l, (iy+0)
 		ret
 
-.ends
-
-.section "SMS_resetPauseRequest" free
-.ends
-
-.section "SMS_resetPauseRequest" free
 SMS_resetPauseRequest:
 		ld hl, PauseRequested	; PauseRequested = $C05D
 		ld (hl), $00
 		ret
 
-.ends
-
-.section "SMS_setLineInterruptHandler" free
-.ends
-
-.section "SMS_setLineInterruptHandler" free
 SMS_setLineInterruptHandler:
 	;.db $21 $02 $00 $39 $7E $32 $24 $C1 $21 $03 $00 $39 $7E $32 $25 $C1
 	;.db $C9
@@ -688,12 +506,6 @@ SMS_setLineInterruptHandler:
 		ld (SMS_theLineInterruptHandler + 1), a	; SMS_theLineInterruptHandler = $C124
 		ret
 
-.ends
-
-.section "SMS_setLineCounter" free
-.ends
-
-.section "SMS_setLineCounter" free
 SMS_setLineCounter:
 	;.db $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
 		ld hl, $0002
@@ -707,36 +519,18 @@ SMS_setLineCounter:
 		ei
 		ret
 
-.ends
-
-.section "SMS_getVCount" free
-.ends
-
-.section "SMS_getVCount" free
 SMS_getVCount:
 	;.db $DB $7E $6F $C9
 		in a, ($7E)
 		ld l, a
 		ret
 
-.ends
-
-.section "SMS_getHCount" free
-.ends
-
-.section "SMS_getHCount" free
 SMS_getHCount:
 	;.db $DB $7F $6F $C9
 		in a, ($7F)
 		ld l, a
 		ret
 
-.ends
-
-.section "SMS_isr" free
-.ends
-
-.section "SMS_isr" free
 SMS_isr:
 		push af
 		push hl
@@ -773,12 +567,6 @@ SMS_isr:
 		ei
 		reti
 
-.ends
-
-.section "SMS_nmi_isr" free
-.ends
-
-.section "SMS_nmi_isr" free
 SMS_nmi_isr:
 		push af
 		push bc
@@ -794,12 +582,6 @@ SMS_nmi_isr:
 		pop af
 		retn
 
-.ends
-
-.section "moduchar" free
-.ends
-
-.section "moduchar" free
 moduchar:
 	;.db $21 $03 $00 $39 $5E $2B $6E $CD $AE $1A $EB $C9
 		ld hl, $0003
@@ -811,12 +593,6 @@ moduchar:
 		ex de, hl
 		ret
 
-.ends
-
-.section "moduint" free
-.ends
-
-.section "moduint" free
 moduint:
 	;.db $F1 $E1 $D1 $D5 $E5 $F5 $CD $B1 $1A $EB $C9
 		pop af
@@ -829,12 +605,6 @@ moduint:
 		ex de, hl
 		ret
 
-.ends
-
-.section "SMS_loadSTMcompressedTileMapAre" free
-.ends
-
-.section "SMS_loadSTMcompressedTileMapAre" free
 SMS_loadSTMcompressedTileMapAre:
 	; .db $DD $E5 $DD $21 $00 $00 $DD $39 $21 $F0 $FF $39 $F9 $DD $36 $FE
 	; .db $00 $DD $36 $FF $00 $DD $36 $F3 $00 $DD $36 $F4 $00 $DD $6E $05
@@ -907,12 +677,6 @@ SMS_loadSTMcompressedTileMapAre:
 		ld l, e
 		ld h, d
 		rst $08	; _LABEL_8_
-.ends
-
-.section "LABEL_1EA0_" free
-.ends
-
-.section "LABEL_1EA0_" free
 LABEL_1EA0_:
 		ld l, (ix+6)
 		ld h, (ix+7)
@@ -1027,12 +791,6 @@ LABEL_1EA0_:
 		dec b
 		jr -
 
-.ends
-
-.section "LABEL_1F78_" free
-.ends
-
-.section "LABEL_1F78_" free
 LABEL_1F78_:
 		ld a, (ix-7)
 		or a
@@ -1094,12 +852,6 @@ LABEL_1F78_:
 		dec (ix-11)
 		jr -
 
-.ends
-
-.section "LABEL_1FF1_" free
-.ends
-
-.section "LABEL_1FF1_" free
 LABEL_1FF1_:
 		ld (ix-2), c
 		ld (ix-1), b
@@ -1111,12 +863,6 @@ LABEL_1FF1_:
 ++:
 		ld (ix+6), c
 		ld (ix+7), b
-.ends
-
-.section "LABEL_2001_" free
-.ends
-
-.section "LABEL_2001_" free
 LABEL_2001_:
 		bit 0, (ix-16)
 		jp z, LABEL_1EA0_
@@ -1127,32 +873,14 @@ LABEL_2001_:
 		ld (ix-16), $00
 		jp LABEL_1EA0_
 
-.ends
-
-.section "LABEL_201B_" free
-.ends
-
-.section "LABEL_201B_" free
 LABEL_201B_:
 		ld sp, ix
 		pop ix
 		ret
 
-.ends
-
-.section "sdcc_call_hl" free
-.ends
-
-.section "sdcc_call_hl" free
 sdcc_call_hl:
 		jp (hl)
 
-.ends
-
-.section "SMS_loadPSGaidencompressedTiles" free
-.ends
-
-.section "SMS_loadPSGaidencompressedTiles" free
 SMS_loadPSGaidencompressedTiles:
 		ld iy, SMS_crt0_RST08 - 2	; SMS_crt0_RST08 - 2 = $0004
 		add iy, sp
@@ -1173,24 +901,12 @@ SMS_loadPSGaidencompressedTiles:
 		inc ix
 		ld b, (ix+0)
 		inc ix
-.ends
-
-.section "LABEL_2045_" free
-.ends
-
-.section "LABEL_2045_" free
 LABEL_2045_:
 		push bc
 		ld b, $04
 		ld de, decompBuffer	; decompBuffer = $C126
 		ld c, (ix+0)
 		inc ix
-.ends
-
-.section "LABEL_2050_" free
-.ends
-
-.section "LABEL_2050_" free
 LABEL_2050_:
 		rlc c
 		jr nc, LABEL_2097_
@@ -1234,12 +950,6 @@ LABEL_2050_:
 		ld h, $00
 		jr +++
 
-.ends
-
-.section "LABEL_2097_" free
-.ends
-
-.section "LABEL_2097_" free
 LABEL_2097_:
 		rlc c
 		sbc a, a
@@ -1261,12 +971,6 @@ LABEL_2097_:
 		pop bc
 		jr ++++++++
 
-.ends
-
-.section "LABEL_20B1_" free
-.ends
-
-.section "LABEL_20B1_" free
 LABEL_20B1_:
 		ld hl, $FF00
 		jr +++++++
@@ -1327,5 +1031,3 @@ LABEL_20B1_:
 		ret
 
 ;.ends
-.ends
-.ends

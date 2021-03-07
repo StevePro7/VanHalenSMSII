@@ -1,15 +1,7 @@
 ;.section "None screen" free
-.section "screen_none_screen_load" free
-.section "screen_none_screen_load" free
 screen_none_screen_load:
 		ret
 
-.ends
-
-.section "screen_none_screen_update" free
-.ends
-
-.section "screen_none_screen_update" free
 screen_none_screen_update:
 		pop de
 		pop bc
@@ -20,5 +12,3 @@ screen_none_screen_update:
 		ret
 
 ;.ends
-.ends
-.ends
