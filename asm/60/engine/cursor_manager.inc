@@ -43,7 +43,7 @@ engine_cursor_manager_load:
 		push af
 		push af
 		ld (ix -3), $00
-curso_goto_01:
+cursor_goto_01:
 		ld a, $4A
 		add a, (ix - 3)
 		ld (ix - 2), a
@@ -51,7 +51,7 @@ curso_goto_01:
 		adc a, $00
 		ld (ix - 1), a
 		ld c, $00
-curso_goto_02:
+cursor_goto_02:
 		ld l, c
 		add hl, hl
 		add hl, bc
@@ -89,11 +89,11 @@ curso_goto_02:
 		inc c
 		ld a, c
 		sub a, $04				; MAX_GRID_X	4
-		jr c, curso_goto_02
+		jr c, cursor_goto_02
 		inc (ix - 3)
 		ld a, (ix - 3)
 		sub a, $03				; MAX_GRID_Y	3
-		jr c, curso_goto_01
+		jr c, cursor_goto_01
 		ld sp, ix
 		pop ix
 		ret
