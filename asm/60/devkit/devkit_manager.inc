@@ -306,15 +306,16 @@ devkit_TILE_USE_SPRITE_PALETTE:
 		ld hl, $0800
 		ret
 
-F_sms_manager$__str_0$0$0:
+sms_manager_author:
 ; "Steven Boland"
 	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
 
-F_sms_manager$__str_1$0$0:
+sms_manager_title:
 ; "Van Halen"
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
 
-; Data from 9C5 to A00 (60 bytes)	F_sms_manager$__str_2$0$0:
+; Data from 9C5 to A00 (60 bytes)
+sms_manager_description:
 ; "Van Halen Record Covers for the SMS Power! 2021 Competition"
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
 	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
