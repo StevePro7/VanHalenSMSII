@@ -59,7 +59,7 @@ _RAM_C03D_ dw
 _RAM_C03F_ dw	
 _RAM_C041_ dw	
 _RAM_C043_ dw	
-G$global_scroll_object$0$0 db	        ; G$global_scroll_object$0$0 = $C045
+;G$global_scroll_object$0$0 db	        ; G$global_scroll_object$0$0 = $C045
 .ende	
 
 

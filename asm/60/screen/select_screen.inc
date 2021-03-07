@@ -1,6 +1,6 @@
 ;.section "Select screen" free
 screen_select_screen_load:
-		ld a, (G$global_scroll_object$0$0)		; G$global_scroll_object$0$0 = $C045
+		ld a, ($C045)		; G$global_scroll_object$0$0 = $C045
 		or a
 		jr nz, A$select_screen$136
 		call devkit_SMS_displayOff
@@ -23,7 +23,7 @@ screen_select_screen_load:
 		pop af
 		call devkit_SMS_displayOn
 A$select_screen$136:
-		ld hl, G$global_scroll_object$0$0		; so->scroll_value_offset	; $C045
+		ld hl, $C045		; so->scroll_value_offset	; $C045
 		ld b, (hl)
 		push bc
 		inc sp
