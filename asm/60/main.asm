@@ -341,7 +341,6 @@ SMS__SDSC_signature:
 .ORG $0000
 
 ; Data from 7FF0 to 7FFF (16 bytes)
-G$__SMS__SEGA_signature$0$0:
 SMS__SEGA_signature:
 	.db $54 $4D $52 $20 $53 $45 $47 $41 $FF $FF $D5 $FF $99 $99 $00 $4C
 
