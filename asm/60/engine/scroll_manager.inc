@@ -13,7 +13,7 @@ engine_scroll_manager_reset:
 		ret
 
 engine_scroll_manager_load:
-		ld hl, scroll_object	; G$global_scroll_object$0$0 = scroll_object
+		ld hl, scroll_object	; scroll_object = $C045
 		ld iy, $0002
 		add iy, sp
 		ld a, (iy+0)
