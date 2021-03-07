@@ -2,7 +2,7 @@
 screen_select_screen_load:
 		ld a, ($C045)		; G$global_scroll_object$0$0 = $C045
 		or a
-		jr nz, A$select_screen$136
+		jr nz, select_screen_goto_01
 		call devkit_SMS_displayOff
 		call engine_asm_manager_clear_VRAM
 		call engine_content_manager_load_til
@@ -22,7 +22,7 @@ screen_select_screen_load:
 		pop af
 		pop af
 		call devkit_SMS_displayOn
-A$select_screen$136:
+select_screen_goto_01:
 		ld hl, $C045		; so->scroll_value_offset	; $C045
 		ld b, (hl)
 		push bc
@@ -54,21 +54,21 @@ select_covers_label:
 screen_select_screen_update:
 		ld a, (select_screen_event)		; static unsigned char event_stage	; $C057
 		dec a
-		jr nz, A$select_screen$250
+		jr nz, select_screen_goto_06
 		ld a, (select_screen_flash)		; static unsigned char flash		; $C058
 		or a
-		jr z, A$select_screen$207
+		jr z, select_screen_goto_02
 		call engine_cursor_manager_draw
-A$select_screen$207:
+select_screen_goto_02:
 		call engine_delay_manager_update
 		ld a, l
 		or a
-		jr z, A$select_screen$225
+		jr z, select_screen_goto_03
 		ld hl, select_screen_flash		; static unsigned char flash	; select_screen_flash = $C058
 		ld a, $01						; flash = 1;
 		sub a, (hl)
 		ld (hl), a
-A$select_screen$225:
+select_screen_goto_03:
 		call engine_reset_manager_update
 		pop de
 		pop bc
@@ -76,16 +76,16 @@ A$select_screen$225:
 		push de
 		ld a, l
 		or a
-		jr z, A$select_screen$239
+		jr z, select_screen_goto_04
 		ld a, $05		; screen_type_record	5
-		jr A$select_screen$241
-A$select_screen$239:
+		jr select_screen_goto_05
+select_screen_goto_04:
 		ld a, $04		; screen_type_select	4
-A$select_screen$241:
+select_screen_goto_05:
 		ld (bc), a
 		ret
 
-A$select_screen$250:
+select_screen_goto_06:
 		call engine_cursor_manager_draw
 		ld a, $10		; input_type_fire1
 		push af
@@ -94,7 +94,7 @@ A$select_screen$250:
 		inc sp
 		ld a, l
 		or a
-		jr z, A$select_screen$294
+		jr z, select_screen_goto_07
 		call engine_cursor_manager_save
 		ld b, l
 		push bc
@@ -105,7 +105,7 @@ A$select_screen$250:
 		ld hl, select_screen_event 		; static unsigned char event_stage	; select_screen_event = $C057
 		ld (hl), $01
 		ret
-A$select_screen$294:
+select_screen_goto_07:
 		ld a, $04		; input_type_left
 		push af
 		inc sp
@@ -113,9 +113,9 @@ A$select_screen$294:
 		inc sp
 		ld a, l
 		or a
-		jr z, A$select_screen$313
+		jr z, select_screen_goto_08
 		call engine_cursor_manager_decX
-A$select_screen$313:
+select_screen_goto_08:
 		ld a, $08		; input_type_right
 		push af
 		inc sp
@@ -123,9 +123,9 @@ A$select_screen$313:
 		inc sp
 		ld a, l
 		or a
-		jr z, A$select_screen$332
+		jr z, select_screen_goto_09
 		call engine_cursor_manager_incX
-A$select_screen$332:
+select_screen_goto_09:
 		ld a, $01		; input_type_up
 		push af
 		inc sp
@@ -133,9 +133,9 @@ A$select_screen$332:
 		inc sp
 		ld a, l
 		or a
-		jr z, A$select_screen$351
+		jr z, select_screen_goto_10
 		call engine_cursor_manager_decY
-A$select_screen$351:
+select_screen_goto_10:
 		ld a, $02		; input_type_down
 		push af
 		inc sp
@@ -143,9 +143,9 @@ A$select_screen$351:
 		inc sp
 		ld a, l
 		or a
-		jr z, A$select_screen$370
+		jr z, select_screen_goto_11
 		call engine_cursor_manager_incY
-A$select_screen$370:
+select_screen_goto_11:
 		pop bc
 		pop hl
 		push hl
