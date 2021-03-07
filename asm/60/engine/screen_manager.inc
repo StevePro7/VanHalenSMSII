@@ -7,17 +7,17 @@ engine_screen_manager_init:
 		ld hl, curr_screen_type			; curr_screen_type = $C02B
 		ld (hl), $00
 		ld hl, screen_none_screen_load					; screen_none_screen_load = $1195
-		ld (load_method_type), hl		; load_method_type = $C02D
+		ld (screen_type_none), hl		; load_method_type = $C02D
 		ld hl, screen_splash_screen_load				; screen_splash_screen_load = $119D
-		ld (load_method_type + 2), hl	; load_method_type + 2 = $C02F
+		ld (screen_type_none + 2), hl	; load_method_type + 2 = $C02F
 		ld hl, screen_title_screen_load					; screen_title_screen_load = $1220
-		ld (_RAM_C031_), hl
+		ld (screen_type_title), hl
 		ld hl, screen_scroll_screen_load				; screen_scroll_screen_load = $1389
-		ld (_RAM_C033_), hl
+		ld (screen_type_scroll), hl
 		ld hl, screen_select_screen_load				; screen_select_screen_load = $13EA
-		ld (_RAM_C035_), hl
+		ld (screen_type_select), hl
 		ld hl, screen_record_screen_load				; screen_record_screen_load = $14E2
-		ld (_RAM_C037_), hl
+		ld (screen_type_record), hl
 		ld hl, screen_none_screen_update				; screen_none_screen_update = $1196
 		ld (update_method_type), hl		; update_method_type = $C039
 		ld hl, screen_splash_screen_update				; screen_splash_screen_update = $11B9
@@ -40,7 +40,7 @@ engine_screen_manager_update:
 		ld a, (iy+0)
 		ld iy, curr_screen_type		; curr_screen_type = curr_screen_type
 		ld (iy+0), a
-		ld bc, load_method_type		; load_method_type = $C02D
+		ld bc, screen_type_none		; load_method_type = $C02D
 		ld l, (iy+0)
 		ld h, $00
 		add hl, hl

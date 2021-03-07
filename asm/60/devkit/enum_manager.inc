@@ -47,12 +47,12 @@ record_album_index db	            ; ro->record_album_index = $C02A
 .enum $C02B export	
 curr_screen_type db	    ; Fscreen_manager$curr_screen_type = $C02B      ; TODO update
 next_screen_type db	    ; Fscreen_manager$next_screen_type = $C02C
-load_method_type dw	    ; Fscreen_manager$load_method$0$0 = $C02D
-_RAM_C02F_ dw	
-_RAM_C031_ dw	
-_RAM_C033_ dw	
-_RAM_C035_ dw	
-_RAM_C037_ dw	
+screen_type_none dw	    ; _RAM_C02D_ = $C02D
+screen_type_splash dw	; _RAM_C02F_ = $C02F
+screen_type_title dw	; _RAM_C031_ = $C031
+screen_type_scroll dw	; _RAM_C033_ = $C033
+screen_type_select dw	; _RAM_C035_ = $C035
+screen_type_record dw	; _RAM_C037_ = $C037
 update_method_type dw	    ; Fscreen_manager$update_method$0$ = $C039
 _RAM_C03B_ dw	
 _RAM_C03D_ dw	
