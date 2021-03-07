@@ -1,5 +1,6 @@
 ;.section "Content manager" free
 ; void engine_content_manager_load_tiles()
+.section "engine_content_manager_load_til" free
 engine_content_manager_load_til:
 		ld hl, $0000					; #define FONT_TILES		0
 		push hl
@@ -15,6 +16,9 @@ engine_content_manager_load_til:
 		ret
 
 ; void engine_content_manager_loadsplash()
+.ends
+
+.section "engine_content_manager_load_spl" free
 engine_content_manager_load_spl:
 		ld a, $02						; splash__tiles__psgcompr_bank 2
 		push af
@@ -42,6 +46,9 @@ engine_content_manager_load_spl:
 		ret
 
 ; void engine_content_manager_load_titleGap()
+.ends
+
+.section "engine_content_manager_load_tit" free
 engine_content_manager_load_tit:
 		ld a, $03						; VanHalenTitleGap__tiles__psgcompr_bank 3
 		push af
@@ -77,6 +84,9 @@ engine_content_manager_load_tit:
 
 
 ; void engine_content_manager_load_titleTop()
+.ends
+
+.section "fngine_content_manager_load_tit" free
 fngine_content_manager_load_tit:
 	;.db $3E $03
 		ld a, $03						; VanHalenTitleTop__tiles__psgcompr_bank 3
@@ -112,6 +122,9 @@ fngine_content_manager_load_tit:
 		ret
 
 ; void engine_content_manager_load_sprites()
+.ends
+
+.section "engine_content_manager_load_spr" free
 engine_content_manager_load_spr:
 		ld hl, $0120					; #define CURSOR_TILES			256 + 32
 		push hl
@@ -127,3 +140,4 @@ engine_content_manager_load_spr:
 		ret
 
 ;.ends
+.ends

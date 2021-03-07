@@ -1,7 +1,11 @@
 ;.section "Detail screen" free
+.section "screen_detail_screen_load" free
 screen_detail_screen_load:
 	ret
 
+.ends
+
+.section "screen_detail_screen_update" free
 screen_detail_screen_update:
 	pop bc
 	pop hl
@@ -11,3 +15,4 @@ screen_detail_screen_update:
 	ret
 
 ;.ends
+.ends
