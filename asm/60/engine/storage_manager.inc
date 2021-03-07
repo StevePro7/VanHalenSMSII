@@ -13,21 +13,21 @@ engine_storage_manager_availabl:
 		ld d, (hl)
 		ld a, c
 		sub a, $04		; MAGIC			0xACE0B004
-		jr nz, A$storage_manager$97
+		jr nz, storage_goto_01
 		ld a, b
 		sub a, $B0		; MAGIC			0xACE0B004
-		jr nz, A$storage_manager$97
+		jr nz, storage_goto_01
 		ld a, e
 		sub a, $E0		; MAGIC			0xACE0B004
-		jr nz, A$storage_manager$97
+		jr nz, storage_goto_01
 		ld a, d
 		sub a, $AC		; MAGIC			0xACE0B004
-		jr nz, A$storage_manager$97
+		jr nz, storage_goto_01
 		ld a, $01
-		jr A$storage_manager$99
-A$storage_manager$97:
+		jr storage_goto_02
+storage_goto_01:
 		xor a
-A$storage_manager$99:
+storage_goto_02:
 		ld l, a
 		push hl
 		call devkit_SMS_disableSRAM
