@@ -973,9 +973,9 @@ LABEL_1F78_:
 		dec (ix-11)
 		jr -
 
-.ends
+;.ends
 
-.section "LABEL_1FF1_" free
+;.section "LABEL_1FF1_" free
 LABEL_1FF1_:
 		ld (ix-2), c
 		ld (ix-1), b
@@ -987,9 +987,9 @@ LABEL_1FF1_:
 ++:
 		ld (ix+6), c
 		ld (ix+7), b
-.ends
+;.ends
 
-.section "LABEL_2001_" free
+;.section "LABEL_2001_" free
 LABEL_2001_:
 		bit 0, (ix-16)
 		jp z, LABEL_1EA0_
@@ -1000,9 +1000,9 @@ LABEL_2001_:
 		ld (ix-16), $00
 		jp LABEL_1EA0_
 
-.ends
+;.ends
 
-.section "LABEL_201B_" free
+;.section "LABEL_201B_" free
 LABEL_201B_:
 		ld sp, ix
 		pop ix
@@ -1092,9 +1092,9 @@ LABEL_2050_:
 		ld h, $00
 		jr +++
 
-.ends
+;.ends
 
-.section "LABEL_2097_" free
+;.section "LABEL_2097_" free
 LABEL_2097_:
 		rlc c
 		sbc a, a
@@ -1116,9 +1116,9 @@ LABEL_2097_:
 		pop bc
 		jr ++++++++
 
-.ends
+;.ends
 
-.section "LABEL_20B1_" free
+;.section "LABEL_20B1_" free
 LABEL_20B1_:
 		ld hl, $FF00
 		jr +++++++
