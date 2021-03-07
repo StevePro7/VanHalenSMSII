@@ -4,7 +4,7 @@ engine_screen_manager_init:
 		add hl, sp
 		ld a, (hl)
 		ld (next_screen_type), a		; next_screen_type = $C02C
-		ld hl, curr_screen_type			; Fscreen_manager$curr_screen_type = curr_screen_type
+		ld hl, curr_screen_type			; curr_screen_type = $C02B
 		ld (hl), $00
 		ld hl, screen_none_screen_load					; screen_none_screen_load = $1195
 		ld (load_method_type), hl		; load_method_type = $C02D
