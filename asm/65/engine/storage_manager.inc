@@ -26,14 +26,14 @@ engine_storage_manager_availabl:
 		jr nz, storage_goto_01
 		ld a, $01
 		jr storage_goto_02
-.ends
+;.ends
 
-.section "storage_goto_01" free
+;.section "storage_goto_01" free
 storage_goto_01:
 		xor a
-.ends
+;.ends
 
-.section "storage_goto_02" free
+;.section "storage_goto_02" free
 storage_goto_02:
 		ld l, a
 		push hl

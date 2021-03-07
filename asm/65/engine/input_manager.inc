@@ -31,15 +31,15 @@ engine_input_manager_hold:
 		and (iy + $01)
 		or c
 		jr z, input_goto_02
-.ends
+;.ends
 
-.section "input_goto_01" free
+;.section "input_goto_01" free
 input_goto_01:
 		ld l, $00
 		ret
-.ends
+;.ends
 
-.section "input_goto_02" free
+;.section "input_goto_02" free
 input_goto_02:
 		ld l, $01
 		ret

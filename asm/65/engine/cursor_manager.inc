@@ -47,9 +47,9 @@ engine_cursor_manager_load:
 		push af
 		push af
 		ld (ix -3), $00
-.ends
+;.ends
 
-.section "cursor_goto_01" free
+;.section "cursor_goto_01" free
 cursor_goto_01:
 		ld a, $4A
 		add a, (ix - 3)
@@ -58,9 +58,9 @@ cursor_goto_01:
 		adc a, $00
 		ld (ix - 1), a
 		ld c, $00
-.ends
+;.ends
 
-.section "cursor_goto_02" free
+;.section "cursor_goto_02" free
 cursor_goto_02:
 		ld l, c
 		add hl, hl
@@ -340,9 +340,9 @@ engine_cursor_manager_decX:
 		ld a, $03					; co->cursor_index_x = MAX_GRID_X - 1;
 		ld (bc), a
 		jp update_values
-.ends
+;.ends
 
-.section "decX_goto" free
+;.section "decX_goto" free
 decX_goto:
 		add a, $FF					; co->cursor_index_x--;
 		ld (bc), a
@@ -359,9 +359,9 @@ engine_cursor_manager_incX:
 		xor a						; co->cursor_index_x = 0;
 		ld (bc), a
 		jp update_values
-.ends
+;.ends
 
-.section "incX_goto" free
+;.section "incX_goto" free
 incX_goto:
 		inc a						; co->cursor_index_x++;
 		ld (bc), a
@@ -378,9 +378,9 @@ engine_cursor_manager_decY:
 		ld a, $02					; co->cursor_index_y = MAX_GRID_Y - 1;
 		ld (bc), a
 		jp update_values
-.ends
+;.ends
 
-.section "decY_goto" free
+;.section "decY_goto" free
 decY_goto:
 		add a, $FF					; co->cursor_index_y--;
 		ld (bc), a
@@ -397,9 +397,9 @@ engine_cursor_manager_incY:
 		xor a						; co->cursor_index_y = 0;
 		ld (bc), a
 		jp update_values
-.ends
+;.ends
 
-.section "incY_goto" free
+;.section "incY_goto" free
 incY_goto:
 		inc a						; co->cursor_index_y++;
 		ld (bc), a

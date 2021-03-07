@@ -54,9 +54,9 @@ engine_screen_manager_update:
 		ld h, (hl)
 		ld l, c
 		call sdcc_call_hl
-.ends
+;.ends
 
-.section "update_code" free
+;.section "update_code" free
 update_code:
 		ld bc, update_type_none		; update_type_none = $C039
 		ld iy, curr_screen_type		; curr_screen_type = curr_screen_type

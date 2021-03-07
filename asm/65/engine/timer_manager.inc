@@ -34,9 +34,9 @@ engine_delay_manager_update:
 		jr z, timer_goto_01
 		ld hl, $0000					; dObj->delay_timer = 0;
 		ld (delay_object_timer), hl		; delay_object_timer = $C04E
-.ends
+;.ends
 
-.section "timer_goto_01" free
+;.section "timer_goto_01" free
 timer_goto_01:
 		ld l, b
 		ret
@@ -76,9 +76,9 @@ engine_reset_manager_update:
 		jr z, timer_goto_02
 		ld hl, $0000				; ro->reset_timer = 0;
 		ld (reset_object_timer), hl	; reset_object_timer = $C052
-.ends
+;.ends
 
-.section "timer_goto_02" free
+;.section "timer_goto_02" free
 timer_goto_02:
 		ld l, b
 		ret
