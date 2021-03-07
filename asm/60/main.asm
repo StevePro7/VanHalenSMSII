@@ -270,31 +270,31 @@ init_curr_joyp:
 	.db $00 $00
 
 ; Data from 2105 to 2106 (2 bytes)
-Finput_manager$__xinit_prev_joyp:
+init_prev_joyp:
 ; static unsigned int prev_joypad1 = 0;
 	.db $00 $00
 
 ; Data from 2107 to 211E (24 bytes)
-Fcursor_object$__xinit_cursor_al:
+init_cursor_al:
 ; extern const char *cursor_album[ MAX_ALBUMS ];
 ; $114D $1152 $1157 $115C $1161 $1166	$116B $1170 $117f5 $117A $117F $1184
 	.db $4D $11 $52 $11 $57 $11 $5C $11 $61 $11 $66 $11 $6B $11 $70 $11
 	.db $75 $11 $7A $11 $7F $11 $84 $11
 
 ; Data from 211F to 2136 (24 bytes)
-Frecord_object$__xinit_record_ti:
+init_record_tiles:
 ; const unsigned char *record_tiles_data[]
 	.db $89 $80 $32 $81 $70 $80 $9F $80 $18 $81 $8D $80 $87 $80 $67 $80
 	.db $67 $80 $9F $80 $C7 $80 $7A $80
 
 ; Data from 2137 to 214E (24 bytes)
-Grecord_object$__xinit_record_ti:
+init_record_tilemap:
 ; const unsigned char *record_tilemap_data[]
 	.db $10 $80 $10 $80 $10 $80 $10 $80 $10 $80 $10 $80 $10 $80 $10 $80
 	.db $10 $80 $10 $80 $10 $80 $10 $80
 
 ; Data from 214F to 216A (28 bytes)
-Frecord_object$__xinit_record_pa:
+init_record_pa:
 ; const unsigned char *record_palette_data[]
 	.db $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80
 	.db $00 $80 $00 $80 $00 $80 $00 $80 $04 $20 $08 $08
