@@ -225,9 +225,9 @@ PSGRestoreVolumes:
 		ld a, e
 		or $B0
 		out (Port_PSG), a
-.ends
+;.ends
 
-.section "LABEL_3C7_" free
+;.section "LABEL_3C7_" free
 LABEL_3C7_:
 		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
 		or a
@@ -477,9 +477,9 @@ PSGSetMusicVolumeAttenuation:
 		ld a, c
 		or $F0
 		out (Port_PSG), a
-.ends
+;.ends
 
-.section "LABEL_538_" free
+;.section "LABEL_538_" free
 LABEL_538_:
 		ld sp, ix
 		pop ix
@@ -547,18 +547,18 @@ PSGSFXStop:
 		out (Port_PSG), a
 		jr +
 
-.ends
+;.ends
 
-.section "LABEL_5A8_" free
+;.section "LABEL_5A8_" free
 LABEL_5A8_:
 		ld a, $DF
 		out (Port_PSG), a
 +:
 		ld hl, PSGChannel2SFX	; PSGChannel2SFX = $C016
 		ld (hl), $00
-.ends
+;.ends
 
-.section "LABEL_5B1_" free
+;.section "LABEL_5B1_" free
 LABEL_5B1_:
 		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
 		or a
@@ -607,15 +607,15 @@ LABEL_5B1_:
 ++++:
 		ld hl, PSGChannel3SFX	; PSGChannel3SFX = $C017
 		ld (hl), $00
-.ends
+;.ends
 
-.section "LABEL_5FD_" free
+;.section "LABEL_5FD_" free
 LABEL_5FD_:
 		ld hl, PSGSFXStatus	; PSGSFXStatus = $C01A
 		ld (hl), $00
-.ends
+;.ends
 
-.section "LABEL_602_" free
+;.section "LABEL_602_" free
 LABEL_602_:
 		ld sp, ix
 		pop ix
@@ -722,9 +722,9 @@ PSGFrame:
 		or a
 		jp nz, LABEL_717_			; stevepro
 		ld hl, (PSGMusicPointer)	; PSGMusicPointer = $C004
-.ends
+;.ends
 
-.section "LABEL_692_" free
+;.section "LABEL_692_" free
 LABEL_692_:
 		ld b, (hl)
 		inc hl
@@ -797,17 +797,17 @@ LABEL_692_:
 		jr z, LABEL_748_
 		jp LABEL_692_
 
-.ends
+;.ends
 
-.section "LABEL_717_" free
+;.section "LABEL_717_" free
 LABEL_717_:
 		dec a
 		ld (PSGMusicSkipFrames), a	; PSGMusicSkipFrames = $C008
 		ret
 
-.ends
+;.ends
 
-.section "LABEL_71C_" free
+;.section "LABEL_71C_" free
 LABEL_71C_:
 		cp $40
 		jr c, +
@@ -833,26 +833,26 @@ LABEL_71C_:
 		jr z, ++++
 		ret
 
-.ends
+;.ends
 
-.section "LABEL_742_" free
+;.section "LABEL_742_" free
 LABEL_742_:
 		ld a, b
-.ends
+;.ends
 
-.section "LABEL_743_" free
+;.section "LABEL_743_" free
 LABEL_743_:
 		out (Port_PSG), a
 		jp LABEL_692_
 
-.ends
+;.ends
 
-.section "LABEL_748_" free
+;.section "LABEL_748_" free
 LABEL_748_:
 		ld a, b
-.ends
+;.ends
 
-.section "LABEL_749_" free
+;.section "LABEL_749_" free
 LABEL_749_:
 		ld c, a
 		and $0F
@@ -886,9 +886,9 @@ LABEL_749_:
 		ld hl, (PSGMusicLoopPoint)	; PSGMusicLoopPoint = $C006
 		jp LABEL_692_
 
-.ends
+;.ends
 
-.section "LABEL_77B_" free
+;.section "LABEL_77B_" free
 LABEL_77B_:
 		sub $04
 		ld (PSGMusicSubstringLen), a	; PSGMusicSubstringLen = $C00C
@@ -921,9 +921,9 @@ PSGSFXFrame:
 		or a
 		jp nz, +++
 		ld hl, (PSGSFXPointer)	; PSGSFXPointer = $C01D
-.ends
+;.ends
 
-.section "LABEL_7AB_" free
+;.section "LABEL_7AB_" free
 LABEL_7AB_:
 		ld b, (hl)
 		inc hl
