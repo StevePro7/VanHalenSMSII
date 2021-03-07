@@ -1,5 +1,6 @@
 ;.section "Title screen" free
 .section "screen_title_screen_load" free
+.section "screen_title_screen_load" free
 screen_title_screen_load:
 		call devkit_SMS_displayOff
 		call engine_content_manager_load_til
@@ -51,6 +52,9 @@ screen_title_screen_load:
 .ends
 
 .section "title_screen_goto_01" free
+.ends
+
+.section "title_screen_goto_01" free
 title_screen_goto_01:
 		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 		ld b, (hl)
@@ -73,10 +77,16 @@ title_screen_goto_01:
 .ends
 
 .section "press_start" free
+.ends
+
+.section "press_start" free
 press_start:
 	; "PRESS START"
 	.db $50 $52 $45 $53 $53 $20 $53 $54 $41 $52 $54 $00
 
+.ends
+
+.section "title_record_label" free
 .ends
 
 .section "title_record_label" free
@@ -87,6 +97,9 @@ title_record_label:
 .ends
 
 .section "title_covers_label" free
+.ends
+
+.section "title_covers_label" free
 title_covers_label:
 	; "COVERS"
 	.db $43 $4F $56 $45 $52 $53 $00
@@ -94,10 +107,16 @@ title_covers_label:
 .ends
 
 .section "title_build_label" free
+.ends
+
+.section "title_build_label" free
 title_build_label:
 	; "V1.0"
 	.db $56 $31 $2E $30 $00
 
+.ends
+
+.section "screen_title_screen_update" free
 .ends
 
 .section "screen_title_screen_update" free
@@ -137,6 +156,9 @@ screen_title_screen_update:
 .ends
 
 .section "title_screen_goto_02" free
+.ends
+
+.section "title_screen_goto_02" free
 title_screen_goto_02:
 		ld a, c
 		or a
@@ -146,8 +168,14 @@ title_screen_goto_02:
 .ends
 
 .section "title_screen_goto_03" free
+.ends
+
+.section "title_screen_goto_03" free
 title_screen_goto_03:
 		ld c, $02				; screen_type_title = 2
+.ends
+
+.section "title_screen_goto_04" free
 .ends
 
 .section "title_screen_goto_04" free
@@ -156,6 +184,9 @@ title_screen_goto_04:
 		ld h, (ix - 1)
 		ld (hl), c
 		jr title_screen_goto_08
+.ends
+
+.section "title_screen_goto_05" free
 .ends
 
 .section "title_screen_goto_05" free
@@ -183,6 +214,9 @@ title_screen_goto_05:
 .ends
 
 .section "title_screen_goto_06" free
+.ends
+
+.section "title_screen_goto_06" free
 title_screen_goto_06:
 		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
@@ -191,6 +225,9 @@ title_screen_goto_06:
 		call engine_font_manager_draw_text
 		pop af
 		pop af
+.ends
+
+.section "title_screen_goto_07" free
 .ends
 
 .section "title_screen_goto_07" free
@@ -219,12 +256,18 @@ title_screen_goto_07:
 .ends
 
 .section "title_screen_goto_08" free
+.ends
+
+.section "title_screen_goto_08" free
 title_screen_goto_08:
 		ld sp, ix
 		pop ix
 		ret
 
 ; Data from 1407 to 1412 (12 bytes)
+.ends
+
+.section "blank_clear" free
 .ends
 
 .section "blank_clear" free
@@ -237,9 +280,13 @@ blank_clear:
 .ends
 
 .section "press_start2" free
+.ends
+
+.section "press_start2" free
 press_start2:
 	; "PRESS START"
 	.db $50 $52 $45 $53 $53 $20 $53 $54 $41 $52 $54 $00
 
 ;.ends
+.ends
 .ends

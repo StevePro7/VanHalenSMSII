@@ -1,5 +1,6 @@
 ;.section "Storage manager" free
 .section "engine_storage_manager_availabl" free
+.section "engine_storage_manager_availabl" free
 engine_storage_manager_availabl:
 		call devkit_SMS_SRAM
 		push hl
@@ -29,8 +30,14 @@ engine_storage_manager_availabl:
 .ends
 
 .section "storage_goto_01" free
+.ends
+
+.section "storage_goto_01" free
 storage_goto_01:
 		xor a
+.ends
+
+.section "storage_goto_02" free
 .ends
 
 .section "storage_goto_02" free
@@ -44,6 +51,9 @@ storage_goto_02:
 .ends
 
 .section "engine_storage_manager_read" free
+.ends
+
+.section "engine_storage_manager_read" free
 engine_storage_manager_read:
 		call devkit_SMS_SRAM
 		push hl
@@ -54,6 +64,9 @@ engine_storage_manager_read:
 		ld (hl), c
 		jp devkit_SMS_disableSRAM
 
+.ends
+
+.section "engine_storage_manager_write" free
 .ends
 
 .section "engine_storage_manager_write" free
@@ -84,6 +97,9 @@ engine_storage_manager_write:
 .ends
 
 .section "engine_storage_manager_erase" free
+.ends
+
+.section "engine_storage_manager_erase" free
 engine_storage_manager_erase:
 		call devkit_SMS_SRAM
 		push hl
@@ -109,4 +125,5 @@ engine_storage_manager_erase:
 		jp devkit_SMS_disableSRAM
 
 ;.ends
+.ends
 .ends

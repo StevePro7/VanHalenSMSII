@@ -16,4 +16,3 @@
 .define Port_VDPStatus $BF	
 .define Port_IOPort1 $DC	
 .define Port_IOPort2 $DD	
-.ends

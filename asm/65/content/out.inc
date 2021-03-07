@@ -1,5 +1,7 @@
 ;.section "OUT128 section" free
 
+.section "OUTI128:" free
+.section "OUTI128:" free
 OUTI128:	
 .rept 64
 		outi
@@ -7,6 +9,12 @@ OUTI128:
 ;.ends
 
 ;.section "OUT64 section" free
+.ends
+
+.section "OUTI64:" free
+.ends
+
+.section "OUTI64:" free
 OUTI64:	
 		.rept 32
 		outi
@@ -14,6 +22,12 @@ OUTI64:
 ;.ends
 
 ;.section "OUT32 section" free
+.ends
+
+.section "OUTI32:" free
+.ends
+
+.section "OUTI32:" free
 OUTI32:	
 		.rept 32
 		outi
@@ -27,4 +41,5 @@ OUTI32:
 .endr	
 
 ;.ends
+.ends
 .ends

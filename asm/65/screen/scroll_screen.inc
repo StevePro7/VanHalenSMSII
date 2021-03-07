@@ -1,11 +1,15 @@
 ;.section "Scroll screen" free
 ; Data from 1389 to 138B (3 bytes)
 .section "screen_scroll_screen_load" free
+.section "screen_scroll_screen_load" free
 screen_scroll_screen_load:
 		ld hl, scroll_screen_offset		; scroll_screen_offset = $C056
 		ld (hl), $00					; offset = 0;
 		ret
 
+.ends
+
+.section "screen_scroll_screen_update" free
 .ends
 
 .section "screen_scroll_screen_update" free
@@ -19,9 +23,15 @@ screen_scroll_screen_update:
 .ends
 
 .section "scroll_screen_goto_01" free
+.ends
+
+.section "scroll_screen_goto_01" free
 scroll_screen_goto_01:
 		xor a
 
+.ends
+
+.section "scroll_screen_goto_02" free
 .ends
 
 .section "scroll_screen_goto_02" free
@@ -59,6 +69,9 @@ scroll_screen_goto_02:
 .ends
 
 .section "scroll_screen_goto_03" free
+.ends
+
+.section "scroll_screen_goto_03" free
 scroll_screen_goto_03:
 		push hl
 		ld a, $04						; TOP_OFFSET	4
@@ -77,8 +90,14 @@ scroll_screen_goto_03:
 .ends
 
 .section "scroll_screen_goto_04" free
+.ends
+
+.section "scroll_screen_goto_04" free
 scroll_screen_goto_04:
 		ld (hl), $03					; screen_type_scroll = 3
+.ends
+
+.section "scroll_screen_goto_05" free
 .ends
 
 .section "scroll_screen_goto_05" free
@@ -87,4 +106,5 @@ scroll_screen_goto_05:
 		ret
 
 ;.ends
+.ends
 .ends

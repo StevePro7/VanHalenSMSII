@@ -1,5 +1,6 @@
 ;.section "Audio manager" free
 .section "engine_audio_manager_sfx_right" free
+.section "engine_audio_manager_sfx_right" free
 engine_audio_manager_sfx_right:
 		ld hl, sfx_right_psg
 		push hl
@@ -7,6 +8,9 @@ engine_audio_manager_sfx_right:
 		pop af
 		ret
 
+.ends
+
+.section "engine_audio_manager_sfx_wrong" free
 .ends
 
 .section "engine_audio_manager_sfx_wrong" free
@@ -20,6 +24,9 @@ engine_audio_manager_sfx_wrong:
 .ends
 
 .section "engine_audio_manager_sfx_cheat" free
+.ends
+
+.section "engine_audio_manager_sfx_cheat" free
 engine_audio_manager_sfx_cheat:
 		ld hl, sfx_cheat_psg
 		push hl
@@ -27,6 +34,9 @@ engine_audio_manager_sfx_cheat:
 		pop af
 		ret
 
+.ends
+
+.section " play_sfx" free
 .ends
 
 .section " play_sfx" free
@@ -50,4 +60,5 @@ engine_audio_manager_sfx_cheat:
 		ret
 
 ;.ends
+.ends
 .ends

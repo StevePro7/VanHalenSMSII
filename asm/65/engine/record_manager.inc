@@ -1,5 +1,6 @@
 ;.section "Record manager" free
 .section "engine_record_manager_init" free
+.section "engine_record_manager_init" free
 engine_record_manager_init:
 		ld hl, record_album_index		; record_album_index = $C02A
 		ld iy, $0002
@@ -8,6 +9,9 @@ engine_record_manager_init:
 		ld (hl), a
 		ret
 
+.ends
+
+.section "engine_record_manager_load" free
 .ends
 
 .section "engine_record_manager_load" free
@@ -68,6 +72,9 @@ engine_record_manager_load:
 .ends
 
 .section "engine_record_manager_decrement" free
+.ends
+
+.section "engine_record_manager_decrement" free
 engine_record_manager_decrement:
 		ld bc, record_album_index			; ro->record_album_index
 		ld a, (bc)
@@ -79,11 +86,17 @@ engine_record_manager_decrement:
 .ends
 
 .section "record_goto_01" free
+.ends
+
+.section "record_goto_01" free
 record_goto_01:
 		add a, $FF
 		ld (bc), a							; ro->record_album_index--;
 		ret
 
+.ends
+
+.section "engine_record_manager_increment" free
 .ends
 
 .section "engine_record_manager_increment" free
@@ -98,10 +111,14 @@ engine_record_manager_increment:
 .ends
 
 .section "record_goto_02" free
+.ends
+
+.section "record_goto_02" free
 record_goto_02:
 		inc a							; ro->record_album_index++;
 		ld (bc), a
 		ret
 
 ;.ends
+.ends
 .ends

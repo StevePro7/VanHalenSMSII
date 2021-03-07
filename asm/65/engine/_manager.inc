@@ -1,5 +1,6 @@
 ;.section "Input manager" free
 .section "engine_input_manager_update" free
+.section "engine_input_manager_update" free
 engine_input_manager_update:
 		ld hl, (curr_joypad1)	; Finput_manager$curr_joypad1$0$0 = curr_joypad1
 		ld (prev_joypad1), hl	; Finput_manager$prev_joypad1$0$0 = prev_joypad1
@@ -7,6 +8,9 @@ engine_input_manager_update:
 		ld (curr_joypad1), hl	; Finput_manager$curr_joypad1$0$0 = curr_joypad1
 		ret
 
+.ends
+
+.section "engine_input_manager_hold" free
 .ends
 
 .section "engine_input_manager_hold" free
@@ -34,9 +38,15 @@ engine_input_manager_hold:
 .ends
 
 .section "input_goto_01" free
+.ends
+
+.section "input_goto_01" free
 input_goto_01:
 		ld l, $00
 		ret
+.ends
+
+.section "input_goto_02" free
 .ends
 
 .section "input_goto_02" free
@@ -44,6 +54,9 @@ input_goto_02:
 		ld l, $01
 		ret
 
+.ends
+
+.section "engine_input_manager_move" free
 .ends
 
 .section "engine_input_manager_move" free
@@ -57,4 +70,5 @@ engine_input_manager_move:
 		ret
 
 ;.ends
+.ends
 .ends

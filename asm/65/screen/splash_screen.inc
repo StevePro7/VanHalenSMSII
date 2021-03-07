@@ -1,5 +1,6 @@
 ;.section "Splash screen" free
 .section "screen_splash_screen_load" free
+.section "screen_splash_screen_load" free
 screen_splash_screen_load:
 		call devkit_SMS_displayOff				;$082B
 		call engine_content_manager_load_til	;$0AA2
@@ -14,6 +15,9 @@ screen_splash_screen_load:
 		pop af
 		ret
 
+.ends
+
+.section "screen_splash_screen_update" free
 .ends
 
 .section "screen_splash_screen_update" free
@@ -55,8 +59,14 @@ screen_splash_screen_update:
 .ends
 
 .section "splash_screen_goto_01" free
+.ends
+
+.section "splash_screen_goto_01" free
 splash_screen_goto_01:
 		call engine_reset_manager_reset		; $113F
+.ends
+
+.section "splash_screen_goto_02" free
 .ends
 
 .section "splash_screen_goto_02" free
@@ -72,14 +82,23 @@ splash_screen_goto_02:
 .ends
 
 .section "splash_screen_goto_03" free
+.ends
+
+.section "splash_screen_goto_03" free
 splash_screen_goto_03:
 		ld (hl), $02						; screen_type
 		jr splash_screen_goto_05
 .ends
 
 .section "splash_screen_goto_04" free
+.ends
+
+.section "splash_screen_goto_04" free
 splash_screen_goto_04:
 		ld (hl), $01						; screen_type_splash
+.ends
+
+.section "splash_screen_goto_05" free
 .ends
 
 .section "splash_screen_goto_05" free
@@ -92,8 +111,12 @@ splash_screen_goto_05:
 .ends
 
 .section "fiftyonefifty" free
+.ends
+
+.section "fiftyonefifty" free
 fiftyonefifty:
 	.db $35 $31 $35 $30 $00
 
 ;.ends
+.ends
 .ends

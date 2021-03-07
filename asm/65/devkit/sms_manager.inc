@@ -1,5 +1,6 @@
 ;.section "SMS Manager" free
 .section "UNSAFE_SMS_copySpritestoSAT" free
+.section "UNSAFE_SMS_copySpritestoSAT" free
 UNSAFE_SMS_copySpritestoSAT:
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
@@ -12,6 +13,9 @@ UNSAFE_SMS_copySpritestoSAT:
 		ld hl, SpriteTableXN	; SpriteTableXN = $C0A3
 		jp OUTI128				; $0099
 
+.ends
+
+.section "UNSAFE_SMS_VRAMmemcpy32" free
 .ends
 
 .section "UNSAFE_SMS_VRAMmemcpy32" free
@@ -37,6 +41,9 @@ UNSAFE_SMS_VRAMmemcpy32:
 .ends
 
 .section "UNSAFE_SMS_VRAMmemcpy64" free
+.ends
+
+.section "UNSAFE_SMS_VRAMmemcpy64" free
 UNSAFE_SMS_VRAMmemcpy64:
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01
@@ -59,6 +66,9 @@ UNSAFE_SMS_VRAMmemcpy64:
 .ends
 
 .section "UNSAFE_SMS_VRAMmemcpy128" free
+.ends
+
+.section "UNSAFE_SMS_VRAMmemcpy128" free
 UNSAFE_SMS_VRAMmemcpy128:
 	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
 	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $99 $00
@@ -78,6 +88,9 @@ UNSAFE_SMS_VRAMmemcpy128:
 		ld l, a
 		jp OUTI128				; $0099
 
+.ends
+
+.section "SMS_init" free
 .ends
 
 .section "SMS_init" free
@@ -138,9 +151,15 @@ SMS_init:
 .ends
 
 .section "VDPReg_init" free
+.ends
+
+.section "VDPReg_init" free
 VDPReg_init:
 	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF
 
+.ends
+
+.section "SMS_VDPType" free
 .ends
 
 .section "SMS_VDPType" free
@@ -150,6 +169,9 @@ SMS_VDPType:
 		ld l, (iy + $00)
 		ret
 
+.ends
+
+.section "SMS_VDPturnOnFeature" free
 .ends
 
 .section "SMS_VDPturnOnFeature" free
@@ -172,6 +194,9 @@ SMS_VDPturnOnFeature:
 		ei
 		ret
 
+.ends
+
+.section "SMS_VDPturnOffFeature" free
 .ends
 
 .section "SMS_VDPturnOffFeature" free
@@ -199,6 +224,9 @@ SMS_VDPturnOffFeature:
 .ends
 
 .section "SMS_setBGScrollX" free
+.ends
+
+.section "SMS_setBGScrollX" free
 SMS_setBGScrollX:
 	;.db $F3 $7D $D3 $BF $3E $88 $D3 $BF $FB $C9
 		di
@@ -209,6 +237,9 @@ SMS_setBGScrollX:
 		ei
 		ret
 
+.ends
+
+.section "SMS_setBGScrollY" free
 .ends
 
 .section "SMS_setBGScrollY" free
@@ -224,6 +255,9 @@ SMS_setBGScrollY:
 .ends
 
 .section "SMS_setBackdropColor" free
+.ends
+
+.section "SMS_setBackdropColor" free
 SMS_setBackdropColor:
 	;.db $F3 $7D $D3 $BF $3E $87 $D3 $BF $FB $C9
 		di
@@ -234,6 +268,9 @@ SMS_setBackdropColor:
 		ei
 		ret
 
+.ends
+
+.section "SMS_useFirstHalfTilesforSprites" free
 .ends
 
 .section "SMS_useFirstHalfTilesforSprites" free
@@ -254,6 +291,9 @@ SMS_useFirstHalfTilesforSprites:
 		ei
 		ret
 
+.ends
+
+.section "SMS_setSpriteMode" free
 .ends
 
 .section "SMS_setSpriteMode" free
@@ -297,6 +337,9 @@ SMS_setSpriteMode:
 .ends
 
 .section "SMS_setBGPaletteColor" free
+.ends
+
+.section "SMS_setBGPaletteColor" free
 SMS_setBGPaletteColor:
 	;.db $21 $02 $00 $39 $4E $06 $00 $21 $00 $C0 $09 $CF $21 $03 $00 $39
 	;.db $7E $D3 $BE $C9
@@ -313,6 +356,9 @@ SMS_setBGPaletteColor:
 		out ($be), a
 		ret
 
+.ends
+
+.section "SMS_setSpritePaletteColor" free
 .ends
 
 .section "SMS_setSpritePaletteColor" free
@@ -333,6 +379,9 @@ SMS_setSpritePaletteColor:
 .ends
 
 .section "SMS_loadBGPalette" free
+.ends
+
+.section "SMS_loadBGPalette" free
 SMS_loadBGPalette:
 		ld de, pause_status		; Lmain.main$global_pause$1$55 = $C000
 		ld c, Port_VDPAddress
@@ -347,6 +396,9 @@ SMS_loadBGPalette:
 		jr nz, -
 		ret
 
+.ends
+
+.section "SMS_loadSpritePalette" free
 .ends
 
 .section "SMS_loadSpritePalette" free
@@ -367,6 +419,9 @@ SMS_loadSpritePalette:
 .ends
 
 .section "SMS_setColor" free
+.ends
+
+.section "SMS_setColor" free
 SMS_setColor:
 	;.db $7D $D3 $BE $C9
 		ld a, l
@@ -376,11 +431,17 @@ SMS_setColor:
 .ends
 
 .section "SMS_initSprites" free
+.ends
+
+.section "SMS_initSprites" free
 SMS_initSprites:
 		ld hl, SpriteNextFree	; SpriteNextFree = $C123
 		ld (hl), $00
 		ret
 
+.ends
+
+.section "SMS_addSprite" free
 .ends
 
 .section "SMS_addSprite" free
@@ -441,6 +502,9 @@ SMS_addSprite:
 .ends
 
 .section "SMS_finalizeSprites" free
+.ends
+
+.section "SMS_finalizeSprites" free
 SMS_finalizeSprites:
 		ld a, (SpriteNextFree)	; SpriteNextFree = $C123
 		sub $40
@@ -452,6 +516,9 @@ SMS_finalizeSprites:
 		ld (hl), $D0
 		ret
 
+.ends
+
+.section "SMS_copySpritestoSAT" free
 .ends
 
 .section "SMS_copySpritestoSAT" free
@@ -489,6 +556,9 @@ SMS_copySpritestoSAT:
 .ends
 
 .section "SMS_waitForVBlank" free
+.ends
+
+.section "SMS_waitForVBlank" free
 SMS_waitForVBlank:
 		ld hl, VDPBlank	; VDPBlank = $C05B
 		ld (hl), $00
@@ -501,10 +571,16 @@ SMS_waitForVBlank:
 .ends
 
 .section "SMS_getKeysStatus" free
+.ends
+
+.section "SMS_getKeysStatus" free
 SMS_getKeysStatus:
 		ld hl, (KeysStatus)	; KeysStatus = $C05F
 		ret
 
+.ends
+
+.section "SMS_getKeysPressed" free
 .ends
 
 .section "SMS_getKeysPressed" free
@@ -530,6 +606,9 @@ SMS_getKeysPressed:
 .ends
 
 .section "SMS_getKeysHeld" free
+.ends
+
+.section "SMS_getKeysHeld" free
 SMS_getKeysHeld:
 	;.db $3A $5F $C0 $FD $21 $61 $C0 $FD $A6 $00 $6F $3A $60 $C0 $FD $21
 	;.db $61 $C0 $FD $A6 $01 $67 $C9
@@ -543,6 +622,9 @@ SMS_getKeysHeld:
 		ld h, a
 		ret
 
+.ends
+
+.section "SMS_getKeysReleased" free
 .ends
 
 .section "SMS_getKeysReleased" free
@@ -568,6 +650,9 @@ SMS_getKeysReleased:
 .ends
 
 .section "SMS_queryPauseRequested" free
+.ends
+
+.section "SMS_queryPauseRequested" free
 SMS_queryPauseRequested:
 		ld iy, PauseRequested	; PauseRequested = $C05D
 		ld l, (iy+0)
@@ -576,11 +661,17 @@ SMS_queryPauseRequested:
 .ends
 
 .section "SMS_resetPauseRequest" free
+.ends
+
+.section "SMS_resetPauseRequest" free
 SMS_resetPauseRequest:
 		ld hl, PauseRequested	; PauseRequested = $C05D
 		ld (hl), $00
 		ret
 
+.ends
+
+.section "SMS_setLineInterruptHandler" free
 .ends
 
 .section "SMS_setLineInterruptHandler" free
@@ -600,6 +691,9 @@ SMS_setLineInterruptHandler:
 .ends
 
 .section "SMS_setLineCounter" free
+.ends
+
+.section "SMS_setLineCounter" free
 SMS_setLineCounter:
 	;.db $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
 		ld hl, $0002
@@ -616,6 +710,9 @@ SMS_setLineCounter:
 .ends
 
 .section "SMS_getVCount" free
+.ends
+
+.section "SMS_getVCount" free
 SMS_getVCount:
 	;.db $DB $7E $6F $C9
 		in a, ($7E)
@@ -625,12 +722,18 @@ SMS_getVCount:
 .ends
 
 .section "SMS_getHCount" free
+.ends
+
+.section "SMS_getHCount" free
 SMS_getHCount:
 	;.db $DB $7F $6F $C9
 		in a, ($7F)
 		ld l, a
 		ret
 
+.ends
+
+.section "SMS_isr" free
 .ends
 
 .section "SMS_isr" free
@@ -673,6 +776,9 @@ SMS_isr:
 .ends
 
 .section "SMS_nmi_isr" free
+.ends
+
+.section "SMS_nmi_isr" free
 SMS_nmi_isr:
 		push af
 		push bc
@@ -691,6 +797,9 @@ SMS_nmi_isr:
 .ends
 
 .section "moduchar" free
+.ends
+
+.section "moduchar" free
 moduchar:
 	;.db $21 $03 $00 $39 $5E $2B $6E $CD $AE $1A $EB $C9
 		ld hl, $0003
@@ -702,6 +811,9 @@ moduchar:
 		ex de, hl
 		ret
 
+.ends
+
+.section "moduint" free
 .ends
 
 .section "moduint" free
@@ -717,6 +829,9 @@ moduint:
 		ex de, hl
 		ret
 
+.ends
+
+.section "SMS_loadSTMcompressedTileMapAre" free
 .ends
 
 .section "SMS_loadSTMcompressedTileMapAre" free
@@ -792,6 +907,9 @@ SMS_loadSTMcompressedTileMapAre:
 		ld l, e
 		ld h, d
 		rst $08	; _LABEL_8_
+.ends
+
+.section "LABEL_1EA0_" free
 .ends
 
 .section "LABEL_1EA0_" free
@@ -912,6 +1030,9 @@ LABEL_1EA0_:
 .ends
 
 .section "LABEL_1F78_" free
+.ends
+
+.section "LABEL_1F78_" free
 LABEL_1F78_:
 		ld a, (ix-7)
 		or a
@@ -976,6 +1097,9 @@ LABEL_1F78_:
 .ends
 
 .section "LABEL_1FF1_" free
+.ends
+
+.section "LABEL_1FF1_" free
 LABEL_1FF1_:
 		ld (ix-2), c
 		ld (ix-1), b
@@ -987,6 +1111,9 @@ LABEL_1FF1_:
 ++:
 		ld (ix+6), c
 		ld (ix+7), b
+.ends
+
+.section "LABEL_2001_" free
 .ends
 
 .section "LABEL_2001_" free
@@ -1003,6 +1130,9 @@ LABEL_2001_:
 .ends
 
 .section "LABEL_201B_" free
+.ends
+
+.section "LABEL_201B_" free
 LABEL_201B_:
 		ld sp, ix
 		pop ix
@@ -1011,9 +1141,15 @@ LABEL_201B_:
 .ends
 
 .section "sdcc_call_hl" free
+.ends
+
+.section "sdcc_call_hl" free
 sdcc_call_hl:
 		jp (hl)
 
+.ends
+
+.section "SMS_loadPSGaidencompressedTiles" free
 .ends
 
 .section "SMS_loadPSGaidencompressedTiles" free
@@ -1040,12 +1176,18 @@ SMS_loadPSGaidencompressedTiles:
 .ends
 
 .section "LABEL_2045_" free
+.ends
+
+.section "LABEL_2045_" free
 LABEL_2045_:
 		push bc
 		ld b, $04
 		ld de, decompBuffer	; decompBuffer = $C126
 		ld c, (ix+0)
 		inc ix
+.ends
+
+.section "LABEL_2050_" free
 .ends
 
 .section "LABEL_2050_" free
@@ -1095,6 +1237,9 @@ LABEL_2050_:
 .ends
 
 .section "LABEL_2097_" free
+.ends
+
+.section "LABEL_2097_" free
 LABEL_2097_:
 		rlc c
 		sbc a, a
@@ -1116,6 +1261,9 @@ LABEL_2097_:
 		pop bc
 		jr ++++++++
 
+.ends
+
+.section "LABEL_20B1_" free
 .ends
 
 .section "LABEL_20B1_" free
@@ -1179,4 +1327,5 @@ LABEL_20B1_:
 		ret
 
 ;.ends
+.ends
 .ends

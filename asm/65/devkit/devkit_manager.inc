@@ -1,8 +1,12 @@
 ;.section "devkit functions" free
 .section "devkit_SMS_init" free
+.section "devkit_SMS_init" free
 devkit_SMS_init:
 		jp SMS_init
 
+.ends
+
+.section "devkit_SMS_displayOn" free
 .ends
 
 .section "devkit_SMS_displayOn" free
@@ -13,10 +17,16 @@ devkit_SMS_displayOn:
 .ends
 
 .section "devkit_SMS_displayOff" free
+.ends
+
+.section "devkit_SMS_displayOff" free
 devkit_SMS_displayOff:
 		ld hl, $0140
 		jp SMS_VDPturnOffFeature
 
+.ends
+
+.section "devkit_SMS_mapROMBank" free
 .ends
 
 .section "devkit_SMS_mapROMBank" free
@@ -30,12 +40,18 @@ devkit_SMS_mapROMBank:
 .ends
 
 .section "devkit_SMS_setBGScrollX" free
+.ends
+
+.section "devkit_SMS_setBGScrollX" free
 devkit_SMS_setBGScrollX:
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy + $00)
 		jp SMS_setBGScrollX
 
+.ends
+
+.section "devkit_SMS_setBGScrollY" free
 .ends
 
 .section "devkit_SMS_setBGScrollY" free
@@ -48,11 +64,17 @@ devkit_SMS_setBGScrollY:
 .ends
 
 .section "devkit_SMS_enableSRAM" free
+.ends
+
+.section "devkit_SMS_enableSRAM" free
 devkit_SMS_enableSRAM:
 		ld hl, $FFFC
 		ld (hl), $08
 		ret
 
+.ends
+
+.section "devkit_SMS_enableSRAMBank" free
 .ends
 
 .section "devkit_SMS_enableSRAMBank" free
@@ -70,6 +92,9 @@ devkit_SMS_enableSRAMBank:
 .ends
 
 .section "devkit_SMS_disableSRAM" free
+.ends
+
+.section "devkit_SMS_disableSRAM" free
 devkit_SMS_disableSRAM:
 		ld hl, $FFFC
 		ld (hl), $00
@@ -78,10 +103,16 @@ devkit_SMS_disableSRAM:
 .ends
 
 .section "devkit_SMS_SRAM" free
+.ends
+
+.section "devkit_SMS_SRAM" free
 devkit_SMS_SRAM:
 		ld hl, $8000
 		ret
 
+.ends
+
+.section "devkit_SMS_setSpriteMode" free
 .ends
 
 .section "devkit_SMS_setSpriteMode" free
@@ -94,10 +125,16 @@ devkit_SMS_setSpriteMode:
 .ends
 
 .section "devkit_SMS_useFirstHalfTilesfor" free
+.ends
+
+.section "devkit_SMS_useFirstHalfTilesfor" free
 devkit_SMS_useFirstHalfTilesfor:
 		ld l, $00
 		jp SMS_useFirstHalfTilesforSprites
 
+.ends
+
+.section "dewkit_SMS_useFirstHalfTilesfor" free
 .ends
 
 .section "dewkit_SMS_useFirstHalfTilesfor" free
@@ -108,6 +145,9 @@ dewkit_SMS_useFirstHalfTilesfor:
 .ends
 
 .section "devkit_SMS_VDPturnOnFeature" free
+.ends
+
+.section "devkit_SMS_VDPturnOnFeature" free
 devkit_SMS_VDPturnOnFeature:
 		pop bc
 		pop hl
@@ -115,6 +155,9 @@ devkit_SMS_VDPturnOnFeature:
 		push bc
 		jp SMS_VDPturnOnFeature
 
+.ends
+
+.section "devkit_SMS_loadPSGaidencompress" free
 .ends
 
 .section "devkit_SMS_loadPSGaidencompress" free
@@ -136,6 +179,9 @@ devkit_SMS_loadPSGaidencompress:
 		pop af
 		ret
 
+.ends
+
+.section "devkit_SMS_loadSTMcompressedTil" free
 .ends
 
 .section "devkit_SMS_loadSTMcompressedTil" free
@@ -168,6 +214,9 @@ devkit_SMS_loadSTMcompressedTil:
 .ends
 
 .section "devkit_SMS_loadBGPalette" free
+.ends
+
+.section "devkit_SMS_loadBGPalette" free
 devkit_SMS_loadBGPalette:
 		pop bc
 		pop hl
@@ -178,6 +227,9 @@ devkit_SMS_loadBGPalette:
 .ends
 
 .section "devkit_SMS_loadSpritePalette" free
+.ends
+
+.section "devkit_SMS_loadSpritePalette" free
 devkit_SMS_loadSpritePalette:
 		pop bc
 		pop hl
@@ -185,6 +237,9 @@ devkit_SMS_loadSpritePalette:
 		push bc
 		jp SMS_loadSpritePalette
 
+.ends
+
+.section "devkit_SMS_setBGPaletteColor" free
 .ends
 
 .section "devkit_SMS_setBGPaletteColor" free
@@ -222,6 +277,9 @@ devkit_SMS_setBGPaletteColor:
 .ends
 
 .section "devkit_SMS_setSpritePaletteColo" free
+.ends
+
+.section "devkit_SMS_setSpritePaletteColo" free
 devkit_SMS_setSpritePaletteColo:
 		ld hl, $0004
 		add hl, sp
@@ -256,6 +314,9 @@ devkit_SMS_setSpritePaletteColo:
 .ends
 
 .section "devkit_SMS_setNextTileatXY" free
+.ends
+
+.section "devkit_SMS_setNextTileatXY" free
 devkit_SMS_setNextTileatXY:
 		push ix
 		ld ix, $0000
@@ -287,6 +348,9 @@ devkit_SMS_setNextTileatXY:
 .ends
 
 .section "devkit_SMS_setTile" free
+.ends
+
+.section "devkit_SMS_setTile" free
 devkit_SMS_setTile:
 		pop bc
 		pop hl
@@ -294,6 +358,9 @@ devkit_SMS_setTile:
 		push bc
 		jp SMS_crt0_RST18	; $0011
 
+.ends
+
+.section "devkit_SMS_setTilePriority" free
 .ends
 
 .section "devkit_SMS_setTilePriority" free
@@ -306,6 +373,9 @@ devkit_SMS_setTilePriority:
 		ld h, a
 		jp SMS_crt0_RST18	; $0011
 
+.ends
+
+.section "devkit_SMS_addSprite" free
 .ends
 
 .section "devkit_SMS_addSprite" free
@@ -333,9 +403,15 @@ devkit_SMS_addSprite:
 .ends
 
 .section "devkit_SMS_initSprites" free
+.ends
+
+.section "devkit_SMS_initSprites" free
 devkit_SMS_initSprites:
 		jp SMS_initSprites
 
+.ends
+
+.section "devkit_SMS_finalizeSprites" free
 .ends
 
 .section "devkit_SMS_finalizeSprites" free
@@ -345,9 +421,15 @@ devkit_SMS_finalizeSprites:
 .ends
 
 .section "devkit_SMS_waitForVBlank" free
+.ends
+
+.section "devkit_SMS_waitForVBlank" free
 devkit_SMS_waitForVBlank:
 		jp SMS_waitForVBlank
 
+.ends
+
+.section "devkit_SMS_copySpritestoSAT" free
 .ends
 
 .section "devkit_SMS_copySpritestoSAT" free
@@ -357,9 +439,15 @@ devkit_SMS_copySpritestoSAT:
 .ends
 
 .section "devkit_UNSAFE_SMS_copySpritesto" free
+.ends
+
+.section "devkit_UNSAFE_SMS_copySpritesto" free
 devkit_UNSAFE_SMS_copySpritesto:
 		jp UNSAFE_SMS_copySpritestoSAT
 
+.ends
+
+.section "devkit_SMS_queryPauseRequested" free
 .ends
 
 .section "devkit_SMS_queryPauseRequested" free
@@ -369,9 +457,15 @@ devkit_SMS_queryPauseRequested:
 .ends
 
 .section "devkit_SMS_resetPauseRequest" free
+.ends
+
+.section "devkit_SMS_resetPauseRequest" free
 devkit_SMS_resetPauseRequest:
 		jp SMS_resetPauseRequest
 
+.ends
+
+.section "devkit_isCollisionDetected" free
 .ends
 
 .section "devkit_isCollisionDetected" free
@@ -384,9 +478,15 @@ devkit_isCollisionDetected:
 .ends
 
 .section "devkit_SMS_getKeysStatus" free
+.ends
+
+.section "devkit_SMS_getKeysStatus" free
 devkit_SMS_getKeysStatus:
 		jp SMS_getKeysStatus
 
+.ends
+
+.section "devkit_SPRITEMODE_NORMAL" free
 .ends
 
 .section "devkit_SPRITEMODE_NORMAL" free
@@ -397,10 +497,16 @@ devkit_SPRITEMODE_NORMAL:
 .ends
 
 .section "devkit_VDPFEATURE_HIDEFIRSTCOL" free
+.ends
+
+.section "devkit_VDPFEATURE_HIDEFIRSTCOL" free
 devkit_VDPFEATURE_HIDEFIRSTCOL:
 		ld hl, $0020
 		ret
 
+.ends
+
+.section "devkit_TILE_PRIORITY" free
 .ends
 
 .section "devkit_TILE_PRIORITY" free
@@ -411,6 +517,9 @@ devkit_TILE_PRIORITY:
 .ends
 
 .section "devkit_TILE_USE_SPRITE_PALETTE" free
+.ends
+
+.section "devkit_TILE_USE_SPRITE_PALETTE" free
 devkit_TILE_USE_SPRITE_PALETTE:
 		ld hl, $0800
 		ret
@@ -418,10 +527,16 @@ devkit_TILE_USE_SPRITE_PALETTE:
 .ends
 
 .section "sms_manager_author" free
+.ends
+
+.section "sms_manager_author" free
 sms_manager_author:
 ; "Steven Boland"
 	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
 
+.ends
+
+.section "sms_manager_title" free
 .ends
 
 .section "sms_manager_title" free
@@ -433,6 +548,9 @@ sms_manager_title:
 .ends
 
 .section "sms_manager_description" free
+.ends
+
+.section "sms_manager_description" free
 sms_manager_description:
 ; "Van Halen Record Covers for the SMS Power! 2021 Competition"
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
@@ -440,6 +558,9 @@ sms_manager_description:
 	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
 	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
 
+.ends
+
+.section "devkit_PSGPlay" free
 .ends
 
 .section "devkit_PSGPlay" free
@@ -456,6 +577,9 @@ devkit_PSGPlay:
 .ends
 
 .section "devkit_PSGPlayNoRepeat" free
+.ends
+
+.section "devkit_PSGPlayNoRepeat" free
 devkit_PSGPlayNoRepeat:
 		pop bc
 		pop hl
@@ -469,9 +593,15 @@ devkit_PSGPlayNoRepeat:
 .ends
 
 .section "devkitPSGStop" free
+.ends
+
+.section "devkitPSGStop" free
 devkitPSGStop:
 		jp PSGStop
 
+.ends
+
+.section "devkit_PSGResume" free
 .ends
 
 .section "devkit_PSGResume" free
@@ -481,9 +611,15 @@ devkit_PSGResume:
 .ends
 
 .section "devkit_PSGGetStatus" free
+.ends
+
+.section "devkit_PSGGetStatus" free
 devkit_PSGGetStatus:
 		jp PSGGetStatus
 
+.ends
+
+.section "devkit_PSGSetMusicVolumeAttenua" free
 .ends
 
 .section "devkit_PSGSetMusicVolumeAttenua" free
@@ -497,6 +633,9 @@ devkit_PSGSetMusicVolumeAttenua:
 		inc sp
 		ret
 
+.ends
+
+.section "devkit_PSGSFXPlay" free
 .ends
 
 .section "devkit_PSGSFXPlay" free
@@ -520,9 +659,15 @@ devkit_PSGSFXPlay:
 .ends
 
 .section "devkitPSGSFXStop" free
+.ends
+
+.section "devkitPSGSFXStop" free
 devkitPSGSFXStop:
 		jp PSGSFXStop
 
+.ends
+
+.section "devkit_PSGSFXGetStatus" free
 .ends
 
 .section "devkit_PSGSFXGetStatus" free
@@ -532,9 +677,15 @@ devkit_PSGSFXGetStatus:
 .ends
 
 .section "devkit_PSGSilenceChannels" free
+.ends
+
+.section "devkit_PSGSilenceChannels" free
 devkit_PSGSilenceChannels:
 		jp PSGSilenceChannels
 
+.ends
+
+.section "devkit_PSGRestoreVolumes" free
 .ends
 
 .section "devkit_PSGRestoreVolumes" free
@@ -544,15 +695,24 @@ devkit_PSGRestoreVolumes:
 .ends
 
 .section "devkit_PSGFrame" free
+.ends
+
+.section "devkit_PSGFrame" free
 devkit_PSGFrame:
 		jp PSGFrame
 
 .ends
 
 .section "devkit_PSGSFXFrame" free
+.ends
+
+.section "devkit_PSGSFXFrame" free
 devkit_PSGSFXFrame:
 		jp PSGSFXFrame
 
+.ends
+
+.section "devkit_SFX_CHANNEL2" free
 .ends
 
 .section "devkit_SFX_CHANNEL2" free
@@ -563,10 +723,16 @@ devkit_SFX_CHANNEL2:
 .ends
 
 .section "devkit_SFX_CHANNEL3" free
+.ends
+
+.section "devkit_SFX_CHANNEL3" free
 devkit_SFX_CHANNEL3:
 		ld l, $02
 		ret
 
+.ends
+
+.section "devkit_SFX_CHANNELS2AND3" free
 .ends
 
 .section "devkit_SFX_CHANNELS2AND3" free
@@ -575,4 +741,5 @@ devkit_SFX_CHANNELS2AND3:
 		ret
 
 ;.ends
+.ends
 .ends

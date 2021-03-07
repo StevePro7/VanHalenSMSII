@@ -1,5 +1,6 @@
 ;.section "Timer manager" free
 .section "engine_delay_manager_load" free
+.section "engine_delay_manager_load" free
 engine_delay_manager_load:
 		ld hl, delay_object_value		; delay_object_value = $C04C
 		ld iy, $0002
@@ -13,6 +14,9 @@ engine_delay_manager_load:
 		ld (delay_object_timer), hl		; delay_object_timer = $C04E
 		ret
 
+.ends
+
+.section "engine_delay_manager_update" free
 .ends
 
 .section "engine_delay_manager_update" free
@@ -37,10 +41,16 @@ engine_delay_manager_update:
 .ends
 
 .section "timer_goto_01" free
+.ends
+
+.section "timer_goto_01" free
 timer_goto_01:
 		ld l, b
 		ret
 
+.ends
+
+.section "engine_reset_manager_load" free
 .ends
 
 .section "engine_reset_manager_load" free
@@ -55,6 +65,9 @@ engine_reset_manager_load:
 		ld (hl), a
 		jp engine_reset_manager_reset
 
+.ends
+
+.section "engine_reset_manager_update" free
 .ends
 
 .section "engine_reset_manager_update" free
@@ -79,10 +92,16 @@ engine_reset_manager_update:
 .ends
 
 .section "timer_goto_02" free
+.ends
+
+.section "timer_goto_02" free
 timer_goto_02:
 		ld l, b
 		ret
 
+.ends
+
+.section "engine_reset_manager_reset" free
 .ends
 
 .section "engine_reset_manager_reset" free
@@ -92,4 +111,5 @@ engine_reset_manager_reset:
 		ret
 
 ;.ends
+.ends
 .ends

@@ -136,4 +136,3 @@ spritesWidth db		                    ; spritesWidth = $C1AD
 .enum $FFFC export	
 _RAM_FFFC_ db	
 .ende	
-.ends

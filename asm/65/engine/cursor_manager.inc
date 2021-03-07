@@ -1,5 +1,6 @@
 ;.section "Cursor manager" free
 .section "engine_cursor_manager_init" free
+.section "engine_cursor_manager_init" free
 engine_cursor_manager_init:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		xor a
@@ -38,6 +39,9 @@ engine_cursor_manager_init:
 .ends
 
 .section "engine_cursor_manager_load" free
+.ends
+
+.section "engine_cursor_manager_load" free
 engine_cursor_manager_load:
 		; MAX_GRID_X	4
 		; MAX_GRID_Y	3
@@ -50,6 +54,9 @@ engine_cursor_manager_load:
 .ends
 
 .section "cursor_goto_01" free
+.ends
+
+.section "cursor_goto_01" free
 cursor_goto_01:
 		ld a, $4A
 		add a, (ix - 3)
@@ -58,6 +65,9 @@ cursor_goto_01:
 		adc a, $00
 		ld (ix - 1), a
 		ld c, $00
+.ends
+
+.section "cursor_goto_02" free
 .ends
 
 .section "cursor_goto_02" free
@@ -111,6 +121,9 @@ cursor_goto_02:
 .ends
 
 .section "engine_cursor_manager_save" free
+.ends
+
+.section "engine_cursor_manager_save" free
 engine_cursor_manager_save:
 		ld a, (cursor_index_x)		; cursor_index_x = $C026
 		ld c, a
@@ -123,6 +136,9 @@ engine_cursor_manager_save:
 		add hl, bc
 		ret
 
+.ends
+
+.section "engine_cursor_manager_draw" free
 .ends
 
 .section "engine_cursor_manager_draw" free
@@ -332,6 +348,9 @@ engine_cursor_manager_draw:
 .ends
 
 .section "engine_cursor_manager_decX" free
+.ends
+
+.section "engine_cursor_manager_decX" free
 engine_cursor_manager_decX:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
@@ -343,11 +362,17 @@ engine_cursor_manager_decX:
 .ends
 
 .section "decX_goto" free
+.ends
+
+.section "decX_goto" free
 decX_goto:
 		add a, $FF					; co->cursor_index_x--;
 		ld (bc), a
 		jp update_values
 
+.ends
+
+.section "engine_cursor_manager_incX" free
 .ends
 
 .section "engine_cursor_manager_incX" free
@@ -362,11 +387,17 @@ engine_cursor_manager_incX:
 .ends
 
 .section "incX_goto" free
+.ends
+
+.section "incX_goto" free
 incX_goto:
 		inc a						; co->cursor_index_x++;
 		ld (bc), a
 		jp update_values
 
+.ends
+
+.section "engine_cursor_manager_decY" free
 .ends
 
 .section "engine_cursor_manager_decY" free
@@ -381,11 +412,17 @@ engine_cursor_manager_decY:
 .ends
 
 .section "decY_goto" free
+.ends
+
+.section "decY_goto" free
 decY_goto:
 		add a, $FF					; co->cursor_index_y--;
 		ld (bc), a
 		jp update_values
 
+.ends
+
+.section "engine_cursor_manager_incY" free
 .ends
 
 .section "engine_cursor_manager_incY" free
@@ -400,11 +437,17 @@ engine_cursor_manager_incY:
 .ends
 
 .section "incY_goto" free
+.ends
+
+.section "incY_goto" free
 incY_goto:
 		inc a						; co->cursor_index_y++;
 		ld (bc), a
 		jp update_values
 
+.ends
+
+.section "update_values" free
 .ends
 
 .section "update_values" free
@@ -450,4 +493,5 @@ update_values:
 		ret
 
 ;.ends
+.ends
 .ends
