@@ -1,3 +1,4 @@
+;.ramsection "PSGlib variables" slot 3
 .enum $C000 export	
 pause_status db		; Lmain.main$global_pause$1$55 = $C000
 PSGMusicStatus db                   ; PSGMusicStatus = $C001
@@ -136,3 +137,4 @@ spritesWidth db		                    ; spritesWidth = $C1AD
 .enum $FFFC export	
 _RAM_FFFC_ db	
 .ende	
+;.ends
