@@ -96,6 +96,7 @@ LABEL_70_:
 .include "content/out.inc"
 
 
+.section "Other functions" free
 ; Data from 200 to 203 (4 bytes)
 clock:
 	;.db $3E $02 $CF $C9
@@ -109,6 +110,8 @@ exit:
 -:
 		halt
 		jr -
+.ends
+
 
 .section "Main section" free
 main:
