@@ -110,7 +110,7 @@ exit:
 		halt
 		jr -
 
-
+.section "Main section" free
 main:
 		call engine_asm_manager_clear_VRAM
 		call devkit_SMS_init
@@ -165,6 +165,7 @@ global_pause:
 		call devkit_PSGFrame
 		call devkit_PSGSFXFrame
 		jr infinite_loop
+.ends
 
 ; devkit
 .include "devkit/psg_manager.inc"
