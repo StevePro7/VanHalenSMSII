@@ -156,7 +156,7 @@ SMS_VDPturnOnFeature:
 		ld c, l
 		ld e, h
 		ld d, $00
-		ld hl, VDPReg	; VDPReg = $C1AA
+		ld hl, $C1AA	; $C1AA = $C1AA
 		add hl, de
 		ld a, (hl)
 		or c
@@ -180,7 +180,7 @@ SMS_VDPturnOffFeature:
 		cpl
 		ld b, a
 		ld d, $00
-		ld hl, VDPReg	; VDPReg = $C1AA
+		ld hl, $C1AA	; $C1AA = $C1AA
 		add hl, de
 		ld a, (hl)
 		and b
@@ -264,7 +264,7 @@ SMS_setSpriteMode:
 		ld hl, $0102
 		call SMS_VDPturnOnFeature
 		pop bc
-		ld hl, spritesHeight	; spritesHeight = $C1AC
+		ld hl, $C1AC	; $C1AC = $C1AC
 		ld (hl), $10
 		jr ++
 
@@ -273,23 +273,23 @@ SMS_setSpriteMode:
 		ld hl, $0102
 		call SMS_VDPturnOffFeature
 		pop bc
-		ld hl, spritesHeight	; spritesHeight = $C1AC
+		ld hl, $C1AC	; $C1AC = $C1AC
 		ld (hl), $08
 ++:
 		bit 1, c
 		jr z, +
 		ld hl, $0101
 		call SMS_VDPturnOnFeature
-		ld hl, spritesWidth	; spritesWidth = $C1AD
+		ld hl, $C1AD	; $C1AD = $C1AD
 		ld (hl), $10
-		ld iy, spritesHeight	; spritesHeight = $C1AC
+		ld iy, $C1AC	; $C1AC = $C1AC
 		sla (iy+0)
 		ret
 
 +:
 		ld hl, $0101
 		call SMS_VDPturnOffFeature
-		ld hl, spritesWidth	; spritesWidth = $C1AD
+		ld hl, $C1AD	; $C1AD = $C1AD
 		ld (hl), $08
 		ret
 
@@ -303,7 +303,7 @@ SMS_setBGPaletteColor:
 		add hl, sp
 		ld c, (hl)
 		ld b, $00
-		ld hl, pause_status			; Lmain.main$global_pause$1$55 = $c000
+		ld hl, $C000			; Lmain.main$global_pause$1$55 = $c000
 		add hl, bc
 		rst $08
 		ld hl, $0003
@@ -333,7 +333,7 @@ SMS_setSpritePaletteColor:
 
 .section "SMS_loadBGPalette" free
 SMS_loadBGPalette:
-		ld de, pause_status		; Lmain.main$global_pause$1$55 = $C000
+		ld de, $C000		; Lmain.main$global_pause$1$55 = $C000
 		ld c, Port_VDPAddress
 		di
 		out (c), e

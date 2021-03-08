@@ -50,13 +50,13 @@ screen_title_screen_load:
 ;.ends
 ;.section "title_screen_goto_01" free
 title_screen_goto_01:
-		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
+		ld hl, $C02A		; $C02A = $C02A		; ro->$C02A
 		ld b, (hl)
 		push bc
 		inc sp
 		call engine_record_manager_init
 		inc sp
-		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
+		ld hl, $C02A		; $C02A = $C02A		; ro->$C02A
 		ld b, (hl)
 		push bc
 		inc sp

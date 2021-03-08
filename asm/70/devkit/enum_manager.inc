@@ -1,5 +1,5 @@
 .enum $C000 export	
-pause_status db		; Lmain.main$global_pause$1$55 = $C000
+;pause_status db		; Lmain.main$global_pause$1$55 = $C000
 PSGMusicStatus db                   ; PSGMusicStatus = $C001
 PSGMusicStart dw                    ; PSGMusicStart = $C002
 PSGMusicPointer dw		            ; PSGMusicPointer = $C004
@@ -33,15 +33,15 @@ PSGSFXSubstringRetAddr dw		    ; PSGSFXSubstringRetAddr = $C024
 
 
 .enum $C026 export		
-cursor_index_x db                   ; cursor_index_x = $C026
-cursor_index_y db                   ; cursor_index_x = $C027
-cursor_value_x db                   ; cursor_index_x = $C028
-cursor_value_y db                   ; cursor_index_x = $C029
+;cursor_index_x db                   ; cursor_index_x = $C026
+;cursor_index_y db                   ; cursor_index_x = $C027
+;cursor_value_x db                   ; cursor_index_x = $C028
+;cursor_value_y db                   ; cursor_index_x = $C029
 .ende	
 
 
 .enum $C02A export	
-record_album_index db	            ; ro->record_album_index = $C02A
+;record_album_index db	            ; ro->record_album_index = $C02A
 .ende	
 
 .enum $C02B export	
@@ -124,12 +124,12 @@ record_palette_data db                  ; record_palette_data = $C192
 .ende
 
 .enum $C1AA export	
-VDPReg db                               ; VDPReg = $C1AA
+;VDPReg db                               ; $C1AA = $C1AA
 .ende
 
 .enum $C1AC export	
-spritesHeight db		                ; spritesHeight = $C1AC
-spritesWidth db		                    ; spritesWidth = $C1AD
+;spritesHeight db		                ; spritesHeight = $C1AC
+;spritesWidth db		                    ; spritesWidth = $C1AD
 .ende	
 
 

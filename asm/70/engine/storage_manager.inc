@@ -47,7 +47,7 @@ engine_storage_manager_read:
 		call devkit_SMS_enableSRAM
 		pop iy
 		ld c, (iy + $04)
-		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
+		ld hl, $C02A		; $C02A = $C02A		; ro->$C02A
 		ld (hl), c
 		jp devkit_SMS_disableSRAM
 
@@ -71,7 +71,7 @@ engine_storage_manager_write:
 		ld hl, $0004
 		add hl, bc
 		ex de, hl
-		ld a, (record_album_index)		; record_album_index = $C02A	; ro->record_album_index
+		ld a, ($C02A)		; $C02A = $C02A	; ro->$C02A
 		ld (de), a
 		ld hl, $0005
 		add hl, bc

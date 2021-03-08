@@ -66,7 +66,7 @@ record_screen_goto_03:
 		call devkit_SMS_setBGScrollY
 		inc sp
 		pop de
-		ld hl, record_album_index		; ro->record_album_index	; record_album_index = $C02A
+		ld hl, $C02A		; ro->$C02A	; $C02A = $C02A
 		ld b, (hl)
 		push de
 		push bc
@@ -74,7 +74,7 @@ record_screen_goto_03:
 		call engine_record_manager_init
 		inc sp
 		pop de
-		ld hl, record_album_index		; ro->record_album_index	; record_album_index = $C02A
+		ld hl, $C02A		; ro->$C02A	; $C02A = $C02A
 		ld b, (hl)
 		push de
 		push bc

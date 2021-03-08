@@ -1,6 +1,6 @@
 .section "engine_record_manager_init" free
 engine_record_manager_init:
-		ld hl, record_album_index		; record_album_index = $C02A
+		ld hl, $C02A		; $C02A = $C02A
 		ld iy, $0002
 		add iy, sp
 		ld a, (iy + $00)
@@ -15,7 +15,7 @@ engine_record_manager_load:
 		ld ix, $0000
 		add ix, sp
 		dec sp
-		ld a, (record_album_index)		; ro->record_album_index
+		ld a, ($C02A)		; ro->$C02A
 		ld (ix - 1), a
 		ld l, a
 		ld h, $00
@@ -68,35 +68,35 @@ engine_record_manager_load:
 
 .section "engine_record_manager_decrement" free
 engine_record_manager_decrement:
-		ld bc, record_album_index			; ro->record_album_index
+		ld bc, $C02A			; ro->$C02A
 		ld a, (bc)
-		or a								; if( 0 == ro->record_album_index )
+		or a								; if( 0 == ro->$C02A )
 		jr nz, record_goto_01
 		ld a, $0B
-		ld (bc), a							; ro->record_album_index = MAX_RECORDS - 1;
+		ld (bc), a							; ro->$C02A = MAX_RECORDS - 1;
 		ret
 ;.ends
 ;.section "record_goto_01" free
 record_goto_01:
 		add a, $FF
-		ld (bc), a							; ro->record_album_index--;
+		ld (bc), a							; ro->$C02A--;
 		ret
 
 .ends
 
 .section "engine_record_manager_increment" free
 engine_record_manager_increment:
-		ld bc, record_album_index		; ro->record_album_index
+		ld bc, $C02A		; ro->$C02A
 		ld a, (bc)
-		cp $0B							; if( ( MAX_RECORDS - 1 ) == ro->record_album_index )
+		cp $0B							; if( ( MAX_RECORDS - 1 ) == ro->$C02A )
 		jr nz, record_goto_02
-		xor a							; ro->record_album_index = 0;
+		xor a							; ro->$C02A = 0;
 		ld (bc), a
 		ret
 ;.ends
 ;.section "record_goto_02" free
 record_goto_02:
-		inc a							; ro->record_album_index++;
+		inc a							; ro->$C02A++;
 		ld (bc), a
 		ret
 
