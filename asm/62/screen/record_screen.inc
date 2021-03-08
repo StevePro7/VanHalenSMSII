@@ -1,4 +1,4 @@
-;.section "Record screen" free
+.section "Record screen" free
 screen_record_screen_load:
 		call engine_scroll_manager_reset
 		jp load_record
@@ -91,4 +91,4 @@ load_record:
 		call engine_record_manager_load
 		jp devkit_SMS_displayOn
 
-;.ends
+.ends
