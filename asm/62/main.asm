@@ -8,6 +8,7 @@
 .BANK 0 SLOT 0
 .ORG $0000
 
+.section "Boot" force	
 LABEL_0_:
 		di
 		im 1
@@ -45,16 +46,23 @@ SMS_crt0_RST18:
 .rept 22
 	nop
 .endr
+.ends
 
+
+.ORG $0038
+.section "VDP interrupt" force
 LABEL_38_:
 		jp SMS_isr
+.ends
 
 ; Data from 3B to 65 (43 bytes)
 	.dsb 43, $00
 
-
+.ORG $0066
+.section "Pause interrupt" force
 LABEL_66_:
 		jp SMS_nmi_isr
+.ends
 
 ; Data from 69 to 6F (7 bytes)
 	.db $00 $00 $00 $00 $00 $00 $00
