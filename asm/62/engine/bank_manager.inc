@@ -1,6 +1,8 @@
-.BANK 2
+
+.BANK 2 SLOT 2
 .ORG $0000
 
+.section "splash" superfree
 	;.incbin "data/File01_08000_0BFFF.dat"
 ; Data from 8000 to 800F (16 bytes)
 splash__palette__bin:
@@ -23,10 +25,12 @@ splash__tiles__psgcompr:
 	.incbin "banks/bank2/splash (tiles).psgcompr"
 	;.include "banks/bank2/splash (tiles).inc"
 	;.incbin ...
+.ends
 
-
-.BANK 3
+.BANK 3 SLOT 2
 .ORG $0000
+
+.section "VanHalenTitleGap" free
 
 	; Data from C000 to FFFF (16384 bytes)
 	;.incbin "data/File02_0C000_0FFFF.dat"
@@ -72,10 +76,10 @@ VanHalenTitleTop__tilemap__stmc:
 VanHalenTitleTop__tiles__psgcom:
 	.incbin "banks/bank3/VanHalenTitleTop (tiles).psgcompr"
 	;.incbin ...
+.ends
 
 
-
-.BANK 4
+.BANK 4 SLOT 2
 .ORG $0000
 
 	; Data from 10000 to 13FFF (16384 bytes)
@@ -105,7 +109,7 @@ VanHalen1978__tiles__psgcompr:
 	;.incbin ...
 
 
-.BANK 5
+.BANK 5 SLOT 2
 .ORG $0000
 
 	; Data from 14000 to 17FFF (16384 bytes)
@@ -146,7 +150,7 @@ VanHalen1979__tiles__psgcompr:
 	;.incbin ...
 
 
-.BANK 6
+.BANK 6 SLOT 2
 .ORG $0000
 
 	; Data from 18000 to 1BFFF (16384 bytes)
@@ -174,7 +178,7 @@ VanHalen1980__tiles__psgcompr:
 	;.incbin ...
 
 
-.BANK 7
+.BANK 7 SLOT 2
 .ORG $0000
 
 	; Data from 1C000 to 1FFFF (16384 bytes)
@@ -205,7 +209,7 @@ VanHalen1981__tiles__psgcompr:
 	;.incbin ...
 
 
-.BANK 8
+.BANK 8 SLOT 2
 .ORG $0000
 
 	; Data from 20000 to 23FFF (16384 bytes)
@@ -244,7 +248,7 @@ VanHalen1982__tiles__psgcompr:
 	;.incbin ...
 
 
-.BANK 9
+.BANK 9 SLOT 2
 .ORG $0000
 
 	; Data from 24000 to 27FFF (16384 bytes)
@@ -274,7 +278,7 @@ VanHalen1984__tiles__psgcompr:
 	;.incbin ...
 
 
-.BANK 10
+.BANK 10 SLOT 2
 .ORG $0000
 
 	; Data from 28000 to 2BFFF (16384 bytes)
@@ -303,7 +307,7 @@ VanHalen1986__tiles__psgcompr:
 	.incbin "banks/bank10/VanHalen1986 (tiles).psgcompr"
 	;.incbin ...
 
-.BANK 11
+.BANK 11 SLOT 2
 .ORG $0000
 
 	; Data from 2C000 to 2FFFF (16384 bytes)
@@ -331,7 +335,7 @@ VanHalen1988__tiles__psgcompr:
 	;.incbin ...
 
 
-.BANK 12
+.BANK 12 SLOT 2
 .ORG $0000
 
 	; Data from 30000 to 33FFF (16384 bytes)
@@ -358,7 +362,7 @@ VanHalen1991__tiles__psgcompr:
 	;.incbin ...
 
 
-.BANK 13
+.BANK 13 SLOT 2
 .ORG $0000
 
 	; Data from 34000 to 37FFF (16384 bytes)
@@ -390,7 +394,7 @@ VanHalen1995__tiles__psgcompr:
 
 
 
-.BANK 14
+.BANK 14 SLOT 2
 .ORG $0000
 
 	; Data from 38000 to 3BFFF (16384 bytes)
@@ -424,7 +428,7 @@ VanHalen1998__tiles__psgcompr:
 	;.incbin ...
 
 
-.BANK 15
+.BANK 15 SLOT 2
 .ORG $0000
 
 	; Data from 3C000 to 3FFFF (16384 bytes)
