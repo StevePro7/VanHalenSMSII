@@ -1,4 +1,4 @@
-;.section "Cursor manager" free
+.section "Cursor manager" free
 engine_cursor_manager_init:
 		ld bc, cursor_index_x		; cursor_index_x = $C026
 		xor a
@@ -406,4 +406,4 @@ update_values:
 		ld (bc), a
 		ret
 
-;.ends
+.ends

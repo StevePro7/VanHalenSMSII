@@ -1,4 +1,4 @@
-;.section "devkit functions" free
+.section "devkit functions" free
 devkit_SMS_init:
 		jp SMS_init
 
@@ -408,4 +408,4 @@ devkit_SFX_CHANNELS2AND3:
 		ld l, $03
 		ret
 
-;.ends
+.ends

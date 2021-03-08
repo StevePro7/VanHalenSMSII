@@ -1,4 +1,4 @@
-;.section "Record manager" free
+.section "Record manager" free
 engine_record_manager_init:
 		ld hl, record_album_index		; record_album_index = $C02A
 		ld iy, $0002
@@ -87,4 +87,4 @@ record_goto_02:
 		ld (bc), a
 		ret
 
-;.ends
+.ends

@@ -1,4 +1,4 @@
-;.section "OUT128 section" free
+.section "OUT128 section" free
 
 OUTI128:	
 .rept 64
@@ -26,4 +26,4 @@ OUTI32:
 	nop
 .endr	
 
-;.ends
+.ends

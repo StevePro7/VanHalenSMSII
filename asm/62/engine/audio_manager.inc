@@ -1,4 +1,4 @@
-;.section "Audio manager" free
+.section "Audio manager" free
 engine_audio_manager_sfx_right:
 		ld hl, sfx_right_psg
 		push hl
@@ -39,4 +39,4 @@ engine_audio_manager_sfx_cheat:
 		inc sp
 		ret
 
-;.ends
+.ends

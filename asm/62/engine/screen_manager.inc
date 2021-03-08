@@ -1,4 +1,4 @@
-;.section "Screen manager" free
+.section "Screen manager" free
 engine_screen_manager_init:
 		ld hl, $0002
 		add hl, sp
@@ -68,4 +68,4 @@ update_code:
 		pop af
 		ret
 
-;.ends
+.ends
