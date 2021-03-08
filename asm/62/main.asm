@@ -67,6 +67,8 @@ LABEL_66_:
 ; Data from 69 to 6F (7 bytes)
 	.db $00 $00 $00 $00 $00 $00 $00
 
+
+.section "Init section" free	; semisubfree
 LABEL_70_:
 		ld sp, $DFF0
 		ld de, _RAM_FFFC_
@@ -89,6 +91,7 @@ LABEL_70_:
 		ei
 		call main
 		jp exit
+.ends
 
 .include "content/out.inc"
 
@@ -106,6 +109,7 @@ exit:
 -:
 		halt
 		jr -
+
 
 main:
 		call engine_asm_manager_clear_VRAM
@@ -203,6 +207,7 @@ global_pause:
 .include "content/psg.inc"
 
 
+.section "Math functions" free
 ; Data from 1A9F to 1AA6 (8 bytes)
 divuint:
 	;.db $F1 $E1 $D1 $D5 $E5 $F5 $18 $0A
@@ -268,10 +273,12 @@ divu16:
 	ld e, a
 	ex de, hl
 	ret
+.ends
 
 .include "devkit/sms_manager.inc"
 
 
+.section "Additional helpers" free
 ; Data from 2103 to 2104 (2 bytes)
 init_curr_joyp:
 ; static unsigned int curr_joypad1 = 0;
@@ -317,6 +324,7 @@ gsinit:
 		ldir
 +:
 		ret
+.ends
 
 ; 	; Data from 217B to 7F8B (24081 bytes)
 ; 	.dsb 24081, $00
