@@ -97,9 +97,9 @@ SpriteTableXN db	                    ; SpriteTableXN = $C0A3
 .ende	
 	
 .enum $C123 export	
-SpriteNextFree db		                ; SpriteNextFree = $C123
-SMS_theLineInterruptHandler dw		    ; SMS_theLineInterruptHandler = $C124
-decompBuffer db		                    ; decompBuffer = $C126
+;SpriteNextFree db		                ; SpriteNextFree = $C123
+;SMS_theLineInterruptHandler dw		    ; SMS_theLineInterruptHandler = $C124
+;decompBuffer db		                    ; decompBuffer = $C126
 	
 .ende	
 	

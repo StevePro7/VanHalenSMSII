@@ -376,7 +376,7 @@ SMS_setColor:
 
 .section "SMS_initSprites" free
 SMS_initSprites:
-		ld hl, SpriteNextFree	; SpriteNextFree = $C123
+		ld hl, $C123	; $C123 = $$C123
 		ld (hl), $00
 		ret
 
@@ -390,7 +390,7 @@ SMS_addSprite:
 	;.db $09 $FD $21 $02 $00 $FD $39 $FD $7E $00 $77 $23 $FD $21 $04 $00
 	;.db $FD $39 $FD $7E $00 $77 $FD $21 $23 $C1 $FD $4E $00 $FD $34 $00
 	;.db $69 $C9 $2E $FF $C9
-		ld a, (SpriteNextFree)			; SpriteNextFree = $C123
+		ld a, ($C123)			; $C123 = $$C123
 		sub $40
 		jr nc, $4B
 		ld iy, $0003
@@ -400,7 +400,7 @@ SMS_addSprite:
 		sub	$D1
 		jr z, $3E
 		ld a, $63
-		ld hl, SpriteNextFree			; SpriteNextFree = $C123
+		ld hl, $C123			; $C123 = $$C123
 		add a, (hl)
 		ld c, a
 		ld a, $C0
@@ -411,7 +411,7 @@ SMS_addSprite:
 		dec e
 		ld a, e
 		ld (bc), a
-		ld a, (SpriteNextFree)			; SpriteNextFree = $C123
+		ld a, ($C123)			; $C123 = $$C123
 		add a, a
 		ld c, a
 		ld hl, SpriteTableXN			; SpriteTableXN = $C0A3
@@ -428,7 +428,7 @@ SMS_addSprite:
 		add iy, sp
 		ld a, (iy + $00)
 		ld (hl), a
-		ld iy, SpriteNextFree			; SpriteNextFree = $C123
+		ld iy, $C123			; $C123 = $$C123
 		ld c, (iy + $00)
 		inc (iy + $00)
 
@@ -441,11 +441,11 @@ SMS_addSprite:
 
 .section "SMS_finalizeSprites" free
 SMS_finalizeSprites:
-		ld a, (SpriteNextFree)	; SpriteNextFree = $C123
+		ld a, ($C123)	; $C123 = $$C123
 		sub $40
 		ret nc
 		ld bc, SpriteTableY	; SpriteTableY = $C063
-		ld hl, (SpriteNextFree)	; SpriteNextFree = $C123
+		ld hl, ($C123)	; $C123 = $$C123
 		ld h, $00
 		add hl, bc
 		ld (hl), $D0
@@ -589,11 +589,11 @@ SMS_setLineInterruptHandler:
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
-		ld (SMS_theLineInterruptHandler), a		; SMS_theLineInterruptHandler = $C124
+		ld ($C124), a		; $C124 = $$C124
 		ld hl, $0003
 		add hl, sp
 		ld a, (hl)
-		ld (SMS_theLineInterruptHandler + 1), a	; SMS_theLineInterruptHandler = $C124
+		ld ($C124 + 1), a	; $C124 = $$C124
 		ret
 
 .ends
@@ -658,7 +658,7 @@ SMS_isr:
 		push bc
 		push de
 		push iy
-		ld hl, (SMS_theLineInterruptHandler)	; SMS_theLineInterruptHandler = $C124
+		ld hl, ($C124)	; $C124 = $$C124
 		call sdcc_call_hl
 		pop iy
 		pop de
@@ -1039,7 +1039,7 @@ SMS_loadPSGaidencompressedTiles:
 LABEL_2045_:
 		push bc
 		ld b, $04
-		ld de, decompBuffer	; decompBuffer = $C126
+		ld de, $C126	; $C126 = $C126
 		ld c, (ix+0)
 		inc ix
 .ends
@@ -1061,7 +1061,7 @@ LABEL_2050_:
 		ld e, a
 		ld a, d
 		ld d, $00
-		ld iy, decompBuffer	; decompBuffer = $C126
+		ld iy, $C126	; $C126 = $C126
 		add iy, de
 		ex de, hl
 		cp $03
@@ -1152,7 +1152,7 @@ LABEL_20B1_:
 		jp nz, LABEL_2050_
 		ld de, SMS_crt0_RST08 + 2	; SMS_crt0_RST08 + 2 = $0008
 		ld c, e
-		ld hl, decompBuffer	; decompBuffer = $C126
+		ld hl, $C126	; $C126 = $C126
 --:
 		ld b, $04
 		push hl
