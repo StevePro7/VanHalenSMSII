@@ -76,7 +76,7 @@ cursor_goto_02:
 		ld h, $00
 		ld l, e
 		add hl, hl
-		ld de, cursor_album				; cursor_album = $C14A
+		ld de, $C14A				; $C14A = $C14A
 		add hl, de
 		ld e, (hl)
 		inc hl

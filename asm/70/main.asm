@@ -235,7 +235,7 @@ divu16:
 ;.section "Additional global variables" free
 ; Data from 2103 to 2104 (2 bytes)
 init_curr_joyp:
-; static unsigned int curr_joypad1 = 0;
+; static unsigned int $C146 = 0;
 	.db $00 $00
 
 ; Data from 2105 to 2106 (2 bytes)
@@ -274,7 +274,7 @@ gsinit:
 		ld a, b
 		or c
 		jr z, +
-		ld de, curr_joypad1	; Finput_manager$curr_joypad1$0$0 = $C146
+		ld de, $C146	; Finput_manager$$C146$0$0 = $C146
 		ld hl, init_curr_joyp	; Finput_manager$__xinit_curr_joyp = $2103
 		ldir
 +:
