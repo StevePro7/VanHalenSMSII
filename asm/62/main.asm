@@ -172,6 +172,7 @@ global_pause:
 
 ; devkit
 .include "devkit/psg_manager.inc"
+;.include "devkit/sms_manager.inc"
 .include "devkit/devkit_manager.inc"
 
 
@@ -209,6 +210,7 @@ global_pause:
 ; content
 .include "content/gfx.inc"
 .include "content/psg.inc"
+;.include "content/out.inc"
 
 
 .section "Math functions" free
