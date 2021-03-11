@@ -202,9 +202,9 @@ global_pause:
 .include "screen/scroll_screen.inc"
 .include "screen/select_screen.inc"
 .include "screen/record_screen.inc"
-.include "screen/detail_screen.inc"
-.include "screen/test_screen.inc"
-.include "screen/func_screen.inc"
+;.include "screen/detail_screen.inc"
+;.include "screen/test_screen.inc"
+;.include "screen/func_screen.inc"
 
 
 ; content
