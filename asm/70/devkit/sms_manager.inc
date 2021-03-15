@@ -3,17 +3,15 @@ UNSAFE_SMS_copySpritestoSAT:
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
-		ld hl, SpriteTableY		; SpriteTableY = $C063
+		ld hl, SpriteTableY			; SpriteTableY = $C063
 		call OUTI64
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
 		ld c, Port_VDPData
-		ld hl, SpriteTableXN	; SpriteTableXN = $C0A3
-		jp OUTI128				; $0099
+		ld hl, SpriteTableXN		; SpriteTableXN = $C0A3
+		jp OUTI128					; $0099
 
 UNSAFE_SMS_VRAMmemcpy32:
-	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
-	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $59 $01
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy + $00)
@@ -28,11 +26,9 @@ UNSAFE_SMS_VRAMmemcpy32:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp OUTI32				; $0159
+		jp OUTI32					; $0159
 
 UNSAFE_SMS_VRAMmemcpy64:
-	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
-	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $19 $01
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy + $00)
@@ -47,11 +43,9 @@ UNSAFE_SMS_VRAMmemcpy64:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp OUTI64				; $0119
+		jp OUTI64					; $0119
 
 UNSAFE_SMS_VRAMmemcpy128:
-	;.db $FD $21 $02 $00 $FD $39 $FD $6E $00 $FD $7E $01 $CB $F7 $67 $CF
-	;.db $0E $BE $21 $04 $00 $39 $7E $23 $66 $6F $C3 $99 $00
 		ld iy, $0002
 		add iy, sp
 		ld l, (iy + $00)
@@ -66,7 +60,7 @@ UNSAFE_SMS_VRAMmemcpy128:
 		inc hl
 		ld h, (hl)
 		ld l, a
-		jp OUTI128				; $0099
+		jp OUTI128					; $0099
 
 SMS_init:
 		ld hl, $0000
@@ -75,7 +69,7 @@ SMS_init:
 		pop af
 		ld c, $00
 -:
-		ld hl, VDPReg_init	; VDPReg_init = $1BA3
+		ld hl, VDPReg_init			; VDPReg_init = $1BA3
 		ld b, $00
 		add hl, bc
 		ld b, (hl)
@@ -113,12 +107,12 @@ SMS_init:
 		ld a, c
 		sub $E7
 		jr c, +
-		ld hl, VDPType	; VDPType = $C05E
+		ld hl, VDPType				; VDPType = $C05E
 		ld (hl), $80
 		ret
 
 +:
-		ld hl, VDPType	; VDPType = $C05E
+		ld hl, VDPType				; VDPType = $C05E
 		ld (hl), $40
 		ret
 
@@ -126,8 +120,7 @@ VDPReg_init:
 	.db $04 $20 $FF $FF $FF $FF $FF $00 $00 $00 $FF
 
 SMS_VDPType:
-	;.db $FD $21 $5E $C0 $FD $6E $00 $C9
-		ld iy, VDPType	; VDPType = $C05E
+		ld iy, VDPType				; VDPType = $C05E
 		ld l, (iy + $00)
 		ret
 
@@ -135,7 +128,7 @@ SMS_VDPturnOnFeature:
 		ld c, l
 		ld e, h
 		ld d, $00
-		ld hl, VDPReg	; VDPReg = $C1AA
+		ld hl, VDPReg				; VDPReg = $C1AA
 		add hl, de
 		ld a, (hl)
 		or c
@@ -156,7 +149,7 @@ SMS_VDPturnOffFeature:
 		cpl
 		ld b, a
 		ld d, $00
-		ld hl, VDPReg	; VDPReg = $C1AA
+		ld hl, VDPReg				; VDPReg = $C1AA
 		add hl, de
 		ld a, (hl)
 		and b
@@ -172,7 +165,6 @@ SMS_VDPturnOffFeature:
 		ret
 
 SMS_setBGScrollX:
-	;.db $F3 $7D $D3 $BF $3E $88 $D3 $BF $FB $C9
 		di
 		ld a, l
 		out ($bf), a
@@ -191,7 +183,6 @@ SMS_setBGScrollY:
 		ret
 
 SMS_setBackdropColor:
-	;.db $F3 $7D $D3 $BF $3E $87 $D3 $BF $FB $C9
 		di
 		ld a, l
 		out ($bf), a
@@ -225,7 +216,7 @@ SMS_setSpriteMode:
 		ld hl, $0102
 		call SMS_VDPturnOnFeature
 		pop bc
-		ld hl, spritesHeight	; spritesHeight = $C1AC
+		ld hl, spritesHeight		; spritesHeight = $C1AC
 		ld (hl), $10
 		jr ++
 
@@ -234,29 +225,27 @@ SMS_setSpriteMode:
 		ld hl, $0102
 		call SMS_VDPturnOffFeature
 		pop bc
-		ld hl, spritesHeight	; spritesHeight = $C1AC
+		ld hl, spritesHeight		; spritesHeight = $C1AC
 		ld (hl), $08
 ++:
 		bit 1, c
 		jr z, +
 		ld hl, $0101
 		call SMS_VDPturnOnFeature
-		ld hl, spritesWidth	; spritesWidth = $C1AD
+		ld hl, spritesWidth			; spritesWidth = $C1AD
 		ld (hl), $10
-		ld iy, spritesHeight	; spritesHeight = $C1AC
+		ld iy, spritesHeight		; spritesHeight = $C1AC
 		sla (iy+0)
 		ret
 
 +:
 		ld hl, $0101
 		call SMS_VDPturnOffFeature
-		ld hl, spritesWidth	; spritesWidth = $C1AD
+		ld hl, spritesWidth			; spritesWidth = $C1AD
 		ld (hl), $08
 		ret
 
 SMS_setBGPaletteColor:
-	;.db $21 $02 $00 $39 $4E $06 $00 $21 $00 $C0 $09 $CF $21 $03 $00 $39
-	;.db $7E $D3 $BE $C9
 		ld hl, $0002
 		add hl, sp
 		ld c, (hl)
@@ -275,7 +264,7 @@ SMS_setSpritePaletteColor:
 		add hl, sp
 		ld c, (hl)
 		ld b, $00
-		ld hl, PSGChan1Volume	; PSGChan1Volume = $C010
+		ld hl, PSGChan1Volume		; PSGChan1Volume = $C010
 		add hl, bc
 		rst $08	; _LABEL_8_
 		ld hl, SMS_crt0_RST08 - 3	; SMS_crt0_RST08 - 3 = $0003
@@ -285,7 +274,7 @@ SMS_setSpritePaletteColor:
 		ret
 
 SMS_loadBGPalette:
-		ld de, pause_status		; Lmain.main$global_pause$1$55 = $C000
+		ld de, pause_status			; Lmain.main$global_pause$1$55 = $C000
 		ld c, Port_VDPAddress
 		di
 		out (c), e
@@ -299,7 +288,7 @@ SMS_loadBGPalette:
 		ret
 
 SMS_loadSpritePalette:
-		ld de, PSGChan1Volume	; PSGChan1Volume = $C010
+		ld de, PSGChan1Volume		; PSGChan1Volume = $C010
 		ld c, Port_VDPAddress
 		di
 		out (c), e
@@ -319,18 +308,12 @@ SMS_setColor:
 		ret
 
 SMS_initSprites:
-		ld hl, SpriteNextFree	; SpriteNextFree = $C123
+		ld hl, SpriteNextFree		; SpriteNextFree = $C123
 		ld (hl), $00
 		ret
 
 SMS_addSprite:
-	;.db $3A $23 $C1 $D6 $40 $30 $4B $FD $21 $03 $00 $FD $39 $FD $7E $00
-	;.db $D6 $D1 $28 $3E $3E $63 $21 $23 $C1 $86 $4F $3E $C0 $CE $00 $47
-	;.db $FD $5E $00 $1D $7B $02 $3A $23 $C1 $87 $4F $21 $A3 $C0 $06 $00
-	;.db $09 $FD $21 $02 $00 $FD $39 $FD $7E $00 $77 $23 $FD $21 $04 $00
-	;.db $FD $39 $FD $7E $00 $77 $FD $21 $23 $C1 $FD $4E $00 $FD $34 $00
-	;.db $69 $C9 $2E $FF $C9
-		ld a, (SpriteNextFree)			; SpriteNextFree = $C123
+		ld a, (SpriteNextFree)		; SpriteNextFree = $C123
 		sub $40
 		jr nc, $4B
 		ld iy, $0003
@@ -340,7 +323,7 @@ SMS_addSprite:
 		sub	$D1
 		jr z, $3E
 		ld a, $63
-		ld hl, SpriteNextFree			; SpriteNextFree = $C123
+		ld hl, SpriteNextFree		; SpriteNextFree = $C123
 		add a, (hl)
 		ld c, a
 		ld a, $C0
@@ -351,10 +334,10 @@ SMS_addSprite:
 		dec e
 		ld a, e
 		ld (bc), a
-		ld a, (SpriteNextFree)			; SpriteNextFree = $C123
+		ld a, (SpriteNextFree)		; SpriteNextFree = $C123
 		add a, a
 		ld c, a
-		ld hl, SpriteTableXN			; SpriteTableXN = $C0A3
+		ld hl, SpriteTableXN		; SpriteTableXN = $C0A3
 		ld b, $00
 
 		add hl, bc
@@ -368,7 +351,7 @@ SMS_addSprite:
 		add iy, sp
 		ld a, (iy + $00)
 		ld (hl), a
-		ld iy, SpriteNextFree			; SpriteNextFree = $C123
+		ld iy, SpriteNextFree		; SpriteNextFree = $C123
 		ld c, (iy + $00)
 		inc (iy + $00)
 
@@ -378,11 +361,11 @@ SMS_addSprite:
 		ret
 
 SMS_finalizeSprites:
-		ld a, (SpriteNextFree)	; SpriteNextFree = $C123
+		ld a, (SpriteNextFree)		; SpriteNextFree = $C123
 		sub $40
 		ret nc
-		ld bc, SpriteTableY	; SpriteTableY = $C063
-		ld hl, (SpriteNextFree)	; SpriteNextFree = $C123
+		ld bc, SpriteTableY			; SpriteTableY = $C063
+		ld hl, (SpriteNextFree)		; SpriteNextFree = $C123
 		ld h, $00
 		add hl, bc
 		ld (hl), $D0
@@ -391,7 +374,7 @@ SMS_finalizeSprites:
 SMS_copySpritestoSAT:
 		ld hl, $7F00
 		rst $08	; _LABEL_8_
-		ld bc, SpriteTableY	; SpriteTableY = $C063
+		ld bc, SpriteTableY			; SpriteTableY = $C063
 		ld e, $40
 -:
 		ld a, (bc)
@@ -405,7 +388,7 @@ SMS_copySpritestoSAT:
 		jr nz, -
 		ld hl, $7F80
 		rst $08	; _LABEL_8_
-		ld bc, SpriteTableXN	; SpriteTableXN = $C0A3
+		ld bc, SpriteTableXN		; SpriteTableXN = $C0A3
 		ld e, $80
 -:
 		ld a, (bc)
@@ -420,29 +403,27 @@ SMS_copySpritestoSAT:
 		ret
 
 SMS_waitForVBlank:
-		ld hl, VDPBlank	; VDPBlank = $C05B
+		ld hl, VDPBlank				; VDPBlank = $C05B
 		ld (hl), $00
 -:
-		ld hl, VDPBlank	; VDPBlank = $C05B
+		ld hl, VDPBlank				; VDPBlank = $C05B
 		bit 0, (hl)
 		jr z, -
 		ret
 
 SMS_getKeysStatus:
-		ld hl, (KeysStatus)	; KeysStatus = $C05F
+		ld hl, (KeysStatus)			; KeysStatus = $C05F
 		ret
 
 SMS_getKeysPressed:
-	;.db $FD $21 $61 $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $FD $21
-	;.db $5F $C0 $FD $7E $00 $A1 $6F $FD $7E $01 $A0 $67 $C9
-		ld iy, PreviousKeysStatus		; PreviousKeysStatus = $C061
+		ld iy, PreviousKeysStatus	; PreviousKeysStatus = $C061
 		ld a, (iy + $00)
 		cpl
 		ld c, a
 		ld a, (iy + $01)
 		cpl
 		ld b, a
-		ld iy, KeysStatus				; KeysStatus = $C05F
+		ld iy, KeysStatus			; KeysStatus = $C05F
 		ld a, (iy + $00)
 		and c
 		ld l, a
@@ -452,22 +433,18 @@ SMS_getKeysPressed:
 		ret
 
 SMS_getKeysHeld:
-	;.db $3A $5F $C0 $FD $21 $61 $C0 $FD $A6 $00 $6F $3A $60 $C0 $FD $21
-	;.db $61 $C0 $FD $A6 $01 $67 $C9
-		ld a, (KeysStatus)				; KeysStatus = $C05F
-		ld iy, PreviousKeysStatus		; PreviousKeysStatus = $C061
+		ld a, (KeysStatus)			; KeysStatus = $C05F
+		ld iy, PreviousKeysStatus	; PreviousKeysStatus = $C061
 		and (iy + $00)
 		ld l, a
-		ld a, (KeysStatus + 1)			; KeysStatus = $C05F
-		ld iy, PreviousKeysStatus		; PreviousKeysStatus = $C061
+		ld a, (KeysStatus + 1)		; KeysStatus = $C05F
+		ld iy, PreviousKeysStatus	; PreviousKeysStatus = $C061
 		and (iy + $01)
 		ld h, a
 		ret
 
 SMS_getKeysReleased:
-	;.db $FD $21 $5F $C0 $FD $7E $00 $2F $4F $FD $7E $01 $2F $47 $79 $FD
-	;.db $21 $61 $C0 $FD $A6 $00 $6F $78 $FD $A6 $01 $67 $C9
-		ld iy, KeysStatus				; KeysStatus = $C05F
+		ld iy, KeysStatus			; KeysStatus = $C05F
 		ld a, (iy + $00)
 		cpl
 		ld c, a
@@ -475,7 +452,7 @@ SMS_getKeysReleased:
 		cpl
 		ld b, a
 		ld a, c
-		ld iy, PreviousKeysStatus		; PreviousKeysStatus = $C061
+		ld iy, PreviousKeysStatus	; PreviousKeysStatus = $C061
 		and (iy + $00)
 		ld l, a
 		ld a, b
@@ -484,18 +461,16 @@ SMS_getKeysReleased:
 		ret
 
 SMS_queryPauseRequested:
-		ld iy, PauseRequested	; PauseRequested = $C05D
+		ld iy, PauseRequested		; PauseRequested = $C05D
 		ld l, (iy+0)
 		ret
 
 SMS_resetPauseRequest:
-		ld hl, PauseRequested	; PauseRequested = $C05D
+		ld hl, PauseRequested		; PauseRequested = $C05D
 		ld (hl), $00
 		ret
 
 SMS_setLineInterruptHandler:
-	;.db $21 $02 $00 $39 $7E $32 $24 $C1 $21 $03 $00 $39 $7E $32 $25 $C1
-	;.db $C9
 		ld hl, $0002
 		add hl, sp
 		ld a, (hl)
@@ -507,7 +482,6 @@ SMS_setLineInterruptHandler:
 		ret
 
 SMS_setLineCounter:
-	;.db $21 $02 $00 $39 $4E $F3 $79 $D3 $BF $3E $8A $D3 $BF $FB $C9
 		ld hl, $0002
 		add hl, sp
 		ld c, (hl)
@@ -520,13 +494,11 @@ SMS_setLineCounter:
 		ret
 
 SMS_getVCount:
-	;.db $DB $7E $6F $C9
 		in a, ($7E)
 		ld l, a
 		ret
 
 SMS_getHCount:
-	;.db $DB $7F $6F $C9
 		in a, ($7F)
 		ld l, a
 		ret
@@ -535,16 +507,16 @@ SMS_isr:
 		push af
 		push hl
 		in a, (Port_VDPStatus)
-		ld (SMS_VDPFlags), a	; SMS_VDPFlags = $C05C
+		ld (SMS_VDPFlags), a		; SMS_VDPFlags = $C05C
 		rlca
 		jr nc, +
-		ld hl, VDPBlank	; VDPBlank = $C05B
+		ld hl, VDPBlank				; VDPBlank = $C05B
 		ld (hl), $01
-		ld hl, (KeysStatus)	; KeysStatus = $C05F
+		ld hl, (KeysStatus)			; KeysStatus = $C05F
 		ld (PreviousKeysStatus), hl	; PreviousKeysStatus = $C061
 		in a, (Port_IOPort1)
 		cpl
-		ld hl, KeysStatus	; KeysStatus = $C05F
+		ld hl, KeysStatus			; KeysStatus = $C05F
 		ld (hl), a
 		in a, (Port_IOPort2)
 		cpl
@@ -573,7 +545,7 @@ SMS_nmi_isr:
 		push de
 		push hl
 		push iy
-		ld hl, PauseRequested	; PauseRequested = $C05D
+		ld hl, PauseRequested		; PauseRequested = $C05D
 		ld (hl), $01
 		pop iy
 		pop hl
@@ -583,60 +555,27 @@ SMS_nmi_isr:
 		retn
 
 moduchar:
-	;.db $21 $03 $00 $39 $5E $2B $6E $CD $AE $1A $EB $C9
 		ld hl, $0003
 		add hl, sp
 		ld e, (hl)
 		dec hl
 		ld l, (hl)
-		call divu8			; divu8 = $1AAE
+		call divu8					; divu8 = $1AAE
 		ex de, hl
 		ret
 
 moduint:
-	;.db $F1 $E1 $D1 $D5 $E5 $F5 $CD $B1 $1A $EB $C9
 		pop af
 		pop hl
 		pop de
 		push de
 		push hl
 		push af
-		call divu16			; divu16 = $1AB1
+		call divu16					; divu16 = $1AB1
 		ex de, hl
 		ret
 
 SMS_loadSTMcompressedTileMapAre:
-	; .db $DD $E5 $DD $21 $00 $00 $DD $39 $21 $F0 $FF $39 $F9 $DD $36 $FE
-	; .db $00 $DD $36 $FF $00 $DD $36 $F3 $00 $DD $36 $F4 $00 $DD $6E $05
-	; .db $26 $00 $29 $29 $29 $29 $29 $29 $DD $75 $FC $7C $F6 $78 $DD $77
-	; .db $FD $DD $7E $04 $DD $77 $FA $DD $36 $FB $00 $DD $CB $FA $26 $DD
-	; .db $CB $FB $16 $DD $7E $FC $DD $B6 $FA $5F $DD $7E $FD $DD $B6 $FB
-	; .db $57 $DD $7E $08 $DD $77 $FA $DD $77 $F1 $DD $36 $F0 $00 $6B $62
-	; .db $CF $DD $6E $06 $DD $66 $07 $7E $DD $77 $F2 $23 $DD $75 $06 $DD
-	; .db $74 $07 $DD $7E $06 $DD $77 $FC $DD $7E $07 $DD $77 $FD $DD $7E
-	; .db $F2 $E6 $02 $DD $77 $F9 $DD $7E $F2 $0F $0F $E6 $3F $DD $77 $F8
-	; .db $DD $CB $F2 $46 $CA $78 $1F $DD $36 $F6 $00 $DD $7E $FF $DD $77
-	; .db $F7 $DD $4E $FC $DD $46 $FD $03 $DD $6E $FC $DD $66 $FD $6E $DD
-	; .db $7E $F8 $C6 $02 $DD $77 $F5 $26 $00 $7D $DD $B6 $F6 $6F $7C $DD
-	; .db $B6 $F7 $67 $DD $7E $F9 $B7 $28 $3C $DD $71 $06 $DD $70 $07 $4D
-	; .db $44 $DD $6E $F5 $7D $B7 $CA $F1 $1F $E5 $69 $60 $DF $E1 $DD $35
-	; .db $F1 $DD $7E $F1 $B7 $20 $15 $7B $C6 $40 $5F $7A $CE $00 $57 $E5
-	; .db $C5 $6B $62 $CF $C1 $E1 $DD $7E $FA $DD $77 $F1 $3E $01 $95 $30
-	; .db $01 $03 $2D $18 $CF $DD $71 $06 $DD $70 $07 $DD $75 $FE $DD $74
-	; .db $FF $DD $46 $F5 $78 $B7 $CA $01 $20 $DD $6E $FE $DD $66 $FF $DF
-	; .db $DD $35 $F1 $DD $7E $F1 $B7 $20 $0D $21 $40 $00 $19 $5D $54 $CF
-	; .db $DD $7E $FA $DD $77 $F1 $05 $18 $DB $DD $7E $F9 $B7 $28 $29 $DD
-	; .db $CB $F2 $56 $28 $10 $DD $7E $FE $DD $77 $F3 $DD $7E $FF $DD $77
-	; .db $F4 $DD $36 $F0 $01 $DD $4E $F2 $CB $39 $CB $39 $CB $39 $DD $71
-	; .db $FF $DD $36 $FE $00 $C3 $A0 $1E $DD $6E $F8 $7D $B7 $28 $6D $DD
-	; .db $7E $FF $DD $77 $F6 $DD $36 $F7 $00 $DD $4E $FC $DD $46 $FD $DD
-	; .db $75 $F5 $DD $7E $F5 $B7 $28 $34 $0A $D3 $BE $03 $00 $00 $00 $DD
-	; .db $7E $F6 $D3 $BE $DD $35 $F1 $DD $7E $F1 $B7 $20 $10 $21 $40 $00
-	; .db $19 $EB $C5 $6B $62 $CF $C1 $DD $7E $FA $DD $77 $F1 $DD $35 $F5
-	; .db $18 $D0 $DD $71 $FE $DD $70 $FF $18 $08 $18 $06 $DD $71 $06 $DD
-	; .db $70 $07 $DD $CB $F0 $46 $CA $A0 $1E $DD $7E $F3 $DD $77 $FE $DD
-	; .db $7E $F4 $DD $77 $FF $DD $36 $F0 $00 $C3 $A0 $1E $DD $F9 $DD $E1
-	; .db $C9
 		push ix
 		ld ix, $0000
 		add ix, sp
@@ -733,7 +672,7 @@ LABEL_1EA0_:
 		push hl
 		ld l, c
 		ld h, b
-		rst $18	; _LABEL_18_
+		rst $18							; _LABEL_18_
 		pop hl
 		dec (ix-15)
 		ld a, (ix-15)
@@ -749,7 +688,7 @@ LABEL_1EA0_:
 		push bc
 		ld l, e
 		ld h, d
-		rst $08	; _LABEL_8_
+		rst $08							; _LABEL_8_
 		pop bc
 		pop hl
 		ld a, (ix-6)
@@ -844,7 +783,7 @@ LABEL_1F78_:
 		push bc
 		ld l, e
 		ld h, d
-		rst $08	; _LABEL_8_
+		rst $08							; _LABEL_8_
 		pop bc
 		ld a, (ix-6)
 		ld (ix-15), a
@@ -856,9 +795,7 @@ LABEL_1FF1_:
 		ld (ix-2), c
 		ld (ix-1), b
 		jr LABEL_2001_
-
-	; Data from 1FF9 to 1FFA (2 bytes)
-	.db $18 $06
+		jr $06
 
 ++:
 		ld (ix+6), c
@@ -904,7 +841,7 @@ SMS_loadPSGaidencompressedTiles:
 LABEL_2045_:
 		push bc
 		ld b, $04
-		ld de, decompBuffer	; decompBuffer = $C126
+		ld de, decompBuffer			; decompBuffer = $C126
 		ld c, (ix+0)
 		inc ix
 LABEL_2050_:
@@ -923,7 +860,7 @@ LABEL_2050_:
 		ld e, a
 		ld a, d
 		ld d, $00
-		ld iy, decompBuffer	; decompBuffer = $C126
+		ld iy, decompBuffer			; decompBuffer = $C126
 		add iy, de
 		ex de, hl
 		cp $03
@@ -1010,7 +947,7 @@ LABEL_20B1_:
 		jp nz, LABEL_2050_
 		ld de, SMS_crt0_RST08 + 2	; SMS_crt0_RST08 + 2 = $0008
 		ld c, e
-		ld hl, decompBuffer	; decompBuffer = $C126
+		ld hl, decompBuffer			; decompBuffer = $C126
 --:
 		ld b, $04
 		push hl
