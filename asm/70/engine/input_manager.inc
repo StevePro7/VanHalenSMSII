@@ -1,9 +1,9 @@
 .section "Input manager" free
 engine_input_manager_update:
-		ld hl, (curr_joypad1)	; Finput_manager$curr_joypad1$0$0 = curr_joypad1
-		ld (prev_joypad1), hl	; Finput_manager$prev_joypad1$0$0 = prev_joypad1
+		ld hl, (curr_joypad1)		; Finput_manager$curr_joypad1$0$0 = curr_joypad1
+		ld (prev_joypad1), hl		; Finput_manager$prev_joypad1$0$0 = prev_joypad1
 		call devkit_SMS_getKeysStatus
-		ld (curr_joypad1), hl	; Finput_manager$curr_joypad1$0$0 = curr_joypad1
+		ld (curr_joypad1), hl		; Finput_manager$curr_joypad1$0$0 = curr_joypad1
 		ret
 
 engine_input_manager_hold:

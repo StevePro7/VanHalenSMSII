@@ -367,14 +367,14 @@ incY_goto:
 
 update_values:
 		; unsigned char grid_x = cursor_gridX[ co->cursor_index_x ];
-		ld bc, cursor_gridX		; cursor_gridX = $1146
+		ld bc, cursor_gridX			; cursor_gridX = $1146
 		ld hl, cursor_index_x		; cursor_index_x = $C026
 		ld l, (hl)
 		ld h, $00
 		add hl, bc
 		ld c, (hl)
 		; unsigned char grid_y = cursor_gridY[ co->cursor_index_y ];
-		ld de, cursor_gridY		; cursor_gridY = $114A 
+		ld de, cursor_gridY			; cursor_gridY = $114A 
 		ld hl, cursor_index_x		; cursor_index_x = $C026
 		inc hl
 		ld l, (hl)

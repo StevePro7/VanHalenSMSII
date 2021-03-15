@@ -8,7 +8,7 @@ engine_font_manager_draw_char:
 		ld c, a
 		push bc
 		ld h, (ix + $06)
-		ld l, (ix + $05)				; TEXT_ROOT	5
+		ld l, (ix + $05)			; TEXT_ROOT	5
 		push hl
 		call devkit_SMS_setNextTileatXY
 		pop af
@@ -85,24 +85,24 @@ engine_font_manager_draw_data:
 		ld (ix - 1), a
 		ld (ix - 2), $00
 font_goto_03:
-		ld hl, $000A						; UNIT_ROOT	10 is decimal
+		ld hl, $000A					; UNIT_ROOT	10 is decimal
 		push hl
 		ld l, (ix + $04)
 		ld h, (ix + $05)
 		push hl
-		call divuint						; quotient = data / UNIT_ROOT;
+		call divuint					; quotient = data / UNIT_ROOT;
 		pop af
 		pop af
 		ld e, l
 		ld d, h
 		push hl
 		push de
-		ld bc, $000A						; UNIT_ROOT	10 is decimal
+		ld bc, $000A					; UNIT_ROOT	10 is decimal
 		push bc
 		ld c, (ix + $04)
 		ld b, (ix + $05)
 		push bc
-		call moduint						; remainder = data % UNIT_ROOT;
+		call moduint					; remainder = data % UNIT_ROOT;
 		pop af
 		pop af
 		ld b, l

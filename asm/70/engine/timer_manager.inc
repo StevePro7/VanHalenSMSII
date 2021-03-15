@@ -61,8 +61,8 @@ engine_reset_manager_update:
 		ld b, a
 		or a
 		jr z, timer_goto_02
-		ld hl, $0000				; ro->reset_timer = 0;
-		ld (reset_object_timer), hl	; reset_object_timer = $C052
+		ld hl, $0000					; ro->reset_timer = 0;
+		ld (reset_object_timer), hl		; reset_object_timer = $C052
 timer_goto_02:
 		ld l, b
 		ret

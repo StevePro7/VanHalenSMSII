@@ -314,7 +314,6 @@ sms_manager_title:
 ; "Van Halen"
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
 
-; Data from 9C5 to A00 (60 bytes)
 sms_manager_description:
 ; "Van Halen Record Covers for the SMS Power! 2021 Competition"
 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64

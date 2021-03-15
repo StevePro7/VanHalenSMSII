@@ -62,28 +62,28 @@ engine_record_manager_load:
 		ret
 
 engine_record_manager_decrement:
-		ld bc, record_album_index			; ro->record_album_index
+		ld bc, record_album_index		; ro->record_album_index
 		ld a, (bc)
-		or a								; if( 0 == ro->record_album_index )
+		or a							; if( 0 == ro->record_album_index )
 		jr nz, record_goto_01
 		ld a, $0B
-		ld (bc), a							; ro->record_album_index = MAX_RECORDS - 1;
+		ld (bc), a						; ro->record_album_index = MAX_RECORDS - 1;
 		ret
 record_goto_01:
 		add a, $FF
-		ld (bc), a							; ro->record_album_index--;
+		ld (bc), a						; ro->record_album_index--;
 		ret
 
 engine_record_manager_increment:
-		ld bc, record_album_index		; ro->record_album_index
+		ld bc, record_album_index	; ro->record_album_index
 		ld a, (bc)
-		cp $0B							; if( ( MAX_RECORDS - 1 ) == ro->record_album_index )
+		cp $0B						; if( ( MAX_RECORDS - 1 ) == ro->record_album_index )
 		jr nz, record_goto_02
-		xor a							; ro->record_album_index = 0;
+		xor a						; ro->record_album_index = 0;
 		ld (bc), a
 		ret
 record_goto_02:
-		inc a							; ro->record_album_index++;
+		inc a						; ro->record_album_index++;
 		ld (bc), a
 		ret
 

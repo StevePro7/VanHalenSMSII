@@ -65,7 +65,7 @@ engine_storage_manager_write:
 		ld (de), a
 		ld hl, $0005
 		add hl, bc
-		ld (hl), $FE		; savegame->terminal = FINAL;
+		ld (hl), $FE					; savegame->terminal = FINAL;
 		jp devkit_SMS_disableSRAM
 
 engine_storage_manager_erase:
@@ -75,12 +75,12 @@ engine_storage_manager_erase:
 		pop bc
 		ld l, c
 		ld h, b
-		xor a				; savegame->Magic = 0x00000000;
+		xor a							; savegame->Magic = 0x00000000;
 		ld (hl), a
 		inc hl
 		ld (hl), a
 		inc hl
-		xor a				; savegame->save_album_index = 0;
+		xor a							; savegame->save_album_index = 0;
 		ld (hl), a
 		inc hl
 		ld (hl), a
@@ -89,7 +89,7 @@ engine_storage_manager_erase:
 		ld (hl), $00
 		ld hl, $0005
 		add hl, bc
-		ld (hl), $FE		; FINAL		0xFE
+		ld (hl), $FE					; FINAL		0xFE
 		jp devkit_SMS_disableSRAM
 
 .ends
