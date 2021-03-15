@@ -1,13 +1,10 @@
-.section "engine_asm_manager_clear_VRAM:" free
+.section "ASM manager" free
 engine_asm_manager_clear_VRAM:	
 		ld a, $00
 		out (Port_VDPAddress), a
 		ld a, $40
 		out (Port_VDPAddress), a
 		ld bc, $4000
-.ends
-
-.section "asm_loop:" free
 asm_loop:	
 		ld a, $00
 		out (Port_VDPData), a

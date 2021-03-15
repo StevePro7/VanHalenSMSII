@@ -1,4 +1,4 @@
-; .sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
+.sdsctag 1.0,"Van Halen","Van Halen Record Covers for the SMS Power! 2021 Competition","StevePro Studios"
 
 .include "devkit/memory_manager.inc"
 .include "devkit/enum_manager.inc"
@@ -68,7 +68,7 @@ LABEL_66_:
 	.db $00 $00 $00 $00 $00 $00 $00
 
 
-.section "Init section" free ;semisubfree
+.section "Init section" free	; semisubfree
 LABEL_70_:
 		ld sp, $DFF0
 		ld de, _RAM_FFFC_
@@ -81,7 +81,7 @@ LABEL_70_:
 		inc a
 		djnz -
 		xor a
-		ld hl, $C000		; Lmain.main$global_pause$1$55 = $C000
+		ld hl, pause_status		; Lmain.main$global_pause$1$55 = $C000
 		ld (hl), a
 		ld de, PSGMusicStatus	; PSGMusicStatus = $C001
 		ld bc, $1FF0
@@ -91,8 +91,12 @@ LABEL_70_:
 		ei
 		call main
 		jp exit
-        
-        
+.ends
+
+.include "content/out.inc"
+
+
+.section "Other functions" free
 ; Data from 200 to 203 (4 bytes)
 clock:
 	;.db $3E $02 $CF $C9
@@ -106,8 +110,10 @@ exit:
 -:
 		halt
 		jr -
-        
+.ends
 
+
+.section "Main section" free
 main:
 		call engine_asm_manager_clear_VRAM
 		call devkit_SMS_init
@@ -138,7 +144,7 @@ infinite_loop:
 		or a
 		jr z, global_pause
 		call devkit_SMS_resetPauseRequest
-		ld iy, $C000		; Lmain.main$global_pause$1$55 = $C000
+		ld iy, pause_status		; Lmain.main$global_pause$1$55 = $C000
 		ld a, (iy+0)
 		xor $01
 		ld (iy+0), a
@@ -150,7 +156,7 @@ infinite_loop:
 else_clause:
 		call devkit_PSGRestoreVolumes
 global_pause:
-		ld hl, $C000		; Lmain.main$global_pause$1$55 = $C000
+		ld hl, pause_status		; Lmain.main$global_pause$1$55 = $C000
 		bit 0, (hl)
 		jr nz, infinite_loop
 		call devkit_SMS_initSprites
@@ -162,8 +168,52 @@ global_pause:
 		call devkit_PSGFrame
 		call devkit_PSGSFXFrame
 		jr infinite_loop
-         
-        
+.ends
+
+; devkit
+.include "devkit/psg_manager.inc"
+;.include "devkit/sms_manager.inc"
+.include "devkit/devkit_manager.inc"
+
+
+; engine
+.include "engine/asm_manager.inc"
+.include "engine/audio_manager.inc"
+.include "engine/content_manager.inc"
+.include "engine/cursor_manager.inc"
+.include "engine/font_manager.inc"
+.include "engine/input_manager.inc"
+.include "engine/record_manager.inc"
+.include "engine/screen_manager.inc"
+.include "engine/scroll_manager.inc"
+.include "engine/storage_manager.inc"
+.include "engine/timer_manager.inc"
+
+
+; object
+.include "object/cursor_object.inc"
+.include "object/record_object.inc"
+
+
+; screen
+.include "screen/none_screen.inc"
+.include "screen/splash_screen.inc"
+.include "screen/title_screen.inc"
+.include "screen/scroll_screen.inc"
+.include "screen/select_screen.inc"
+.include "screen/record_screen.inc"
+;.include "screen/detail_screen.inc"
+;.include "screen/test_screen.inc"
+;.include "screen/func_screen.inc"
+
+
+; content
+.include "content/gfx.inc"
+.include "content/psg.inc"
+;.include "content/out.inc"
+
+
+.section "Math functions" free
 ; Data from 1A9F to 1AA6 (8 bytes)
 divuint:
 	;.db $F1 $E1 $D1 $D5 $E5 $F5 $18 $0A
@@ -229,13 +279,15 @@ divu16:
 	ld e, a
 	ex de, hl
 	ret
+.ends
+
+.include "devkit/sms_manager.inc"
 
 
-
-;.section "Additional global variables" free
+.section "Additional helpers" free
 ; Data from 2103 to 2104 (2 bytes)
 init_curr_joyp:
-; static unsigned int $C146 = 0;
+; static unsigned int curr_joypad1 = 0;
 	.db $00 $00
 
 ; Data from 2105 to 2106 (2 bytes)
@@ -267,94 +319,52 @@ init_record_pa:
 ; const unsigned char *record_palette_data[]
 	.db $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80 $00 $80
 	.db $00 $80 $00 $80 $00 $80 $00 $80 $04 $20 $08 $08
-;.ends
 
 gsinit:
 		ld bc, $0068
 		ld a, b
 		or c
 		jr z, +
-		ld de, $C146	; Finput_manager$$C146$0$0 = $C146
+		ld de, curr_joypad1		; Finput_manager$curr_joypad1$0$0 = $C146
 		ld hl, init_curr_joyp	; Finput_manager$__xinit_curr_joyp = $2103
 		ldir
 +:
 		ret
-
 .ends
 
+; 	; Data from 217B to 7F8B (24081 bytes)
+; 	.dsb 24081, $00
 
-; content
-.include "content/gfx.inc"
-.include "content/psg.inc"
-.include "content/out.inc"
+; ; Data from 7F8C to 7FC7 (60 bytes)
+; SMS__SDSC_descr:
+; ; "Van Halen Record Covers for the SMS Power! 2021 Competition"
+; 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
+; 	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
+; 	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
+; 	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
 
-; devkit
-.include "devkit/psg_manager.inc"
-.include "devkit/sms_manager.inc"
-.include "devkit/devkit_manager.inc"
+; ; Data from 7FC8 to 7FD1 (10 bytes)
+; SMS__SDSC_name:
+; ; "Van Halen"
+; 	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
 
+; ; Data from 7FD2 to 7FDF (14 bytes)
+; SMS__SDSC_author:
+; ; "Steven Boland"
+; 	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
 
-; engine
-.include "engine/asm_manager.inc"
-.include "engine/audio_manager.inc"
-.include "engine/content_manager.inc"
-.include "engine/cursor_manager.inc"
-.include "engine/font_manager.inc"
-.include "engine/input_manager.inc"
-.include "engine/record_manager.inc"
-.include "engine/screen_manager.inc"
-.include "engine/scroll_manager.inc"
-.include "engine/storage_manager.inc"
-.include "engine/timer_manager.inc"
-
-
-; object
-.include "object/cursor_object.inc"
-.include "object/record_object.inc"
+; ; Data from 7FE0 to 7FEF (16 bytes)
+; SMS__SDSC_signature:
+; ; "SDSC"
+; 	.db $53 $44 $53 $43 $01 $00 $27 $03 $21 $20 $D2 $7F $C8 $7F $8C $7F
 
 
-; screen
-.include "screen/none_screen.inc"
-.include "screen/splash_screen.inc"
-.include "screen/title_screen.inc"
-.include "screen/scroll_screen.inc"
-.include "screen/select_screen.inc"
-.include "screen/record_screen.inc"
-.include "screen/detail_screen.inc"
-.include "screen/test_screen.inc"
-.include "screen/func_screen.inc"
+; .BANK 1 SLOT 1
+; .ORG $0000
 
-
-; Data from 7F8C to 7FC7 (60 bytes)
-SMS__SDSC_descr:
-; "Van Halen Record Covers for the SMS Power! 2021 Competition"
-	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $20 $52 $65 $63 $6F $72 $64
-	.db $20 $43 $6F $76 $65 $72 $73 $20 $66 $6F $72 $20 $74 $68 $65 $20
-	.db $53 $4D $53 $20 $50 $6F $77 $65 $72 $21 $20 $32 $30 $32 $31 $20
-	.db $43 $6F $6D $70 $65 $74 $69 $74 $69 $6F $6E $00
-
-; Data from 7FC8 to 7FD1 (10 bytes)
-SMS__SDSC_name:
-; "Van Halen"
-	.db $56 $61 $6E $20 $48 $61 $6C $65 $6E $00
-
-; Data from 7FD2 to 7FDF (14 bytes)
-SMS__SDSC_author:
-; "Steven Boland"
-	.db $53 $74 $65 $76 $65 $6E $20 $42 $6F $6C $61 $6E $64 $00
-
-; Data from 7FE0 to 7FEF (16 bytes)
-SMS__SDSC_signature:
-; "SDSC"
-	.db $53 $44 $53 $43 $01 $00 $27 $03 $21 $20 $D2 $7F $C8 $7F $8C $7F
-
-
-.BANK 1 SLOT 1
-.ORG $0000
-
-; Data from 7FF0 to 7FFF (16 bytes)
-SMS__SEGA_signature:
-	.db $54 $4D $52 $20 $53 $45 $47 $41 $FF $FF $D5 $FF $99 $99 $00 $4C
+; ; Data from 7FF0 to 7FFF (16 bytes)
+; SMS__SEGA_signature:
+; 	.db $54 $4D $52 $20 $53 $45 $47 $41 $FF $FF $D5 $FF $99 $99 $00 $4C
 
 
 ; Banks.

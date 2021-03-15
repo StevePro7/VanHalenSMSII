@@ -1,12 +1,9 @@
+;.section "Cursor object" free
 ; const unsigned char cursor_gridX[ MAX_GRID_X ] = { 4, 11, 18, 25 };
-.section "cursor_gridX" free
 cursor_gridX:
 	.db $04 $0B $12 $19
 
 ; const unsigned char cursor_gridY[ MAX_GRID_Y ] = { 16, 19, 22 };
-.ends
-
-.section "cursor_gridY" free
 cursor_gridY:
 	.db $10 $13 $16
 
@@ -45,4 +42,5 @@ cursor_gridY:
 
 ; "2012"
 	.db $32 $30 $31 $32 $00
-.ends
+
+;.ends

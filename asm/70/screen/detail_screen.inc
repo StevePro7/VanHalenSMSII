@@ -1,15 +1,13 @@
-.section "screen_detail_screen_load" free
-screen_detail_screen_load:
-	ret
+; ;.section "Detail screen" free
+; screen_detail_screen_load:
+; 	ret
 
-.ends
+; screen_detail_screen_update:
+; 	pop bc
+; 	pop hl
+; 	push hl
+; 	push bc
+; 	ld (hl), $06		; screen_type_detail
+; 	ret
 
-.section "screen_detail_screen_update" free
-screen_detail_screen_update:
-	pop bc
-	pop hl
-	push hl
-	push bc
-	ld (hl), $06		; screen_type_detail
-	ret
-.ends
+; ;.ends

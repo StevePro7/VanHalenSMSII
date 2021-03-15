@@ -1,4 +1,4 @@
-.section "engine_storage_manager_availabl" free
+.section "Storage manager" free
 engine_storage_manager_availabl:
 		call devkit_SMS_SRAM
 		push hl
@@ -25,12 +25,8 @@ engine_storage_manager_availabl:
 		jr nz, storage_goto_01
 		ld a, $01
 		jr storage_goto_02
-;.ends
-;.section "storage_goto_01" free
 storage_goto_01:
 		xor a
-;.ends
-;.section "storage_goto_02" free
 storage_goto_02:
 		ld l, a
 		push hl
@@ -38,22 +34,16 @@ storage_goto_02:
 		pop hl
 		ret
 
-.ends
-
-.section "engine_storage_manager_read" free
 engine_storage_manager_read:
 		call devkit_SMS_SRAM
 		push hl
 		call devkit_SMS_enableSRAM
 		pop iy
 		ld c, (iy + $04)
-		ld hl, $C02A		; $C02A = $C02A		; ro->$C02A
+		ld hl, record_album_index		; record_album_index = $C02A		; ro->record_album_index
 		ld (hl), c
 		jp devkit_SMS_disableSRAM
 
-.ends
-
-.section "engine_storage_manager_write" free
 engine_storage_manager_write:
 		call devkit_SMS_SRAM
 		push hl
@@ -71,16 +61,13 @@ engine_storage_manager_write:
 		ld hl, $0004
 		add hl, bc
 		ex de, hl
-		ld a, ($C02A)		; $C02A = $C02A	; ro->$C02A
+		ld a, (record_album_index)		; record_album_index = $C02A	; ro->record_album_index
 		ld (de), a
 		ld hl, $0005
 		add hl, bc
 		ld (hl), $FE		; savegame->terminal = FINAL;
 		jp devkit_SMS_disableSRAM
 
-.ends
-
-.section "engine_storage_manager_erase" free
 engine_storage_manager_erase:
 		call devkit_SMS_SRAM
 		push hl
@@ -104,4 +91,5 @@ engine_storage_manager_erase:
 		add hl, bc
 		ld (hl), $FE		; FINAL		0xFE
 		jp devkit_SMS_disableSRAM
+
 .ends

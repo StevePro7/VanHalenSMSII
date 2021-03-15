@@ -1,4 +1,4 @@
-.section "engine_scroll_manager_reset" free
+.section "Scroll manager" free
 engine_scroll_manager_reset:
 		xor a								; GAP_OFFSET	0
 		push af
@@ -12,9 +12,6 @@ engine_scroll_manager_reset:
 		inc sp
 		ret
 
-.ends
-
-.section "engine_scroll_manager_load" free
 engine_scroll_manager_load:
 		ld hl, scroll_object	; scroll_object = $C045
 		ld iy, $0002
@@ -22,4 +19,5 @@ engine_scroll_manager_load:
 		ld a, (iy+0)
 		ld (hl), a
 		ret
+
 .ends

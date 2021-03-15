@@ -1,4 +1,4 @@
-.section "engine_audio_manager_sfx_right" free
+.section "Audio manager" free
 engine_audio_manager_sfx_right:
 		ld hl, sfx_right_psg
 		push hl
@@ -6,9 +6,6 @@ engine_audio_manager_sfx_right:
 		pop af
 		ret
 
-.ends
-
-.section "engine_audio_manager_sfx_wrong" free
 engine_audio_manager_sfx_wrong:
 		ld hl, sfx_wrong_psg
 		push hl
@@ -16,9 +13,6 @@ engine_audio_manager_sfx_wrong:
 		pop af
 		ret
 
-.ends
-
-.section "engine_audio_manager_sfx_cheat" free
 engine_audio_manager_sfx_cheat:
 		ld hl, sfx_cheat_psg
 		push hl
@@ -26,9 +20,6 @@ engine_audio_manager_sfx_cheat:
 		pop af
 		ret
 
-.ends
-
-.section " play_sfx" free
  play_sfx:
 		call devkit_PSGSFXGetStatus
 		ld a, l

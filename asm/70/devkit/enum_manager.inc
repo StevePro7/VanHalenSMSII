@@ -1,5 +1,5 @@
 .enum $C000 export	
-;pause_status db		; Lmain.main$global_pause$1$55 = $C000
+pause_status db		; Lmain.main$global_pause$1$55 = $C000
 PSGMusicStatus db                   ; PSGMusicStatus = $C001
 PSGMusicStart dw                    ; PSGMusicStart = $C002
 PSGMusicPointer dw		            ; PSGMusicPointer = $C004
@@ -33,15 +33,15 @@ PSGSFXSubstringRetAddr dw		    ; PSGSFXSubstringRetAddr = $C024
 
 
 .enum $C026 export		
-;cursor_index_x db                   ; cursor_index_x = $C026
-;cursor_index_y db                   ; cursor_index_x = $C027
-;cursor_value_x db                   ; cursor_index_x = $C028
-;cursor_value_y db                   ; cursor_index_x = $C029
+cursor_index_x db                   ; cursor_index_x = $C026
+cursor_index_y db                   ; cursor_index_x = $C027
+cursor_value_x db                   ; cursor_index_x = $C028
+cursor_value_y db                   ; cursor_index_x = $C029
 .ende	
 
 
 .enum $C02A export	
-;record_album_index db	            ; ro->record_album_index = $C02A
+record_album_index db	            ; ro->record_album_index = $C02A
 .ende	
 
 .enum $C02B export	
@@ -83,53 +83,53 @@ select_screen_flash db                  ; select_screen_event = $C058
 
 	
 .enum $C05B export	
-;VDPBlank db		                        ; VDPBlank = $C05B
-;SMS_VDPFlags db		                    ; SMS_VDPFlags = $C05C
-;PauseRequested db		                ; PauseRequested = $C05D
-;VDPType db		                        ; VDPType = $C05E
-;KeysStatus dw		                    ; KeysStatus = $C05F
-;PreviousKeysStatus dw		            ; PreviousKeysStatus = $C061
-;SpriteTableY db		                    ; SpriteTableY = $C063
+VDPBlank db		                        ; VDPBlank = $C05B
+SMS_VDPFlags db		                    ; SMS_VDPFlags = $C05C
+PauseRequested db		                ; PauseRequested = $C05D
+VDPType db		                        ; VDPType = $C05E
+KeysStatus dw		                    ; KeysStatus = $C05F
+PreviousKeysStatus dw		            ; PreviousKeysStatus = $C061
+SpriteTableY db		                    ; SpriteTableY = $C063
 .ende	
 	
 .enum $C0A3 export	
-;SpriteTableXN db	                    ; SpriteTableXN = $C0A3
+SpriteTableXN db	                    ; SpriteTableXN = $C0A3
 .ende	
 	
 .enum $C123 export	
-;SpriteNextFree db		                ; SpriteNextFree = $C123
-;SMS_theLineInterruptHandler dw		    ; SMS_theLineInterruptHandler = $C124
-;decompBuffer db		                    ; decompBuffer = $C126
+SpriteNextFree db		                ; SpriteNextFree = $C123
+SMS_theLineInterruptHandler dw		    ; SMS_theLineInterruptHandler = $C124
+decompBuffer db		                    ; decompBuffer = $C126
 	
 .ende	
 	
     
 .enum $C14A export	
-;cursor_album db                         ; cursor_album = $C14A
+cursor_album db                         ; cursor_album = $C14A
 .ende	
 	
 .enum $C146 export	
-;curr_joypad1 dw		; Finput_manager$$C146$0$0 = $C146       ; todo update
-;prev_joypad1 dw		; Finput_manager$$C148$0$0 = $C148       ; todo update
+curr_joypad1 dw		; Finput_manager$curr_joypad1$0$0 = $C146       ; todo update
+prev_joypad1 dw		; Finput_manager$prev_joypad1$0$0 = $C148       ; todo update
 .ende	
 
 .enum $C162 export	
-;record_tiles_data db		            ; record_tiles_data = $C162
+record_tiles_data db		            ; record_tiles_data = $C162
 .ende	
 .enum $C17A export	
-;record_tilemap_data db                  ; record_tilemap_data = $C17A	
+record_tilemap_data db                  ; record_tilemap_data = $C17A	
 .ende
 .enum $C192 export	
-;record_palette_data db                  ; $C192 = $C192	
+record_palette_data db                  ; record_palette_data = $C192	
 .ende
 
 .enum $C1AA export	
-;VDPReg db                               ; $C1AA = $C1AA
+VDPReg db                               ; VDPReg = $C1AA
 .ende
 
 .enum $C1AC export	
-;spritesHeight db		                ; spritesHeight = $C1AC
-;spritesWidth db		                    ; spritesWidth = $C1AD
+spritesHeight db		                ; spritesHeight = $C1AC
+spritesWidth db		                    ; spritesWidth = $C1AD
 .ende	
 
 

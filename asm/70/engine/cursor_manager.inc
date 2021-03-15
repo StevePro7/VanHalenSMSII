@@ -1,9 +1,9 @@
-.section "engine_cursor_manager_init" free
+.section "Cursor manager" free
 engine_cursor_manager_init:
-		ld bc, $C026		; $C026 = $C026
+		ld bc, cursor_index_x		; cursor_index_x = $C026
 		xor a
 		ld (bc),a
-		ld hl, $C027		; $C027 = $C027
+		ld hl, cursor_index_y		; cursor_index_y = $C027
 		ld (hl),$00
 		push bc
 		ld a, $03					; MAX_GRID_Y	3
@@ -14,7 +14,7 @@ engine_cursor_manager_init:
 		ld a, (hl)
 		push af
 		inc sp
-		call divuchar				; co->$C026 = index / MAX_GRID_Y;
+		call divuchar				; co->cursor_index_x = index / MAX_GRID_Y;
 		pop af
 		ld a, l
 		pop bc
@@ -27,16 +27,13 @@ engine_cursor_manager_init:
 		ld a, (hl)
 		push af
 		inc sp
-		call moduchar				; co->$C027 = index % MAX_GRID_Y;
+		call moduchar				; co->cursor_index_y = index % MAX_GRID_Y;
 		pop af
 		ld c, l
-		ld hl, $C027		; $C027 = $C027
+		ld hl, cursor_index_y		; cursor_index_y = $C027
 		ld (hl), c
 		jp update_values
 
-.ends
-
-.section "engine_cursor_manager_load" free
 engine_cursor_manager_load:
 		; MAX_GRID_X	4
 		; MAX_GRID_Y	3
@@ -46,8 +43,6 @@ engine_cursor_manager_load:
 		push af
 		push af
 		ld (ix -3), $00
-;.ends
-;.section "cursor_goto_01" free
 cursor_goto_01:
 		ld a, $4A
 		add a, (ix - 3)
@@ -56,8 +51,6 @@ cursor_goto_01:
 		adc a, $00
 		ld (ix - 1), a
 		ld c, $00
-;.ends
-;.section "cursor_goto_02" free
 cursor_goto_02:
 		ld l, c
 		add hl, hl
@@ -76,7 +69,7 @@ cursor_goto_02:
 		ld h, $00
 		ld l, e
 		add hl, hl
-		ld de, $C14A				; $C14A = $C14A
+		ld de, cursor_album				; cursor_album = $C14A
 		add hl, de
 		ld e, (hl)
 		inc hl
@@ -105,35 +98,29 @@ cursor_goto_02:
 		pop ix
 		ret
 
-.ends
-
-.section "engine_cursor_manager_save" free
 engine_cursor_manager_save:
-		ld a, ($C026)		; $C026 = $C026
+		ld a, (cursor_index_x)		; cursor_index_x = $C026
 		ld c, a
 		add a, a
 		add a, c
 		ld c, a
-		ld hl, $C026		; $C026 = $C026
+		ld hl, cursor_index_x		; cursor_index_x = $C026
 		inc hl
 		ld l, (hl)
 		add hl, bc
 		ret
 
-.ends
-
-.section "engine_cursor_manager_draw" free
 engine_cursor_manager_draw:
 		push ix
 		ld ix, $0000				; tile + 0 
 		add ix, sp
 		push af
 		push af
-		ld hl, $C026		; $C026 = $C026
+		ld hl, cursor_index_x		; cursor_index_x = $C026
 		inc hl
 		inc hl
 		ld c, (hl)
-		ld hl, $C026		; $C026 = $C026
+		ld hl, cursor_index_x		; cursor_index_x = $C026
 		inc hl
 		inc hl
 		inc hl
@@ -326,92 +313,69 @@ engine_cursor_manager_draw:
 		pop ix
 		ret
 
-.ends
-
-.section "engine_cursor_manager_decX" free
 engine_cursor_manager_decX:
-		ld bc, $C026		; $C026 = $C026
+		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
-		or a						; if( 0 == co->$C026 )
+		or a						; if( 0 == co->cursor_index_x )
 		jr nz, decX_goto
-		ld a, $03					; co->$C026 = MAX_GRID_X - 1;
+		ld a, $03					; co->cursor_index_x = MAX_GRID_X - 1;
 		ld (bc), a
 		jp update_values
-;.ends
-;.section "decX_goto" free
 decX_goto:
-		add a, $FF					; co->$C026--;
+		add a, $FF					; co->cursor_index_x--;
 		ld (bc), a
 		jp update_values
 
-.ends
-
-.section "engine_cursor_manager_incX" free
 engine_cursor_manager_incX:
-		ld bc, $C026		; $C026 = $C026
+		ld bc, cursor_index_x		; cursor_index_x = $C026
 		ld a, (bc)
-		cp $03						; if( MAX_GRID_X - 1 == co->$C026 )
+		cp $03						; if( MAX_GRID_X - 1 == co->cursor_index_x )
 		jr nz, incX_goto
-		xor a						; co->$C026 = 0;
+		xor a						; co->cursor_index_x = 0;
 		ld (bc), a
 		jp update_values
-;.ends
-;.section "incX_goto" free
 incX_goto:
-		inc a						; co->$C026++;
+		inc a						; co->cursor_index_x++;
 		ld (bc), a
 		jp update_values
 
-.ends
-
-.section "engine_cursor_manager_decY" free
 engine_cursor_manager_decY:
-		ld bc, $C027		; $C027 = $C027
+		ld bc, cursor_index_y		; cursor_index_y = $C027
 		ld a, (bc)
-		or a						; if( 0 == co->$C027 )
+		or a						; if( 0 == co->cursor_index_y )
 		jr nz, decY_goto
-		ld a, $02					; co->$C027 = MAX_GRID_Y - 1;
+		ld a, $02					; co->cursor_index_y = MAX_GRID_Y - 1;
 		ld (bc), a
 		jp update_values
-;.ends
-;.section "decY_goto" free
 decY_goto:
-		add a, $FF					; co->$C027--;
+		add a, $FF					; co->cursor_index_y--;
 		ld (bc), a
 		jp update_values
 
-.ends
-
-.section "engine_cursor_manager_incY" free
 engine_cursor_manager_incY:
-		ld bc, $C027		; $C027 = $C027
+		ld bc, cursor_index_y		; cursor_index_y = $C027
 		ld a, (bc)
-		cp $02						; if( MAX_GRID_Y - 1 == co->$C027 )
+		cp $02						; if( MAX_GRID_Y - 1 == co->cursor_index_y )
 		jr nz, incY_goto
-		xor a						; co->$C027 = 0;
+		xor a						; co->cursor_index_y = 0;
 		ld (bc), a
 		jp update_values
-;.ends
-;.section "incY_goto" free
 incY_goto:
-		inc a						; co->$C027++;
+		inc a						; co->cursor_index_y++;
 		ld (bc), a
 		jp update_values
 
-.ends
-
-.section "update_values" free
 update_values:
-		; unsigned char grid_x = cursor_gridX[ co->$C026 ];
+		; unsigned char grid_x = cursor_gridX[ co->cursor_index_x ];
 		ld bc, cursor_gridX		; cursor_gridX = $1146
-		ld hl, $C026		; $C026 = $C026
+		ld hl, cursor_index_x		; cursor_index_x = $C026
 		ld l, (hl)
 		ld h, $00
 		add hl, bc
 		ld c, (hl)
-		; unsigned char grid_y = cursor_gridY[ co->$C027 ];
+		; unsigned char grid_y = cursor_gridY[ co->cursor_index_y ];
 		ld de, cursor_gridY		; cursor_gridY = $114A 
-		ld hl, $C026		; $C026 = $C026
+		ld hl, cursor_index_x		; cursor_index_x = $C026
 		inc hl
 		ld l, (hl)
 		ld h, $00
@@ -419,25 +383,25 @@ update_values:
 		ld e, (hl)
 		dec c
 		ld a, c
-		rlca						; co->$C028 = ( grid_x - 1 ) * TILE_PIXEL;
+		rlca						; co->cursor_value_x = ( grid_x - 1 ) * TILE_PIXEL;
 		rlca
 		rlca
 		and $F8
 		ld d, a
-		ld hl, $C028		; $C028 = $C028
+		ld hl, cursor_value_x		; cursor_value_x = $C028
 		ld (hl), d
-		ld bc, $C029		; $C029 = $C029
+		ld bc, cursor_value_y		; cursor_value_y = $C029
 		dec e
 		ld a, e
-		rlca						; co->$C029 = ( grid_y - 1 ) * TILE_PIXEL;
+		rlca						; co->cursor_value_y = ( grid_y - 1 ) * TILE_PIXEL;
 		rlca
 		rlca
 		and $F8
 		ld e, a
 		ld (bc), a
-		inc d						; co->$C028 += 1;
+		inc d						; co->cursor_value_x += 1;
 		ld (hl), d
-		dec e						; co->$C029 -= 1;
+		dec e						; co->cursor_value_y -= 1;
 		ld a, e
 		ld (bc), a
 		ret

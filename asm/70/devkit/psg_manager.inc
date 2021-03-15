@@ -1,4 +1,4 @@
-.section "PSGStop" superfree
+.section "PSG Manager" free
 PSGStop:
 		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
 		or a
@@ -24,9 +24,6 @@ PSGStop:
 		ret
 
 
-.ends
-
-.section "PSGResume" superfree
 PSGResume:
 	; .db $3A $01 $C0 $B7 $C0 $3A $0F $C0 $F6 $90 $D3 $7F $3A $10 $C0 $F6
 	; .db $B0 $D3 $7F $3A $16 $C0 $B7 $20 $17 $3A $13 $C0 $E6 $0F $F6 $C0
@@ -71,15 +68,12 @@ PSGResume:
 		ld (hl), $01
 		ret
 
-.ends
-
-.section "PSGPlay" superfree
 PSGPlay:
 	;.db $CD $81 $02 $21 $09 $C0 $36 $01 $D1 $C1 $C5 $D5 $ED $43 $02 $C0
 	;.db $ED $43 $04 $C0 $ED $43 $06 $C0 $21 $08 $C0 $36 $00 $21 $0C $C0
 	;.db $36 $00 $21 $0A $C0 $36 $9F $21 $01 $C0 $36 $01 $C9
 		call $0281
-		ld hl, $C009				; PSGLoopFlag
+		ld hl, PSGLoopFlag			; PSGLoopFlag = $C009
 		ld (hl), $01
 		pop de
 		pop bc
@@ -101,18 +95,12 @@ PSGPlay:
 		ret
 
 
-.ends
-
-.section "PSGCancelLoop" superfree
 PSGCancelLoop:
 	;.db $21 $09 $C0 $36 $00 $C9
 		ld hl, PSGLoopFlag			; PSGLoopFlag = $C009
 		ld (hl), $00
 		ret
 
-.ends
-
-.section "PSGPlayNoRepeat" superfree
 PSGPlayNoRepeat:
 	;.db $C1 $E1 $E5 $C5 $E5 $CD $F4 $02 $F1 $21 $09 $C0 $36 $00 $C9
 		pop bc
@@ -126,18 +114,12 @@ PSGPlayNoRepeat:
 		ld (hl), $00
 		ret
 
-.ends
-
-.section "PSGGetStatus" superfree
 PSGGetStatus:
 	;.db $FD $21 $01 $C0 $FD $6E $00 $C9
 		ld iy, PSGMusicStatus		; PSGMusicStatus = $C001
 		ld l, (iy + $00)
 		ret
 
-.ends
-
-.section "PSGSilenceChannels" superfree
 PSGSilenceChannels:
 		ld a, $9F
 		out (Port_PSG), a
@@ -149,9 +131,6 @@ PSGSilenceChannels:
 		out (Port_PSG), a
 		ret
 
-.ends
-
-.section "PSGRestoreVolumes" superfree
 PSGRestoreVolumes:
 		push ix
 		ld ix, $0000
@@ -224,8 +203,6 @@ PSGRestoreVolumes:
 		ld a, e
 		or $B0
 		out (Port_PSG), a
-;.ends
-;.section "LABEL_3C7_" superfree
 LABEL_3C7_:
 		ld a, (PSGChannel2SFX)	; PSGChannel2SFX = $C016
 		or a
@@ -315,9 +292,6 @@ LABEL_3C7_:
 		pop ix
 		ret
 
-.ends
-
-.section "PSGSetMusicVolumeAttenuation" superfree
 PSGSetMusicVolumeAttenuation:
 	; .db $DD $E5 $DD $21 $00 $00 $DD $39 $F5 $DD $7E $04 $32 $0B $C0 $3A
 	; .db $01 $C0 $B7 $CA $38 $05 $3A $0F $C0 $E6 $0F $4F $1E $00 $FD $21
@@ -475,17 +449,12 @@ PSGSetMusicVolumeAttenuation:
 		ld a, c
 		or $F0
 		out (Port_PSG), a
-;.ends
-;.section "LABEL_538_" superfree
 LABEL_538_:
 		ld sp, ix
 		pop ix
 		ret
 
 
-.ends
-
-.section "PSGSFXStop" superfree
 PSGSFXStop:
 		push ix
 		ld ix, $0000
@@ -544,16 +513,12 @@ PSGSFXStop:
 		out (Port_PSG), a
 		jr +
 
-;.ends
-;.section "LABEL_5A8_" superfree
 LABEL_5A8_:
 		ld a, $DF
 		out (Port_PSG), a
 +:
 		ld hl, PSGChannel2SFX	; PSGChannel2SFX = $C016
 		ld (hl), $00
-;.ends
-;.section "LABEL_5B1_" superfree
 LABEL_5B1_:
 		ld a, (PSGChannel3SFX)	; PSGChannel3SFX = $C017
 		or a
@@ -602,21 +567,14 @@ LABEL_5B1_:
 ++++:
 		ld hl, PSGChannel3SFX	; PSGChannel3SFX = $C017
 		ld (hl), $00
-;.ends
-;.section "LABEL_5FD_" superfree
 LABEL_5FD_:
 		ld hl, PSGSFXStatus	; PSGSFXStatus = $C01A
 		ld (hl), $00
-;.ends
-;.section "LABEL_602_" superfree
 LABEL_602_:
 		ld sp, ix
 		pop ix
 		ret
 
-.ends
-
-.section "PSGSFXPlay" superfree
 PSGSFXPlay:
 	;.db $CD $3D $05 $21 $22 $C0 $36 $00 $D1 $C1 $C5 $D5 $ED $43 $1B $C0
 	;.db $ED $43 $1D $C0 $ED $43 $1F $C0 $21 $21 $C0 $36 $00 $21 $23 $C0
@@ -662,27 +620,18 @@ PSGSFXPlay:
 		ld (hl), $01
 		ret
 
-.ends
-
-.section "PSGSFXCancelLoop" superfree
 PSGSFXCancelLoop:
 	;.db $21 $22 $C0 $36 $00 $C9
 		ld hl, PSGSFXLoopFlag		; PSGSFXLoopFlag = $C022
 		ld (hl), $00
 		ret
 
-.ends
-
-.section "PSGSFXGetStatus" superfree
 PSGSFXGetStatus:
 	;.db $FD $21 $1A $C0 $FD $6E $00 $C9
 		ld iy, PSGSFXStatus			; PSGSFXStatus = $C01A
 		ld l, (iy + $00)
 		ret
 
-.ends
-
-.section "PSGSFXPlayLoop" superfree
 PSGSFXPlayLoop:
 	;.db $FD $21 $04 $00 $FD $39 $FD $7E $00 $F5 $33 $FD $2B $FD $2B $FD
 	;.db $6E $00 $FD $66 $01 $E5 $CD $07 $06 $F1 $33 $21 $22 $C0 $36 $01
@@ -704,9 +653,6 @@ PSGSFXPlayLoop:
 		ld (hl), $01
 		ret
 
-.ends
-
-.section "PSGFrame" superfree
 PSGFrame:
 		ld a, (PSGMusicStatus)	; PSGMusicStatus = $C001
 		or a
@@ -715,8 +661,6 @@ PSGFrame:
 		or a
 		jp nz, LABEL_717_			; stevepro
 		ld hl, (PSGMusicPointer)	; PSGMusicPointer = $C004
-;.ends
-;.section "LABEL_692_" superfree
 LABEL_692_:
 		ld b, (hl)
 		inc hl
@@ -789,15 +733,11 @@ LABEL_692_:
 		jr z, LABEL_748_
 		jp LABEL_692_
 
-;.ends
-;.section "LABEL_717_" superfree
 LABEL_717_:
 		dec a
 		ld (PSGMusicSkipFrames), a	; PSGMusicSkipFrames = $C008
 		ret
 
-;.ends
-;.section "LABEL_71C_" superfree
 LABEL_71C_:
 		cp $40
 		jr c, +
@@ -823,22 +763,14 @@ LABEL_71C_:
 		jr z, ++++
 		ret
 
-;.ends
-;.section "LABEL_742_" superfree
 LABEL_742_:
 		ld a, b
-;.ends
-;.section "LABEL_743_" superfree
 LABEL_743_:
 		out (Port_PSG), a
 		jp LABEL_692_
 
-;.ends
-;.section "LABEL_748_" superfree
 LABEL_748_:
 		ld a, b
-;.ends
-;.section "LABEL_749_" superfree
 LABEL_749_:
 		ld c, a
 		and $0F
@@ -872,8 +804,6 @@ LABEL_749_:
 		ld hl, (PSGMusicLoopPoint)	; PSGMusicLoopPoint = $C006
 		jp LABEL_692_
 
-;.ends
-;.section "LABEL_77B_" superfree
 LABEL_77B_:
 		sub $04
 		ld (PSGMusicSubstringLen), a	; PSGMusicSubstringLen = $C00C
@@ -895,9 +825,6 @@ LABEL_77B_:
 		jp LABEL_692_
 		ret
 
-.ends
-
-.section "PSGSFXFrame" superfree
 PSGSFXFrame:
 		ld a, (PSGSFXStatus)	; PSGSFXStatus = $C01A
 		or a
@@ -906,8 +833,6 @@ PSGSFXFrame:
 		or a
 		jp nz, +++
 		ld hl, (PSGSFXPointer)	; PSGSFXPointer = $C01D
-;.ends
-;.section "LABEL_7AB_" superfree
 LABEL_7AB_:
 		ld b, (hl)
 		inc hl

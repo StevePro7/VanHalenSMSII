@@ -1,10 +1,7 @@
-.section "screen_none_screen_load" free
+.section "None screen" free
 screen_none_screen_load:
 		ret
 
-.ends
-
-.section "screen_none_screen_update" free
 screen_none_screen_update:
 		pop de
 		pop bc
@@ -13,4 +10,5 @@ screen_none_screen_update:
 		xor a					; screen_type_none = 0
 		ld (bc), a
 		ret
+
 .ends

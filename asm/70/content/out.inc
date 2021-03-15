@@ -1,19 +1,24 @@
+.ORG $0099
+.section "OUT128 section" force
 
-.section "OUTI128:" free
 OUTI128:	
 .rept 64
 		outi
 .endr
 .ends
 
-.section "OUTI64:" free
+
+.ORG $0119
+.section "OUT64 section" force
 OUTI64:	
 		.rept 32
 		outi
 .endr
 .ends
 
-.section "OUTI32:" free
+
+.ORG $0159
+.section "OUT32 section" force
 OUTI32:	
 		.rept 32
 		outi
