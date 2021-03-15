@@ -101,15 +101,15 @@ screen_title_screen_update:
 		or a
 		jr z, title_screen_goto_02
 		push bc
-		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
+		ld hl, $150A					; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
-		ld hl, blank_clear			; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
+		ld hl, blank_clear				; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
 		push hl
 		call engine_font_manager_draw_text
 		pop af
-		ld hl, $1715				; engine_font_manager_draw_text( ..., 21, 23 );
+		ld hl, $1715					; engine_font_manager_draw_text( ..., 21, 23 );
 		ex (sp), hl
-		ld hl, blank_clear			; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
+		ld hl, blank_clear				; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
 		push hl
 		call engine_font_manager_draw_text
 		pop af
@@ -119,10 +119,10 @@ title_screen_goto_02:
 		ld a, c
 		or a
 		jr z, title_screen_goto_03
-		ld c, $03					; screen_type_scroll = 3
+		ld c, $03						; screen_type_scroll = 3
 		jr title_screen_goto_04
 title_screen_goto_03:
-		ld c, $02					; screen_type_title = 2
+		ld c, $02						; screen_type_title = 2
 title_screen_goto_04:
 		ld l, (ix - 2)
 		ld h, (ix - 1)
@@ -134,31 +134,31 @@ title_screen_goto_05:
 		ld a, l
 		or a
 		jr z, title_screen_goto_07
-		ld hl, title_screen_flash	; title_screen_flash = $C055
+		ld hl, title_screen_flash		; title_screen_flash = $C055
 		ld a, $01
 		sub a, (hl)
 		ld (hl), a
-		ld a,(title_screen_flash)	; title_screen_flash = $C055
+		ld a,(title_screen_flash)		; title_screen_flash = $C055
 		or a
 		jr z, title_screen_goto_06
-		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
+		ld hl, $150A					; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
-		ld hl, blank_clear			; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
+		ld hl, blank_clear				; engine_font_manager_draw_text( LOCALE_BLANK_CLEAR
 		push hl
 		call engine_font_manager_draw_text
 		pop af
 		pop af
 		jr title_screen_goto_07
 title_screen_goto_06:
-		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
+		ld hl, $150A					; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
-		ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
+		ld hl, press_start2				; engine_font_manager_draw_text( LOCALE_PRESS_START
 		push hl
 		call engine_font_manager_draw_text
 		pop af
 		pop af
 title_screen_goto_07:
-		ld a, $10					; input_type_fire1
+		ld a, $10						; input_type_fire1
 		push af
 		inc sp
 		call engine_input_manager_hold
@@ -166,19 +166,19 @@ title_screen_goto_07:
 		ld a, l
 		or a
 		jr z, $15
-		ld hl, $150A				; engine_font_manager_draw_text( ..., 10, 21 );
+		ld hl, $150A					; engine_font_manager_draw_text( ..., 10, 21 );
 		push hl
-		ld hl, press_start2			; engine_font_manager_draw_text( LOCALE_PRESS_START
+		ld hl, press_start2				; engine_font_manager_draw_text( LOCALE_PRESS_START
 		push hl
 		call engine_font_manager_draw_text
 		pop af
 		pop af
 		call engine_audio_manager_sfx_right
-		ld hl, title_screen_event	; title_screen_event = $C054
+		ld hl, title_screen_event		; title_screen_event = $C054
 		ld (hl), $01
 		ld l, (ix - 2)
 		ld h, (ix - 1)
-		ld (hl), $02				; screen_type_title = 2
+		ld (hl), $02					; screen_type_title = 2
 title_screen_goto_08:
 		ld sp, ix
 		pop ix
